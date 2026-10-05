@@ -2377,6 +2377,25 @@ mark.review-highlight {
   margin-bottom: 8px;
 }
 
+/* CONCIERGE FINDER DI HALAMAN EXPLORE */
+.explore-finder-section {
+  padding: 56px 48px 64px;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  width: 100%;
+}
+
+.explore-finder-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .explore-finder-section {
+    padding: 36px 20px 48px;
+  }
+}
+
 .finder-head {
   display: flex;
   align-items: flex-end;

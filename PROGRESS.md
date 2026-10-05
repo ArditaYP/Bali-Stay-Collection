@@ -80,16 +80,31 @@ Data villa menggunakan sistem hibrida:
 - **`src/data/villasData.js`**: Menggabungkan data Airbnb dengan rincian manual (`VILLA_DETAILS`) seperti harga USD/malam, cleaning fee, kebijakan pembatalan, fasilitas, dan detail kamar tidur.
 - **Script Import**: `scripts/import-airbnb.mjs` (menggunakan Puppeteer untuk memperbarui data langsung dari Airbnb).
 
-### Villa yang Saat Ini Terdaftar:
-1. **St. Lau – Signature 3BR Hideaway in Ubud**
+### Villa yang Saat Ini Terdaftar (Total 9 Villa):
+#### A. 3 Villa Asli (DIKUNCI / LOCKED):
+1. **St. Lau – Signature 3BR Hideaway in Ubud** *(Asli / Dikunci)*
    - ID: `st-lau-ubud` | Airbnb ID: `1517027661326621037`
-   - Lokasi: Ubud | 3 Kamar Tidur | 8 Tamu | $220 / malam
-2. **Iconic 5BR Cliff Top Villa with 180° Ocean View**
+   - Lokasi: Ubud | 3 Kamar Tidur | 8 Tamu | $220 / malam | Rating: 4.80
+2. **Iconic 5BR Cliff Top Villa with 180° Ocean View** *(Asli / Dikunci)*
    - ID: `iconic-cliff-top-villa` | Airbnb ID: `1365727502132237034`
-   - Lokasi: Balangan Beach (Uluwatu / Badung) | 5 Kamar Tidur | 10 Tamu | $450 / malam
-3. **Angkasa :5BR Ubud Villa with Infinity Pool & Views**
+   - Lokasi: Balangan Beach (Uluwatu / Badung) | 5 Kamar Tidur | 10 Tamu | $450 / malam | Rating: 4.90
+3. **Angkasa :5BR Ubud Villa with Infinity Pool & Views** *(Asli / Dikunci)*
    - ID: `angkasa-ubud` | Airbnb ID: `1634534758752754577`
-   - Lokasi: Ubud | 5 Kamar Tidur | 10 Tamu | $380 / malam
+   - Lokasi: Ubud | 5 Kamar Tidur | 10 Tamu | $380 / malam | Rating: 4.95
+
+#### B. 6 Villa Tambahan Baru (Pelengkap Destinasi Populer):
+4. **Villa Samudra – Bohemian Tropical Luxury in Canggu** *(Baru)*
+   - ID: `villa-samudra-canggu` | Lokasi: Canggu (Echo Beach) | 3 Kamar Tidur | 6 Tamu | $280 / malam | Rating: 4.93
+5. **The Palms Villa – Modern Architectural Haven in Batu Bolong** *(Baru)*
+   - ID: `the-palms-villa-canggu` | Lokasi: Canggu (Batu Bolong) | 4 Kamar Tidur | 8 Tamu | $350 / malam | Rating: 4.90
+6. **Villa Kayu Raja – Elegant Tropical Oasis in Petitenget** *(Baru)*
+   - ID: `villa-kayu-raja-seminyak` | Lokasi: Seminyak (Petitenget) | 3 Kamar Tidur | 6 Tamu | $320 / malam | Rating: 4.88
+7. **Villa Cendana – Romantic Honeymoon Hideaway in Seminyak** *(Baru)*
+   - ID: `villa-cendana-seminyak` | Lokasi: Seminyak (Kayu Aya) | 2 Kamar Tidur | 4 Tamu | $230 / malam | Rating: 4.96
+8. **Cliffside Panorama – Oceanfront Infinity Villa in Uluwatu** *(Baru)*
+   - ID: `cliffside-panorama-uluwatu` | Lokasi: Uluwatu (Bingin Beach) | 4 Kamar Tidur | 8 Tamu | $540 / malam | Rating: 4.98
+9. **Mandapa Jungle Villa – Eco-Luxury Bamboo Sanctuary in Ubud** *(Baru)*
+   - ID: `mandapa-jungle-villa` | Lokasi: Ubud (Sayan Ridge) | 2 Kamar Tidur | 4 Tamu | $290 / malam | Rating: 4.94
 
 ---
 
@@ -210,6 +225,29 @@ src/
   - Mengubah class pembungkus menjadi `.rating-filter-group` dengan `display: flex; flex-direction: column; width: 100%;`.
   - Memberi class `.radio-row` pada setiap label radio button agar tersusun menurun ke bawah (*vertical stack*) secara teratur dan konsisten dengan kelompok filter lainnya.
   - Mengisolasi selector `.star-row` di `src/index.css` agar spesifik hanya untuk ikon bintang review (`span.star-row`, `.review-meta .star-row`, `.review-card .star-row`).
+
+### J. Penambahan 6 Listing Villa Baru (Total Menjadi 9 Villa)
+- **Instruksi Pengguna**: 3 villa asli (`st-lau-ubud`, `iconic-cliff-top-villa`, `angkasa-ubud`) **DIKUNCI DAN TIDAK DIUBAH**. Menambahkan 6 villa baru yang tersebar di Canggu, Seminyak, Uluwatu, dan Ubud.
+- **Aset Foto**: 48 foto beresolusi tinggi (8 foto per villa) diunduh dan disimpan secara lokal di `public/airbnb/[id-villa]/photos/` sehingga aplikasi mandiri, cepat, dan tidak bergantung pada link eksternal.
+- **Daftar Villa Baru**:
+  1. `villa-samudra-canggu`: Villa bohemian tropical di Echo Beach, Canggu ($280/malam, 3 kamar, pool).
+  2. `the-palms-villa-canggu`: Villa arsitektural modern di Batu Bolong, Canggu ($350/malam, 4 kamar, sunken lounge).
+  3. `villa-kayu-raja-seminyak`: Oasis mewah tropis di Petitenget, Seminyak ($320/malam, 3 kamar, open garden bath).
+  4. `villa-cendana-seminyak`: Romantic hideaway di Kayu Aya, Seminyak ($230/malam, 2 kamar, stone bathtub).
+  5. `cliffside-panorama-uluwatu`: Villa tebing ultra-luxury di Bingin Beach, Uluwatu ($540/malam, 4 kamar, ocean infinity pool).
+  6. `mandapa-jungle-villa`: Eco-luxury bamboo sanctuary di Sayan Ridge, Ubud ($290/malam, 2 kamar, valley plunge pool).
+- **Integrasi**: Tersambung otomatis ke `GalleryModal.jsx` (dengan caption per ruangan), `ConciergeFinder.jsx`, mesin pencarian/filter di `ExplorePage.jsx`, dan `POPULAR_DESTINATIONS`.
+
+### K. Penghapusan Bagian "Response from host" (`ReviewCard.jsx`)
+- **Instruksi Pengguna**: Seluruh bagian balasan host (*Response from host*) dihilangkan dari tampilan ulasan web.
+- **Perubahan**:
+  - Menghapus blok render `review.hostResponse` dari komponen `ReviewCard.jsx`.
+  - Kartu ulasan kini fokus menampilkan ulasan tamu (nama, foto avatar/inisial, info tamu, rating bintang, tanggal, dan isi ulasan) baik di halaman detail villa (`VillaDetailPage.jsx`) maupun di modal ulasan lengkap (`ReviewsModal.jsx`).
+
+### L. Penempatan Concierge Matching Finder di Halaman Utama (`ExplorePage.jsx`)
+- **Posisi**: Ditambahkan tepat di atas section `WhyBookDirect` (`section id="why-section"`), di bawah grid katalog villa pada halaman depan.
+- **Fitur**: Membawa fitur pencocokan villa pintar (`ConciergeFinder`) ke beranda web dengan filter Area (Ubud, Canggu, Seminyak, Uluwatu, Sanur, All Bali), jumlah tamu, jumlah kamar, dan rentang budget per malam.
+- **Interaktivitas**: Tamu dapat langsung memilih kriteria perjalanan mereka dan tombol "View Villa →" atau quick chip akan membuka halaman detail villa yang cocok secara instan.
 
 ---
 

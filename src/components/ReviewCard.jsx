@@ -49,11 +49,11 @@ export function ReviewAvatar({ review, size = 44 }) {
 
 /**
  * ReviewCard
- * Satu kartu review tamu: foto, nama, info tamu, bintang, tanggal, isi review, dan balasan host.
+ * Satu kartu review tamu: foto avatar, nama, info tamu, rating bintang, tanggal, dan isi ulasan.
  * Teks panjang dipotong dulu dan bisa dibuka dengan tombol "Show more".
  *
  * @param {Object} props
- * @param {Object} props.review - Data review
+ * @param {Object} props.review - Data review tamu
  * @param {boolean} [props.clamp=true] - Jika true, isi review dipotong maksimal beberapa baris
  * @param {string} [props.highlight] - Kata kunci pencarian yang akan di-highlight di teks
  */
@@ -132,14 +132,6 @@ export default function ReviewCard({ review, clamp = true, highlight = '' }) {
           </button>
         )}
       </div>
-
-      {/* Balasan dari host (jika ada) */}
-      {review.hostResponse && (
-        <div className="host-response">
-          <b>Response from host</b>
-          <p>{review.hostResponse}</p>
-        </div>
-      )}
     </div>
   );
 }

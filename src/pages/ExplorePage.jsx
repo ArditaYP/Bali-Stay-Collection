@@ -4,6 +4,7 @@ import Destinations from '../components/Destinations';
 import FilterSidebar from '../components/FilterSidebar';
 import VillaCard from '../components/VillaCard';
 import WhyBookDirect from '../components/WhyBookDirect';
+import ConciergeFinder from '../components/ConciergeFinder';
 
 /**
  * Komponen Halaman ExplorePage (Katalog & Pencarian Villa Utama)
@@ -337,6 +338,16 @@ export default function ExplorePage({
               )}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Concierge Matching Finder ("Not sure which villa?") */}
+      <section className="explore-finder-section" id="finder">
+        <div className="explore-finder-inner">
+          <ConciergeFinder 
+            allVillas={villas}
+            onSelectVilla={onSelectVilla}
+          />
         </div>
       </section>
 

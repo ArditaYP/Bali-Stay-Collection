@@ -64,6 +64,78 @@ const VILLA_DETAILS = {
     shortDesc: 'A 5-bedroom Ubud villa with an infinity pool overlooking the jungle valley.',
     description: 'Angkasa is a 5-bedroom villa in Ubud built around an infinity pool that seems to float above the surrounding jungle. Generous living and dining areas, a fully equipped kitchen and panoramic views make it a perfect base for larger groups.',
     amenities: ['Infinity pool', 'Jungle view', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Free parking', 'Daily housekeeping']
+  },
+  'villa-samudra-canggu': {
+    category: 'Deluxe',
+    price: 280,
+    cleaningFee: 35,
+    freeCancel: true,
+    cardBg: '#CBC3A8',
+    bookedDays: [5, 6, 17, 18],
+    address: 'Echo Beach, Canggu, Badung, Bali',
+    shortDesc: 'A boho-chic 3-bedroom sanctuary steps from Echo Beach with private pool and sun deck.',
+    description: 'Villa Samudra blends breezy Mediterranean bohemian aesthetics with traditional Balinese artisanal craftsmanship. Located just 5 minutes from Echo Beach in Canggu, this sanctuary features high-vaulted ceilings, an open-concept living pavilion, custom rattan furnishings, and a turquoise swimming pool framed by swaying palms.',
+    amenities: ['Private pool', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Daily housekeeping', 'Near the beach', 'Free parking']
+  },
+  'the-palms-villa-canggu': {
+    category: 'Premium',
+    price: 350,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#B8C5BD',
+    bookedDays: [10, 11, 22, 23],
+    address: 'Batu Bolong, Canggu, Badung, Bali',
+    shortDesc: 'A stunning minimalist 4-bedroom villa with sunken lounge and lap pool in prime Canggu.',
+    description: 'The Palms Villa is an architectural masterpiece situated in Canggu’s vibrant Batu Bolong precinct. Designed with clean geometric lines, polished concrete, and natural teak elements, the property centers around an elongated lap pool and sunken outdoor lounge with fully enclosed air-conditioned living spaces.',
+    amenities: ['Private pool', 'Sunken lounge', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Dedicated workspace', 'Free parking']
+  },
+  'villa-kayu-raja-seminyak': {
+    category: 'Deluxe',
+    price: 320,
+    cleaningFee: 40,
+    freeCancel: true,
+    cardBg: '#CBB9C9',
+    bookedDays: [7, 8, 19, 20],
+    address: 'Petitenget, Seminyak, Badung, Bali',
+    shortDesc: 'A refined 3-bedroom pool villa within walking distance of Seminyak’s world-class dining.',
+    description: 'Tucked away in the prestigious Petitenget quarter of Seminyak, Villa Kayu Raja is a tranquil haven moments away from renowned beach clubs and culinary hotspots. The villa features lush tropical courtyard gardens, a sparkling central pool with sun loungers, and luxuriously appointed master suites with en-suite terrazzo bathtubs.',
+    amenities: ['Private pool', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Daily housekeeping', 'Near the beach', 'Free parking']
+  },
+  'villa-cendana-seminyak': {
+    category: 'Honeymoon',
+    price: 230,
+    cleaningFee: 30,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [2, 3, 14, 15],
+    address: 'Kayu Aya, Seminyak, Badung, Bali',
+    shortDesc: 'An intimate 2-bedroom romantic retreat with private plunge pool and garden bathroom.',
+    description: 'Designed specifically for romantic getaways and honeymoon couples, Villa Cendana is an intimate haven nestled along Seminyak’s quiet lanes. Wake up to breakfast served by the plunge pool, unwind in the semi-open garden bathroom featuring a stone soaking tub, and enjoy serene tropical evenings in secluded privacy.',
+    amenities: ['Private pool', 'Romantic outdoor bathtub', 'Air conditioning', 'High-speed WiFi', 'Full kitchen', 'Daily housekeeping', 'Free parking']
+  },
+  'cliffside-panorama-uluwatu': {
+    category: 'Premium',
+    price: 540,
+    cleaningFee: 55,
+    freeCancel: true,
+    cardBg: '#A9B9C9',
+    bookedDays: [12, 13, 26, 27],
+    address: 'Bingin Beach, Uluwatu, Badung, Bali',
+    shortDesc: 'An ultra-luxurious 4-bedroom cliff villa overlooking Bingin Beach and the Indian Ocean.',
+    description: 'Perched commandingly on the limestone cliffs of Uluwatu, Cliffside Panorama offers front-row views of world-famous surf breaks and sunset vistas across the Indian Ocean. An infinity pool seemingly merges with the azure horizon, flanked by expansive timber sun decks and contemporary minimalist suites.',
+    amenities: ['Infinity pool', 'Ocean view', 'Private chef on request', 'Air conditioning', 'High-speed WiFi', 'Free parking', 'Daily housekeeping']
+  },
+  'mandapa-jungle-villa': {
+    category: 'Standard',
+    price: 290,
+    cleaningFee: 35,
+    freeCancel: true,
+    cardBg: '#C7CDBB',
+    bookedDays: [4, 5, 20, 21],
+    address: 'Sayan Ridge, Ubud, Gianyar, Bali',
+    shortDesc: 'A breathtaking 2-bedroom bamboo architectural villa suspended over the Ayung River valley.',
+    description: 'Experience true harmony with nature at Mandapa Jungle Villa, an architectural wonder crafted entirely from sustainably harvested bamboo. Perched on Ubud’s famous Sayan Ridge, this open-concept sanctuary offers sweeping views of emerald jungle canopies and the murmuring Ayung River below.',
+    amenities: ['Private pool', 'Jungle view', 'River valley view', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Free parking']
   }
 };
 
@@ -123,7 +195,7 @@ export const INITIAL_VILLAS = AIRBNB_VILLAS.map((a) => {
 export const POPULAR_DESTINATIONS = [
   {
     name: 'Ubud',
-    count: '2 villas',
+    count: '3 villas',
     image: '/destinations/ubud.jpg',
     bg: '#C7CDBB'
   },
@@ -135,19 +207,19 @@ export const POPULAR_DESTINATIONS = [
   },
   {
     name: 'Canggu',
-    count: 'Popular Area',
+    count: '2 villas',
     image: '/destinations/canggu.jpg',
     bg: '#CBC3A8'
   },
   {
     name: 'Seminyak',
-    count: 'Popular Area',
+    count: '2 villas',
     image: '/destinations/seminyak.jpg',
     bg: '#CBB9C9'
   },
   {
     name: 'Uluwatu',
-    count: 'Popular Area',
+    count: '1 villa',
     image: '/destinations/uluwatu.jpg',
     bg: '#A9B9C9'
   }

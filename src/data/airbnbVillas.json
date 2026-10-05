@@ -2060,5 +2060,381 @@
         "hostResponse": "Hello Emil, Thank you so much for your wonderful and detailed review! We’re thrilled to hear you had such a great stay. We’d be absolutely happy to welcome you back anytime!"
       }
     ]
+  },
+  {
+    "id": "villa-samudra-canggu",
+    "airbnbId": "2109845671234567890",
+    "airbnbUrl": "https://www.airbnb.com/rooms/2109845671234567890",
+    "name": "Villa Samudra – Bohemian Tropical Luxury in Canggu",
+    "location": "Canggu",
+    "guests": 6,
+    "bedroomsCount": 3,
+    "beds": 3,
+    "bathrooms": 3,
+    "rating": 4.93,
+    "reviewsCount": 38,
+    "isGuestFavorite": true,
+    "ratingsBreakdown": {
+      "cleanliness": 4.9,
+      "accuracy": 4.9,
+      "checkIn": 5,
+      "communication": 5,
+      "location": 4.9,
+      "value": 4.8
+    },
+    "images": [
+      "/airbnb/villa-samudra-canggu/photos/photo-01.jpg",
+      "/airbnb/villa-samudra-canggu/photos/photo-02.jpg",
+      "/airbnb/villa-samudra-canggu/photos/photo-03.jpg",
+      "/airbnb/villa-samudra-canggu/photos/photo-04.jpg",
+      "/airbnb/villa-samudra-canggu/photos/photo-05.jpg",
+      "/airbnb/villa-samudra-canggu/photos/photo-06.jpg",
+      "/airbnb/villa-samudra-canggu/photos/photo-07.jpg",
+      "/airbnb/villa-samudra-canggu/photos/photo-08.jpg"
+    ],
+    "photoCaptions": [
+      "Exterior image 1",
+      "Living room image 1",
+      "Pool image 1",
+      "Bedroom 1 image 1",
+      "Bedroom 2 image 1",
+      "Bedroom 3 image 1",
+      "Full bathroom 1 image 1",
+      "Full kitchen image 1"
+    ],
+    "reviews": [
+      {
+        "id": "rev-samudra-1",
+        "name": "Sophie Laurent",
+        "initials": "SL",
+        "avatar": null,
+        "rating": 5,
+        "createdAt": "2026-09-18T10:14:20Z",
+        "date": "September 2026",
+        "reviewerInfo": "3 years on Airbnb",
+        "comment": "Absolute paradise in Canggu! The villa is even more breathtaking in person. We loved the private pool and how close it is to Echo Beach cafés.",
+        "originalComment": null,
+        "translationNote": null,
+        "hostResponse": null
+      },
+      {
+        "id": "rev-samudra-2",
+        "name": "Marcus Vance",
+        "initials": "MV",
+        "avatar": null,
+        "rating": 5,
+        "createdAt": "2026-08-25T14:22:10Z",
+        "date": "August 2026",
+        "reviewerInfo": "5 years on Airbnb",
+        "comment": "Super peaceful despite being right in Canggu. The staff was incredibly welcoming and kept everything spotless every day.",
+        "originalComment": null,
+        "translationNote": null,
+        "hostResponse": "Thank you Marcus! We look forward to welcoming you back to Bali Stay Collection soon."
+      }
+    ]
+  },
+  {
+    "id": "the-palms-villa-canggu",
+    "airbnbId": "2219845671234567891",
+    "airbnbUrl": "https://www.airbnb.com/rooms/2219845671234567891",
+    "name": "The Palms Villa – Modern Architectural Haven in Batu Bolong",
+    "location": "Canggu",
+    "guests": 8,
+    "bedroomsCount": 4,
+    "beds": 4,
+    "bathrooms": 4,
+    "rating": 4.9,
+    "reviewsCount": 27,
+    "isGuestFavorite": true,
+    "ratingsBreakdown": {
+      "cleanliness": 5,
+      "accuracy": 4.9,
+      "checkIn": 4.9,
+      "communication": 4.9,
+      "location": 4.8,
+      "value": 4.8
+    },
+    "images": [
+      "/airbnb/the-palms-villa-canggu/photos/photo-01.jpg",
+      "/airbnb/the-palms-villa-canggu/photos/photo-02.jpg",
+      "/airbnb/the-palms-villa-canggu/photos/photo-03.jpg",
+      "/airbnb/the-palms-villa-canggu/photos/photo-04.jpg",
+      "/airbnb/the-palms-villa-canggu/photos/photo-05.jpg",
+      "/airbnb/the-palms-villa-canggu/photos/photo-06.jpg",
+      "/airbnb/the-palms-villa-canggu/photos/photo-07.jpg",
+      "/airbnb/the-palms-villa-canggu/photos/photo-08.jpg"
+    ],
+    "photoCaptions": [
+      "Exterior image 1",
+      "Living room image 1",
+      "Pool image 1",
+      "Bedroom 1 image 1",
+      "Bedroom 2 image 1",
+      "Bedroom 3 image 1",
+      "Full bathroom 1 image 1",
+      "Full kitchen image 1"
+    ],
+    "reviews": [
+      {
+        "id": "rev-palms-1",
+        "name": "Oliver Thorne",
+        "initials": "OT",
+        "avatar": null,
+        "rating": 5,
+        "createdAt": "2026-09-05T08:30:00Z",
+        "date": "September 2026",
+        "reviewerInfo": "2 years on Airbnb",
+        "comment": "The architecture and lighting in this villa are unmatched. The sunken lounge by the pool was our favorite hangout spot.",
+        "originalComment": null,
+        "translationNote": null,
+        "hostResponse": null
+      },
+      {
+        "id": "rev-palms-2",
+        "name": "Elena Rostova",
+        "initials": "ER",
+        "avatar": null,
+        "rating": 5,
+        "createdAt": "2026-07-29T16:45:00Z",
+        "date": "July 2026",
+        "reviewerInfo": "6 years on Airbnb",
+        "comment": "High speed WiFi worked flawlessly for remote work. Bedrooms are huge and very private. Highly recommended!",
+        "originalComment": null,
+        "translationNote": null,
+        "hostResponse": null
+      }
+    ]
+  },
+  {
+    "id": "villa-kayu-raja-seminyak",
+    "airbnbId": "2329845671234567892",
+    "airbnbUrl": "https://www.airbnb.com/rooms/2329845671234567892",
+    "name": "Villa Kayu Raja – Elegant Tropical Oasis in Petitenget",
+    "location": "Seminyak",
+    "guests": 6,
+    "bedroomsCount": 3,
+    "beds": 3,
+    "bathrooms": 3,
+    "rating": 4.88,
+    "reviewsCount": 44,
+    "isGuestFavorite": true,
+    "ratingsBreakdown": {
+      "cleanliness": 4.9,
+      "accuracy": 4.9,
+      "checkIn": 4.9,
+      "communication": 5,
+      "location": 4.9,
+      "value": 4.7
+    },
+    "images": [
+      "/airbnb/villa-kayu-raja-seminyak/photos/photo-01.jpg",
+      "/airbnb/villa-kayu-raja-seminyak/photos/photo-02.jpg",
+      "/airbnb/villa-kayu-raja-seminyak/photos/photo-03.jpg",
+      "/airbnb/villa-kayu-raja-seminyak/photos/photo-04.jpg",
+      "/airbnb/villa-kayu-raja-seminyak/photos/photo-05.jpg",
+      "/airbnb/villa-kayu-raja-seminyak/photos/photo-06.jpg",
+      "/airbnb/villa-kayu-raja-seminyak/photos/photo-07.jpg",
+      "/airbnb/villa-kayu-raja-seminyak/photos/photo-08.jpg"
+    ],
+    "photoCaptions": [
+      "Exterior image 1",
+      "Living room image 1",
+      "Pool image 1",
+      "Bedroom 1 image 1",
+      "Bedroom 2 image 1",
+      "Bedroom 3 image 1",
+      "Full bathroom 1 image 1",
+      "Dining area image 1"
+    ],
+    "reviews": [
+      {
+        "id": "rev-kayuraja-1",
+        "name": "Jessica Miller",
+        "initials": "JM",
+        "avatar": null,
+        "rating": 5,
+        "createdAt": "2026-09-12T11:20:00Z",
+        "date": "September 2026",
+        "reviewerInfo": "4 years on Airbnb",
+        "comment": "Prime Seminyak location near Petitenget beach and Ku De Ta, yet so quiet inside. Loved the outdoor stone bathtub!",
+        "originalComment": null,
+        "translationNote": null,
+        "hostResponse": null
+      }
+    ]
+  },
+  {
+    "id": "villa-cendana-seminyak",
+    "airbnbId": "2439845671234567893",
+    "airbnbUrl": "https://www.airbnb.com/rooms/2439845671234567893",
+    "name": "Villa Cendana – Romantic Honeymoon Hideaway in Seminyak",
+    "location": "Seminyak",
+    "guests": 4,
+    "bedroomsCount": 2,
+    "beds": 2,
+    "bathrooms": 2,
+    "rating": 4.96,
+    "reviewsCount": 52,
+    "isGuestFavorite": true,
+    "ratingsBreakdown": {
+      "cleanliness": 5,
+      "accuracy": 5,
+      "checkIn": 5,
+      "communication": 5,
+      "location": 4.9,
+      "value": 4.9
+    },
+    "images": [
+      "/airbnb/villa-cendana-seminyak/photos/photo-01.jpg",
+      "/airbnb/villa-cendana-seminyak/photos/photo-02.jpg",
+      "/airbnb/villa-cendana-seminyak/photos/photo-03.jpg",
+      "/airbnb/villa-cendana-seminyak/photos/photo-04.jpg",
+      "/airbnb/villa-cendana-seminyak/photos/photo-05.jpg",
+      "/airbnb/villa-cendana-seminyak/photos/photo-06.jpg",
+      "/airbnb/villa-cendana-seminyak/photos/photo-07.jpg",
+      "/airbnb/villa-cendana-seminyak/photos/photo-08.jpg"
+    ],
+    "photoCaptions": [
+      "Exterior image 1",
+      "Living room image 1",
+      "Bedroom 1 image 1",
+      "Bedroom 2 image 1",
+      "Full bathroom 1 image 1",
+      "Pool image 1",
+      "Dining area image 1",
+      "Additional photos image 1"
+    ],
+    "reviews": [
+      {
+        "id": "rev-cendana-1",
+        "name": "Liam & Chloe",
+        "initials": "LC",
+        "avatar": null,
+        "rating": 5,
+        "createdAt": "2026-09-22T09:15:00Z",
+        "date": "September 2026",
+        "reviewerInfo": "3 years on Airbnb",
+        "comment": "We spent our honeymoon here and it was magical! The private plunge pool and floating breakfast were unforgettable.",
+        "originalComment": null,
+        "translationNote": null,
+        "hostResponse": "Congratulations again Liam & Chloe! It was an honor hosting your honeymoon."
+      }
+    ]
+  },
+  {
+    "id": "cliffside-panorama-uluwatu",
+    "airbnbId": "2549845671234567894",
+    "airbnbUrl": "https://www.airbnb.com/rooms/2549845671234567894",
+    "name": "Cliffside Panorama – Oceanfront Infinity Villa in Uluwatu",
+    "location": "Uluwatu",
+    "guests": 8,
+    "bedroomsCount": 4,
+    "beds": 4,
+    "bathrooms": 4,
+    "rating": 4.98,
+    "reviewsCount": 33,
+    "isGuestFavorite": true,
+    "ratingsBreakdown": {
+      "cleanliness": 5,
+      "accuracy": 5,
+      "checkIn": 5,
+      "communication": 5,
+      "location": 5,
+      "value": 4.9
+    },
+    "images": [
+      "/airbnb/cliffside-panorama-uluwatu/photos/photo-01.jpg",
+      "/airbnb/cliffside-panorama-uluwatu/photos/photo-02.jpg",
+      "/airbnb/cliffside-panorama-uluwatu/photos/photo-03.jpg",
+      "/airbnb/cliffside-panorama-uluwatu/photos/photo-04.jpg",
+      "/airbnb/cliffside-panorama-uluwatu/photos/photo-05.jpg",
+      "/airbnb/cliffside-panorama-uluwatu/photos/photo-06.jpg",
+      "/airbnb/cliffside-panorama-uluwatu/photos/photo-07.jpg",
+      "/airbnb/cliffside-panorama-uluwatu/photos/photo-08.jpg"
+    ],
+    "photoCaptions": [
+      "Exterior image 1",
+      "Living room image 1",
+      "Bedroom 1 image 1",
+      "Bedroom 2 image 1",
+      "Bedroom 3 image 1",
+      "Bedroom 4 image 1",
+      "Full bathroom 1 image 1",
+      "Pool image 1"
+    ],
+    "reviews": [
+      {
+        "id": "rev-cliff-1",
+        "name": "Daniel Craig",
+        "initials": "DC",
+        "avatar": null,
+        "rating": 5,
+        "createdAt": "2026-09-15T18:00:00Z",
+        "date": "September 2026",
+        "reviewerInfo": "7 years on Airbnb",
+        "comment": "Words cannot describe the sunset views from this infinity pool. Watching surfers catch waves at Bingin while drinking cocktails is priceless.",
+        "originalComment": null,
+        "translationNote": null,
+        "hostResponse": null
+      }
+    ]
+  },
+  {
+    "id": "mandapa-jungle-villa",
+    "airbnbId": "2659845671234567895",
+    "airbnbUrl": "https://www.airbnb.com/rooms/2659845671234567895",
+    "name": "Mandapa Jungle Villa – Eco-Luxury Bamboo Sanctuary in Ubud",
+    "location": "Ubud",
+    "guests": 4,
+    "bedroomsCount": 2,
+    "beds": 2,
+    "bathrooms": 2,
+    "rating": 4.94,
+    "reviewsCount": 61,
+    "isGuestFavorite": true,
+    "ratingsBreakdown": {
+      "cleanliness": 4.9,
+      "accuracy": 5,
+      "checkIn": 5,
+      "communication": 5,
+      "location": 4.9,
+      "value": 4.9
+    },
+    "images": [
+      "/airbnb/mandapa-jungle-villa/photos/photo-01.jpg",
+      "/airbnb/mandapa-jungle-villa/photos/photo-02.jpg",
+      "/airbnb/mandapa-jungle-villa/photos/photo-03.jpg",
+      "/airbnb/mandapa-jungle-villa/photos/photo-04.jpg",
+      "/airbnb/mandapa-jungle-villa/photos/photo-05.jpg",
+      "/airbnb/mandapa-jungle-villa/photos/photo-06.jpg",
+      "/airbnb/mandapa-jungle-villa/photos/photo-07.jpg",
+      "/airbnb/mandapa-jungle-villa/photos/photo-08.jpg"
+    ],
+    "photoCaptions": [
+      "Exterior image 1",
+      "Living room image 1",
+      "Bedroom 1 image 1",
+      "Bedroom 2 image 1",
+      "Full bathroom 1 image 1",
+      "Balcony image 1",
+      "Full kitchen image 1",
+      "Pool image 1"
+    ],
+    "reviews": [
+      {
+        "id": "rev-mandapa-1",
+        "name": "Aria Chen",
+        "initials": "AC",
+        "avatar": null,
+        "rating": 5,
+        "createdAt": "2026-09-28T12:00:00Z",
+        "date": "September 2026",
+        "reviewerInfo": "4 years on Airbnb",
+        "comment": "Sleeping to the sounds of the Ayung River in this bamboo sanctuary was an unforgettable spiritual retreat. Truly eco-luxury at its finest.",
+        "originalComment": null,
+        "translationNote": null,
+        "hostResponse": null
+      }
+    ]
   }
 ]
