@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { formatUSD, calculateNights } from '../data/villasData';
+import { formatUSD, calculateNights, checkDateRangeAvailability } from '../data/villasData';
 import GalleryModal from '../components/Modals/GalleryModal';
 import BookingModal from '../components/Modals/BookingModal';
 import CalendarPicker from '../components/CalendarPicker';
@@ -8,6 +8,7 @@ import ReviewCard from '../components/ReviewCard';
 import ReviewsModal from '../components/Modals/ReviewsModal';
 import ReviewMentions from '../components/ReviewMentions';
 import ConciergeFinder from '../components/ConciergeFinder';
+import NeighborhoodMap from '../components/NeighborhoodMap';
 import { getMentionsForReviews, reviewMatchesTopic, getTopicKeywords } from '../utils/reviewMentions';
 
 /** Jumlah review yang ditampilkan langsung di halaman (sisanya ada di modal "Show all") */
@@ -45,6 +46,7 @@ export default function VillaDetailPage({
 
   // State untuk modal galeri foto dan modal reservasi
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
+  const [galleryInitialIndex, setGalleryInitialIndex] = useState(null);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [showFullDesc, setShowFullDesc] = useState(false);
   // State untuk modal "Show all reviews"
@@ -55,6 +57,32 @@ export default function VillaDetailPage({
 
   // State untuk daftar ulasan tamu pada villa ini (bisa bertambah secara interaktif)
   const [reviews, setReviews] = useState(villa.reviews || []);
+
+  /**
+   * Membuka modal galeri foto lengkap (bisa langsung ke index tertentu atau mode grid tour)
+   * @param {number|null} [photoIndex=null] - Index foto yang ingin ditampilkan langsung dalam mode fokus
+   * @returns {void}
+   */
+  const handleOpenGallery = (photoIndex = null) => {
+    setGalleryInitialIndex(photoIndex);
+    setIsGalleryOpen(true);
+  };
+
+  // Menyiapkan 8 foto showcase (3 atas + 5 bawah) sesuai format contoh.jpeg
+  const showcasePhotos = useMemo(() => {
+    const list = villa.images || [];
+    if (list.length === 0) return Array(8).fill('');
+    return Array.from({ length: 8 }).map((_, i) => list[i % list.length]);
+  }, [villa.images]);
+
+  // Menghitung sisa foto untuk teks overlay "+X photos" pada foto ke-8
+  const remainingPhotosCount = useMemo(() => {
+    const total = villa.images?.length || 0;
+    if (total > 7) {
+      return total - 7;
+    }
+    return total;
+  }, [villa.images]);
 
   // Sinkronisasi ulasan & reset pilihan mention saat properti villa berubah
   useEffect(() => {
@@ -113,10 +141,21 @@ export default function VillaDetailPage({
     }
   };
 
+  // Validasi apakah rentang tanggal yang dipilih bertabrakan dengan tanggal yang sudah di-book
+  const dateAvailability = useMemo(() => {
+    return checkDateRangeAvailability(checkIn, checkOut, villa.bookedDays || []);
+  }, [checkIn, checkOut, villa.bookedDays]);
+
   /**
    * Menangani klik tombol Reserve untuk membuka modal checkout reservasi
+   * Menolak jika rentang tanggal bertabrakan dengan tanggal yang sudah di-book tamu lain
+   * @returns {void}
    */
   const handleReserveClick = () => {
+    if (!dateAvailability.isAvailable) {
+      alert(`❌ Tidak dapat melanjutkan reservasi:\n\n${dateAvailability.message}`);
+      return;
+    }
     setIsBookingModalOpen(true);
   };
 
@@ -191,47 +230,89 @@ export default function VillaDetailPage({
         </div>
       </div>
 
-      {/* 2. Galeri Foto Grid (Responsif 5 Foto di Desktop, 1 Foto Utama di Mobile dengan Tombol Semua Foto) */}
-      <div className="gallery">
-        <div 
-          className="g-item g1" 
-          style={{ backgroundImage: `url('${villa.images[0]}')`, backgroundColor: villa.cardBg }}
-          onClick={() => setIsGalleryOpen(true)}
-          role="button"
-          tabIndex={0}
-          title="Klik untuk membuka semua foto"
-        />
-        <div 
-          className="g-item" 
-          style={{ backgroundImage: `url('${villa.images[1] || villa.images[0]}')` }}
-          onClick={() => setIsGalleryOpen(true)}
-        />
-        <div 
-          className="g-item" 
-          style={{ backgroundImage: `url('${villa.images[2] || villa.images[0]}')` }}
-          onClick={() => setIsGalleryOpen(true)}
-        />
-        <div 
-          className="g-item" 
-          style={{ backgroundImage: `url('${villa.images[3] || villa.images[0]}')` }}
-          onClick={() => setIsGalleryOpen(true)}
-        />
-        <div 
-          className="g-item" 
-          style={{ backgroundImage: `url('${villa.images[4] || villa.images[0]}')` }}
-          onClick={() => setIsGalleryOpen(true)}
-        />
+      {/* 2. Galeri Foto Mewah Sesuai Format contoh.jpeg (3 Foto Hero Atas + 5 Foto Sejajar Bawah dengan Overlay +X Photos) */}
+      <div className="gallery-showcase">
+        {/* Bagian Atas: 1 Foto Utama Besar (Kiri) + 2 Foto Susun Vertikal (Kanan) */}
+        <div className="gallery-top-grid">
+          <div 
+            className="gallery-item gallery-hero-main" 
+            style={{ 
+              backgroundImage: `url('${showcasePhotos[0]}')`, 
+              backgroundColor: villa.cardBg 
+            }}
+            onClick={() => handleOpenGallery(0)}
+            role="button"
+            tabIndex={0}
+            title={`${villa.name} - Foto Utama (Klik untuk memperbesar)`}
+          >
+            {/* Badge penanda foto khusus di layar ponsel / mobile */}
+            <div 
+              className="gallery-mobile-badge"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleOpenGallery(null);
+              }}
+              title="Lihat semua foto"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <span>1 / {villa.images.length}</span>
+            </div>
+          </div>
 
-        {/* Tombol Buka Galeri Penuh */}
-        <button type="button" className="show-all-btn" onClick={() => setIsGalleryOpen(true)}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#141413" strokeWidth="2">
-            <rect x="3" y="3" width="7" height="7" />
-            <rect x="14" y="3" width="7" height="7" />
-            <rect x="3" y="14" width="7" height="7" />
-            <rect x="14" y="14" width="7" height="7" />
-          </svg>
-          Show all photos ({villa.images.length})
-        </button>
+          <div className="gallery-hero-stack">
+            <div 
+              className="gallery-item gallery-hero-sub" 
+              style={{ backgroundImage: `url('${showcasePhotos[1]}')` }}
+              onClick={() => handleOpenGallery(1)}
+              role="button"
+              tabIndex={0}
+              title={`${villa.name} - Foto 2`}
+            />
+            <div 
+              className="gallery-item gallery-hero-sub" 
+              style={{ backgroundImage: `url('${showcasePhotos[2]}')` }}
+              onClick={() => handleOpenGallery(2)}
+              role="button"
+              tabIndex={0}
+              title={`${villa.name} - Foto 3`}
+            />
+          </div>
+        </div>
+
+        {/* Bagian Bawah: 5 Foto Sejajar Horizontal */}
+        <div className="gallery-bottom-grid">
+          {showcasePhotos.slice(3, 7).map((photoUrl, idx) => (
+            <div 
+              key={`thumb-${idx + 3}`}
+              className="gallery-item gallery-thumb"
+              style={{ backgroundImage: `url('${photoUrl}')` }}
+              onClick={() => handleOpenGallery(idx + 3)}
+              role="button"
+              tabIndex={0}
+              title={`${villa.name} - Foto ${idx + 4}`}
+            />
+          ))}
+
+          {/* Foto ke-5 di Baris Bawah (Total Foto ke-8) dengan Overlay Elegan "+X photos" */}
+          <div 
+            className="gallery-item gallery-thumb gallery-thumb-more"
+            style={{ backgroundImage: `url('${showcasePhotos[7]}')` }}
+            onClick={() => handleOpenGallery(null)}
+            role="button"
+            tabIndex={0}
+            title={`Buka seluruh galeri foto (${villa.images.length} foto)`}
+          >
+            <div className="gallery-more-overlay">
+              <span className="gallery-more-text">
+                +{remainingPhotosCount} photos
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* 3. Grid Konten Utama */}
@@ -270,9 +351,11 @@ export default function VillaDetailPage({
           <div className="section">
             <p className="desc-text">{villa.description}</p>
             {showFullDesc && (
-              <p className="desc-text">
-                The villa sits a 7-minute drive from local beach clubs and restaurants, but far enough from the main strip to stay peaceful at night. Our housekeeping team visits daily, and a dedicated host is reachable by WhatsApp throughout your stay.
-              </p>
+              <div className="desc-full-wrapper" style={{ marginTop: '14px', whiteSpace: 'pre-line' }}>
+                <p className="desc-text">
+                  {villa.fullDesc || "The villa sits a 7-minute drive from local beach clubs and restaurants, but far enough from the main strip to stay peaceful at night. Our housekeeping team visits daily, and a dedicated host is reachable by WhatsApp throughout your stay."}
+                </p>
+              </div>
             )}
             <span 
               className="show-more" 
@@ -350,7 +433,7 @@ export default function VillaDetailPage({
             </div>
 
             {/* Input Tanggal Menginap */}
-            <div className="date-grid">
+            <div className={`date-grid ${!dateAvailability.isAvailable ? 'has-error' : ''}`}>
               <label>
                 <div className="lbl">Check-in</div>
                 <input 
@@ -370,6 +453,18 @@ export default function VillaDetailPage({
               </label>
             </div>
 
+            {/* Banner Peringatan Jika Tanggal Bentrok dengan Booked Days */}
+            {!dateAvailability.isAvailable && (
+              <div className="booking-date-error-banner">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <span>{dateAvailability.message}</span>
+              </div>
+            )}
+
             {/* Pilihan Jumlah Tamu */}
             <div className="guest-select">
               <div className="lbl">Guests</div>
@@ -388,12 +483,16 @@ export default function VillaDetailPage({
             {/* Tombol Reservasi Langsung */}
             <button 
               type="button" 
-              className="reserve-btn btn-primary"
+              className={`reserve-btn btn-primary ${!dateAvailability.isAvailable ? 'btn-disabled' : ''}`}
               onClick={handleReserveClick}
+              disabled={!dateAvailability.isAvailable}
+              title={!dateAvailability.isAvailable ? dateAvailability.message : 'Lanjutkan ke reservasi'}
             >
-              Reserve
+              {dateAvailability.isAvailable ? 'Reserve' : 'Dates Unavailable'}
             </button>
-            <p className="no-charge-note">You won't be charged yet</p>
+            <p className="no-charge-note">
+              {dateAvailability.isAvailable ? "You won't be charged yet" : "Pilih rentang tanggal yang tersedia"}
+            </p>
 
             {/* Kalkulasi Otomatis Rincian Biaya */}
             <div className="price-breakdown">
@@ -549,19 +648,9 @@ export default function VillaDetailPage({
         />
       </div>
 
-      {/* 5. Section: Lokasi Peta (Where you'll be) (Full Width) */}
-      <div className="detail-full-section">
-        <h2 style={{ fontSize: '20px', fontWeight: 700, margin: '0 0 16px' }}>Where you'll be</h2>
-        <div className="map-block">
-          <div className="map-pin">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff">
-              <circle cx="12" cy="12" r="6" />
-            </svg>
-          </div>
-        </div>
-        <p className="location-text">
-          {villa.address} — 7 minutes by car from beach clubs, 25 minutes from Ngurah Rai International Airport. Exact address and WhatsApp group provided upon confirmed booking.
-        </p>
+      {/* 5. Section: Lokasi Peta & Lingkungan Sekitar (Where you'll be) (Full Width) */}
+      <div className="detail-full-section" id="location-section">
+        <NeighborhoodMap villa={villa} />
       </div>
 
       {/* Concierge Matching Finder ("Not sure which villa?") */}
@@ -635,10 +724,11 @@ export default function VillaDetailPage({
         </div>
         <button
           type="button"
-          className="bottom-reserve-btn btn-primary"
+          className={`bottom-reserve-btn btn-primary ${!dateAvailability.isAvailable ? 'btn-disabled' : ''}`}
           onClick={handleReserveClick}
+          disabled={!dateAvailability.isAvailable}
         >
-          Reserve
+          {dateAvailability.isAvailable ? 'Reserve' : 'Unavailable'}
         </button>
       </div>
 
@@ -649,6 +739,7 @@ export default function VillaDetailPage({
         images={villa.images}
         photoCaptions={villa.photoCaptions}
         villaName={villa.name}
+        initialPhotoIndex={galleryInitialIndex}
       />
 
       {/* Modal Semua Review (dibuka dari tombol "Show all reviews") */}

@@ -131,7 +131,8 @@ src/
 │   ├── ReviewCard.jsx          # Kartu ulasan tamu dengan avatar, bintang, tanggal, respon host
 │   ├── ReviewFormSection.jsx   # Form interaktif bagi tamu untuk menulis ulasan baru
 │   ├── ReviewMentions.jsx      # Guest reviews mentions pills (filter ulasan per topik kata kunci)
-│   ├── ConciergeFinder.jsx     # [BARU] Modul Concierge matching ("Not sure which villa?")
+│   ├── ConciergeFinder.jsx     # Modul Concierge matching ("Not sure which villa?")
+│   ├── NeighborhoodMap.jsx     # [BARU] Peta interaktif Leaflet 'Where you'll be' + search & nearby POI
 │   └── Modals/
 │       ├── GalleryModal.jsx    # Modal galeri foto grouped per ruangan dengan horizontal pills drag
 │       ├── ReviewsModal.jsx    # Modal "Show all reviews" ala Airbnb dengan filter bintang & topik
@@ -140,7 +141,8 @@ src/
 │       └── WishlistDrawer.jsx  # Drawer samping untuk villa yang disimpan (Wishlist)
 ├── data/
 │   ├── airbnbVillas.json       # JSON data scraping Airbnb
-│   └── villasData.js           # Penggabung data master dan fungsi helper
+│   ├── villasData.js           # Penggabung data master dan fungsi helper
+│   └── neighborhoodData.js     # [BARU] Data koordinat GPS villa dan kurasi tempat menarik sekitar (POI)
 └── utils/
     └── reviewMentions.js       # Algoritma ekstraksi topik ulasan & pencocokan kata kunci
 ```
@@ -286,6 +288,110 @@ src/
   - **Halaman Editor Konten (`VillaContentEditor.jsx`)**: Dropdown pilihan kategori kini memiliki pilihan lengkap: `Standard`, `Deluxe`, `Premium`, `Luxe`, `Family`, `Retreat`, dan `Honeymoon`.
   - **Filter Sidebar (`FilterSidebar.jsx`)**: Checkbox filter kategori menyertakan ketiga opsi baru tersebut sehingga tamu dapat memfilter villa khusus tipe *Luxe*, *Family*, maupun *Retreat*.
   - **Mesin Filter Katalog (`ExplorePage.jsx`)**: State default dan fungsi reset filter telah diperbarui untuk mendukung seluruh 7 kategori, serta filter bar *Luxe* langsung menyaring villa dengan kategori *Luxe*, *Premium*, dan *Deluxe*.
+
+### O. Peta Interaktif & Neighborhood Guide 'Where you'll be' (`NeighborhoodMap.jsx`)
+- **Implementasi**: Menggantikan box peta statis dengan modul eksplorasi kawasan interaktif (*Neighborhood Guide*) ala Airbnb di halaman detail villa (`VillaDetailPage.jsx`).
+- **Teknologi**: Menggunakan pustaka peta `leaflet` dan tile layer **OpenStreetMap Resmi** (`tile.openstreetmap.org`) yang 100% bebas API Key selamanya dan tidak pernah meminta biaya billing.
+- **Fitur Utama**:
+  - **Pin Villa & Lingkaran Privasi**: Marker custom terracotta beranimasi pulse dengan lingkaran radius privasi 350 meter khas Airbnb (*approximate location*).
+  - **Pencarian Live Sekitar (*Search Nearby*)**: Input pencarian real-time untuk mencari pantai, cafe, beach club, warung, supermarket, atau tempat yoga.
+  - **Filter Kategori Cepat**: 8 kategori filter pill (*All places, Beaches & Surf, Beach Clubs, Cafes & Coffee, Dining, Yoga & Wellness, Groceries, Airport & Transit*).
+  - **Data POI Terkurasi Nyata**: Database tempat populer di sekitar masing-masing kawasan (Echo Beach, Batu Bolong, Petitenget, Kayu Aya, Balangan, Bingin, Ubud Center, Sayan Ridge).
+  - **Sinkronisasi Interaktif 2 Arah**:
+    - Mengeklik pin di peta memunculkan popup kartu info dan menyorot kartu tempat di panel daftar samping.
+    - Mengeklik kartu di panel samping menggerakkan kamera peta secara halus (*smooth flyTo*) langsung ke lokasi dan membuka popupnya.
+  - **Integrasi Google Maps Penuh (One-Click Navigation)**:
+    - **Header Peta**: Tombol *"Buka di Google Maps ↗"* untuk membuka seluruh area villa di Google Maps.
+    - **Tombol Melayang (Floating Map Button)**: Tombol *"Google Maps ↗"* di sudut kanan atas peta.
+    - **Popup Marker Villa**: Tombol *"📍 Buka Lokasi di Google Maps ↗"* saat pin villa diklik.
+    - **Popup Marker Tempat Sekitar**: Tombol *"🚗 Buka Rute di Google Maps ↗"* yang langsung mengarahkan rute GPS di Google Maps.
+    - **Kartu Tempat di Panel Samping**: Tombol *"Buka Rute ↗"* untuk membuka navigasi rute instan.
+  - **Tombol Fokus ke Villa**: Tombol *recenter* untuk mengembalikan fokus kamera peta ke titik villa utama.
+
+### 5.8. Validasi Ketat Rentang Tanggal Reservasi (Strict Date Range Booking Validation)
+- **Masalah Sebelumnya**:
+  - Bila tanggal 2 sudah di-booking tamu lain, user masih dapat memilih rentang tanggal 1 sampai 7 sehingga sistem checkout masih mengizinkan reservasi meskipun di tengahnya ada tanggal yang sudah terisi.
+- **Solusi & Implementasi**:
+  1. **Fungsi Evaluasi `checkDateRangeAvailability(checkInStr, checkOutStr, bookedDays)`** di [`src/data/villasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/villasData.js):
+     - Menelusuri setiap malam menginap (*stay night*) dari hari Check-in hingga 1 hari sebelum Check-out.
+     - Jika ada malam yang bertabrakan dengan `bookedDays`, sistem mengembalikan `isAvailable: false`, daftar `conflictDays`, dan pesan peringatan ramah pengguna.
+  2. **Interaktivitas Kalender 2 Langkah (`CalendarPicker.jsx`)**:
+     - **Langkah 1 (Check-in)**: Mengklik tanggal booked langsung dicegah dengan notifikasi peringatan. Mengklik tanggal valid otomatis mengarahkan ke mode pilih Check-out yang aman.
+     - **Langkah 2 (Check-out)**: Jika user mengklik tanggal Check-out yang membentang melewati tanggal booked, sistem **menolak pilihan tersebut** dan menampilkan peringatan tanggal bentrok serta menyarankan tanggal yang kosong.
+     - **Penandaan Warna**: Tanggal yang sudah di-book tetap konsisten berwarna **MERAH mencolok** (`.day.booked`) dan tidak pernah tertimpa warna pilihan biasa.
+  3. **Pencegahan Checkout di Booking Card & Mobile Bar (`VillaDetailPage.jsx`)**:
+     - Kotak input tanggal diberi status visual error border merah (`.date-grid.has-error`) bila rentang tidak valid.
+     - Ditampilkan banner peringatan konflik di dalam kartu reservasi (`.booking-date-error-banner`).
+     - Tombol **Reserve** dinonaktifkan (`disabled`, class `.btn-disabled`, teks berubah menjadi *"Dates Unavailable"*) baik pada kartu desktop maupun bar melayang mobile, sehingga modal checkout diblokir sepenuhnya sampai tanggal diganti ke tanggal yang valid.
+
+### 5.9. Tata Letak Galeri Foto Mewah (Format contoh.jpeg)
+- **Referensi Desain**: `contoh.jpeg` dari folder Downloads user.
+- **Implementasi**:
+  1. **Baris Atas (Hero Section - 3 Foto)**:
+     - Sisi Kiri: 1 Foto Utama Besar (`.gallery-hero-main`), mengambil porsi ~65% lebar, tinggi 460px (pada desktop) dengan sudut melengkung halus `border-radius: 12px`.
+     - Sisi Kanan: 2 Foto Sedang tersusun vertikal (`.gallery-hero-sub`), masing-masing 50% tinggi dengan gap 10px.
+  2. **Baris Bawah (Thumbnail Row - 5 Foto Sejajar)**:
+     - 5 Foto horizontal dengan ukuran proporsional sama rata (`repeat(5, 1fr)`).
+     - Foto 1, 2, 3, dan 4 tampil normal.
+     - Foto ke-5 (Total foto ke-8 di pojok kanan bawah) dilengkapi lapisan gelap (*dark overlay*) elegan dengan teks putih tebal bergaris bawah: **`+X photos`** (misal `+100 photos` atau `+61 photos`), yang secara dinamis menghitung sisa foto asli villa tersebut.
+  3. **Interaktivitas Penuh & Sinkronisasi Modal Lightbox**:
+     - Setiap foto memiliki transisi halus saat di-hover (`scale(1.008)`, `box-shadow`, dan sedikit redup).
+     - Mengeklik foto mana pun (termasuk tombol overlay `+X photos`) akan membuka modal Lightbox `GalleryModal` lengkap.
+     - Jika foto spesifik diklik (misal foto 2), modal langsung terbuka dalam mode fokus foto tersebut (`initialPhotoIndex`).
+  4. **Adaptasi Layar Mobile & Tablet**:
+     - Pada tablet: tinggi grid disesuaikan secara proporsional.
+     - Pada ponsel: foto utama ditampilkan penuh dengan badge `1 / X`, dan baris bawah bertransformasi menjadi *swipeable thumbnail strip* yang halus dan intuitif.
+
+### 5.10. Pembaruan Data Villa: Villa Habitas (4BR Pererenan Pool Villa)
+- **Sumber Data**: Pembaruan konten resmi dari Coach untuk properti 4 kamar tidur di Canggu / Pererenan.
+- **Rincian yang Diperbarui**:
+  - **Nama Properti**: `Villa Habitas – 4BR Pererenan Pool Villa · Walk to Cafes & Bars`
+  - **Harga**: `$290 / malam` (dari sebelumnya $350)
+  - **Kategori**: `Premium`
+  - **Lokasi & Alamat**: `Pererenan, Canggu, Badung, Bali`
+  - **Kapasitas**: 8 tamu, 4 kamar tidur (masing-masing King Bed + En-suite Bathroom), 4 kasur, 4 kamar mandi
+  - **Short Description**: Deskripsi ringkas mengenai villa 4 kamar di Pererenan dengan lagoon pool dan staf lokal ramah.
+  - **Full Description (Expandable)**: Deskripsi komprehensif mencakup Living & Dining, Pool, Kitchen, Bedrooms & Bathrooms, Work & Connectivity (WiFi 200 Mbps), Extras, Guest Access, Your Local Team, Travelling with Family, The Neighbourhood, dan Other Things to Note (Check-in 14:00, Check-out 12:00, Min stay 2 nights, Pet friendly, Cut off date 21 Days).
+  - **Fasilitas (Amenities)**: Private pool, Jungle view, River valley view, High-speed WiFi, Full kitchen, Air conditioning, Free parking.
+  - **Peta & Points of Interest (POI)**: Koordinat dipusatkan di Pererenan dengan POI nyata: Pantai Pererenan, Echo Beach, Shelter Pererenan, Baked Pererenan, Touché Cafe, Pepito Supermarket Pererenan, dan Bandara DPS.
+
+### 5.11. Revisi Bagian Destinasi (Sesuai revisi 1.png dari Bos)
+- **Referensi**: Screenshot `revisi 1.png` dari folder Downloads user.
+- **Perubahan yang Diterapkan**:
+  1. **Judul Bagian**: Diubah dari *"Popular Destinations"* menjadi **"Prefer Villa Destination"** (atau *"Pefer Villa Distanition"*).
+  2. **Jumlah Destinasi**: Disederhanakan dari 5 destinasi menjadi **3 destinasi utama**:
+     - **Ubud** (3 villas) – `/destinations/ubud.jpg`
+     - **Canggu** (2 villas) – `/destinations/canggu.jpg`
+     - **Uluwatu** (2 villas) – `/destinations/uluwatu.jpg`
+  3. **Layout & Grid CSS**:
+     - Diubah menjadi `grid-template-columns: repeat(3, 1fr)` dengan `gap: 20px` dan tinggi kartu dinaikkan menjadi `180px` agar tampak lebih mewah, seimbang, dan proporsional di seluruh ukuran layar.
+     - Terintegrasi penuh dengan filter klik: mengeklik salah satu kartu destinasi langsung menyaring katalog villa secara mulus.
+
+---
+
+### 5.12. Bagian "5 Most Prefer Villa By Guests" (Sesuai tambahan 1.png)
+- **Referensi**: Screenshot `tambahan 1.png` dari folder Downloads user.
+- **Tujuan & Desain**:
+  - Menampilkan 5 villa pilihan terbaik dengan tata letak grid asimetris mewah:
+    - **Baris Atas (2 Kartu Besar - 50% / 50%)**: Tinggi 270px, menampilkan villa unggulan:
+      1. *St. Lau, Luxury 4 Bed Pool Villa in Ubud* (Ubud)
+      2. *Iconic Cliff Top Luxury Villa* (Uluwatu)
+    - **Baris Bawah (3 Kartu Sedang - 33.3% x 3)**: Tinggi 215px, menampilkan 3 villa populer:
+      3. *Villa Habitas – 4BR Pererenan Pool Villa* (Canggu)
+      4. *Angkasa Ubud Luxury Villa with Private Pool* (Ubud)
+      5. *Villa Samudra – Ocean Breeze 3BR Canggu* (Canggu)
+- **Fitur Khusus "Bisa Digeser-geser" (Modular Placement & Responsive Swipe)**:
+  1. **Kemudahan Pindah Posisi (Modular Component)**:
+     - Dibuat sebagai komponen independen terisolasi: `src/components/TopPreferredVillas.jsx`.
+     - Di `src/pages/ExplorePage.jsx`, komponen ini diletakkan pada **Opsi 1** (tepat di bawah `Destinations` dan sebelum katalog filter/pencarian utama).
+     - Jika bos meminta dipindahkan (misal ke bawah katalog sebelum Concierge Finder atau di tempat lain), cukup **cut & paste satu baris `<TopPreferredVillas />`** ke posisi baru tanpa perlu mengubah CSS maupun logic lainnya.
+  2. **Interaktivitas Mobile (Swipeable Carousel)**:
+     - Pada layar ponsel / mobile (`max-width: 768px`), tata letak otomatis berubah menjadi horizontal scroll carousel (`scroll-snap-type: x mandatory`).
+     - Pengguna dapat menggeser-geser (*swipe*) kartu dengan jari secara mulus dan nyaman.
+  3. **Visual & Interaksi**:
+     - Dilengkapi badge lokasi berbendera Indonesia (`Location 🇮🇩 ★ Rating`) di pojok kiri atas.
+     - Gradient overlay elegan dengan judul villa dan badge harga `$XXX / night` di pojok kanan bawah.
+     - Mengeklik kartu langsung mengarahkan ke halaman detail villa yang bersangkutan.
 
 ---
 

@@ -51,7 +51,8 @@ export default function Destinations({
 
   return (
     <section className="destinations" id="destinations-section">
-      {/* Bar Kategori Airbnb dari Vista */}
+      <div className="destinations-inner">
+        {/* Bar Kategori Airbnb dari Vista */}
       <div className="category-scroll-wrap">
         <div className="category-bar">
           {AIRBNB_CATEGORIES.map((cat) => {
@@ -82,7 +83,7 @@ export default function Destinations({
       </div>
 
       <div className="destinations-header">
-        <h2>Popular Destinations</h2>
+        <h2>Prefer Villa Destination</h2>
         <p className="destinations-sub">Explore Bali’s most sought-after villa destinations</p>
       </div>
       <div className="dest-grid">
@@ -111,6 +112,7 @@ export default function Destinations({
             </div>
           );
         })}
+      </div>
       </div>
     </section>
   );

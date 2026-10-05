@@ -5,6 +5,7 @@ import FilterSidebar from '../components/FilterSidebar';
 import VillaCard from '../components/VillaCard';
 import WhyBookDirect from '../components/WhyBookDirect';
 import ConciergeFinder from '../components/ConciergeFinder';
+import TopPreferredVillas from '../components/TopPreferredVillas';
 
 /**
  * Komponen Halaman ExplorePage (Katalog & Pencarian Villa Utama)
@@ -207,6 +208,20 @@ export default function ExplorePage({
         activeDestination={searchParams.location}
         onSelectCategory={handleSelectCategory}
         activeCategory={activeCategory}
+      />
+
+      {/* =========================================================================
+          SEKSI: 5 MOST PREFER VILLA BY GUESTS (Format Asimetris Sesuai tambahan 1.png)
+          PANDUAN PEMINDAHAN POSISI:
+          - Posisi Default (Opsi 1): Di bawah Prefer Villa Destination
+          - Jika ingin dipindahkan ke bawah Hasil Pencarian Villa:
+            CUT blok <TopPreferredVillas ... /> ini dan PASTE ke bawah </section> hasil pencarian (baris ~360).
+          - Jika ingin dipindahkan ke sebelum Concierge:
+            PASTE tepat sebelum <section className="explore-finder-section">.
+         ========================================================================= */}
+      <TopPreferredVillas 
+        villas={villas}
+        onSelectVilla={onSelectVilla}
       />
 
       {/* 3. Bagian Hasil Pencarian & Filter Panel */}

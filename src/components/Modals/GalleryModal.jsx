@@ -41,19 +41,32 @@ function extractRoomName(caption = '') {
  * @param {string[]} props.images - Array URL gambar-gambar villa
  * @param {string[]} props.photoCaptions - Array teks keterangan/caption untuk tiap foto dari Airbnb
  * @param {string} props.villaName - Nama villa untuk judul dan atribut alt foto
+ * @param {number|null} [props.initialPhotoIndex=null] - Index foto yang langsung dibuka dalam mode fokus (opsional)
  */
 export default function GalleryModal({ 
   isOpen, 
   onClose, 
   images = [], 
   photoCaptions = [], 
-  villaName = 'Villa' 
+  villaName = 'Villa',
+  initialPhotoIndex = null
 }) {
   // State ruangan yang sedang aktif dipilih ('ALL' untuk semua ruangan, atau nama ruangan spesifik)
   const [selectedRoom, setSelectedRoom] = useState('ALL');
 
   // State index foto yang sedang dilihat dalam mode fokus (null = mode grid tour per ruangan)
   const [activePhotoIndex, setActivePhotoIndex] = useState(null);
+
+  // Efek sinkronisasi index foto awal saat modal dibuka dari klik salah satu foto di galeri showcase
+  useEffect(() => {
+    if (isOpen) {
+      if (typeof initialPhotoIndex === 'number' && initialPhotoIndex >= 0) {
+        setActivePhotoIndex(initialPhotoIndex);
+      } else {
+        setActivePhotoIndex(null);
+      }
+    }
+  }, [isOpen, initialPhotoIndex]);
 
   // Ref untuk elemen kontainer baris pill ruangan
   const pillsRef = useRef(null);

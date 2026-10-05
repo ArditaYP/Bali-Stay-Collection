@@ -78,16 +78,62 @@ const VILLA_DETAILS = {
     amenities: ['Private pool', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Daily housekeeping', 'Near the beach', 'Free parking']
   },
   'the-palms-villa-canggu': {
+    name: 'Villa Habitas – 4BR Pererenan Pool Villa · Walk to Cafes & Bars',
     category: 'Premium',
-    price: 350,
+    price: 290,
     cleaningFee: 45,
     freeCancel: true,
     cardBg: '#B8C5BD',
     bookedDays: [10, 11, 22, 23],
-    address: 'Batu Bolong, Canggu, Badung, Bali',
-    shortDesc: 'A stunning minimalist 4-bedroom villa with sunken lounge and lap pool in prime Canggu.',
-    description: 'The Palms Villa is an architectural masterpiece situated in Canggu’s vibrant Batu Bolong precinct. Designed with clean geometric lines, polished concrete, and natural teak elements, the property centers around an elongated lap pool and sunken outdoor lounge with fully enclosed air-conditioned living spaces.',
-    amenities: ['Private pool', 'Sunken lounge', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Dedicated workspace', 'Free parking']
+    address: 'Pererenan, Canggu, Badung, Bali',
+    location: 'Canggu',
+    shortDesc: 'Wake up unhurried. Stroll to a favourite café, linger over dinner, then wander home to your own private pool. This 4-bedroom Pererenan villa sleeps 8, with a king bed in every room, a lagoon-style pool, and a warm local team on hand. Trendy cafés, restaurants and bars are within walking distance, and Canggu centre is a short ride away. Easy, unhurried Bali.',
+    description: 'Villa Habitas is a private 4-bedroom villa in Pererenan, built for slow mornings and easy evenings. Trendy cafés, restaurants and bars are within walking distance, and Canggu centre is a short ride away.',
+    fullDesc: `Villa Habitas is a private 4-bedroom villa in Pererenan, built for slow mornings and easy evenings.
+
+LIVING & DINING
+Open-plan living and dining area with comfortable lounge seating, air conditioning, and smart TV.
+
+POOL & OUTDOOR
+A private lagoon-style swimming pool surrounded by a manicured tropical garden and sun deck with loungers.
+
+KITCHEN
+Fully equipped modern kitchen with induction stove, oven, full-size refrigerator, and espresso coffee machine.
+
+BEDROOMS & BATHROOMS
+Four tranquil bedrooms, each featuring a king-size bed, premium linens, air conditioning, and private en-suite bathroom.
+
+WORK & CONNECTIVITY
+Dedicated workspace with high-speed fiber-optic WiFi (200 Mbps) suitable for remote work, video calls, and streaming.
+
+EXTRAS
+Safety deposit boxes, fresh bath towels, and pool towels provided.
+
+GUEST ACCESS
+You'll have the whole villa to yourselves, including the private pool and garden. Free parking on the property fits up to 2 cars plus scooters.
+
+YOUR LOCAL TEAM
+What guests remember most isn't just the villa, it's the people. Our local team keeps the villa fresh with daily cleaning, and is happy to help arrange a driver, a massage, or a table at the right restaurant (extra services are on request, at additional cost). You'll feel looked after, not managed. A concierge is available through WhatsApp / messaging during your stay.
+
+TRAVELLING WITH FAMILY
+Travelling with little ones? Walkable cafés and restaurants mean fewer car rides. A nanny service and a pool fence are available on request through our concierge, so just let us know before you arrive (baby cot / high chair available upon request).
+
+THE NEIGHBOURHOOD
+Pererenan is the quieter, more local-feeling neighbour of Canggu. Trendy cafés, restaurants and bars are within walking distance. Pererenan Beach and Canggu centre are a short drive away (Echo Beach, 5 min ride).
+
+OTHER THINGS TO NOTE
+• Check-in from 14:00 PM and check-out by 12:00 PM.
+• Minimum stay: 2 nights.
+• Pets friendly.
+• Pool safety: children must be supervised around the pool at all times.
+• Cancellation policy: Cut off date 21 Days (Free cancellation up to 21 days before check-in).`,
+    amenities: ['Private pool', 'Jungle view', 'River valley view', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Free parking'],
+    bedrooms: [
+      { name: 'Bedroom 1', detail: 'King bed · En-suite bathroom' },
+      { name: 'Bedroom 2', detail: 'King bed · En-suite bathroom' },
+      { name: 'Bedroom 3', detail: 'King bed · En-suite bathroom' },
+      { name: 'Bedroom 4', detail: 'King bed · En-suite bathroom' }
+    ]
   },
   'villa-kayu-raja-seminyak': {
     category: 'Deluxe',
@@ -159,12 +205,12 @@ export const INITIAL_VILLAS = AIRBNB_VILLAS.map((a) => {
   return {
     id: a.id,
     airbnbUrl: a.airbnbUrl,
-    name: a.name,
-    location: a.location,
+    name: d.name || a.name,
+    location: d.location || a.location,
     address: d.address || `${a.location}, Bali`,
-    beds: a.bedroomsCount,
-    guests: a.guests,
-    bathrooms: a.bathrooms,
+    beds: d.beds || a.bedroomsCount,
+    guests: d.guests || a.guests,
+    bathrooms: d.bathrooms || a.bathrooms,
     category: d.category || 'Premium',
     price: d.price || 200,
     cleaningFee: d.cleaningFee || 35,
@@ -177,12 +223,13 @@ export const INITIAL_VILLAS = AIRBNB_VILLAS.map((a) => {
     bookedDays: d.bookedDays || [],
     description: d.description || '',
     shortDesc: d.shortDesc || '',
+    fullDesc: d.fullDesc || '',
     host: DEFAULT_HOST,
     images: a.images,
     photoCaptions: a.photoCaptions || [],
     features: DEFAULT_FEATURES,
     amenities: d.amenities || [],
-    bedrooms: buildBedrooms(a.bedroomsCount),
+    bedrooms: d.bedrooms || buildBedrooms(a.bedroomsCount),
     ratingsBreakdown: a.ratingsBreakdown,
     reviews: a.reviews
   };
@@ -200,26 +247,14 @@ export const POPULAR_DESTINATIONS = [
     bg: '#C7CDBB'
   },
   {
-    name: 'Balangan Beach',
-    count: '1 villa',
-    image: '/destinations/balangan.jpg',
-    bg: '#B9CBC9'
-  },
-  {
     name: 'Canggu',
     count: '2 villas',
     image: '/destinations/canggu.jpg',
     bg: '#CBC3A8'
   },
   {
-    name: 'Seminyak',
-    count: '2 villas',
-    image: '/destinations/seminyak.jpg',
-    bg: '#CBB9C9'
-  },
-  {
     name: 'Uluwatu',
-    count: '1 villa',
+    count: '2 villas',
     image: '/destinations/uluwatu.jpg',
     bg: '#A9B9C9'
   }
@@ -279,4 +314,49 @@ export function getDefaultDate(addDaysFromNow = 0) {
   const d = new Date();
   d.setDate(d.getDate() + addDaysFromNow);
   return d.toISOString().split('T')[0];
+}
+
+/**
+ * Memeriksa apakah suatu rentang tanggal menginap (Check-in sampai Check-out) tersedia
+ * atau bertabrakan dengan tanggal-tanggal yang sudah di-booking tamu lain (bookedDays).
+ * Setiap malam menginap (dari tanggal check-in sampai sebelum check-out) tidak boleh berada pada tanggal booked.
+ * 
+ * @param {string} checkInStr - Tanggal check-in dalam format YYYY-MM-DD
+ * @param {string} checkOutStr - Tanggal check-out dalam format YYYY-MM-DD
+ * @param {number[]} bookedDays - Daftar angka hari dalam bulan yang sudah terisi (booked)
+ * @returns {{ isAvailable: boolean, conflictDays: number[], message: string }} Objek status ketersediaan dan daftar tanggal yang bentrok
+ */
+export function checkDateRangeAvailability(checkInStr, checkOutStr, bookedDays = []) {
+  if (!checkInStr || !checkOutStr) {
+    return { isAvailable: false, conflictDays: [], message: 'Pilih tanggal check-in dan check-out.' };
+  }
+
+  const startDate = new Date(checkInStr);
+  const endDate = new Date(checkOutStr);
+
+  if (endDate <= startDate) {
+    return { isAvailable: false, conflictDays: [], message: 'Tanggal check-out harus setelah tanggal check-in.' };
+  }
+
+  // Iterasi setiap malam menginap dari tanggal checkIn sampai sebelum checkOut
+  const conflictDays = [];
+  const cur = new Date(startDate);
+
+  while (cur < endDate) {
+    const dayNum = cur.getDate();
+    if (bookedDays.includes(dayNum) && !conflictDays.includes(dayNum)) {
+      conflictDays.push(dayNum);
+    }
+    cur.setDate(cur.getDate() + 1);
+  }
+
+  if (conflictDays.length > 0) {
+    return {
+      isAvailable: false,
+      conflictDays,
+      message: `Tanggal ${conflictDays.sort((a, b) => a - b).join(', ')} sudah terisi (booked). Silakan pilih tanggal lain yang masih kosong.`
+    };
+  }
+
+  return { isAvailable: true, conflictDays: [], message: '' };
 }

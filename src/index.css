@@ -576,6 +576,12 @@ section.destinations {
   background: var(--bg);
 }
 
+.destinations-inner {
+  max-width: 1344px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 /* AIRBNB CATEGORIES SCROLL BAR */
 .category-scroll-wrap {
   width: 100%;
@@ -691,8 +697,8 @@ section.destinations h2 {
 
 .dest-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   width: 100%;
 }
 
@@ -700,7 +706,7 @@ section.destinations h2 {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  height: 160px;
+  height: 180px;
   cursor: pointer;
   background-color: #242220;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
@@ -1311,57 +1317,131 @@ h1.villa-title {
   white-space: nowrap;
 }
 
-.gallery {
+/* =========================================================
+   GALERI FOTO MEWAH (AIRBNB STYLE SESUAI CONTOH.JPEG)
+   3 Foto Hero di Atas (1 Utama + 2 Susun) + 5 Foto Sejajar di Bawah
+   Foto ke-5 Bawah Dilengkapi Overlay Elegan "+X photos"
+   ========================================================= */
+
+.gallery-showcase {
   margin: 20px 0 32px;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 8px;
-  border-radius: 16px;
-  overflow: hidden;
-  height: 420px;
-  position: relative;
   width: 100%;
 }
 
-.gallery .g-item {
+/* Setiap item foto memiliki sudut melengkung halus khas luxury resort */
+.gallery-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+              filter 0.25s ease, 
+              box-shadow 0.25s ease;
+  user-select: none;
 }
 
-.gallery .g-item:hover {
-  opacity: 0.92;
-}
-
-.gallery .g1 {
-  grid-row: 1 / 3;
-}
-
-.show-all-btn {
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-  background: #fff;
-  border: 1px solid var(--ink);
-  border-radius: 9px;
-  padding: 9px 16px;
-  font-size: 13px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  transition: all 0.2s ease;
-  white-space: nowrap;
+.gallery-item:hover {
+  filter: brightness(0.93);
+  transform: scale(1.008);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
   z-index: 2;
 }
 
-.show-all-btn:hover {
-  background: #FAF9F5;
-  transform: translateY(-1px);
+/* Baris Atas: 1 Foto Utama Besar (Kiri ~65%) + 2 Foto Susun Vertikal (Kanan ~35%) */
+.gallery-top-grid {
+  display: grid;
+  grid-template-columns: 1.85fr 1fr;
+  gap: 10px;
+  height: 460px;
+}
+
+.gallery-hero-main {
+  height: 100%;
+}
+
+.gallery-hero-stack {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  height: 100%;
+}
+
+.gallery-hero-sub {
+  height: 100%;
+}
+
+/* Baris Bawah: 5 Foto Sejajar Horizontal Sama Rata */
+.gallery-bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+  height: 135px;
+}
+
+.gallery-thumb {
+  height: 100%;
+}
+
+/* Kartu Foto Terakhir dengan Overlay Elegan "+X photos" */
+.gallery-thumb-more {
+  position: relative;
+}
+
+.gallery-more-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(18, 18, 17, 0.48);
+  backdrop-filter: blur(1.5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+
+.gallery-thumb-more:hover .gallery-more-overlay {
+  background: rgba(18, 18, 17, 0.62);
+}
+
+.gallery-more-text {
+  color: #ffffff;
+  font-size: clamp(15px, 1.4vw, 19px);
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+  user-select: none;
+}
+
+/* Badge penanda foto di layar mobile */
+.gallery-mobile-badge {
+  display: none;
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(20, 20, 19, 0.8);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 20px;
+  align-items: center;
+  gap: 6px;
+  z-index: 3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.gallery-mobile-badge:hover {
+  background: rgba(20, 20, 19, 0.95);
+  transform: scale(1.04);
 }
 
 .main-grid {
@@ -1603,6 +1683,80 @@ h1.villa-title {
   color: #A84E2C !important;
   border-color: #ECD4C8 !important;
   font-weight: 600;
+}
+
+/* Rentang hari yang bermasalah (melewati tanggal booked) */
+.mini-cal .day.in-range-conflict {
+  background: #FEE2E2 !important;
+  color: #B91C1C !important;
+  border: 1px dashed #F87171 !important;
+  font-weight: 600;
+}
+
+.mini-cal .day.booked {
+  position: relative;
+}
+
+.mini-cal .booked-cross {
+  font-size: 10px;
+  line-height: 1;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-weight: 800;
+  color: #DC2626;
+}
+
+/* Indikator langkah pemilihan kalender */
+.cal-step-indicator {
+  display: flex;
+  align-items: center;
+}
+
+.cal-step-badge {
+  font-size: 11.5px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  transition: all 0.2s ease;
+}
+
+.cal-step-badge strong {
+  color: var(--ink);
+}
+
+.cal-step-badge.step-checkout {
+  background: #FEF3C7;
+  border-color: #FCD34D;
+  color: #92400E;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(245, 158, 11, 0.2);
+}
+
+.cal-step-badge.step-checkout strong {
+  color: #78350F;
+}
+
+/* Banner Peringatan Konflik Tanggal di Kalender */
+.cal-conflict-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #FEF2F2;
+  border: 1px solid #FCA5A5;
+  color: #B91C1C;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 13px;
+  margin-bottom: 14px;
+  line-height: 1.4;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.cal-conflict-banner svg {
+  flex-shrink: 0;
 }
 
 /* Legenda Kalender Ketersediaan */
@@ -2769,6 +2923,40 @@ mark.review-highlight {
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 0;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+/* Status jika rentang tanggal bentrok dengan tanggal booked */
+.date-grid.has-error {
+  border-color: #EF4444;
+  background: #FEF2F2;
+}
+
+.date-grid.has-error input {
+  background: transparent;
+  color: #B91C1C;
+  font-weight: 600;
+}
+
+.booking-date-error-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  background: #FEE2E2;
+  border: 1px solid #FCA5A5;
+  color: #B91C1C;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  line-height: 1.4;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.booking-date-error-banner svg {
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 
 .date-grid label {
@@ -2820,6 +3008,18 @@ mark.review-highlight {
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 14px;
+}
+
+/* Tombol booking nonaktif jika tanggal tidak tersedia */
+.reserve-btn.btn-disabled,
+.bottom-reserve-btn.btn-disabled {
+  background: #E5E7EB !important;
+  color: #9CA3AF !important;
+  border-color: #D1D5DB !important;
+  cursor: not-allowed !important;
+  box-shadow: none !important;
+  transform: none !important;
+  pointer-events: auto;
 }
 
 .no-charge-note {
@@ -3435,8 +3635,21 @@ mark.review-highlight {
   .why-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .gallery {
-    height: 360px;
+  .gallery-top-grid {
+    height: 380px;
+    gap: 8px;
+  }
+  .gallery-hero-stack {
+    gap: 8px;
+  }
+  .gallery-bottom-grid {
+    height: 110px;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .gallery-item,
+  .gallery-more-overlay {
+    border-radius: 10px;
   }
 }
 
@@ -3647,24 +3860,40 @@ mark.review-highlight {
     height: 200px;
   }
 
-  /* Gallery layout on Mobile */
-  .gallery {
+  /* Gallery layout on Mobile (Sesuai contoh.jpeg: Foto utama + swipeable thumbnail strip) */
+  .gallery-top-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    height: 260px;
+    height: 270px;
   }
-  .gallery .g-item {
+  .gallery-hero-stack {
     display: none;
   }
-  .gallery .g1 {
-    display: block;
-    grid-row: 1 / 2;
+  .gallery-mobile-badge {
+    display: flex;
   }
-  .show-all-btn {
-    bottom: 12px;
-    right: 12px;
-    padding: 7px 12px;
-    font-size: 12px;
+  .gallery-bottom-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    height: 80px;
+    margin-top: 8px;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .gallery-bottom-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .gallery-bottom-grid .gallery-thumb {
+    flex: 0 0 115px;
+    height: 100%;
+    border-radius: 8px;
+  }
+  .gallery-more-overlay {
+    border-radius: 8px;
+  }
+  .gallery-more-text {
+    font-size: 13.5px;
   }
 
   /* Why Grid */
@@ -4188,3 +4417,831 @@ mark.review-highlight {
   }
 }
 
+/* ==========================================================================
+   NEIGHBORHOOD GUIDE & INTERACTIVE MAP STYLES ('WHERE YOU'LL BE')
+   ========================================================================== */
+
+.neighborhood-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.neighborhood-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.neighborhood-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+
+.neighborhood-lead {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  margin: 0 0 4px;
+}
+
+.neighborhood-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.recenter-btn {
+  padding: 8px 16px;
+  font-size: 12.5px;
+  border-radius: 100px;
+}
+
+.gmaps-header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  border-radius: 100px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.gmaps-header-btn:hover {
+  background: var(--bg);
+  border-color: #B6955D;
+}
+
+/* Controls Bar: Search & Categories */
+.neighborhood-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.neighborhood-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.neighborhood-search-box svg {
+  position: absolute;
+  left: 14px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.neighborhood-search-input {
+  width: 100%;
+  padding: 11px 40px 11px 42px;
+  border-radius: 100px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 13.5px;
+  color: var(--ink);
+  outline: none;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.neighborhood-search-input:focus {
+  border-color: #B6955D;
+  box-shadow: 0 0 0 3px rgba(182, 149, 93, 0.15);
+}
+
+.neighborhood-clear-btn {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neighborhood-clear-btn:hover {
+  color: var(--ink);
+  background: var(--bg);
+}
+
+/* Category Pills Row */
+.neighborhood-categories-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scroll-behavior: smooth;
+}
+
+.neighborhood-cat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 15px;
+  border-radius: 100px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.neighborhood-cat-pill:hover {
+  border-color: #B6955D;
+  background: var(--bg);
+}
+
+.neighborhood-cat-pill.active {
+  background: #2F7658;
+  border-color: #2F7658;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(47, 118, 88, 0.25);
+}
+
+/* 2-Column Grid: Map + Nearby Places */
+.neighborhood-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Peta Leaflet Container */
+.neighborhood-map-container {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-md);
+  min-height: 480px;
+  background: #F3EFE4;
+}
+
+.neighborhood-map {
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  z-index: 1;
+}
+
+/* Tombol Floating Google Maps di Atas Peta */
+.neighborhood-floating-gmaps {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  border-radius: 100px;
+  padding: 8px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 1000;
+  transition: all 0.2s ease;
+}
+
+.neighborhood-floating-gmaps:hover {
+  background: #141413;
+  color: #fff;
+  border-color: #141413;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+}
+
+/* Badge Privasi Melayang di Peta */
+.neighborhood-privacy-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  background: rgba(20, 20, 19, 0.85);
+  backdrop-filter: blur(8px);
+  color: #FAF9F5;
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* Custom Marker Styling Leaflet */
+.villa-pin-bubble {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #C96F4A;
+  border: 3px solid #fff;
+  box-shadow: 0 4px 14px rgba(201, 111, 74, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  animation: pulsePin 2.5s infinite;
+  transition: transform 0.2s ease;
+}
+
+.villa-pin-bubble:hover {
+  transform: scale(1.1);
+}
+
+@keyframes pulsePin {
+  0% {
+    box-shadow: 0 0 0 0 rgba(201, 111, 74, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(201, 111, 74, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(201, 111, 74, 0);
+  }
+}
+
+.place-pin-bubble {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--line);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.place-pin-bubble:hover,
+.place-pin-bubble.active {
+  background: #141413;
+  border-color: #B6955D;
+  transform: scale(1.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Popup Leaflet Custom Card */
+.map-popup-card {
+  padding: 4px;
+  font-family: inherit;
+  color: var(--ink);
+}
+
+.map-popup-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.map-popup-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.map-popup-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  display: block;
+}
+
+.map-popup-sub {
+  font-size: 12px;
+  color: var(--muted2);
+  margin: 3px 0 6px;
+}
+
+.map-popup-meta {
+  font-size: 11px;
+  color: var(--muted2);
+  margin-top: 2px;
+}
+
+.map-popup-meta strong {
+  color: #2F7658;
+}
+
+.map-popup-desc {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  margin: 6px 0 8px;
+}
+
+.map-popup-badge {
+  display: inline-block;
+  font-size: 10.5px;
+  background: #FAF7F2;
+  border: 1px solid #B6955D;
+  color: #8C6F3B;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-weight: 600;
+}
+
+.map-popup-actions {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+
+.map-popup-gmaps-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+  background: var(--bg);
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  transition: all 0.15s ease;
+}
+
+.map-popup-gmaps-btn:hover {
+  background: var(--ink);
+  color: #fff;
+  border-color: var(--ink);
+}
+
+/* Panel Daftar Tempat di Kolom Kanan */
+.neighborhood-places-panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  max-height: 520px;
+}
+
+.neighborhood-places-head {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 12px;
+}
+
+.places-count-label {
+  font-size: 12.5px;
+  color: var(--muted2);
+}
+
+.places-count-label strong {
+  color: var(--ink);
+}
+
+.neighborhood-places-list {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+.neighborhood-place-card {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.neighborhood-place-card:hover {
+  background: #fff;
+  border-color: #B6955D;
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.neighborhood-place-card.active {
+  background: #FAF7F2;
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(201, 111, 74, 0.15);
+}
+
+.place-card-top {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.place-card-icon {
+  font-size: 20px;
+  line-height: 1;
+  background: #fff;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.place-card-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.place-card-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.place-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.place-cat-tag {
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--ink-soft);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.place-dist-badge {
+  font-size: 11.5px;
+  color: #2F7658;
+  font-weight: 600;
+}
+
+.place-card-highlight {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--muted2);
+  margin: 4px 0 8px;
+}
+
+.place-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+}
+
+.place-view-btn {
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0;
+}
+
+.place-view-btn:hover {
+  text-decoration: underline;
+}
+
+.place-directions-link {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--muted);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  transition: color 0.15s ease;
+}
+
+.place-directions-link:hover {
+  color: var(--ink);
+}
+
+.neighborhood-empty-state {
+  text-align: center;
+  padding: 36px 16px;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.neighborhood-empty-state p {
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Responsivitas Neighborhood Map */
+@media (max-width: 980px) {
+  .neighborhood-grid {
+    grid-template-columns: 1fr;
+  }
+  .neighborhood-map-container {
+    min-height: 380px;
+  }
+  .neighborhood-map {
+    min-height: 380px;
+  }
+  .neighborhood-places-panel {
+    max-height: 380px;
+  }
+}
+
+/* =========================================================
+   5 MOST PREFER VILLA BY GUESTS (SESUAI TAMBAHAN 1.PNG)
+   Grid Asimetris: 2 Kartu Besar Atas + 3 Kartu Sedang Bawah
+   ========================================================= */
+
+.preferred-villas-section {
+  padding: 36px 48px 44px;
+  width: 100%;
+  background: var(--bg);
+  box-sizing: border-box;
+}
+
+.preferred-inner {
+  max-width: 1344px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.preferred-header {
+  margin-bottom: 22px;
+}
+
+.preferred-title {
+  font-size: clamp(22px, 2.8vw, 28px);
+  font-weight: 700;
+  color: var(--ink);
+  margin: 4px 0 6px;
+  letter-spacing: -0.3px;
+}
+
+.preferred-sub {
+  font-size: 14.5px;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Pembungkus Grid Dua Baris dengan Spacing Mewah */
+.preferred-grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+}
+
+/* Baris Atas: 2 Kartu Besar (50% - 50%) */
+.preferred-row-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  width: 100%;
+}
+
+/* Baris Bawah: 3 Kartu Sedang (33.3% x 3) */
+.preferred-row-bottom {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  width: 100%;
+}
+
+/* Kartu Villa */
+.preferred-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #242220;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.28s ease;
+  user-select: none;
+}
+
+.preferred-card-large {
+  height: 280px;
+}
+
+.preferred-card-medium {
+  height: 220px;
+}
+
+.preferred-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.45s ease;
+}
+
+.preferred-card:hover .preferred-card-bg {
+  transform: scale(1.06);
+}
+
+.preferred-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(16, 25, 54, 0.18);
+}
+
+/* Overlay Gradien Gelap Atas & Bawah */
+.preferred-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 25, 54, 0.58) 0%,
+    rgba(16, 25, 54, 0.08) 45%,
+    rgba(16, 25, 54, 0.88) 100%
+  );
+  pointer-events: none;
+}
+
+/* Badge Lokasi di Pojok Kiri Atas (Persis format tambahan 1.png) */
+.preferred-badge-top {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+}
+
+.preferred-badge-location {
+  font-size: clamp(17px, 1.8vw, 21px);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.preferred-badge-flag {
+  font-size: 19px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.preferred-badge-rating {
+  font-size: 12px;
+  font-weight: 700;
+  color: #141413;
+  background: #ffffff;
+  padding: 3px 9px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* Bagian Bawah Kartu: Nama & Harga */
+.preferred-card-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 18px 22px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  z-index: 2;
+}
+
+.preferred-card-title-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.preferred-card-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.preferred-card-subtitle {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.preferred-card-price-tag {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  padding: 5px 11px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.preferred-price-amt {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.preferred-price-unit {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* Responsivitas Laptops (max-width: 1200px) */
+@media (max-width: 1200px) {
+  .preferred-villas-section {
+    padding: 30px 32px 38px;
+  }
+}
+
+/* Responsivitas Tablet Sedang (max-width: 900px) */
+@media (max-width: 900px) {
+  .preferred-villas-section {
+    padding: 24px 20px 32px;
+  }
+  .preferred-grid-wrapper,
+  .preferred-row-top,
+  .preferred-row-bottom {
+    gap: 16px;
+  }
+  .preferred-card-large {
+    height: 240px;
+  }
+  .preferred-card-medium {
+    height: 195px;
+  }
+  .preferred-badge-location {
+    font-size: 16px;
+  }
+  .preferred-card-bottom {
+    padding: 14px 16px;
+  }
+}
+
+/* Responsivitas Mobile (max-width: 680px) */
+@media (max-width: 680px) {
+  .preferred-villas-section {
+    padding: 20px 16px 28px;
+  }
+  .preferred-grid-wrapper {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 14px;
+    padding: 4px 4px 16px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+  .preferred-grid-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+  .preferred-row-top,
+  .preferred-row-bottom {
+    display: contents;
+  }
+  .preferred-card {
+    flex: 0 0 280px;
+    height: 220px;
+    scroll-snap-align: start;
+  }
+}
