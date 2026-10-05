@@ -2,8 +2,8 @@ import React from 'react';
 
 /**
  * Komponen HeroSearch
- * Menampilkan section header utama (Hero) yang terdiri dari judul promosi,
- * form pencarian multi-parameter (lokasi, tanggal, tamu), dan bar nilai kepercayaan (trust row).
+ * Menampilkan section header utama (Hero) bergaya sinematik (Opsi B) dengan foto latar belakang villa Angkasa Ubud,
+ * judul promosi kemewahan, formulir pencarian multi-parameter (lokasi, tanggal, tamu), dan bar nilai kepercayaan (trust row).
  * 
  * @param {Object} props
  * @param {string} props.searchLocation - Nilai input teks lokasi yang sedang dicari
@@ -15,6 +15,7 @@ import React from 'react';
  * @param {number} props.guests - Jumlah tamu yang dipilih
  * @param {Function} props.onGuestsChange - Callback saat jumlah tamu berubah
  * @param {Function} props.onSearch - Callback saat tombol 'Search Villas' diklik
+ * @returns {React.JSX.Element} Elemen JSX section Hero dengan latar belakang foto dan form pencarian
  */
 export default function HeroSearch({
   searchLocation,
@@ -31,6 +32,7 @@ export default function HeroSearch({
    * Menangani pengiriman form pencarian saat tombol Search diklik
    * Memastikan fokus menggulir langsung ke daftar hasil pencarian villa
    * @param {React.FormEvent} e - Event submit form atau klik tombol
+   * @returns {void}
    */
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -45,10 +47,26 @@ export default function HeroSearch({
 
   return (
     <section className="hero">
+      {/* Background Image & Cinematic Overlay Resolusi Tinggi (2.5K Master) */}
+      <div className="hero-bg-container" aria-hidden="true">
+        <picture>
+          <source srcSet="/hero-angkasa.avif" type="image/avif" />
+          <source srcSet="/hero-angkasa.webp" type="image/webp" />
+          <img 
+            src="/hero-angkasa.jpg" 
+            alt="Angkasa Ubud Luxury Villa Twilight with Sunken Pool Lounge" 
+            className="hero-bg-img"
+            loading="eager"
+            fetchPriority="high"
+          />
+        </picture>
+        <div className="hero-overlay" />
+      </div>
+
       <div className="hero-inner">
         {/* Badge Jumlah Koleksi Villa Terverifikasi */}
         <div className="badge">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="#C96F4A">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="#E5906B">
             <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
           </svg>
           Over 60 private villas across Bali
@@ -125,31 +143,36 @@ export default function HeroSearch({
       {/* Row Poin Kepercayaan (Trust Row) */}
       <div className="trust-row">
         <div className="trust-item">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E5906B" strokeWidth="2">
             <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
           </svg>
           Best Price, Direct from Owners
         </div>
         <div className="trust-item">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E5906B" strokeWidth="2">
             <rect x="4" y="11" width="16" height="9" rx="2" />
             <path d="M8 11V7a4 4 0 018 0v4" />
           </svg>
           Secure Payment &amp; Deposit
         </div>
         <div className="trust-item">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E5906B" strokeWidth="2">
             <circle cx="12" cy="12" r="9" />
             <path d="M12 7v5l3 2" />
           </svg>
           24/7 Local Support
         </div>
         <div className="trust-item">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E5906B" strokeWidth="2">
             <path d="M20 6L9 17l-5-5" />
           </svg>
           Every Villa Verified by Our Team
         </div>
+      </div>
+
+      {/* Tag Lokasi Villa Angkasa Ubud */}
+      <div className="hero-villa-tag">
+        <span>📍 Featured: Angkasa Villa, Ubud</span>
       </div>
     </section>
   );

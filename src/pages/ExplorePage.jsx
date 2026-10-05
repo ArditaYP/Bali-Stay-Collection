@@ -38,6 +38,9 @@ export default function ExplorePage({
   // State untuk toggle filter pada tampilan mobile / tablet
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
+  // State untuk filter kategori Airbnb yang dipilih dari bar di atas Popular Destinations
+  const [activeCategory, setActiveCategory] = useState(null);
+
   // State untuk halaman aktif paginasi
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
@@ -54,6 +57,17 @@ export default function ExplorePage({
       freeCancelOnly: false
     });
     setSearchParams(prev => ({ ...prev, location: '' }));
+    setActiveCategory(null);
+  };
+
+  /**
+   * Menangani pemilihan kategori ikon Airbnb di atas bagian destinasi
+   * @param {string} catId - ID kategori yang dipilih (misal: 'beach', 'pool')
+   * @returns {void}
+   */
+  const handleSelectCategory = (catId) => {
+    setActiveCategory(prev => (prev === catId ? null : catId));
+    setCurrentPage(1);
   };
 
   /**
@@ -67,8 +81,35 @@ export default function ExplorePage({
         const queryLoc = searchParams.location.trim().toLowerCase();
         const villaLoc = villa.location.toLowerCase();
         const villaName = villa.name.toLowerCase();
-        if (!villaLoc.includes(queryLoc) && !villaName.includes(queryLoc)) {
+        const villaAddress = (villa.address || '').toLowerCase();
+        if (!villaLoc.includes(queryLoc) && !villaName.includes(queryLoc) && !villaAddress.includes(queryLoc)) {
           return false;
+        }
+      }
+
+      // Filter Tambahan: Kategori Bar Airbnb (dari Vista)
+      if (activeCategory) {
+        if (activeCategory === 'pool') {
+          const hasPool = villa.amenities.some(a => a.toLowerCase().includes('pool')) || villa.description.toLowerCase().includes('pool');
+          if (!hasPool) return false;
+        } else if (activeCategory === 'beach' || activeCategory === 'beachfront') {
+          const hasBeach = villa.location.toLowerCase().includes('beach') || (villa.address || '').toLowerCase().includes('beach') || villa.amenities.some(a => a.toLowerCase().includes('ocean') || a.toLowerCase().includes('beach')) || villa.description.toLowerCase().includes('ocean');
+          if (!hasBeach) return false;
+        } else if (activeCategory === 'luxe') {
+          if (villa.category !== 'Premium' && villa.category !== 'Deluxe') return false;
+        } else if (activeCategory === 'amazingView') {
+          const hasView = villa.amenities.some(a => a.toLowerCase().includes('view')) || villa.description.toLowerCase().includes('view');
+          if (!hasView) return false;
+        } else if (activeCategory === 'trending') {
+          if (villa.rating < 4.9 && !villa.featured) return false;
+        } else if (activeCategory === 'omg') {
+          if (!villa.featured && villa.price < 350) return false;
+        } else if (activeCategory === 'countryside' || activeCategory === 'earthhome') {
+          const isUbud = villa.location.toLowerCase().includes('ubud');
+          if (!isUbud) return false;
+        } else if (activeCategory === 'surfing') {
+          const isSurf = villa.location.toLowerCase().includes('balangan') || (villa.address || '').toLowerCase().includes('uluwatu');
+          if (!isSurf) return false;
         }
       }
 
@@ -110,7 +151,7 @@ export default function ExplorePage({
 
       return true;
     });
-  }, [villas, searchParams, filters]);
+  }, [villas, searchParams, filters, activeCategory]);
 
   // Kalkulasi data villa untuk paginasi
   const totalPages = Math.ceil(filteredVillas.length / itemsPerPage) || 1;
@@ -159,10 +200,12 @@ export default function ExplorePage({
         onSearch={() => setCurrentPage(1)}
       />
 
-      {/* 2. Bagian Destinasi Populer */}
+      {/* 2. Bagian Destinasi Populer & Kategori Airbnb */}
       <Destinations 
         onSelectDestination={handleSelectPopularDestination}
         activeDestination={searchParams.location}
+        onSelectCategory={handleSelectCategory}
+        activeCategory={activeCategory}
       />
 
       {/* 3. Bagian Hasil Pencarian & Filter Panel */}

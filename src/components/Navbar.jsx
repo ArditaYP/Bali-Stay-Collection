@@ -20,6 +20,7 @@ export default function Navbar({ onGoHome, wishlistCount = 0, onOpenWishlist, on
   /**
    * Menangani klik pada logo brand untuk mengembalikan user ke halaman utama katalog
    * @param {React.MouseEvent} e - Event mouse click
+   * @returns {void}
    */
   const handleLogoClick = (e) => {
     e.preventDefault();
@@ -32,7 +33,8 @@ export default function Navbar({ onGoHome, wishlistCount = 0, onOpenWishlist, on
   /**
    * Menggulir halaman ke bagian pencarian atau tujuan tertentu
    * Sekaligus menutup menu navigasi mobile jika sedang terbuka
-   * @param {string} elementId - ID elemen target yang ingin dituju
+   * @param {string} elementId - ID target section yang ingin dituju
+   * @returns {void}
    */
   const handleScrollToSection = (elementId) => {
     setIsMobileMenuOpen(false);
@@ -49,7 +51,8 @@ export default function Navbar({ onGoHome, wishlistCount = 0, onOpenWishlist, on
   };
 
   /**
-   * Membuka modal pendaftaran villa dan menutup menu mobile
+   * Membuka modal pendaftaran villa dan menutup menu navigasi mobile
+   * @returns {void}
    */
   const handleOpenListVillaMobile = () => {
     setIsMobileMenuOpen(false);
@@ -60,15 +63,9 @@ export default function Navbar({ onGoHome, wishlistCount = 0, onOpenWishlist, on
 
   return (
     <header className="nav">
-      {/* Brand Logo & Nama Platform */}
+      {/* Brand Logo Resmi */}
       <div className="logo" onClick={handleLogoClick} role="button" tabIndex={0} title="Bali Stay Collection - Beranda">
-        <div className="logo-badge">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 11l9-8 9 8" />
-            <path d="M5 10v10h14V10" />
-          </svg>
-        </div>
-        <span className="logo-text">Bali Stay Collection</span>
+        <img src="/logo.svg" alt="Bali Stay Collection Logo" className="logo-img" />
       </div>
 
       {/* Navigasi Menu Desktop */}

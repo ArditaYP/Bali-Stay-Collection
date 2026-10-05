@@ -48,7 +48,7 @@ const VILLA_DETAILS = {
     freeCancel: true,
     cardBg: '#B9CBC9',
     bookedDays: [6, 7, 23, 24],
-    address: 'Balangan Beach, Badung, Bali',
+    address: 'Balangan Beach, Uluwatu, Badung, Bali',
     shortDesc: 'An iconic 5-bedroom cliff-top villa with a sweeping 180° view of the Indian Ocean.',
     description: 'Perched on the cliffs above Balangan Beach, this 5-bedroom villa opens onto an uninterrupted 180° ocean panorama. Spacious indoor-outdoor living, a pool facing the horizon and sunset views every evening make it ideal for families and groups of friends.',
     amenities: ['Private pool', 'Ocean view', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Free parking', 'Daily housekeeping']
@@ -117,16 +117,62 @@ export const INITIAL_VILLAS = AIRBNB_VILLAS.map((a) => {
 });
 
 /**
- * Destinasi populer dihitung otomatis dari lokasi villa yang ada,
- * supaya setiap kartu destinasi pasti punya villa saat diklik.
+ * Destinasi populer di Bali dengan gambar lanskap berkualitas tinggi,
+ * jumlah koleksi villa, dan warna dasar identitas destinasi.
  */
-export const POPULAR_DESTINATIONS = Object.values(
-  INITIAL_VILLAS.reduce((acc, v) => {
-    acc[v.location] ||= { name: v.location, total: 0, bg: v.cardBg };
-    acc[v.location].total += 1;
-    return acc;
-  }, {})
-).map((d) => ({ name: d.name, count: `${d.total} villa${d.total > 1 ? 's' : ''}`, bg: d.bg }));
+export const POPULAR_DESTINATIONS = [
+  {
+    name: 'Ubud',
+    count: '2 villas',
+    image: '/destinations/ubud.jpg',
+    bg: '#C7CDBB'
+  },
+  {
+    name: 'Balangan Beach',
+    count: '1 villa',
+    image: '/destinations/balangan.jpg',
+    bg: '#B9CBC9'
+  },
+  {
+    name: 'Canggu',
+    count: 'Popular Area',
+    image: '/destinations/canggu.jpg',
+    bg: '#CBC3A8'
+  },
+  {
+    name: 'Seminyak',
+    count: 'Popular Area',
+    image: '/destinations/seminyak.jpg',
+    bg: '#CBB9C9'
+  },
+  {
+    name: 'Uluwatu',
+    count: 'Popular Area',
+    image: '/destinations/uluwatu.jpg',
+    bg: '#A9B9C9'
+  }
+];
+
+/**
+ * Daftar ikon kategori resmi Airbnb yang diadopsi dari proyek Vista.
+ * Hanya 6 kategori utama yang aktif: Beach, Trending, Luxe, Amazing View, Pool, WOW!
+ * Kategori lainnya dinonaktifkan sementara (dikomentari) dan siap diaktifkan kembali jika diperlukan.
+ */
+export const AIRBNB_CATEGORIES = [
+  { id: 'beach', name: 'Beach', icon: '/categories/beach.jpg' },
+  { id: 'trending', name: 'Trending', icon: '/categories/trending.jpg' },
+  // { id: 'beachfront', name: 'Beachfront', icon: '/categories/beachfront.jpg' },
+  // { id: 'earthhome', name: 'Earth Home', icon: '/categories/earthhome.jpg' },
+  { id: 'luxe', name: 'Luxe', icon: '/categories/luxe.jpg' },
+  { id: 'amazingView', name: 'Amazing View', icon: '/categories/amazingView.jpg' },
+  // { id: 'design', name: 'Design', icon: '/categories/design.jpg' },
+  { id: 'pool', name: 'Pool', icon: '/categories/pool.jpg' },
+  // { id: 'tiny', name: 'Tiny Home', icon: '/categories/tiny.jpg' },
+  // { id: 'historic', name: 'Historic Home', icon: '/categories/historic.jpg' },
+  // { id: 'countryside', name: 'Countryside', icon: '/categories/countryside.jpg' },
+  { id: 'omg', name: 'WOW!', icon: '/categories/omg.jpg' },
+  // { id: 'surfing', name: 'Surfing', icon: '/categories/surfing.jpg' }
+];
 
 /**
  * Format angka numerik ke format mata uang Dollar USD ($)

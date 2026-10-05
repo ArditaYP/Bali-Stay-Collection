@@ -42,6 +42,15 @@ Dokumentasi lengkap mengenai status proyek, arsitektur kode, fitur yang telah di
 > 4. **STICKY BOOKING CARD HANYA SAMPAI BATAS KALENDER**:
 >    - Booking card di sebelah kanan hanya melayang (*sticky*) saat di-scroll sampai bagian bawah kalender ketersediaan (*availability calendar*).
 >    - Di bawah kalender (section ulasan tamu, peta, concierge finder, dan kebijakan), booking card tidak lagi mengunci/mengikuti scroll sehingga section-section tersebut mengambil lebar penuh (*full-width space*).
+> 5. **PERINGATAN WAJIB: DILARANG ASAL PUSH KE GITHUB (STRICT PRE-PUSH PROTOCOL)**:
+>    - **DILARANG KERAS** melakukan `git push` secara sembarangan, tanpa verifikasi, atau tanpa izin langsung!
+>    - Sebelum melakukan push ke remote GitHub, **WAJIB memenuhi seluruh checklist pra-push berikut**:
+>      1. **Wajib Build Lulus 100%**: Jalankan `npm run build` dan pastikan bundling Vite sukses tanpa ada error atau kegagalan compiler.
+>      2. **Wajib Komentar JSDoc Bahasa Indonesia**: Pastikan setiap fungsi baru atau termodifikasi di `.jsx`, `.js`, `.mjs` telah dilengkapi penjelasan JSDoc lengkap (`@param`, `@returns`, deskripsi).
+>      3. **Wajib Bersih dari File Sampah**: Pastikan tidak ada berkas temporer, file duplikat/sisa testing, kredensial/token rahasia, atau asset yang salah tempat.
+>      4. **Wajib Cek Git Status & Diff**: Jalankan `git status` dan periksa `git diff` untuk memastikan hanya perubahan yang disepakati yang di-stage.
+>      5. **Wajib Sinkronisasi Catatan PROGRESS.md**: Perbarui file `PROGRESS.md` ini terlebih dahulu agar seluruh riwayat pekerjaan, fitur, dan penyesuaian tercatat rapi sebelum commit.
+>      6. **Pesan Commit Jelas & Informatif**: Gunakan pesan commit yang deskriptif dan mencerminkan apa yang dikerjakan secara transparan (dilarang menggunakan commit satu kata seperti *"update"* atau *"fix"*).
 
 ---
 
@@ -59,6 +68,8 @@ Dokumentasi lengkap mengenai status proyek, arsitektur kode, fitur yang telah di
    - Latar: `--bg: #FAF9F5`, `--bg-warm: #F3EFE4`
    - Teks: `--ink: #141413`, `--ink-soft: #55524A`, `--muted: #8A8779`
    - Aksen: Terracotta `--accent: #C96F4A`, Gold `--gold: #B6955D`, Sage Green `--sage: #DFE8DF` / `#2F7658`
+6. **Protokol Ketat Git Push (Peringatan Wajib)**:
+   - Dilarang keras melakukan push secara asal atau tergesa-gesa. Setiap commit dan push ke repositori GitHub wajib melalui 6 tahap verifikasi (Build lulus 100%, JSDoc Bahasa Indonesia lengkap, repo bersih dari file sampah/sementara, pemeriksaan git diff/status, sinkronisasi `PROGRESS.md`, dan pesan commit yang rinci serta jelas).
 
 ---
 
@@ -154,6 +165,52 @@ src/
 - Galeri foto di `GalleryModal.jsx` dikelompokkan berdasarkan ruangan: *All photos*, *Living room*, *Kitchen*, *Bedrooms*, *Pool & outdoor*.
 - Bar navigasi pill ruangan dapat digeser ke kiri/kanan dengan tombol panah `<` `>` dan *drag to scroll* (mouse grab/touch swipe).
 
+### E. Hero Banner Sinematik Latar Belakang Penuh (Opsi B)
+- **Komponen**: `HeroSearch.jsx` dan `src/index.css`.
+- **Foto**: Menggunakan foto Master Ultra-HD 2.5K (`2560 x 1707`) persis dari website asli `balistaycollection.com` (`/hero-angkasa.avif`, `/hero-angkasa.webp`, `/hero-angkasa.jpg`), bukan thumbnail scrape 960x640 yang pecah/blur saat diperbesar.
+- **Visual & Unzoomed Quality**:
+  - Foto dimuat optimal melalui tag `<picture>` dengan dukungan AVIF dan WebP modern.
+  - Menghilangkan `transform: scale(1.03)` agar foto tampil dalam proporsi aslinya tanpa terpotong atau ter-zoom secara berlebihan.
+  - Mengadopsi gradien navy mewah (`#101936`) berkarakter dari situs aslinya untuk mempertahankan warna alami langit senja dan air kolam renang.
+  - Form pencarian (`search-bar`) melayang kontras di atas foto dengan bayangan halus.
+  - Badge koleksi menggunakan efek kaca transparan (*glassmorphism*).
+  - Dilengkapi tag eksklusif di sudut kanan bawah: `📍 Featured: Angkasa Villa, Ubud`.
+### F. Integrasi Logo Brand Resmi (`logo.svg`)
+- **Lokasi File**: Disimpan di `public/logo.svg` agar dapat diakses statis oleh browser dari root (`/logo.svg`).
+- **Penerapan**:
+  - **Favicon**: Diperbarui di `index.html` (`<link rel="icon" type="image/svg+xml" href="/logo.svg" />`).
+  - **Navbar**: Menggantikan ikon placeholder sebelumnya dengan logo resmi (`.logo-img`), proporsional pada desktop (`38px`) dan mobile (`32px`).
+  - **Footer**: Ditampilkan pada `.footer-brand` (`.footer-logo-img`) dengan filter monochrome putih elegan pada latar gelap footer.
+
+### G. Visual Gambar Kartu Destinasi Populer (`Destinations.jsx`)
+- **Pembaruan**: Mengganti kotak warna polos dengan kartu berfoto lanskap estetik Bali untuk 5 destinasi utama:
+  - **Ubud**: Kolam renang tropis dan pepohonan rimbun (`/destinations/ubud.jpg`).
+  - **Balangan Beach**: Tebing pantai dan laut biru lepas (`/destinations/balangan.jpg`).
+  - **Canggu**: Suasana sunset dan villa tepi pantai (`/destinations/canggu.jpg`).
+  - **Seminyak**: Arsitektur villa modern dan area santai (`/destinations/seminyak.jpg`).
+  - **Uluwatu**: Pesona tebing eksotis Samudra Hindia (`/destinations/uluwatu.jpg`).
+- **Efek Interaktif**: Efek perbesaran foto halus saat hover (`transform: scale(1.08)`), bayangan lembut, badge jumlah villa, dan outline aksen saat destinasi sedang aktif dipilih.
+
+### H. Bar Kategori Resmi Airbnb (Diadopsi dari Vista)
+- **Komponen**: `Destinations.jsx`, `ExplorePage.jsx`, dan `src/index.css`.
+- **Posisi**: Terletak tepat di bagian atas section `#destinations-section` (di atas *Popular Destinations*).
+- **Aset Ikon**: Disimpan lokal di `public/categories/`.
+- **Status Kategori**:
+  - **6 Kategori Aktif**: `Beach` (`beach`), `Trending` (`trending`), `Luxe` (`luxe`), `Amazing View` (`amazingView`), `Pool` (`pool`), dan `WOW!` (`omg`).
+  - **Kategori Nonaktif Sementara**: `Beachfront`, `Earth Home`, `Design`, `Tiny Home`, `Historic Home`, `Countryside`, dan `Surfing` dinonaktifkan melalui komentar kode di `src/data/villasData.js` (`//`) agar dapat diaktifkan kembali sewaktu-waktu dengan mudah saat dibutuhkan.
+- **Fitur Interaktif & Tampilan**:
+  - Posisi bar kategori terpusat secara simetris di tengah (*centered*) pada layar desktop dan tablet, serta otomatis beralih ke mode horizontal scroll yang mulus pada layar smartphone (<= 680px) tanpa terpotong.
+  - Horizontal scroll halus tanpa scrollbar (*no-scrollbar*).
+  - Indikator aktif (garis bawah solid) saat kategori dipilih.
+  - Terintegrasi langsung dengan mesin filter katalog villa di `ExplorePage.jsx`.
+
+### I. Perbaikan Tata Letak Filter Minimum Rating (`FilterSidebar.jsx`)
+- **Masalah**: Nama class `.star-row` di pembungkus filter rating bertabrakan dengan styling review cards (`.star-row { display: inline-flex; }`), sehingga judul *"Minimum rating"* dan pilihan radio button berjejer ke samping secara horizontal.
+- **Solusi**:
+  - Mengubah class pembungkus menjadi `.rating-filter-group` dengan `display: flex; flex-direction: column; width: 100%;`.
+  - Memberi class `.radio-row` pada setiap label radio button agar tersusun menurun ke bawah (*vertical stack*) secara teratur dan konsisten dengan kelompok filter lainnya.
+  - Mengisolasi selector `.star-row` di `src/index.css` agar spesifik hanya untuk ikon bintang review (`span.star-row`, `.review-meta .star-row`, `.review-card .star-row`).
+
 ---
 
 ## 6. Perintah Menjalankan Aplikasi
@@ -170,6 +227,23 @@ src/
 - **Menjalankan Linter / Oxlint**:
   ```powershell
   npx oxlint
+  ```
+- **Prosedur Aman Melakukan Push ke GitHub (Wajib Dipatuhi)**:
+  ```powershell
+  # Langkah 1: Pastikan build bundling 100% bebas error
+  npm run build
+
+  # Langkah 2: Periksa status berkas kerja dan pastikan tidak ada file sampah
+  git status
+
+  # Langkah 3: Stage semua perubahan yang sah
+  git add .
+
+  # Langkah 4: Buat commit dengan pesan yang deskriptif dan jelas
+  git commit -m "feat: [deskripsi fitur atau perbaikan yang dikerjakan]"
+
+  # Langkah 5: Push ke cabang remote utama
+  git push origin main
   ```
 
 ---

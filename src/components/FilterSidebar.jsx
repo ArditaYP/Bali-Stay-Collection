@@ -132,9 +132,9 @@ export default function FilterSidebar({ filters, onFilterChange, onResetFilters 
       </div>
 
       {/* 4. Filter Minimum Rating Ulasan */}
-      <div className="star-row">
+      <div className="rating-filter-group">
         <div className="filter-title">Minimum rating</div>
-        <label>
+        <label className="radio-row">
           <input 
             type="radio" 
             name="ratingFilter" 
@@ -143,7 +143,7 @@ export default function FilterSidebar({ filters, onFilterChange, onResetFilters 
           />
           <span>★★★★★ (4.9+)</span>
         </label>
-        <label>
+        <label className="radio-row">
           <input 
             type="radio" 
             name="ratingFilter" 
@@ -152,7 +152,7 @@ export default function FilterSidebar({ filters, onFilterChange, onResetFilters 
           />
           <span>★★★★ &amp; up (4.8+)</span>
         </label>
-        <label>
+        <label className="radio-row">
           <input 
             type="radio" 
             name="ratingFilter" 
