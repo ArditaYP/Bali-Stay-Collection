@@ -395,6 +395,27 @@ src/
 
 ---
 
+### 5.13. Integrasi Seksi "Experiences" (Sesuai bali-stay-collection.html)
+- **Sumber Data & Mockup**: Berkas `C:\Users\CSO KUTA 2\Downloads\bali-stay-collection.html`.
+- **Elemen yang Diambil**: Blok `<section class="section alt" id="experiences">
+  - Kicker: *"Beyond the stay"*
+  - Judul: *"Make Bali part of the villa."*
+  - Lead: *"Turn every reservation into a richer guest experience with optional services that can be added before arrival."*
+  - 4 Kartu Pengalaman Unggulan:
+    1. **Airport Transfer** (*"Private arrival and departure service."*)
+    2. **Private Chef** (*"Breakfast, dinner and special occasions."*)
+    3. **Wellness** (*"In-villa massage, yoga and spa rituals."*)
+    4. **Explore Bali** (*"Drivers, day trips and local experiences."*)
+- **Implementasi Komponen**: Dibuat sebagai modul terpisah di `src/components/Experiences.jsx` lengkap dengan JSDoc Bahasa Indonesia.
+- **Penempatan**: Diletakkan di `src/pages/ExplorePage.jsx` tepat setelah `<section className="explore-finder-section" id="finder">`, sebelum seksi `<WhyBookDirect />`.
+- **Integrasi Navigasi**: Ditambahkan tombol tautan cepat *"Experiences"* pada Navbar desktop dan menu drawer mobile untuk scroll halus langsung ke `#experiences`.
+- **Styling & Responsivitas**: Ditambahkan CSS elegan di `src/index.css` dengan tata letak grid responsif (4 kolom desktop, 2 kolom tablet, 1 kolom smartphone), lapisan gradien halus, efek hover modern, dan pembungkus `max-width: 1344px` agar sejajar sempurna.
+- **Penyelarasan Ukuran & Posisi Simetris (#finder & #experiences)**:
+  - Memperbaiki pembungkus `.explore-finder-inner` dari yang sebelumnya `max-width: 1120px` menjadi `max-width: 1344px; margin: 0 auto; width: 100%` sehingga sisi kirinya tidak lagi menjorok ke kanan dan sejajar 100% dengan judul `Beyond the stay / Make Bali part of the villa.`.
+  - Menyeragamkan ukuran tipografi judul (`clamp(24px, 2.6vw, 32px)`), lead description (`max-width: 560px`), margin bawah header (`28px`), serta padding vertikal (`padding: 64px 48px`) pada kedua seksi agar tampak konsisten dan seimbang.
+
+---
+
 ## 6. Perintah Menjalankan Aplikasi
 
 - **Menjalankan Dev Server**:

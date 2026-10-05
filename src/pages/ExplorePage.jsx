@@ -6,6 +6,7 @@ import VillaCard from '../components/VillaCard';
 import WhyBookDirect from '../components/WhyBookDirect';
 import ConciergeFinder from '../components/ConciergeFinder';
 import TopPreferredVillas from '../components/TopPreferredVillas';
+import Experiences from '../components/Experiences';
 
 /**
  * Komponen Halaman ExplorePage (Katalog & Pencarian Villa Utama)
@@ -365,6 +366,9 @@ export default function ExplorePage({
           />
         </div>
       </section>
+
+      {/* 4. Bagian Layanan Pengalaman Tambahan ("Beyond the stay" - sesuai bali-stay-collection.html) */}
+      <Experiences />
 
       {/* 4. Bagian Edukasi Direct Booking */}
       <WhyBookDirect />

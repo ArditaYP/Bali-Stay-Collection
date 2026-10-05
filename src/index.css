@@ -2533,20 +2533,34 @@ mark.review-highlight {
 
 /* CONCIERGE FINDER DI HALAMAN EXPLORE */
 .explore-finder-section {
-  padding: 56px 48px 64px;
+  padding: 64px 48px;
   background: var(--bg);
   border-top: 1px solid var(--line);
   width: 100%;
+  box-sizing: border-box;
 }
 
 .explore-finder-inner {
-  max-width: 1120px;
+  max-width: 1344px;
   margin: 0 auto;
+  width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .explore-finder-section {
-    padding: 36px 20px 48px;
+    padding: 48px 32px;
+  }
+}
+
+@media (max-width: 980px) {
+  .explore-finder-section {
+    padding: 36px 20px;
+  }
+}
+
+@media (max-width: 680px) {
+  .explore-finder-section {
+    padding: 32px 16px;
   }
 }
 
@@ -2555,23 +2569,30 @@ mark.review-highlight {
   align-items: flex-end;
   justify-content: space-between;
   gap: 32px;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.finder-head > div {
+  flex: 1;
 }
 
 .finder-title {
-  font-size: 26px;
+  font-size: clamp(24px, 2.6vw, 32px);
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--ink);
-  margin: 0;
+  margin: 4px 0 0;
+  line-height: 1.25;
 }
 
 .finder-lead {
-  max-width: 580px;
-  color: var(--muted2);
+  max-width: 560px;
+  color: var(--muted);
   font-size: 14.5px;
-  line-height: 1.55;
+  line-height: 1.6;
   margin: 0;
+  flex-shrink: 0;
 }
 
 .finder {
@@ -5243,5 +5264,150 @@ mark.review-highlight {
     flex: 0 0 280px;
     height: 220px;
     scroll-snap-align: start;
+  }
+}
+
+/* =========================================================
+   EXPERIENCES SECTION (SESUAI BALI-STAY-COLLECTION.HTML)
+   ========================================================= */
+
+.experiences-section {
+  padding: 64px 48px;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.experiences-inner {
+  max-width: 1344px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.experiences-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.experiences-head > div {
+  flex: 1;
+}
+
+.experiences-title {
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 4px 0 0;
+  line-height: 1.25;
+}
+
+.experiences-lead {
+  max-width: 560px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.experience {
+  min-height: 270px;
+  border-radius: 20px;
+  padding: 24px;
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.28s ease;
+  user-select: none;
+}
+
+.experience:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(16, 25, 54, 0.18);
+}
+
+.experience:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(10, 27, 21, 0.84) 0%, rgba(10, 27, 21, 0.12) 55%, rgba(10, 27, 21, 0.35) 100%);
+  transition: opacity 0.3s ease;
+}
+
+.experience:hover:before {
+  background: linear-gradient(0deg, rgba(10, 27, 21, 0.92) 0%, rgba(10, 27, 21, 0.2) 55%, rgba(10, 27, 21, 0.5) 100%);
+}
+
+.experience > div {
+  position: relative;
+  z-index: 2;
+}
+
+.experience h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px;
+  line-height: 1.25;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.experience p {
+  font-size: 13px;
+  margin: 0;
+  color: #e5ede8;
+  line-height: 1.45;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 1200px) {
+  .experiences-section {
+    padding: 52px 32px 60px;
+  }
+}
+
+@media (max-width: 980px) {
+  .experiences-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .experience-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 680px) {
+  .experiences-section {
+    padding: 36px 16px 44px;
+  }
+  .experience-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .experience {
+    min-height: 220px;
+    border-radius: 16px;
+    padding: 20px;
   }
 }

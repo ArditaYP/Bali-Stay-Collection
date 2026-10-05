@@ -72,6 +72,7 @@ export default function Navbar({ onGoHome, wishlistCount = 0, onOpenWishlist, on
       <nav className="links">
         <button type="button" onClick={() => handleScrollToSection('results-section')}>Explore Villas</button>
         <button type="button" onClick={() => handleScrollToSection('destinations-section')}>Locations</button>
+        <button type="button" onClick={() => handleScrollToSection('experiences')}>Experiences</button>
         <button type="button" onClick={() => handleScrollToSection('why-section')}>Why Book Direct</button>
         <button type="button" onClick={() => alert('Pusat Bantuan Bali Stay Collection:\nWhatsApp: +62 812-3456-7890\nEmail: hello@balistaycollection.com')}>Contact</button>
       </nav>
@@ -129,6 +130,9 @@ export default function Navbar({ onGoHome, wishlistCount = 0, onOpenWishlist, on
         </button>
         <button type="button" onClick={() => handleScrollToSection('destinations-section')}>
           Popular Locations
+        </button>
+        <button type="button" onClick={() => handleScrollToSection('experiences')}>
+          Experiences &amp; Services
         </button>
         <button type="button" onClick={() => handleScrollToSection('why-section')}>
           Why Book Direct
