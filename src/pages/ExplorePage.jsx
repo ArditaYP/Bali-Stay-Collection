@@ -30,7 +30,7 @@ export default function ExplorePage({
   // State untuk filter di sidebar (default menampilkan semua villa yang tersedia)
   const [filters, setFilters] = useState({
     maxPrice: 600,
-    categories: ['Deluxe', 'Premium', 'Honeymoon', 'Standard'],
+    categories: ['Standard', 'Deluxe', 'Premium', 'Luxe', 'Family', 'Retreat', 'Honeymoon'],
     amenities: [],
     minRating: 0,
     freeCancelOnly: false
@@ -52,7 +52,7 @@ export default function ExplorePage({
   const handleResetFilters = () => {
     setFilters({
       maxPrice: 600,
-      categories: ['Deluxe', 'Premium', 'Honeymoon', 'Standard'],
+      categories: ['Standard', 'Deluxe', 'Premium', 'Luxe', 'Family', 'Retreat', 'Honeymoon'],
       amenities: [],
       minRating: 0,
       freeCancelOnly: false
@@ -97,7 +97,7 @@ export default function ExplorePage({
           const hasBeach = villa.location.toLowerCase().includes('beach') || (villa.address || '').toLowerCase().includes('beach') || villa.amenities.some(a => a.toLowerCase().includes('ocean') || a.toLowerCase().includes('beach')) || villa.description.toLowerCase().includes('ocean');
           if (!hasBeach) return false;
         } else if (activeCategory === 'luxe') {
-          if (villa.category !== 'Premium' && villa.category !== 'Deluxe') return false;
+          if (villa.category !== 'Premium' && villa.category !== 'Deluxe' && villa.category !== 'Luxe') return false;
         } else if (activeCategory === 'amazingView') {
           const hasView = villa.amenities.some(a => a.toLowerCase().includes('view')) || villa.description.toLowerCase().includes('view');
           if (!hasView) return false;

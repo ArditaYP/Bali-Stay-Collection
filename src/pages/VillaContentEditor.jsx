@@ -376,9 +376,12 @@ ${(selectedVilla.amenities || []).join(', ')}
                     onChange={(e) => handleFieldChange('category', e.target.value)}
                     className="editor-select"
                   >
+                    <option value="Standard">Standard</option>
                     <option value="Deluxe">Deluxe</option>
                     <option value="Premium">Premium</option>
-                    <option value="Standard">Standard</option>
+                    <option value="Luxe">Luxe</option>
+                    <option value="Family">Family</option>
+                    <option value="Retreat">Retreat</option>
                     <option value="Honeymoon">Honeymoon</option>
                   </select>
                 </div>

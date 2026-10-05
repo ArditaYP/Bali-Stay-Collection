@@ -280,6 +280,13 @@ src/
     - **Lihat Tampilan di Web**: Tombol pintas untuk langsung beralih ke halaman detail villa terkait guna melihat hasil tampilan tulisan secara langsung.
   - **Kepatuhan Kode**: Seluruh fungsi di komponen ini dilengkapi dengan komentar JSDoc Bahasa Indonesia lengkap sesuai standar proyek.
 
+### N. Penambahan Kategori Villa: Luxe, Family, dan Retreat
+- **Kategori Baru**: `Luxe`, `Family`, dan `Retreat` telah ditambahkan ke dalam ekosistem kategori aplikasi.
+- **Integrasi Penuh**:
+  - **Halaman Editor Konten (`VillaContentEditor.jsx`)**: Dropdown pilihan kategori kini memiliki pilihan lengkap: `Standard`, `Deluxe`, `Premium`, `Luxe`, `Family`, `Retreat`, dan `Honeymoon`.
+  - **Filter Sidebar (`FilterSidebar.jsx`)**: Checkbox filter kategori menyertakan ketiga opsi baru tersebut sehingga tamu dapat memfilter villa khusus tipe *Luxe*, *Family*, maupun *Retreat*.
+  - **Mesin Filter Katalog (`ExplorePage.jsx`)**: State default dan fungsi reset filter telah diperbarui untuk mendukung seluruh 7 kategori, serta filter bar *Luxe* langsung menyaring villa dengan kategori *Luxe*, *Premium*, dan *Deluxe*.
+
 ---
 
 ## 6. Perintah Menjalankan Aplikasi

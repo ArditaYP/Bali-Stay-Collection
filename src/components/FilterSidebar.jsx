@@ -5,7 +5,7 @@ import { formatUSD } from '../data/villasData';
  * Komponen FilterSidebar
  * Menampilkan panel bilah samping (sidebar) berisi kontrol filter lengkap:
  * - Rentang batas harga per malam (slider)
- * - Pilihan kategori villa (Standard, Deluxe, Premium, Honeymoon)
+ * - Pilihan kategori villa (Standard, Deluxe, Premium, Luxe, Family, Retreat, Honeymoon)
  * - Fasilitas khusus (Amenities)
  * - Batas rating kepuasan tamu
  * - Opsi khusus pembatalan gratis (Free cancellation)
@@ -72,7 +72,7 @@ export default function FilterSidebar({ filters, onFilterChange, onResetFilters 
     onFilterChange({ ...filters, freeCancelOnly: e.target.checked });
   };
 
-  const CATEGORY_OPTIONS = ['Standard', 'Deluxe', 'Premium', 'Honeymoon'];
+  const CATEGORY_OPTIONS = ['Standard', 'Deluxe', 'Premium', 'Luxe', 'Family', 'Retreat', 'Honeymoon'];
   const AMENITY_OPTIONS = [
     'Private pool',
     'Full kitchen',
