@@ -3764,3 +3764,427 @@ mark.review-highlight {
     gap: 4px;
   }
 }
+
+/* ==========================================================================
+   VILLA CONTENT & COPYWRITING EDITOR STYLES
+   ========================================================================== */
+
+.editor-page-container {
+  padding: 24px 48px 64px;
+  max-width: 1344px;
+  margin: 0 auto;
+  width: 100%;
+  animation: fadeIn 0.2s ease;
+}
+
+/* Toast Notifikasi Mengambang */
+.editor-toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #141413;
+  color: #FAF9F5;
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: fadeIn 0.25s ease;
+}
+
+/* Header Editor */
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.editor-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.editor-back-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  transition: opacity 0.15s ease;
+}
+
+.editor-back-btn:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.editor-main-title {
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.editor-main-sub {
+  font-size: 13.5px;
+  color: var(--muted2);
+  margin: 0;
+}
+
+.editor-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.editor-action-btn {
+  padding: 10px 16px;
+  font-size: 13px;
+}
+
+.editor-save-btn {
+  padding: 11px 20px;
+  font-size: 13.5px;
+  box-shadow: 0 4px 14px rgba(201, 111, 74, 0.25);
+}
+
+/* Layout 2 Kolom Editor */
+.editor-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+/* Sidebar Daftar Villa */
+.editor-sidebar {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 90px;
+}
+
+.editor-search-box {
+  margin-bottom: 14px;
+}
+
+.editor-search-input {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 9px;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.editor-search-input:focus {
+  border-color: #B6955D;
+  background: #fff;
+}
+
+.editor-villa-list {
+  max-height: 600px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-right: 4px;
+}
+
+.editor-group-title {
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding: 6px 4px;
+}
+
+.editor-villa-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.editor-villa-item:hover {
+  background: var(--bg);
+}
+
+.editor-villa-item.active {
+  background: #FAF7F2;
+  border-color: var(--accent);
+}
+
+.editor-item-thumb {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.editor-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.editor-item-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.editor-item-meta {
+  font-size: 11.5px;
+  color: var(--muted2);
+}
+
+/* Panel Formulir Utama */
+.editor-main-panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.editor-villa-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.editor-kicker {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.editor-heading {
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+
+.editor-subhead {
+  font-size: 13px;
+  color: var(--muted2);
+  margin: 0;
+}
+
+.editor-subhead code {
+  background: var(--bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11.5px;
+}
+
+.editor-quick-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.btn-sm {
+  padding: 8px 14px;
+  font-size: 12.5px;
+  border-radius: 8px;
+}
+
+/* Grid Fields Formulir */
+.editor-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.editor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.editor-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.editor-field.triple {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.editor-field label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.editor-field-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.editor-char-count {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.editor-input,
+.editor-select,
+.editor-textarea {
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--ink);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.editor-input:focus,
+.editor-select:focus,
+.editor-textarea:focus {
+  border-color: #B6955D;
+  box-shadow: 0 0 0 3px rgba(182, 149, 93, 0.12);
+}
+
+.editor-textarea {
+  line-height: 1.6;
+  resize: vertical;
+}
+
+/* Fasilitas Chips */
+.editor-amenities-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.editor-amenity-chip {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.editor-amenity-chip:hover {
+  border-color: #B6955D;
+  background: #fff;
+}
+
+.editor-amenity-chip.active {
+  background: #2F7658;
+  border-color: #2F7658;
+  color: #fff;
+  font-weight: 600;
+}
+
+.editor-add-amenity-row {
+  display: flex;
+  gap: 8px;
+  max-width: 480px;
+}
+
+.editor-add-amenity-row .editor-input {
+  flex: 1;
+}
+
+/* Bar Tombol Simpan Bawah */
+.editor-bottom-bar {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.editor-save-btn-large {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.editor-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Responsivitas Editor */
+@media (max-width: 980px) {
+  .editor-page-container {
+    padding: 20px 20px 48px;
+  }
+  .editor-layout {
+    grid-template-columns: 1fr;
+  }
+  .editor-sidebar {
+    position: static;
+  }
+  .editor-villa-list {
+    max-height: 240px;
+  }
+  .editor-fields-grid {
+    grid-template-columns: 1fr;
+  }
+  .editor-field.triple {
+    grid-template-columns: 1fr;
+  }
+}
+

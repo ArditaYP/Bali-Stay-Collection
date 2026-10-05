@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ExplorePage from './pages/ExplorePage';
 import VillaDetailPage from './pages/VillaDetailPage';
+import VillaContentEditor from './pages/VillaContentEditor';
 import WishlistDrawer from './components/Modals/WishlistDrawer';
 import ListVillaModal from './components/Modals/ListVillaModal';
 import { INITIAL_VILLAS, getDefaultDate } from './data/villasData';
@@ -10,21 +11,30 @@ import { INITIAL_VILLAS, getDefaultDate } from './data/villasData';
 /**
  * Komponen Utama Aplikasi (App)
  * Mengelola state global aplikasi:
- * - Halaman aktif (Explore katalog atau Detail villa)
+ * - Halaman aktif (Explore katalog, Detail villa, atau Villa Content Editor)
  * - Villa yang sedang dipilih
  * - Daftar wishlist tersimpan (disinkronkan dengan LocalStorage browser)
  * - State modal Wishlist dan modal Pendaftaran Villa (Host)
  * - Parameter pencarian terintegrasi
  */
 export default function App() {
-  // State data master villa (bisa bertambah jika host mendaftarkan villa baru)
+  // State data master villa (bisa bertambah jika host mendaftarkan villa baru atau diedit di editor)
   const [villas, setVillas] = useState(() => {
     const saved = localStorage.getItem('bsc_villas');
     return saved ? JSON.parse(saved) : INITIAL_VILLAS;
   });
 
-  // State navigasi halaman ('explore' | 'detail')
-  const [currentPage, setCurrentPage] = useState('explore');
+  // State navigasi halaman ('explore' | 'detail' | 'editor')
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.toLowerCase();
+      const path = window.location.pathname.toLowerCase();
+      if (hash.includes('editor') || path.includes('editor')) {
+        return 'editor';
+      }
+    }
+    return 'explore';
+  });
 
   // State ID villa yang sedang aktif dibuka detailnya (default: villa pertama)
   const [activeVillaId, setActiveVillaId] = useState(INITIAL_VILLAS[0]?.id);
@@ -52,6 +62,27 @@ export default function App() {
     localStorage.setItem('bsc_wishlist', JSON.stringify(savedVillaIds));
   }, [savedVillaIds]);
 
+  // Sinkronisasi rute URL (#editor atau /editor) agar bos/pengguna bisa membuka link langsung
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const hash = window.location.hash.toLowerCase();
+      const path = window.location.pathname.toLowerCase();
+      if (hash.includes('editor') || path.includes('editor')) {
+        setCurrentPage('editor');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (hash === '' || hash === '#' || hash === '#explore') {
+        setCurrentPage('explore');
+      }
+    };
+
+    window.addEventListener('hashchange', handleUrlChange);
+    window.addEventListener('popstate', handleUrlChange);
+    return () => {
+      window.removeEventListener('hashchange', handleUrlChange);
+      window.removeEventListener('popstate', handleUrlChange);
+    };
+  }, []);
+
   /**
    * Menangani toggle (tambah atau hapus) ID villa dari daftar wishlist
    * @param {string} villaId - ID unik villa yang di-klik love
@@ -78,9 +109,21 @@ export default function App() {
   };
 
   /**
+   * Menavigasikan pengguna ke halaman editor konten villa
+   */
+  const handleOpenEditor = () => {
+    window.location.hash = 'editor';
+    setCurrentPage('editor');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  /**
    * Mengembalikan navigasi pengguna ke halaman utama (Katalog Explore)
    */
   const handleGoHome = () => {
+    if (window.location.hash.includes('editor')) {
+      window.history.pushState(null, '', window.location.pathname);
+    }
     setCurrentPage('explore');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -149,7 +192,18 @@ export default function App() {
       />
 
       {/* Konten Halaman Aktif */}
-      {currentPage === 'explore' ? (
+      {currentPage === 'editor' ? (
+        <VillaContentEditor 
+          villas={villas}
+          onUpdateVillas={(updatedList) => {
+            setVillas(updatedList);
+          }}
+          onBackToCatalog={handleGoHome}
+          onPreviewDetail={(villaId) => {
+            handleOpenVillaDetail(villaId);
+          }}
+        />
+      ) : currentPage === 'explore' ? (
         <ExplorePage 
           villas={villas}
           onSelectVilla={handleOpenVillaDetail}
@@ -174,6 +228,7 @@ export default function App() {
       <Footer 
         onGoHome={handleGoHome}
         onOpenListVilla={() => setIsListVillaOpen(true)}
+        onOpenEditor={handleOpenEditor}
       />
 
       {/* Drawer / Modal Wishlist */}

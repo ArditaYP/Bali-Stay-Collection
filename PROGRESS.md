@@ -117,7 +117,8 @@ src/
 ├── main.jsx                    # Entry point React
 ├── pages/
 │   ├── ExplorePage.jsx         # Halaman katalog utama: Hero search, Destinasi, Grid villa, Filter
-│   └── VillaDetailPage.jsx    # Halaman detail villa lengkap (1120px) dengan sticky booking card
+│   ├── VillaDetailPage.jsx    # Halaman detail villa lengkap (1120px) dengan sticky booking card
+│   └── VillaContentEditor.jsx  # Halaman Editor Konten Villa khusus manajemen deskripsi & data villa
 ├── components/
 │   ├── Navbar.jsx              # Navigasi atas dengan logo, wishlist counter, dan tombol aksi
 │   ├── Footer.jsx              # Footer situs
@@ -248,6 +249,36 @@ src/
 - **Posisi**: Ditambahkan tepat di atas section `WhyBookDirect` (`section id="why-section"`), di bawah grid katalog villa pada halaman depan.
 - **Fitur**: Membawa fitur pencocokan villa pintar (`ConciergeFinder`) ke beranda web dengan filter Area (Ubud, Canggu, Seminyak, Uluwatu, Sanur, All Bali), jumlah tamu, jumlah kamar, dan rentang budget per malam.
 - **Interaktivitas**: Tamu dapat langsung memilih kriteria perjalanan mereka dan tombol "View Villa →" atau quick chip akan membuka halaman detail villa yang cocok secara instan.
+
+### M. Halaman Editor Konten Villa (`VillaContentEditor.jsx`)
+- **Tujuan**: Memfasilitasi kolaborasi langsung dengan tim/bos untuk menulis dan mempercantik deskripsi 6 villa baru tanpa harus menyentuh kode program atau berkas JSON mentah.
+- **Akses & Navigasi**:
+  - Dapat diakses secara langsung melalui URL hash rahasia: **`/#editor`** (misal: `http://localhost:5173/#editor` atau `https://balistaycollection.vercel.app/#editor`).
+  - **Navbar tetap bersih dan eksklusif**: Tombol editor ditiadakan dari navbar publik agar pengunjung web umum tidak melihat tombol administratif/editor.
+  - Beralih halaman secara mulus (*Single Page Application*) dengan fungsi `onOpenDetail` dan `onBackToHome`.
+- **Fitur & Mekanisme Kerja**:
+  - **Struktur & Kemudahan Akses Villa**:
+    - **Posisi Paling Atas**: 3 villa utama (`St. Lau`, `Iconic 5BR Cliff Top`, dan `Angkasa 5BR`) secara default ditempatkan di **posisi paling atas** daftar villa sehingga bos langsung menemukannya saat membuka editor.
+    - **Bebas Diedit Sepenuhnya**: Seluruh 9 villa (termasuk 3 villa teratas) dapat diedit secara bebas tanpa batasan/gembok.
+    - **Tampilan Bersih**: Teks/label pembeda "villa asli" telah dihilangkan untuk menjaga antarmuka tetap bersih dan profesional.
+  - **Formulir Pengeditan Lengkap**:
+    - Nama/Judul Villa & Kategori utama.
+    - Harga per malam (USD) & Biaya kebersihan (*cleaning fee*).
+    - Lokasi wilayah & alamat spesifik.
+    - Kapasitas menginap (jumlah tamu, kamar tidur, tempat tidur, kamar mandi).
+    - *Short Description* dengan penghitung karakter langsung (*live character counter*).
+    - *Full / Detailed Description* dengan textarea luas dan penghitung karakter.
+    - Pemilihan fasilitas/amenities interaktif (*checkbox pill*) serta form penambahan fasilitas kustom baru.
+  - **Persistensi Data Lokal (Auto-Save LocalStorage)**:
+    - Setiap perubahan yang disimpan disimpan ke `localStorage.setItem('bsc_villas', ...)`.
+    - Tulisan dan perubahan data tidak akan hilang meski tab/browser di-reload atau ditutup.
+    - Data yang disimpan langsung otomatis menyinkronkan katalog dan halaman detail villa di website saat dites.
+  - **Opsi Ekspor & Kolaborasi Praktis**:
+    - **Salin Teks untuk Ardi**: Menyalin format teks rapi (nama villa, spesifikasi, short description, full description) langsung ke clipboard untuk dikirim lewat chat.
+    - **Kirim ke WhatsApp Ardi**: Membuka tautan `https://wa.me/?text=...` berisi rangkuman deskripsi villa yang baru diedit sehingga bos dapat mengirim revisi sekali klik.
+    - **Unduh File Data (JSON)**: Mengunduh berkas `villasData-updated.json` yang siap diintegrasikan langsung oleh developer ke dalam codebase.
+    - **Lihat Tampilan di Web**: Tombol pintas untuk langsung beralih ke halaman detail villa terkait guna melihat hasil tampilan tulisan secara langsung.
+  - **Kepatuhan Kode**: Seluruh fungsi di komponen ini dilengkapi dengan komentar JSDoc Bahasa Indonesia lengkap sesuai standar proyek.
 
 ---
 
