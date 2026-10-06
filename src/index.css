@@ -65,8 +65,8 @@ input[type="checkbox"], input[type="radio"] {
   cursor: pointer;
 }
 
-.app-container,
-.wrap {
+.app-container {
+/* wrap didefinisikan terisolasi per halaman */
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -241,6 +241,41 @@ nav.links a:hover, nav.links button:hover {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+/* Currency Toggle (USD / IDR Switcher) */
+.cur {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  overflow: hidden;
+  background: #FAF9F5;
+  padding: 3px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.cur button {
+  border: none;
+  background: transparent;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  border-radius: 20px;
+  transition: all 0.18s ease;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cur button.active,
+.cur button[aria-pressed="true"] {
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .nav-actions a.signin, .nav-actions button.signin {
@@ -1548,6 +1583,7 @@ h1.villa-title {
   color: var(--ink-soft);
   line-height: 1.7;
   margin: 0 0 14px;
+  white-space: pre-line;
 }
 
 .show-more {
@@ -1798,7 +1834,7 @@ h1.villa-title {
 
 /* Section Full Width di Bawah Grid Utama (Reviews, Peta, Kebijakan) */
 .detail-full-section {
-  padding: 48px 0;
+  padding: 32px 0;
   border-top: 1px solid var(--line);
   width: 100%;
 }
@@ -3113,7 +3149,7 @@ mark.review-highlight {
 
 /* SIMILAR SECTION */
 .similar-section {
-  padding: 48px 0;
+  padding: 34px 0;
   background: var(--bg-warm);
   width: 100%;
 }
@@ -4150,7 +4186,8 @@ mark.review-highlight {
 }
 
 .editor-search-input:focus {
-  border-color: #B6955D;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(201, 111, 74, 0.15);
   background: #fff;
 }
 
@@ -4341,8 +4378,8 @@ mark.review-highlight {
 .editor-input:focus,
 .editor-select:focus,
 .editor-textarea:focus {
-  border-color: #B6955D;
-  box-shadow: 0 0 0 3px rgba(182, 149, 93, 0.12);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(201, 111, 74, 0.15);
 }
 
 .editor-textarea {
@@ -4371,13 +4408,13 @@ mark.review-highlight {
 }
 
 .editor-amenity-chip:hover {
-  border-color: #B6955D;
+  border-color: var(--accent);
   background: #fff;
 }
 
 .editor-amenity-chip.active {
-  background: #2F7658;
-  border-color: #2F7658;
+  background: var(--accent);
+  border-color: var(--accent);
   color: #fff;
   font-weight: 600;
 }
@@ -4423,18 +4460,81 @@ mark.review-highlight {
   }
   .editor-layout {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
   .editor-sidebar {
     position: static;
   }
   .editor-villa-list {
-    max-height: 240px;
+    max-height: 260px;
   }
   .editor-fields-grid {
     grid-template-columns: 1fr;
   }
   .editor-field.triple {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .editor-page-container {
+    padding: 16px 12px 48px;
+  }
+  .editor-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .editor-header-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .editor-action-btn,
+  .editor-save-btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .editor-main-panel {
+    padding: 20px 14px;
+    border-radius: 14px;
+  }
+  .editor-villa-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .editor-quick-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .editor-quick-actions .btn-sm {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .editor-add-amenity-row {
+    flex-direction: column;
+    max-width: 100%;
+    gap: 8px;
+  }
+  .editor-add-amenity-row button {
+    width: 100%;
+    justify-content: center;
+  }
+  .editor-bottom-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .editor-bottom-bar button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
   }
 }
 

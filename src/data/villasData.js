@@ -225,6 +225,7 @@ export const INITIAL_VILLAS = AIRBNB_VILLAS.map((a) => {
     shortDesc: d.shortDesc || '',
     fullDesc: d.fullDesc || '',
     host: DEFAULT_HOST,
+    img: a.images?.[0] || '',
     images: a.images,
     photoCaptions: a.photoCaptions || [],
     features: DEFAULT_FEATURES,
@@ -282,12 +283,19 @@ export const AIRBNB_CATEGORIES = [
 ];
 
 /**
- * Format angka numerik ke format mata uang Dollar USD ($)
- * @param {number} amount - Jumlah nominal angka yang akan diformat
- * @returns {string} String harga dalam format $XXX (contoh: "$152")
+ * Format angka numerik ke format mata uang USD ($) atau IDR (Rp) secara dinamis
+ * @param {number|string} amount - Jumlah nominal angka yang akan diformat
+ * @param {string} [currency] - Pilihan mata uang ('USD' atau 'IDR', opsional)
+ * @returns {string} String harga terformat (contoh: "$152" atau "Rp 2.432.000")
  */
-export function formatUSD(amount) {
-  return `$${Number(amount || 0).toLocaleString('en-US')}`;
+export function formatUSD(amount, currency) {
+  const activeCurrency = currency || (typeof window !== 'undefined' && window.localStorage ? window.localStorage.getItem('bsc_currency') : 'USD') || 'USD';
+  const num = Number(amount || 0);
+  if (activeCurrency === 'IDR') {
+    const idr = Math.round((num * 16000) / 1000) * 1000;
+    return `Rp ${idr.toLocaleString('id-ID')}`;
+  }
+  return `$${num.toLocaleString('en-US')}`;
 }
 
 /**

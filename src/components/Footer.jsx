@@ -16,7 +16,7 @@ export default function Footer({ onGoHome, onOpenListVilla, onOpenEditor }) {
       <div className="footer-inner">
         {/* Brand Logo & Name */}
         <div className="footer-brand" onClick={onGoHome} style={{ cursor: 'pointer' }} title="Bali Stay Collection">
-          <img src="/logo.svg" alt="Bali Stay Collection" className="footer-logo-img" />
+          <img src="/logo-white.svg" alt="Bali Stay Collection" className="footer-logo-img" />
         </div>
 
         {/* Tautan Footer */}

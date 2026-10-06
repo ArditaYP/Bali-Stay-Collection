@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ExplorePage from './pages/ExplorePage';
@@ -7,6 +7,20 @@ import VillaContentEditor from './pages/VillaContentEditor';
 import WishlistDrawer from './components/Modals/WishlistDrawer';
 import ListVillaModal from './components/Modals/ListVillaModal';
 import { INITIAL_VILLAS, getDefaultDate } from './data/villasData';
+import { BSC_VILLAS } from './data/bscVillasData';
+
+/** Pemetaan ID alias antara katalog villa dan data asli airbnbVillas */
+const VILLA_ALIAS_MAP = {
+  'villa-habitas': 'the-palms-villa-canggu',
+  'st-lau': 'st-lau-ubud',
+  'balangan-cliff-villa': 'iconic-cliff-top-villa',
+  'villa-angkasa': 'angkasa-ubud',
+  'coco-bay': 'villa-samudra-canggu',
+  'the-bull-house': 'villa-kayu-raja-seminyak',
+  'villa-imala': 'cliffside-panorama-uluwatu',
+  'villa-kanopi': 'villa-cendana-seminyak',
+  'villa-surga': 'mandapa-jungle-villa'
+};
 
 /**
  * Komponen Utama Aplikasi (App)
@@ -57,6 +71,26 @@ export default function App() {
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isListVillaOpen, setIsListVillaOpen] = useState(false);
 
+  // State mata uang aktif ('USD' | 'IDR') yang disinkronkan dengan LocalStorage
+  const [currency, setCurrency] = useState(() => {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      return localStorage.getItem('bsc_currency') || 'USD';
+    }
+    return 'USD';
+  });
+
+  /**
+   * Menangani perubahan mata uang global (USD / IDR) dan menyimpannya di LocalStorage
+   * @param {string} newCurrency - Kode mata uang baru ('USD' atau 'IDR')
+   * @returns {void}
+   */
+  const handleCurrencyChange = (newCurrency) => {
+    setCurrency(newCurrency);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('bsc_currency', newCurrency);
+    }
+  };
+
   // Sinkronisasi data wishlist ke LocalStorage setiap kali ada perubahan
   useEffect(() => {
     localStorage.setItem('bsc_wishlist', JSON.stringify(savedVillaIds));
@@ -64,6 +98,10 @@ export default function App() {
 
   // Sinkronisasi rute URL (#editor atau /editor) agar bos/pengguna bisa membuka link langsung
   useEffect(() => {
+    /**
+     * Menangani perubahan URL hash atau path browser untuk navigasi rute
+     * @returns {void}
+     */
     const handleUrlChange = () => {
       const hash = window.location.hash.toLowerCase();
       const path = window.location.pathname.toLowerCase();
@@ -175,28 +213,119 @@ export default function App() {
     setVillas((prev) => [newVilla, ...prev]);
   };
 
+  /**
+   * Menemukan atau mengkonstruksi objek detail villa berdasarkan ID
+   * Mendukung pemetaan alias untuk 4 villa utama serta fallback 51 villa BSC
+   * @param {string} id - ID unik villa
+   * @returns {Object} Objek detail lengkap villa
+   */
+  const resolveVilla = useCallback((id) => {
+    // 1. Pencocokan langsung pada master villas (termasuk hasil penambahan/edit)
+    const direct = villas.find(v => v.id === id);
+    if (direct) return direct;
+
+    // 2. Pencocokan alias ID untuk 4 villa utama
+    const aliasId = VILLA_ALIAS_MAP[id];
+    if (aliasId) {
+      const aliased = villas.find(v => v.id === aliasId);
+      if (aliased) {
+        const bscItem = BSC_VILLAS.find(bv => bv.id === id);
+        return {
+          ...aliased,
+          name: bscItem?.name || aliased.name,
+          category: bscItem?.tier || aliased.category,
+          price: bscItem?.price || aliased.price,
+          img: bscItem?.img || aliased.img || aliased.images?.[0] || ''
+        };
+      }
+    }
+
+    // 3. Fallback konstruksi data detail dari katalog BSC_VILLAS
+    const bscItem = BSC_VILLAS.find(bv => bv.id === id);
+    if (bscItem) {
+      return {
+        id: bscItem.id,
+        name: bscItem.name,
+        location: bscItem.area,
+        address: `${bscItem.area}, Bali`,
+        beds: bscItem.beds,
+        guests: bscItem.guests,
+        bathrooms: bscItem.baths,
+        category: bscItem.tier,
+        price: bscItem.price || 350,
+        cleaningFee: 35,
+        rating: 4.95,
+        reviewsCount: 14,
+        isGuestFavorite: true,
+        freeCancel: true,
+        cardBg: (bscItem.tone && bscItem.tone[0]) || '#CBB9C9',
+        description: bscItem.desc,
+        shortDesc: bscItem.desc,
+        host: {
+          name: 'Bali Stay Collection',
+          tagline: 'Entire villa hosted by Bali Stay Collection',
+          initials: 'BSC',
+          isVerified: true
+        },
+        img: bscItem.img || '',
+        images: bscItem.img ? [bscItem.img] : [
+          'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80',
+          'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80'
+        ],
+        features: [
+          { title: 'Inspected in person', desc: bscItem.updated ? `Inspected on ${bscItem.updated}` : 'Verified by local team' },
+          { title: 'Free reschedule', desc: bscItem.cancel || 'Free reschedule up to 7 days before check-in' },
+          { title: 'Dedicated local team', desc: 'Managed directly by our Bali team.' }
+        ],
+        amenities: bscItem.am || ['Private pool', 'High-speed WiFi', 'Air conditioning', 'Daily housekeeping'],
+        bedrooms: Array.from({ length: bscItem.beds }, (_, i) => ({
+          name: `Bedroom ${i + 1}`,
+          detail: '1 king bed · en-suite bathroom'
+        })),
+        ratingsBreakdown: { cleanliness: 5.0, accuracy: 5.0, checkIn: 4.9, communication: 5.0, location: 4.9, value: 4.9 },
+        reviews: []
+      };
+    }
+
+    return villas[0];
+  }, [villas]);
+
   // Mencari objek data villa yang saat ini aktif dibuka detailnya
-  const currentVilla = villas.find(v => v.id === activeVillaId) || villas[0];
+  const currentVilla = resolveVilla(activeVillaId);
 
   // Mendapatkan daftar objek villa yang ada di wishlist
   const savedVillasList = villas.filter(v => savedVillaIds.includes(v.id));
 
+  // Menghasilkan daftar lengkap villa untuk editor konten (mencakup 51 BSC villas dan initial/added villas)
+  const allEditorVillas = useMemo(() => {
+    const bscFullList = BSC_VILLAS.map(bv => resolveVilla(bv.id));
+    const existingIds = new Set(bscFullList.map(v => v.id));
+    const extraVillas = villas.filter(v => !existingIds.has(v.id));
+    return [...bscFullList, ...extraVillas];
+  }, [villas, resolveVilla]);
+
   return (
-    <div className="app-container wrap">
-      {/* Navbar Atas */}
-      <Navbar 
-        onGoHome={handleGoHome}
-        wishlistCount={savedVillaIds.length}
-        onOpenWishlist={() => setIsWishlistOpen(true)}
-        onOpenListVilla={() => setIsListVillaOpen(true)}
-      />
+    <div className="app-container">
+      {/* Navbar Atas - Tampil khusus pada halaman Detail dan Editor */}
+      {currentPage !== 'explore' && (
+        <Navbar 
+          onGoHome={handleGoHome}
+          wishlistCount={savedVillaIds.length}
+          onOpenWishlist={() => setIsWishlistOpen(true)}
+          onOpenListVilla={() => setIsListVillaOpen(true)}
+          currency={currency}
+          onCurrencyChange={handleCurrencyChange}
+        />
+      )}
 
       {/* Konten Halaman Aktif */}
       {currentPage === 'editor' ? (
         <VillaContentEditor 
-          villas={villas}
+          villas={allEditorVillas}
+          currency={currency}
           onUpdateVillas={(updatedList) => {
             setVillas(updatedList);
+            localStorage.setItem('bsc_villas', JSON.stringify(updatedList));
           }}
           onBackToCatalog={handleGoHome}
           onPreviewDetail={(villaId) => {
@@ -205,12 +334,17 @@ export default function App() {
         />
       ) : currentPage === 'explore' ? (
         <ExplorePage 
-          villas={villas}
+          villas={BSC_VILLAS}
           onSelectVilla={handleOpenVillaDetail}
           savedVillaIds={savedVillaIds}
           onToggleSave={handleToggleSaveVilla}
           searchParams={searchParams}
           setSearchParams={setSearchParams}
+          onOpenWishlist={() => setIsWishlistOpen(true)}
+          onOpenListVilla={() => setIsListVillaOpen(true)}
+          currency={currency}
+          onCurrencyChange={handleCurrencyChange}
+          onOpenEditor={handleOpenEditor}
         />
       ) : (
         <VillaDetailPage 
@@ -221,15 +355,19 @@ export default function App() {
           isSaved={savedVillaIds.includes(currentVilla.id)}
           onToggleSave={handleToggleSaveVilla}
           searchParams={searchParams}
+          currency={currency}
+          onCurrencyChange={handleCurrencyChange}
         />
       )}
 
-      {/* Footer Bawah */}
-      <Footer 
-        onGoHome={handleGoHome}
-        onOpenListVilla={() => setIsListVillaOpen(true)}
-        onOpenEditor={handleOpenEditor}
-      />
+      {/* Footer Bawah - Tampil khusus pada halaman Detail dan Editor */}
+      {currentPage !== 'explore' && (
+        <Footer 
+          onGoHome={handleGoHome}
+          onOpenListVilla={() => setIsListVillaOpen(true)}
+          onOpenEditor={handleOpenEditor}
+        />
+      )}
 
       {/* Drawer / Modal Wishlist */}
       <WishlistDrawer 
@@ -238,6 +376,7 @@ export default function App() {
         savedVillas={savedVillasList}
         onSelectVilla={handleOpenVillaDetail}
         onRemoveFromWishlist={handleToggleSaveVilla}
+        currency={currency}
       />
 
       {/* Modal Pendaftaran Villa Host */}

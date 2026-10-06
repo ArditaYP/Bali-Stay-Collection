@@ -85,7 +85,10 @@ export default function ListVillaModal({ isOpen, onClose, onAddVilla }) {
         {!isSubmitted ? (
           <div>
             <div style={{ marginBottom: '20px' }}>
-              <span className="badge" style={{ marginBottom: '8px' }}>Host Partnership</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '10px' }}>
+                <img src="/logo.svg" alt="Bali Stay Collection" style={{ height: '26px', width: 'auto' }} />
+                <span className="badge">Host Partnership</span>
+              </div>
               <h2 style={{ fontSize: '22px', fontWeight: 700, margin: '0 0 6px' }}>
                 List Your Bali Villa
               </h2>

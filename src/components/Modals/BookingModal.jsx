@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { formatUSD } from '../../data/villasData';
+import { formatBscMoney } from '../../utils/bscFormat';
 
 /**
  * Komponen BookingModal
@@ -17,7 +17,9 @@ import { formatUSD } from '../../data/villasData';
  * @param {string} props.checkOut - Tanggal check-out
  * @param {number} props.nights - Jumlah malam menginap
  * @param {number} props.guests - Jumlah tamu yang menginap
+ * @param {string} [props.currency='USD'] - Pilihan mata uang aktif ('USD' atau 'IDR')
  * @param {Function} props.onBookingSuccess - Callback saat pemesanan berhasil disimpan
+ * @returns {React.JSX.Element|null} Elemen JSX Modal Reservasi
  */
 export default function BookingModal({
   isOpen,
@@ -27,6 +29,7 @@ export default function BookingModal({
   checkOut,
   nights,
   guests,
+  currency = 'USD',
   onBookingSuccess
 }) {
   const [guestName, setGuestName] = useState('');
@@ -127,7 +130,10 @@ export default function BookingModal({
           /* TAHAP 1: Form Reservasi & Konfirmasi Data */
           <div>
             <div style={{ marginBottom: '20px' }}>
-              <span className="badge" style={{ marginBottom: '10px' }}>Direct Reservation</span>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+                <img src="/logo.svg" alt="Bali Stay Collection" style={{ height: '26px', width: 'auto' }} />
+                <span className="badge">Direct Reservation</span>
+              </div>
               <h2 style={{ fontSize: '24px', fontWeight: 700, margin: '0 0 6px' }}>
                 Complete Your Booking
               </h2>
@@ -292,20 +298,20 @@ export default function BookingModal({
               {/* Rincian Harga */}
               <div className="price-breakdown" style={{ marginBottom: '20px' }}>
                 <div className="price-row">
-                  <span>{formatUSD(villa.price)} x {nights} nights</span>
-                  <span>{formatUSD(subtotal)}</span>
+                  <span>{formatBscMoney(villa.price, currency)} x {nights} nights</span>
+                  <span>{formatBscMoney(subtotal, currency)}</span>
                 </div>
                 <div className="price-row">
                   <span>Cleaning &amp; preparation fee</span>
-                  <span>{formatUSD(cleaningFee)}</span>
+                  <span>{formatBscMoney(cleaningFee, currency)}</span>
                 </div>
                 <div className="price-row">
                   <span>Direct booking service fee</span>
-                  <span style={{ color: '#2F6B3A', fontWeight: 700 }}>$0 (Free)</span>
+                  <span style={{ color: '#2F6B3A', fontWeight: 700 }}>{currency === 'IDR' ? 'Rp 0 (Gratis)' : '$0 (Free)'}</span>
                 </div>
                 <div className="price-row total">
                   <span>Total Amount</span>
-                  <span style={{ fontSize: '20px', color: 'var(--accent)' }}>{formatUSD(totalAmount)}</span>
+                  <span style={{ fontSize: '20px', color: 'var(--accent)' }}>{formatBscMoney(totalAmount, currency)}</span>
                 </div>
               </div>
 
@@ -316,7 +322,7 @@ export default function BookingModal({
                 disabled={isSubmitting}
                 style={{ opacity: isSubmitting ? 0.7 : 1 }}
               >
-                {isSubmitting ? 'Confirming Reservation…' : `Confirm & Reserve (${formatUSD(totalAmount)})`}
+                {isSubmitting ? 'Confirming Reservation…' : `Confirm & Reserve (${formatBscMoney(totalAmount, currency)})`}
               </button>
               <p className="no-charge-note">Instant confirmation with free reschedule up to 7 days prior.</p>
             </form>
@@ -324,6 +330,11 @@ export default function BookingModal({
         ) : (
           /* TAHAP 2: Layar Sukses Konfirmasi Reservasi */
           <div style={{ textAlign: 'center', padding: '16px 0 8px' }}>
+            <img 
+              src="/logo.svg" 
+              alt="Bali Stay Collection" 
+              style={{ height: '28px', width: 'auto', margin: '0 auto 16px', display: 'block' }} 
+            />
             <div style={{
               width: '64px',
               height: '64px',
@@ -373,7 +384,7 @@ export default function BookingModal({
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '10px', borderTop: '1px solid var(--line)' }}>
                 <span style={{ fontWeight: 700 }}>Total Paid (Simulation):</span>
-                <b style={{ fontSize: '16px', color: 'var(--ink)' }}>{formatUSD(bookingConfirmed.totalAmount)}</b>
+                <b style={{ fontSize: '16px', color: 'var(--ink)' }}>{formatBscMoney(bookingConfirmed.totalAmount, currency)}</b>
               </div>
             </div>
 

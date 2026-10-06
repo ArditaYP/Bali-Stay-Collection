@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { formatUSD } from '../data/villasData';
+import { formatBscMoney } from '../utils/bscFormat';
+import { CONFIG } from '../data/bscVillasData';
 
 /**
  * Daftar fasilitas standar yang sering dipilih untuk villa di Bali
@@ -41,6 +42,7 @@ const TOP_PRIORITY_IDS = ['st-lau-ubud', 'iconic-cliff-top-villa', 'angkasa-ubud
  */
 export default function VillaContentEditor({
   villas = [],
+  currency = 'USD',
   onUpdateVillas,
   onBackToCatalog,
   onPreviewDetail
@@ -171,8 +173,9 @@ ${(selectedVilla.amenities || []).join(', ')}
    */
   const handleShareWhatsApp = () => {
     if (!selectedVilla) return;
-    const msg = `Halo Ardi, ini update deskripsi untuk villa *${selectedVilla.name}*:\n\n*Harga*: $${selectedVilla.price}/malam\n*Kategori*: ${selectedVilla.category}\n\n*Short Desc*:\n${selectedVilla.shortDesc}\n\n*Full Desc*:\n${selectedVilla.description}\n\n*Fasilitas*:\n${(selectedVilla.amenities || []).join(', ')}`;
-    const url = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+    const msg = `Halo Tim Bali Stay Collection, ini update deskripsi untuk villa *${selectedVilla.name}*:\n\n*Harga*: ${formatBscMoney(selectedVilla.price, currency)}/malam\n*Kategori*: ${selectedVilla.category}\n\n*Short Desc*:\n${selectedVilla.shortDesc}\n\n*Full Desc*:\n${selectedVilla.description}\n\n*Fasilitas*:\n${(selectedVilla.amenities || []).join(', ')}`;
+    const waNumber = CONFIG?.whatsapp || '';
+    const url = waNumber ? `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}` : `https://wa.me/?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
   };
 
@@ -218,7 +221,7 @@ ${(selectedVilla.amenities || []).join(', ')}
   );
 
   return (
-    <div className="editor-page-container">
+    <div className="editor-page-container" id="editor">
       {/* Toast Notifikasi */}
       {toastMessage && (
         <div className="editor-toast">
@@ -294,13 +297,13 @@ ${(selectedVilla.amenities || []).join(', ')}
                   tabIndex={0}
                 >
                   <img 
-                    src={v.images?.[0] || '/destinations/ubud.jpg'} 
+                    src={v.images?.[0] || v.img || '/destinations/ubud.jpg'} 
                     alt={v.name} 
                     className="editor-item-thumb" 
                   />
                   <div className="editor-item-info">
                     <strong className="editor-item-name">{v.name}</strong>
-                    <span className="editor-item-meta">{v.location} &middot; {formatUSD(v.price)}/night</span>
+                    <span className="editor-item-meta">{v.location} &middot; {formatBscMoney(v.price, currency)}/night</span>
                   </div>
                 </div>
               );
@@ -388,7 +391,9 @@ ${(selectedVilla.amenities || []).join(', ')}
 
                 {/* 3. Harga per Malam (USD) */}
                 <div className="editor-field">
-                  <label htmlFor="edit-price">Harga per Malam (USD $)</label>
+                  <label htmlFor="edit-price">
+                    Harga per Malam (USD $ &middot; perkiraan {formatBscMoney(selectedVilla.price || 0, currency)})
+                  </label>
                   <input 
                     id="edit-price"
                     type="number" 
@@ -499,6 +504,16 @@ ${(selectedVilla.amenities || []).join(', ')}
                     className="editor-textarea"
                     placeholder="Ceritakan keistimewaan arsitektur villa, pemandangan, kenyamanan ruang santai, kedekatan dengan tempat wisata, dan pengalaman unik yang didapat tamu..."
                   />
+                  {selectedVilla.description && (
+                    <div style={{ marginTop: '10px', padding: '12px 16px', background: 'var(--bg)', border: '1px solid var(--line)', borderRadius: '10px' }}>
+                      <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>
+                        👁️ Pratinjau Paragraf &amp; Enter (Tampilan Nyata di Halaman Web):
+                      </div>
+                      <div style={{ fontSize: '13.5px', lineHeight: 1.7, color: 'var(--ink-soft)', whiteSpace: 'pre-line' }}>
+                        {selectedVilla.description}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* 8. Fasilitas (Amenities) */}

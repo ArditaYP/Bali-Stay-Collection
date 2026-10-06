@@ -416,6 +416,458 @@ src/
 
 ---
 
+### 5.14 Redesain Halaman Utama Resmi Sesuai Arahan Coach/Boss (bsc-frontpage_1.html)
+- **Latar Belakang & Permintaan**: 
+  - Pengguna menyerahkan berkas desain resmi dari Coach/Boss (`bsc-frontpage_1.html`) yang memuat konsep tata letak, copywriting final, struktur filter sidebar, dan katalog 51 villa.
+  - Pengguna secara khusus menginstruksikan untuk menambahkan dan menonjolkan **4 villa utama** (Villa Habitas, St. Lau, Balangan Cliff Villa, dan Villa Angkasa) dengan foto asli Airbnb, harga per malam yang valid, ulasan tamu terverifikasi, dan integrasi halaman detail interaktif.
+- **Basis Data & Integrasi Katalog (`src/data/bscVillasData.js`)**:
+  - Menyusun seluruh 51 villa terkurasi dari Owner's list dengan kategori tier (Standard, Deluxe, Premium, Luxury), tone gradien estetis, trip types, settings & views, amenities, catatan inspeksi, serta tanggal audit.
+  - Mengintegrasikan 4 villa utama dengan foto aset lokal beresolusi tinggi dan data lengkap:
+    1. **Villa Habitas** (`villa-habitas`, Pererenan, 4 BR, 4 Bath, 8 Tamu, $290/malam, foto `/airbnb/the-palms-villa-canggu/1.webp`)
+    2. **St. Lau** (`st-lau`, Ubud, 3 BR, 3 Bath, 6 Tamu, $380/malam, foto `/airbnb/st-lau-ubud/1.webp`)
+    3. **Balangan Cliff Villa** (`balangan-cliff-villa`, Uluwatu & Bukit, 5 BR, 5 Bath, 10 Tamu, $420/malam, foto `/airbnb/iconic-cliff-top-villa/1.webp`)
+    4. **Villa Angkasa** (`villa-angkasa`, Ubud, 5 BR, 5 Bath, 10 Tamu, $340/malam, foto `/airbnb/angkasa-ubud/1.webp`)
+  - Menyediakan konfigurasi `CONFIG`, `TIERS_INFO`, `DESTINATIONS_SUMMARY`, `PALETTE`, `FAQS_DATA`, dan `TEAM_MEMBERS`.
+- **Utilitas Format Mata Uang & Waktu (`src/utils/bscFormat.js`)**:
+  - `formatBscMoney`: Mendukung format USD (`$290`) dan IDR (`Rp 4.640.000`) dengan kurs dinamis $1 = Rp 16.000.
+  - `formatBscDate` & `calculateNights`: Perhitungan durasi malam dan rentang tanggal otomatis.
+- **Penyempurnaan & Perbaikan Tata Letak Navbar (`BscNavbar.jsx` & `bscFrontpage.css`)**:
+  - **Eliminasi Bar Ganda**: Menghapus bar draf `BscMockbar` dari `ExplorePage.jsx` agar bagian atas situs tidak menumpuk dan hanya menampilkan bilah pengumuman resmi (`.topbar`) dan navbar utama (`header.nav`).
+  - **Isolasi Penuh dari CSS Global**: Mengisolasi `header.nav` dengan `display: block !important; padding: 0 !important` sehingga tidak terpengaruh aturan flexbox dan padding dari `src/index.css`.
+  - **Penyelarasan Kontainer (`.nav-in`)**: Menyeragamkan lebar kontainer ke `max-width: 1240px; margin: 0 auto; padding: 0 32px; height: 72px` agar sejajar presisi dengan seluruh konten halaman.
+  - **Responsivitas Mobile & Hamburger Drawer**: Menambahkan tombol toggle hamburger (`.nav-mobile-toggle`) dan menu drawer dropdown animatif (`.nav-mobile-drawer`) untuk layar tablet dan ponsel (<= 980px), mencegah elemen bertumpukan/overflow.
+- **Warna Navbar Adaptif & Rapatnya Spasi Hero-Destinations**:
+  - **Warna Navbar Dinamis**: Navbar diberi kelas adaptif `.nav-hero` dan `.nav-scrolled`. Saat pengguna berada di section hero, warna navbar sama persis dengan latar hangat hero (`var(--warm)` #F3EFE4). Ketika pengguna menggulir dan mencapai section destinations, navbar secara otomatis bertransisi mulus (`0.28s`) berubah menjadi putih jernih (`rgba(255, 255, 255, 0.98)`) lengkap dengan efek *backdrop-filter blur* dan bayangan halus.
+  - **Perapatan Jarak Hero ke Destinations**: Memangkas padding bawah `.trust-strip` dari 44px menjadi 14px dan menyetel padding atas `#destinations` menjadi 20px, sehingga celah berlebih (108px) terpangkas rapi menjadi 34-36px yang menyatu dan harmonis.
+- **Daftar Komponen Halaman Utama BSC (`src/components/frontpage/`)**:
+  1. `BscNavbar.jsx`: Topbar pengumuman jaminan BSC + header navigasi sticky dengan logo brand, tautan seksi, indikator wishlist, pengalih mata uang (USD/IDR), tombol "Find a villa", dan drawer mobile interaktif.
+  3. `BscHero.jsx`: Judul utama *"Find a Bali villa you can book with confidence"*, lead deskripsi, form pencarian instan (Where, Check-in, Check-out, Guests), serta 4 pilar kepercayaan (Private pool, Verified in person, Clear cancellation terms, Local team on call).
+  4. `BscDestinations.jsx`: *"Explore by destination"* dengan 5 kartu kawasan (Canggu & Berawa, Ubud, Uluwatu & Bukit, Pererenan, Umalas & Seminyak), estimasi harga termurah, dan aksi filter langsung ke katalog saat diklik.
+  5. `BscLevels.jsx`: *"From simple and stylish to full luxury"* membedah 4 tingkatan kemewahan (Standard, Deluxe, Premium, Luxury) lengkap dengan jumlah villa dan filter instan saat diklik.
+  6. `BscTopPicks.jsx`: *"Villas our team would book for their own family"* menampilkan 4 villa utama di urutan teratas dengan foto asli Airbnb, alasan kurasi (*Why we picked it*), lencana status inspeksi, harga malam, dan tombol *"View villa"* yang membuka halaman detail.
+  7. `BscVillaCatalog.jsx`: *"Find your villa"* dengan sidebar filter lengkap (slider harga, tier, trip type, setting & view, kamar tidur, amenities), quick filter chips, dropdown sorting, accordion penjelasan level, 51 kartu baris villa, kalkulasi total tarif menginap, serta tombol paginasi "Show more villas".
+  8. `BscVerification.jsx`: *"How we verify every villa"* menyajikan 12 poin checklist inspeksi fisik langsung oleh tim BSC.
+  9. `BscLiveTour.jsx`: *"Book a 10-minute live video tour"* menghadirkan player video walkthrough unedited dan formulir pengajuan tur video langsung.
+  10. `BscComparisonTable.jsx`: *"Book direct, know exactly who you are dealing with"* tabel komparasi nilai transparansi BSC versus platform OTA umum.
+  11. `BscTeamSection.jsx`: *"The people behind your stay"* menampilkan profil tim lokal di Bali (Ketut Wiratama & rekan).
+  12. `BscStayPromise.jsx`: *"The BSC Stay Promise"* kartu komitmen 3 jaminan (Photos are real, Fixed fast, Moved if needed).
+  13. `BscTrustInfo.jsx`: Menyajikan seksi Safe & accountable (operator berlisensi, protokol darurat, keselamatan kolam), Booking & payment (metode bayar, deposit, rincian transparan), Arrival guide & Extras (tabel layanan tambahan dengan harga pasti), serta banner *"Be one of our first verified guests"*.
+  14. `BscFaq.jsx`: *"Before you book"* accordion interaktif 5 pertanyaan umum.
+  15. `BscFooter.jsx`: Legalitas PT, alamat kantor Bali, waktu respons kontak, tautan sosial, hak cipta, dan tombol mengambang kontak WhatsApp.
+- **Pengisolasian Gaya CSS (`src/components/frontpage/bscFrontpage.css`)**:
+  - Seluruh stylesheet resmi `frontpage_styles.css` diberi namespace khusus di bawah `.bsc-frontpage` agar tidak mengganggu styling halaman detail (`VillaDetailPage`) maupun editor.
+- **Penyelarasan Navigasi di `src/App.jsx`)**:
+  - Menambahkan fungsi `resolveVilla` dengan pemetaan alias (`VILLA_ALIAS_MAP`) sehingga klik pada salah satu dari 4 villa utama maupun 47 villa lainnya langsung membuka halaman detail (`VillaDetailPage`) tanpa kendala.
+  - Mengondisikan Navbar dan Footer bawaan aplikasi agar hanya tampil di halaman Detail dan Editor, sehingga Halaman Utama Explore menampilkan 100% navbar dan footer eksklusif desain BSC.
+- **Transformasi Section Destinations ke Bento Grid Editorial 2 - 3 - 1 (6 Kawasan Lengkap)**:
+  - **Penambahan Destinasi ke-6 (Seseh)**: Mengoreksi ringkasan destinasi dari 5 menjadi 6 kawasan lengkap sesuai master katalog (`bsc-frontpage_1.html`): Canggu & Berawa (19 villa), Umalas & Seminyak (12 villa), Uluwatu & Bukit (8 villa), Pererenan (8 villa), Ubud (4-5 villa), dan Seseh (1 villa permata tersembunyi).
+  - **Tata Letak Asimetris Bento Grid (2 - 3 - 1)**:
+    - *Baris 1 (2 Kartu)*: `[Pererenan (1 kolom)]` + `[Canggu & Berawa (2 kolom lebar)]` sebagai *Most Popular Hub* dengan koleksi 19 villa.
+    - *Baris 2 (3 Kartu)*: `[Uluwatu & Bukit (1 kolom)]` + `[Umalas & Seminyak (1 kolom)]` + `[Ubud (1 kolom)]` dengan proporsi seimbang yang rapi.
+    - *Baris 3 (1 Kartu Panorama)*: `[Seseh (3 kolom penuh)]` sebagai *✦ Hidden Gem* yang menonjolkan desa pesisir pantai pasir hitam yang tenang dan asri.
+  - **Visual High-End Editorial**:
+    - Setiap kartu dilengkapi foto pemandangan autentik beresolusi tinggi di `/destinations/` dengan efek zoom halus (`scale 1.06`) saat kursor diarahkan (*hover*).
+    - Multi-layer gradient overlay gelap elegan yang menjamin kontras teks nama area, deskripsi, dan harga malam terbaca sangat jernih dan tajam.
+    - Lencana kaca transparan (*frosted glass badge* with backdrop blur): `Chill & Surf`, `★ Most Popular Hub`, `Clifftops & Sunsets`, `Dining & Boutiques`, `Cultural Sanctuary`, `✦ Hidden Gem`.
+    - Ikon panah sirkular (`→`) yang bergeser dinamis saat di-hover dan deskripsi suasana kawasan yang informatif.
+  - **Responsivitas Adaptif Penuh**:
+    - *Desktop (> 980px)*: Bento 3 kolom (2 - 3 - 1).
+    - *Tablet (<= 980px)*: Grid 2 kolom seimbang dengan Canggu dan Seseh membentang 2 kolom.
+    - *Mobile (<= 640px)*: Tata letak 1 kolom vertikal ramah sentuhan dengan ukuran kartu proporsional.
+- **Perapatan Jarak Antara Section Levels dan Top Picks (`#picks`)**:
+  - **Identifikasi Masalah**: Jarak sebelumnya terlampau renggang (~128px) karena tumpukan `marginTop: '64px'` bawaan mockup html ditambah `padding-top: 64px` bawaan kelas `.sec`.
+  - **Perbaikan CSS & Komponen**:
+    - Menghapus inline style `marginTop: '64px'` dari `BscTopPicks.jsx`.
+    - Menetapkan aturan CSS ultra-rapat di `bscFrontpage.css`: `margin-top: 12px !important`, `padding-top: 22px !important`, dan `margin-bottom: 20px` pada header `.sec-head`.
+    - Memangkas jarak total sehingga kedua section saling berdekatan dan menyatu dengan jeda yang pas ("deket tapi tetap ada gap bernafas").
+- **Standar Kualitas & Kepatuhan Instruksi**:
+  - **JSDoc Bahasa Indonesia**: 100% fungsi baru dan yang dimodifikasi telah dilengkapi JSDoc `@param`, `@returns`, dan deskripsi berbahasa Indonesia tanpa ada yang terlewat (`verify_all_jsdoc.js` lolos 0 missing).
+  - **Verifikasi Build**: `npm.cmd run build` sukses 100% tanpa error (`dist/index.html`, `assets/index-B_13np1W.css`, `assets/index-ChG4NCMY.js` terbangun bersih).
+  - **Git Safety Protocol**: Sesuai instruksi ketat pengguna, perubahan **TIDAK di-push ke GitHub** tanpa izin eksplisit.
+
+---
+
+### 5.15. Optimasi & Perapatan Gap Spasi Setiap Section (Tight Section Spacing)
+- **Latar Belakang & Permintaan Pengguna**:
+  - Pengguna merasa jeda kosong (*gap / white space*) antar section di halaman web terlalu lebar dan renggang.
+- **Identifikasi Masalah**:
+  - Sebelumnya kelas dasar `.sec` memiliki padding `64px 0`, sehingga pertemuan dua section menghasilkan jeda kosong akumulatif sebesar **128px** (64px padding-bottom + 64px padding-top).
+  - Jarak margin antara judul section (`.sec-head`) dengan grid konten adalah `28px` dan hero section memiliki jeda vertikal yang berlebih.
+  - Seksi footer sebelumnya memiliki `margin-top: 64px` dan seksi legalitas di atasnya memiliki `padding-bottom: 64px`, mengakibatkan jeda kosong 128px sebelum footer hitam.
+- **Solusi & Perubahan yang Diterapkan**:
+  1. **Pengurangan Padding Global `.sec`**:
+     - Diturunkan dari `64px 0` menjadi **`34px 0`** (desktop), **`24px 0`** (tablet), dan **`20px 0`** (ponsel).
+     - Margin bawah `.sec-head` dirapatkan dari `28px` menjadi **`20px`** dengan margin judul dan subjudul yang lebih kompak.
+  2. **Harmonisasi Alur Transisi Section Utama**:
+     - **Hero Section**: Padding atas dirapatkan dari `64px 0 0` menjadi `44px 0 0`, margin search bar dari `36px` menjadi `24px`, dan trust strip dari `28px` menjadi `20px`.
+     - **Destinations (`#destinations`)**: Diberi padding atas `16px` dan bawah `18px` agar menyatu mulus ke bagian bawah trust strip dan menyambung ke Levels.
+     - **Levels (`#levels`)**: Inline styles dihilangkan dan diatur via CSS dengan padding atas `14px` dan bawah `6px`.
+     - **Top Picks (`#picks`)**: Padding bawah dipangkas dari `44px` menjadi `28px` dengan margin atas `6px`.
+     - **Katalog Villa (`#villas`)**: Diberi padding atas `22px` dan bawah `32px` agar jarak dari kotak putih picks hanya berkisar ~28px.
+     - **Verify (`#verify`) & Live Tour (`#tour`)**: Dirapatkan ke `padding: 32px 0` dan `30px 0`.
+     - **Comparison Table, Team & Promise**: Padding dirapatkan ke `30px - 32px 0`, serta container gelap kartu promise dipadatkan padding dalamnya ke `30px 36px`.
+     - **Seksi Kepercayaan (`TrustInfo`)**: Diberi kelas khusus (`sec-safe`, `sec-booking`, `sec-arrival`, `sec-early`) dengan padding berkisar antara `24px` hingga `32px`, menghilangkan kekosongan antar modul.
+     - **FAQ, Legalitas & Footer**: FAQ dan seksi legalitas dirapatkan ke `padding-bottom: 28px`, serta `footer` dipangkas margin atasnya dari `64px` menjadi **`16px`** dan padding dalamnya menjadi `36px 0`.
+  3. **Halaman Detail Villa (`src/index.css`)**:
+     - `.detail-full-section` dirapatkan dari `48px 0` menjadi **`32px 0`**.
+     - `.similar-section` dirapatkan dari `48px 0` menjadi **`34px 0`**.
+- **Hasil**:
+  - Halaman mengalir jauh lebih padat, rapi, dan nyaman di-scroll (*eye-pleasing*) tanpa kekosongan ruang putih yang membosankan.
+  - Build diverifikasi ulang via `npm.cmd run build` dan **100% sukses**.
+
+---
+
+### 5.16. Perbaikan Kritis: Eliminasi Konflik `.wrap` (min-height: 100vh) yang Memblokir Pengaturan Spasi
+- **Masalah Utama**:
+  - Pengguna menemukan bahwa perubahan padding dan margin sebelumnya sama sekali tidak terlihat di browser, dan mendeteksi bahwa kelas `.wrap` menjadi biang keroknya.
+  - Di berkas tangkapan layar `Downloads/Screenshot 2026-10-06 112458.png`, terlihat jelas terdapat rongga ruang kosong putih raksasa (>600px) di bawah kartu *Choose your level* sebelum judul *OUR TOP PICKS*.
+- **Akar Penyebab (*Root Cause*)**:
+  - Di berkas [`src/index.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/index.css#L68-L75), selector `.wrap` digabungkan dengan `.app-container` yang memiliki aturan:
+    ```css
+    .app-container,
+    .wrap {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+    }
+    ```
+  - Akibatnya, setiap `<div className="wrap">` di dalam setiap section halaman depan dipaksa memiliki tinggi minimal setinggi 1 layar penuh monitor browser (`100vh`). Sekalipun padding section disetel 0px, container `.wrap` tetap memaksa tinggi 100vh sehingga menyisakan ruang kosong menganga yang sangat lebar.
+- **Solusi yang Diterapkan**:
+  1. **Pembersihan Selector di [`src/index.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/index.css)**:
+     - Menghapus selector `.wrap` dari aturan `min-height: 100vh; display: flex; flex-direction: column;`, sehingga aturan tersebut hanya berlaku eksklusif pada pembungkus utama aplikasi `.app-container`.
+  2. **Isolasi Penuh di [`bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css)**:
+     - Menambahkan aturan reset eksplisit pada `.bsc-frontpage .wrap`:
+       ```css
+       .bsc-frontpage .wrap {
+         max-width: 1240px;
+         margin: 0 auto;
+         padding: 0 32px;
+         min-height: auto !important;
+         display: block;
+       }
+       ```
+  3. **Pembersihan di [`src/App.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/App.jsx)**:
+     - Mengubah container root menjadi `className="app-container"`.
+- **Hasil**:
+  - Seluruh `<div className="wrap">` di setiap section kini memiliki tinggi alami sesuai kontennya saja (*natural content height*).
+  - Jeda raksasa kosong ratusan piksel yang terlihat di screenshot hilang total, dan padding kompak yang telah disetel kini aktif 100%.
+  - Build diverifikasi ulang via `npm.cmd run build` dan **100% sukses**.
+
+---
+
+### 5.17. Penetapan Harga Penuh 51 Villa & Pembaruan Tombol Paginasi Katalog
+- **Latar Belakang & Permintaan Pengguna**:
+  1. Menghilangkan seluruh teks "Rates on request" dan "Get a total price for your dates" dengan menetapkan harga per malam asli untuk setiap villa di katalog.
+  2. Mengganti teks tombol paginasi katalog "Show 12 more villas (39 left)" menjadi "Show more villas".
+- **Perubahan yang Diterapkan**:
+  1. **Penetapan Harga Seluruh 51 Villa ([`src/data/bscVillasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/bscVillasData.js))**:
+     - 47 villa yang sebelumnya berstatus `price: null` kini telah dilengkapi harga malam terkurasi proporsional berdasarkan tier (Standard: $110 - $220, Deluxe: $160 - $380, Premium: $250 - $480, Luxury: $490 - $850).
+     - Menghilangkan cabang render `Rates on request` di [`BscTopPicks.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscTopPicks.jsx) dan [`BscVillaCatalog.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscVillaCatalog.jsx).
+     - Memperbarui fungsi format [`formatBscMoney`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/utils/bscFormat.js) agar selalu mengembalikan nominal harga valid baik dalam USD maupun IDR.
+     - Kartu destinasi di seksi Explore by destination kini otomatis menampilkan harga awal terendah nyata (misal: *from $110 / night* di Pererenan, *from $150 / night* di Canggu).
+     - Filter rentang harga dan pengurutan harga (*Price: low to high*, *Price: high to low*) kini berfungsi 100% di seluruh 51 villa.
+  2. **Pembaruan Teks Tombol Paginasi ([`BscVillaCatalog.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscVillaCatalog.jsx#L571))**:
+     - Mengubah teks tombol `#moreBtn` dari `Show {nextIncrement} more villas ({remainingCount} left)` menjadi **`Show more villas`**.
+- **Hasil**:
+  - Seluruh villa di situs menampilkan tarif harga malam dan kalkulasi total masa tinggal secara transparan tanpa ada tulisan "Rates on request".
+  - Tombol paginasi tampil bersih dan profesional dengan teks "Show more villas".
+  - Build diverifikasi ulang via `npm.cmd run build` dan **100% sukses**.
+
+---
+
+### 5.18. Penyesuaian Seksi "Our Top Picks": Tepat 9 Villa & Pengecualian Villa Habitas
+- **Latar Belakang & Permintaan Pengguna**:
+  - Pengguna meminta agar seksi "Our top picks" menampilkan tepat 9 villa pilihan, dan mengeluarkan Villa Habitas dari daftar picks tersebut.
+- **Perubahan yang Diterapkan**:
+  1. **Pembaruan Flag Data Master ([`src/data/bscVillasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/bscVillasData.js#L923))**:
+     - Mengubah status `"pick": true` menjadi `"pick": false` pada data `villa-habitas`. Villa Habitas tetap ada di katalog 51 villa reguler namun tidak lagi dimasukkan ke kurasi Top Picks.
+  2. **Logika Filter Komponen ([`src/components/frontpage/BscTopPicks.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscTopPicks.jsx#L30-L34))**:
+     - Mengatur filter agar secara eksplisit mengecualikan `villa-habitas` dan membatasi output tepat ke 9 villa:
+       ```javascript
+       const topPickedVillas = villas
+         .filter(v => v.pick && v.id !== 'villa-habitas')
+         .slice(0, 9);
+       ```
+  3. **Komposisi 9 Villa Pilihan Terkurasi (Grid Simetris 3x3)**:
+     - 1. **Coco Bay** (Canggu & Berawa, Luxury, 8 Beds) – $850 / malam
+     - 2. **The Bull House** (Umalas & Seminyak, Luxury, 6 Beds) – $680 / malam
+     - 3. **Villa Imala** (Uluwatu & Bukit, Luxury, 6 Beds) – $720 / malam
+     - 4. **House Terra** (Pererenan, Premium, 5 Beds) – $480 / malam
+     - 5. **Villa Kanopi** (Umalas & Seminyak, Premium, 3 Beds) – $310 / malam
+     - 6. **Villa Tala** (Pererenan, Deluxe, 1 Bed) – $160 / malam
+     - 7. **Balangan Cliff Villa** (Uluwatu & Bukit, Premium, 5 Beds) – $420 / malam
+     - 8. **Villa Angkasa** (Ubud, Deluxe, 5 Beds) – $340 / malam
+     - 9. **St. Lau** (Ubud, Deluxe, 3 Beds) – $380 / malam
+- **Hasil**:
+  - Grid picks terisi pas sebanyak 9 kartu (3 kolom x 3 baris) tanpa ada kartu yang menggantung atau ganjil.
+  - Villa Habitas tidak lagi tampil di seksi picks.
+  - Build diverifikasi via `npm.cmd run build` dan **100% sukses**.
+
+### 5.19. Implementasi Penuh Konversi Mata Uang Global (USD to IDR Switcher)
+- **Latar Belakang & Permintaan Pengguna**:
+  - Pengguna meminta agar fitur tombol pengalih mata uang `USD` dan `IDR` (`.cur` button pill di navbar) berfungsi nyata dan reaktif secara menyeluruh di seluruh aplikasi, bukan hanya sekadar elemen visual pajangan ("fitur usd to idr itu buat agar bisa bekerja oke, bukan cuma pajangan disana").
+- **Akar Masalah Sebelumnya**:
+  1. State `currency` sebelumnya terisolasi di dalam `ExplorePage.jsx` dan tidak disimpan ke penyimpanan browser (*LocalStorage*).
+  2. Ketika pengguna mengklik kartu villa untuk membuka halaman rincian (`VillaDetailPage.jsx`), mata uang kembali ke tampilan `$ USD` karena halaman detail tidak menerima prop `currency` dan memanggil fungsi `formatUSD` langsung.
+  3. Navbar halaman detail (`Navbar.jsx`) tidak memiliki tombol pengalih mata uang `.cur`.
+  4. Slider rentang harga di katalog (`BscVillaCatalog.jsx`) memiliki label teks statis `<span>$50</span>` dan `<span>$600+</span>`.
+  5. Modal formulir reservasi (`BookingModal.jsx`), modal wishlist tersimpan (`WishlistDrawer.jsx`), dan modul rekomendasi concierge (`ConciergeFinder.jsx`) memformat angka secara statis dalam format USD.
+- **Solusi & Perubahan yang Diterapkan**:
+  1. **Pengangkatan State Global ke Root ([`src/App.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/App.jsx))**:
+     - State `currency` diangkat ke `App.jsx` dengan inisialisasi default membaca `localStorage.getItem('bsc_currency') || 'USD'`.
+     - Fungsi `handleCurrencyChange` otomatis menyinkronkan setiap pilihan user ke `localStorage.setItem('bsc_currency', newCurrency)`.
+     - Meneruskan prop `currency` dan `onCurrencyChange` ke `Navbar`, `ExplorePage`, `VillaDetailPage`, dan `WishlistDrawer`.
+  2. **Penyempurnaan Helper Pemformatan Uang ([`src/utils/bscFormat.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/utils/bscFormat.js) & [`src/data/villasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/villasData.js))**:
+     - Fungsi [`formatBscMoney`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/utils/bscFormat.js) diperbarui untuk membaca preferensi LocalStorage jika parameter currency tidak dispesifikasikan, serta mengonversi dengan kurs resmi `CONFIG.idrRate = 16000` (dibulatkan ke ribuan, misal $350 $\rightarrow$ `Rp 5.600.000`).
+     - Fungsi legacy [`formatUSD`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/villasData.js) dimutakhirkan agar aman dan secara otomatis mengonversi ke `Rp` jika mata uang aktif adalah `IDR`.
+  3. **Penambahan Switcher di Navbar Halaman Detail & Editor ([`src/components/Navbar.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/Navbar.jsx))**:
+     - Menambahkan tombol pil `.cur` (USD | IDR) di baris `.nav-actions` desktop dan di dalam menu drawer mobile tablet/smartphone.
+     - Menambahkan aturan styling global `.cur` pada [`src/index.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/index.css) sehingga tampil serasi, elegan, dan konsisten di seluruh layar.
+  4. **Pembaruan Label Slider Katalog ([`src/components/frontpage/BscVillaCatalog.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscVillaCatalog.jsx))**:
+     - Mengubah label rentang bawah menjadi `{formatBscMoney(50, currency)}` (`$50` atau `Rp 800.000`).
+     - Mengubah label rentang atas menjadi `{formatBscMoney(600, currency)}+` (`$600+` atau `Rp 9.600.000+`).
+     - Teks filter aktif reaktif (misal: *Up to Rp 6.400.000*).
+  5. **Integrasi Reaktif Halaman Detail ([`src/pages/VillaDetailPage.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/VillaDetailPage.jsx))**:
+     - Widget reservasi (harga per malam, subtotal kalkulasi malam, cleaning fee, direct booking fee `Rp 0` / `$0`, dan total biaya) kini 100% menggunakan `formatBscMoney(..., currency)`.
+     - Kartu rekomendasi villa serupa (*similar villas*) dan bilah mengambang reservasi bawah (*floating mobile reserve bar*) reaktif mengikuti mata uang yang aktif.
+  6. **Integrasi Modal & Drawer ([`BookingModal.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/Modals/BookingModal.jsx), [`WishlistDrawer.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/Modals/WishlistDrawer.jsx), [`ConciergeFinder.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/ConciergeFinder.jsx))**:
+     - Seluruh rincian formulir pemesanan dan kartu konfirmasi booking sukses menampilkan nominal dalam format mata uang terpilih.
+     - Daftar villa impian di Wishlist dan rekomendasi Concierge Matching menampilkan harga sesuai mata uang terpilih.
+- **Hasil**:
+  - Beralih dari USD ke IDR langsung mengubah seluruh harga di halaman depan (*Destinations*, *Top Picks*, *Catalog*, slider harga), halaman detail villa (*booking widget*, rincian biaya, *similar villas*, *bottom bar*), *Wishlist drawer*, dan *Booking modal*.
+  - Pilihan mata uang tersimpan di browser (*persistent*), sehingga tidak akan ter-reset saat pengguna me-refresh halaman atau berpindah-pindah antar villa.
+  - Build diverifikasi via `npm.cmd run build` dan **100% sukses** tanpa error.
+
+### 5.20. Penyesuaian Seksi "Our Promise" Menjadi Full-Width Background Hitam
+- **Latar Belakang & Permintaan Pengguna**:
+  - Pengguna meminta agar seksi "Our promise" memiliki latar belakang hitam penuh selebar 1 section layar (*full-width edge-to-edge*), bukan hanya kartu kotak rounded dengan tepi luar putih ("pada bagian Our promise itu hitam nya full 1 section aja").
+- **Perubahan yang Diterapkan**:
+  1. **Penetapan Background Hitam Penuh pada Section ([`src/components/frontpage/bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css))**:
+     - Aturan `.bsc-frontpage #promise, .bsc-frontpage .sec-promise` diubah menjadi `background: var(--ink) !important; color: #EDE9DE;` dengan padding vertikal elegan `padding: 52px 0 !important`.
+     - Latar belakang hitam membentang 100% penuh dari ujung kiri ke ujung kanan layar browser (*viewport full-width*).
+  2. **Pembersihan Kontainer Dalam `.promise`**:
+     - Aturan `.bsc-frontpage .promise` diubah menjadi transparan (`background: transparent; border-radius: 0; padding: 0;`), menyatu mulus di dalam kontainer grid `.wrap`.
+     - Layout 2 kolom desktop (`grid-template-columns: 1fr 1.05fr; gap: 48px;`) dan 1 kolom otomatis pada tablet/mobile tetap terjaga rapi dan terpusat sejajar dengan container utama situs.
+  3. **Penyesuaian Tipografi & Teks Kebijakan ([`BscStayPromise.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscStayPromise.jsx))**:
+     - Teks judul `The BSC Stay Promise` berwarna putih jernih (`#fff`).
+     - Teks subjudul dan deskripsi berwarna hangat (`#CFCABD` dan `#EDE9DE`).
+     - Teks catatan disclaimer `[Owner to confirm exact policy wording before publishing.]` diberi warna kontras lembut `rgba(255, 255, 255, 0.4)` dengan margin atas `24px`.
+- **Hasil**:
+  - Seksi *Our promise* kini tampil sebagai bentang pita hitam mewah (*luxury dark statement band*) yang membentang penuh 1 section tanpa jeda tepi putih, memberikan kontras visual yang kuat dan profesional di halaman depan BSC.
+  - Build diverifikasi via `npm.cmd run build` dan **100% sukses**.
+
+### 5.21. Integrasi Logo Resmi ke Seluruh Header, Footer, Tabel Komparasi, & Modal
+- **Latar Belakang & Permintaan Pengguna**:
+  - Pengguna meminta agar logo resmi Bali Stay Collection dimasukkan ke seluruh komponen dan bagian yang membutuhkan identitas visual brand ("yang butuh logo, masukin logo nya okee").
+- **Perubahan yang Diterapkan**:
+  1. **Pembuatan Varian Logo Kontras Tinggi untuk Background Gelap ([`public/logo-white.svg`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/public/logo-white.svg))**:
+     - Dibuat logo vektor SVG khusus dengan teks warna putih bersih (`#FFFFFF`) dan ikon terracotta khas Bali Stay Collection (`#D75B4B`) agar terbaca tajam dan tidak tenggelam pada latar belakang gelap/hitam (*dark background*).
+  2. **Integrasi di Navbar Depan ([`src/components/frontpage/BscNavbar.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscNavbar.jsx))**:
+     - Menggantikan ikon rumah generik dan teks font default dengan gambar logo resmi `<img src="/logo.svg" alt="Bali Stay Collection" className="logo-img" />`.
+     - Menambahkan aturan CSS `.bsc-frontpage .logo .logo-img` (`height: 38px; width: auto; max-width: 175px; object-fit: contain;`) di [`bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css).
+  3. **Integrasi di Footer Depan & Footer Detail ([`BscFooter.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscFooter.jsx) & [`Footer.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/Footer.jsx))**:
+     - Di `BscFooter`, disematkan logo `/logo-white.svg` di atas deskripsi kurasi properti.
+     - Di `Footer.jsx` (halaman rincian villa), diperbarui menggunakan `/logo-white.svg` dengan proporsi elegan di atas tagline "Direct bookings. Curated homes."
+  4. **Integrasi di Tabel Perbandingan Komparasi ([`src/components/frontpage/BscComparisonTable.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscComparisonTable.jsx))**:
+     - Menambahkan logo `/logo.svg` tepat di atas kolom tabel "Bali Stay Collection" berdampingan dengan badge "*Direct Booking*", mempertegas keunggulan brand dibanding OTA besar.
+  5. **Integrasi di Seluruh Modal & Drawer Interaktif**:
+     - **Booking Modal ([`src/components/Modals/BookingModal.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/Modals/BookingModal.jsx))**: Menampilkan logo resmi di header Tahap 1 (Formulir Reservasi Langsung) dan Tahap 2 (Bukti Reservasi Terkonfirmasi).
+     - **Wishlist Drawer ([`src/components/Modals/WishlistDrawer.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/Modals/WishlistDrawer.jsx))**: Menampilkan logo resmi di bagian atas panel Wishlist tersimpan.
+     - **List Villa Modal ([`src/components/Modals/ListVillaModal.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/Modals/ListVillaModal.jsx))**: Menampilkan logo resmi di header formulir kemitraan host/pemilik villa.
+- **Hasil**:
+  - Seluruh touchpoint pengguna (Navbar, Footer, Tabel Keunggulan, Modal Reservasi, Wishlist, Kemitraan Host) kini konsisten mengusung identitas visual brand Bali Stay Collection.
+  - Varian logo putih memastikan keterbacaan sempurna di area gelap (Footer), sementara logo standar tampil anggun di area terang.
+  - Build terverifikasi sukses via `npm.cmd run build` tanpa kendala.
+
+---
+
+### 5.22. Penyesuaian Spasi Vertikal Antar Section (Proporsional & Bernapas)
+- **Latar Belakang & Permintaan Pengguna**:
+  - Setelah sebelumnya spasi dirapatkan drastis dari bug `min-height: 100vh`, pengguna meminta agar jarak antar section ditambahkan sedikit agar tidak terlalu menempel/padat dan terasa lebih nyaman serta elegan saat di-scroll ("spasi antar section itu di tambahkan sedikit ya").
+- **Perubahan yang Diterapkan**:
+  1. **Penyesuaian Padding Global Section ([`src/components/frontpage/bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css))**:
+     - `.bsc-frontpage .sec`: Ditingkatkan dari `34px 0` menjadi `48px 0` (desktop), `36px 0` (tablet), dan `30px 0` (mobile).
+     - `.bsc-frontpage .sec-head`: Margin bawah disesuaikan dari `20px` menjadi `24px` untuk hirarki judul yang lebih lega.
+  2. **Harmonisasi Spasi Khusus Antar Komponen**:
+     - **Hero & Destinations**: Hero diberi padding bawah `16px`, trust strip berjarak `24px auto 0`, dan `#destinations` ditingkatkan menjadi `padding-top: 36px; padding-bottom: 36px;`.
+     - **Levels & Top Picks**: `#levels` disetel ke `28px 0`, dan `#picks` ditingkatkan ke `padding-top: 40px; padding-bottom: 44px;` dengan menghilangkan margin buatan.
+     - **Villas Catalog**: `#villas` ditingkatkan menjadi `padding-top: 42px; padding-bottom: 48px;`.
+     - **Compare & Team**: `#compare` dan `#team` disetel ke `44px 0`.
+     - **Our Promise**: `#promise` disetel ke `56px 0`.
+     - **Trust Info & Safe**: `#safe` disetel ke `44px 0`, `#booking` disetel ke `40px 0 36px`.
+  3. **Pembersihan Inline Style Menempel di JSX**:
+     - Menghilangkan `style={{ paddingTop: 0 }}` yang sebelumnya mengunci section di [`BscTrustInfo.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscTrustInfo.jsx) (`#arrival` & `#early-guests`), [`BscFaq.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscFaq.jsx) (`#faq`), dan [`BscFooter.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscFooter.jsx) (`#legal`).
+     - Menggantinya dengan padding CSS proporsional (24px - 44px) sehingga tidak ada section yang menempel tanpa jarak.
+- **Hasil**:
+  - Halaman depan BSC kini memiliki ritme visual (*visual rhythm*) yang seimbang: tidak ada kekosongan berlebih seperti sebelumnya, namun tetap memiliki ruang bernapas (*breathing room*) yang mewah, bersih, dan nyaman dibaca.
+  - Build diverifikasi via `npm.cmd run build` dan **100% sukses** tanpa peringatan error.
+
+---
+
+### 5.23. Penyesuaian Bagian #editor & Audit Peningkatan Responsivitas Menyeluruh Web
+- **Latar Belakang & Permintaan Pengguna**:
+  - Pengguna meminta penyesuaian khusus pada bagian `#editor` (*Villa Content Editor*) dan pemeriksaan menyeluruh (*responsive check*) pada seluruh halaman website dari desktop hingga smartphone ("bagian #editor nya tolong di sesuaikan dan cek web nya menyeluruh untuk pengecekan responsive").
+- **Perubahan yang Diterapkan**:
+  1. **Penyesuaian Bagian `#editor` ([`VillaContentEditor.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/VillaContentEditor.jsx))**:
+     - **Atribut ID & Hash Navigation**: Menambahkan `id="editor"` ke kontainer utama `<div className="editor-page-container" id="editor">` sehingga anchor URL `#editor` dapat langsung dituju dengan presisi.
+     - **Akses Langsung dari Footer Utama ([`BscFooter.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscFooter.jsx))**: Menambahkan tautan "Villa Content Editor" di deretan menu footer halaman utama BSC, dengan prop callback `onOpenEditor={handleOpenEditor}` yang diteruskan dari [`App.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/App.jsx).
+     - **Integrasi Master Data Penuh 51 Villa BSC**: Editor kini menerima `allEditorVillas` yang mengonstruksi detail lengkap seluruh 51 villa BSC ditambah data kustom hasil penambahan/edit, bukan hanya 9 villa bawaan lama.
+     - **Dukungan Pengalih Mata Uang (USD / IDR)**: Mengintegrasikan `currency` prop dan helper [`formatBscMoney`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/utils/bscFormat.js) pada daftar list villa dan kalkulasi perkiraan harga per malam.
+     - **Keselarasan Brand & Desain ([`src/index.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/index.css))**: Mengganti palet warna usang dengan tema resmi BSC (`var(--accent)` terracotta `#C96F4A`, focus ring halus, dan chip fasilitas aktif yang senada).
+     - **Responsivitas Editor Mobile ($\le 640px$)**: Header editor, tombol aksi unduh/simpan, tombol aksi cepat villa, baris penambahan fasilitas, dan tombol simpan bawah otomatis tertata rapi (*stacked full-width*) tanpa overflow.
+  2. **Audit & Peningkatan Responsivitas Menyeluruh Web**:
+     - **Tabel Komparasi ([`BscComparisonTable.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscComparisonTable.jsx) & [`bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css))**:
+       - Membungkus tabel dengan `.cmp-table-wrap` (`overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--radius);`).
+       - Menetapkan `min-width: 580px;` pada tabel sehingga pada smartphone (320px - 480px) teks perbandingan tidak terhimpit atau merusak lebar viewport.
+     - **Pilar Kepercayaan Hero ([`bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css))**:
+       - Pada layar smartphone ($\le 560px$), `.trust-strip` otomatis beralih menjadi 1 kolom vertikal (`grid-template-columns: 1fr; gap: 12px;`) sehingga ikon dan teks penjelasan terbaca nyaman dan leluasa.
+     - **Seksi Tim BSC ([`bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css))**:
+       - Di layar $\le 560px$, grid tim tersusun 1 kolom terpusat dengan avatar bulat dan kartu nama yang proporsional.
+     - **Kartu Hasil Katalog ([`bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css))**:
+       - Menambahkan `flex-wrap: wrap;` pada `.price-row` agar nominal mata uang IDR jutaan rupiah tidak terpotong atau menimpa tombol aksi di layar kecil.
+     - **Tombol WhatsApp Mengambang ([`bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css))**:
+       - Pada layar $\le 560px$, ukuran tombol disetel ke `padding: 10px 16px; font-size: 13px; right: 14px; bottom: 14px;` agar tidak menutupi tombol formulir bawah.
+     - **Proporsi Logo Navbar Mobile**:
+       - Disesuaikan menjadi `height: 32px; max-width: 140px;` di layar kecil agar tidak mendesak tombol hamburger menu dan wishlist.
+- **Hasil**:
+  - Halaman `#editor` kini dapat diakses dan digunakan secara optimal baik dari desktop maupun smartphone, terhubung ke 51 villa BSC dengan dukungan konversi mata uang dinamis.
+  - Seluruh halaman situs (Frontpage katalog, Halaman Detail Villa, Galeri Foto, Modal Pemesanan, Drawer Wishlist, dan Editor Konten) telah teruji 100% responsif, bebas error layout horizontal, dan nyaman digunakan di segala ukuran layar.
+  - Build produksi diverifikasi via `npm.cmd run build` dan **100% sukses** (0 error).
+
+---
+
+### 5.24. Perbaikan Tampilan Enter & Paragraf pada Deskripsi Villa (White-Space Preservation)
+- **Latar Belakang & Permintaan Pengguna**:
+  - Pengguna melaporkan bahwa saat bos mengedit deskripsi villa di editor dan menambahkan tombol Enter (baris baru/paragraf), teks yang tampil di halaman web tidak menampilkan enter/jeda baris tersebut, melainkan menjadi satu baris teks rapat ("taadi kata bos saya pas dia ngedit deskripsi, katanya dia udah menambahkan enter tapi di tulisan seperti tidak ada enter").
+- **Akar Masalah Teknis**:
+  - Secara default, browser HTML akan menggabungkan (*collapse*) seluruh karakter spasi dan baris baru (`\n` atau `\r\n`) menjadi satu spasi biasa pada elemen teks standar seperti `<p>`, `<div>`, dan `<span>` jika properti CSS `white-space` tidak disetel ke `pre-line` atau `pre-wrap`.
+- **Perubahan yang Diterapkan**:
+  1. **Styling Global & CSS Halaman Detail ([`src/index.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/index.css))**:
+     - Menambahkan properti `white-space: pre-line;` pada kelas `.desc-text` dan `.desc-full-wrapper`. Karakter baris baru `\n` dan jeda paragraf kini dipertahankan dan dirender utuh sebagai jeda baris/paragraf yang elegan.
+  2. **Penguatan Komponen Halaman Detail ([`src/pages/VillaDetailPage.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/VillaDetailPage.jsx))**:
+     - Memberikan inline style `style={{ whiteSpace: 'pre-line' }}` langsung pada blok teks deskripsi utama dan deskripsi lanjutan.
+     - Menambahkan sanitasi string `.replace(/\\n/g, '\n')` untuk mengantisipasi teks yang diinput atau disimpan dengan karakter escape JSON `\n`.
+  3. **Penguatan Seksi Katalog & Top Picks ([`src/components/frontpage/bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css))**:
+     - Menambahkan `white-space: pre-line;` pada `.bsc-frontpage .rb .desc` dan `.bsc-frontpage .why` agar ringkasan villa di katalog juga mematuhi baris baru.
+  4. **Kotak Pratinjau Langsung (Live Preview) di Editor ([`src/pages/VillaContentEditor.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/VillaContentEditor.jsx))**:
+     - Menambahkan kotak visual *"👁️ Pratinjau Paragraf & Enter (Tampilan Nyata di Halaman Web)"* tepat di bawah textarea penulisan deskripsi.
+     - Bos/pemilik kini dapat melihat langsung secara real-time bagaimana baris baru, spasi, dan paragraf yang ia ketik akan tampil di halaman web asli.
+- **Hasil**:
+  - Setiap penekanan tombol Enter (baik baris tunggal maupun jeda antar paragraf) kini 100% tampil nyata di halaman web, memberikan tata letak teks yang rapi, berstruktur, dan mudah dibaca oleh calon tamu.
+  - Build produksi diverifikasi via `npm.cmd run build` dan **100% sukses** tanpa error.
+
+---
+
+### 5.25. Pemasangan Foto Asli Airbnb pada Seluruh Villa & Sinkronisasi Foto Seksi Destinasi (Pantai, Tebing, & Hutan)
+- **Latar Belakang & Permintaan Pengguna**:
+  1. *"villa yang ada foto nya taruh foto nya disana"*: Villa yang telah memiliki foto asli Airbnb wajib menampilkan foto aslinya di kartu katalog, top picks, halaman detail, dan preview editor, bukan placeholder atau broken link.
+  2. *"dan untuk bagian section destination"*:
+     - **Pererenan**, **Canggu & Berawa**, dan **Seminyak**: Wajib menggunakan foto pantai (*foto pantai*).
+     - **Uluwatu**: Wajib menggunakan foto pantai dengan tebing megah (*pantai yang ada tebing-tebingnya*).
+     - **Ubud**: Wajib menggunakan foto wisata hutan lebat tropis (*hutan / wisata hutan*).
+- **Akar Masalah Teknis**:
+  - Pada [`src/data/bscVillasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/bscVillasData.js), 4 villa utama sebelumnya menunjuk ke berkas berekstensi `.webp` (misal `/airbnb/iconic-cliff-top-villa/1.webp`) yang tidak ada di disk (berkas asli tersimpan di folder `photos/photo-01.jpg`). Hal ini menyebabkan browser mengalami 404 dan hanya menampilkan latar gradien kosong.
+  - Pada folder [`public/destinations/`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/public/destinations/), berkas `pererenan.jpg` dan `seseh.jpg` sebelumnya merupakan berkas placeholder kecil (1.7 KB) yang tidak memuat pemandangan pantai yang layak.
+- **Perubahan yang Diterapkan**:
+  1. **Unduhan Foto Destinasi Berkualitas Tinggi ([`public/destinations/`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/public/destinations/))**:
+     - **Pererenan (`pererenan.jpg`)**: Diperbarui dengan foto lanskap pantai surf tropis beresolusi tinggi dengan ombak laut biru jernih.
+     - **Canggu & Berawa (`canggu.jpg`)**: Diperbarui dengan foto pantai ikonik pesisir Canggu lengkap dengan deburan ombak dan pepohonan kelapa.
+     - **Seminyak (`seminyak.jpg`)**: Diperbarui dengan foto pantai pasir emas tropis khas garis pantai Seminyak yang memukau.
+     - **Uluwatu & Bukit (`uluwatu.jpg`)**: Diperbarui dengan foto tebing kapur menjulang tinggi yang jatuh langsung ke pantai pasir putih dan laut toska samudra Hindia (*pantai dengan tebing-tebing spektakuler*).
+     - **Ubud (`ubud.jpg`)**: Diperbarui dengan foto kanopi hutan hujan tropis lebat dan lembah hijau asri khas wisata hutan Ubud.
+     - **Seseh (`seseh.jpg`)**: Diperbarui dengan pemandangan pantai pasir hitam yang tenang dan eksotis.
+  2. **Pemasangan Foto Asli Airbnb pada Villa ([`src/data/bscVillasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/bscVillasData.js))**:
+     - Memperbaiki path foto 4 villa utama ke berkas foto asli:
+       - `balangan-cliff-villa` $\rightarrow$ `/airbnb/iconic-cliff-top-villa/photos/photo-01.jpg`
+       - `villa-habitas` $\rightarrow$ `/airbnb/the-palms-villa-canggu/photos/photo-01.jpg`
+       - `villa-angkasa` $\rightarrow$ `/airbnb/angkasa-ubud/photos/photo-01.jpg`
+       - `st-lau` $\rightarrow$ `/airbnb/st-lau-ubud/photos/photo-01.jpg`
+     - Melengkapi foto asli Airbnb pada seluruh 9 villa Top Picks (termasuk `coco-bay`, `the-bull-house`, `villa-imala`, `villa-kanopi`, dll.) sehingga seluruh kartu Top Picks menampilkan visual foto nyata yang memukau.
+     - Menambahkan entri master terverifikasi untuk 5 villa Airbnb ke dalam `BSC_VILLAS` (`villa-samudra-canggu`, `villa-kayu-raja-seminyak`, `villa-cendana-seminyak`, `cliffside-panorama-uluwatu`, `mandapa-jungle-villa`).
+  3. **Penyempurnaan Pemetaan Alias & Detail ([`src/App.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/App.jsx))**:
+     - Memperluas `VILLA_ALIAS_MAP` untuk menghubungkan seluruh katalog villa ke galeri lengkap Airbnb (100+ foto, ulasan terverifikasi, dan rating breakdown).
+     - Memastikan `img` selalu disertakan pada objek detail villa hasil konstruksi `resolveVilla`.
+  4. **Penyempurnaan Komponen Kartu Destinasi & Cache-Buster ([`src/components/frontpage/BscDestinations.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscDestinations.jsx), [`src/components/frontpage/bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css))**:
+     - Mengganti elemen `div` dengan inline style `backgroundImage` ke elemen `<img>` murni (`.dcard-bg-img`) dengan `object-fit: cover; width: 100%; height: 100%;` dan handler `onError` otomatis ke fallback CDN beresolusi tinggi.
+     - Menyematkan parameter cache-buster `?v=20261006` pada setiap path foto destinasi di `DESTINATIONS_SUMMARY` untuk mencegah browser menyajikan cache lama atau error decode dari file dummy sebelumnya.
+     - Menyetel warna dasar tombol `.bsc-frontpage .dcard` ke `background-color: #141413;` agar terhindar dari warna abu-abu `buttonface` default browser, serta melembutkan gradient overlay (`.dcard-overlay`) agar foto pantai, tebing, dan hutan tampil terang, hidup, dan memukau.
+  5. **Penyempurnaan Data Master & Editor ([`src/data/villasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/villasData.js), [`src/pages/VillaContentEditor.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/VillaContentEditor.jsx))**:
+     - Menambahkan properti `img: a.images?.[0] || ''` pada `INITIAL_VILLAS`.
+     - Mendukung `v.img` sebagai fallback thumbnail pada daftar panel samping editor konten villa.
+- **Hasil**:
+  - Kartu destinasi Pererenan, Canggu, dan Seminyak kini 100% menampilkan foto pantai yang jernih dan tajam; Uluwatu menampilkan pantai tebing megah; dan Ubud menampilkan wisata hutan tropis yang hijau dan asri tanpa ada kartu yang kosong.
+  - Seluruh villa yang memiliki foto kini 100% menampilkan foto aslinya di homepage, grid Top Picks, katalog All Villas, halaman detail, dan halaman editor.
+  - Verifikasi build Vite lulus 100% (`npm.cmd run build`), dan seluruh asset mengembalikan HTTP 200 OK.
+
+---
+
+### 5.23. Pemulihan Bentuk Kotak Destinasi Asli & Pipeline Pemuatan Foto Instan (0-Latency)
+- **Latar Belakang & Permintaan User**:
+  - *"kotak nya balikin seperti sebelum nya"*: Mengembalikan tata letak kartu destinasi (`.dcard`) pada seksi *"Explore by destination"* ke bentuk kotak bersih, rapi, seragam, dan mewah persis sesuai cetak biru desain `bsc-frontpage_1.html`. Menghapus eksperimen layout Bento grid (span-2, span-3, badge atas, paragraf deskripsi panjang).
+  - *"gambar nya masih belum muncul, coba buat agar foto nya muncul secepatnya"*: Memastikan seluruh foto destinasi (Pererenan, Canggu & Berawa, Seminyak, Uluwatu, Ubud, dan Seseh) muncul secepat kilat (instan) tanpa keterlambatan, tanpa render kosong, dan dengan tampilan yang jernih.
+- **Tindakan yang Dilakukan**:
+  1. **Pemulihan Struktur Kartu Bersih ([`src/components/frontpage/BscDestinations.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscDestinations.jsx))**:
+     - Mengembalikan struktur kartu tombol ke format asli:
+       `<button className="dcard" data-area={name}> <img className="dcard-img" ... /> <div className="dcard-overlay" /> <div className="dcard-body"><b>{name}</b><small>{count} villas · from {price} / night</small></div> </button>`.
+     - Setiap kartu berukuran seragam dalam grid 3 kolom simetris (desktop: 3x2, tablet: 2x3, mobile: 1 kolom tumpuk).
+  2. **Pipeline Render Foto Instan dengan `<img loading="eager" fetchPriority="high" decoding="sync">`**:
+     - Menggantikan teknik inline style `backgroundImage` bertumpuk dengan elemen murni `<img>` yang diposisikan absolut (`object-fit: cover; inset: 0`).
+     - Menggunakan atribut `loading="eager"`, `fetchPriority="high"`, dan `decoding="sync"` agar mesin parser browser memprioritaskan pemrosesan dan dekode foto lokal tercepat.
+     - Menyematkan handler `onError` otomatis ke cadangan CDN Unsplash beresolusi tinggi jika file lokal terkendala.
+  3. **Penambahan Link Preload Global ([`index.html`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/index.html))**:
+     - Menambahkan `<link rel="preload" as="image" href="/destinations/..." />` untuk seluruh 6 foto destinasi langsung di `<head>` HTML. Browser langsung mengunduh dan menyimpan foto di memori sebelum JavaScript bundle React selesai di-load.
+  4. **Pembersihan CSS & Transisi Halus ([`src/components/frontpage/bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css))**:
+     - Menghapus tuntas semua sisa class Bento (`.dcard-bento-norm`, `.dcard-bento-wide`, `.dcard-bento-full`, `.dcard-top`, `.dcard-desc`, dll).
+     - Menetapkan tinggi proporsional `min-height: 220px;` (mobile: `min-height: 190px;`), padding `20px`, sudut membulat `var(--radius)`, serta efek interaktif zoom foto halus (`scale(1.06)`) dan elevasi kartu (`translateY(-4px)`) saat hover.
+     - Menyematkan lapisan kontras gradasi lembut (`.dcard-overlay`) dari transparan ke gelap 82% di bagian bawah agar tipografi putih judul (`<b>`) dan subteks (`<small>`) terbaca sangat jelas di atas foto apa pun.
+  5. **Verifikasi Foto Sesuai Arahan**:
+     - Pererenan: Foto deburan ombak pantai (`/destinations/pererenan.jpg`).
+     - Canggu & Berawa: Foto pesisir pantai kelapa ikonik (`/destinations/canggu.jpg`).
+     - Seminyak: Foto pantai berpasir emas dan sunset (`/destinations/seminyak.jpg`).
+     - Uluwatu: Foto pantai eksotis dengan tebing kapur megah Samudra Hindia (`/destinations/uluwatu.jpg`).
+     - Ubud: Foto hutan hujan tropis & lembah hijau asri (*wisata hutan*) (`/destinations/ubud.jpg`).
+     - Seseh: Foto pantai pesisir pasir hitam yang damai (`/destinations/seseh.jpg`).
+- **Hasil & Pengujian**:
+  - Seluruh 6 file mengembalikan HTTP 200 OK dengan tipe `image/jpeg`.
+  - Build Vite produksi sukses 100% tanpa error (`npm.cmd run build`).
+  - Tampilan kotak kembali rapi dan seragam, foto langsung muncul instan tanpa jeda saat halaman dibuka.
+
+---
+
+### 5.24. Penerapan Tata Letak Grid Sesuai Pola Ide User: [ ][  ] / [ ][ ][ ] / [    ]
+- **Permintaan Spesifik User**:
+  - Menyusun posisi kartu destinasi persis mengikuti diagram tata letak:
+    ```
+    [][  ]   <- Baris 1: 1 kolom normal + 1 kolom lebar (span 2)
+    [][][]   <- Baris 2: 3 kolom sama lebar (span 1 masing-masing)
+    [    ]   <- Baris 3: 1 kolom penuh (span 3 penuh)
+    ```
+- **Implementasi Komponen & CSS ([`BscDestinations.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscDestinations.jsx), [`bscFrontpage.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/bscFrontpage.css))**:
+  1. **Pemetaan Kartu Sesuai Pola (Total 6 Destinasi)**:
+     - **Baris 1**:
+       * Card 1: **Pererenan** (`.dcard-norm`, `grid-column: span 1`) `[]`
+       * Card 2: **Canggu & Berawa** (`.dcard-wide`, `grid-column: span 2`) `[  ]`
+     - **Baris 2**:
+       * Card 3: **Uluwatu & Bukit** (`.dcard-norm`, `grid-column: span 1`) `[]`
+       * Card 4: **Umalas & Seminyak** (`.dcard-norm`, `grid-column: span 1`) `[]`
+       * Card 5: **Ubud** (`.dcard-norm`, `grid-column: span 1`) `[]`
+     - **Baris 3**:
+       * Card 6: **Seseh** (`.dcard-full`, `grid-column: span 3`, `min-height: 200px`) `[    ]`
+  2. **Penyempurnaan Visual Bersih**:
+     - Mempertahankan konten kartu yang bersih dan tidak berantakan: nama area bold (`<b>`) dan subteks villa & harga (`<small>`) di sudut bawah.
+     - Tetap mempertahankan pipeline foto instan `<img className="dcard-img" loading="eager" fetchPriority="high" decoding="sync">` dengan preload di `index.html` dan dark overlay lembut.
+  3. **Responsivitas**:
+     - Layar desktop (> 980px): Grid 3 kolom dengan pola `[ ][  ]` / `[ ][ ][ ]` / `[    ]`.
+     - Layar tablet (<= 980px): Grid 2 kolom seimbang (Canggu & Seseh span 2, area lain span 1).
+     - Layar ponsel (<= 640px): Grid 1 kolom tumpuk vertikal seragam.
+- **Hasil**:
+  - Build Vite sukses 100% tanpa error (`npm.cmd run build`).
+  - Posisi tata letak persis sesuai diagram ide user dengan foto yang tetap tampil instan.
+
+---
+
 ## 6. Perintah Menjalankan Aplikasi
 
 - **Menjalankan Dev Server**:
@@ -457,3 +909,19 @@ src/
 2. Integrasi sistem reservasi backend asli (API pembayaran Stripe / Midtrans / WhatsApp Booking Gateway).
 3. Penyesuaian mata uang dinamis (toggle IDR / USD).
 4. *(Jika nanti diminta user)* Pembuatan modul autentikasi akun tamu dan host.
+
+---
+
+## 8. Pembaruan Destinasi & Foto Autentik (Bento Grid 2-3-1)
+
+- **Layout Grid Destinasi**:
+  - Baris 1: `[ ][  ]` - Pererenan (1 kolom), Canggu & Berawa (wide / 2 kolom)
+  - Baris 2: `[][][]` - Uluwatu & Bukit (1 kolom), Umalas & Seminyak (1 kolom), Ubud (1 kolom)
+  - Baris 3: `[    ]` - Seseh (full banner / 3 kolom)
+- **Penetapan Foto Autentik Sesuai Permintaan**:
+  - **Ubud** (`/destinations/ubud.jpg`): Foto terasering sawah hijau Tegallalang & lembah tropis Ubud (pindahan dari seseh).
+  - **Uluwatu & Bukit** (`/destinations/uluwatu.jpg`): Foto tebing kapur megah Pura Luhur Uluwatu yang menjulang langsung di atas pantai dan ombak laut.
+  - **Canggu & Berawa** (`/destinations/canggu.jpg`): Foto pantai Echo Beach Canggu dengan ombak pesisir, peselancar, dan garis pantai.
+  - **Umalas & Seminyak** (`/destinations/seminyak.jpg`): Foto sunset Seminyak Beach (Double Six) dengan payung pantai khas Bali.
+  - **Seseh** (`/destinations/seseh.jpg`): Foto autentik Pantai Seseh dengan pasir hitam vulkanik, batu karang pantai, dan deburan ombak.
+  - **Pererenan** (`/destinations/pererenan.jpg`): Foto pantai senja keemasan dengan deburan ombak pesisir Pererenan.

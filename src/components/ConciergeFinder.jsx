@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { formatUSD } from '../data/villasData';
+import { formatBscMoney } from '../utils/bscFormat';
 
 /**
  * Komponen ConciergeFinder (Concierge Matching)
@@ -17,8 +17,10 @@ import { formatUSD } from '../data/villasData';
  * @param {Object[]} props.allVillas - Seluruh daftar data villa yang tersedia
  * @param {Object} [props.currentVilla] - Data villa yang sedang dilihat di halaman detail
  * @param {Function} props.onSelectVilla - Callback saat tamu memilih villa hasil rekomendasi
+ * @param {string} [props.currency='USD'] - Pilihan mata uang aktif ('USD' atau 'IDR')
+ * @returns {React.JSX.Element} Elemen JSX Concierge Finder
  */
-export default function ConciergeFinder({ allVillas = [], currentVilla, onSelectVilla }) {
+export default function ConciergeFinder({ allVillas = [], currentVilla, onSelectVilla, currency = 'USD' }) {
   // State untuk form pencarian finder
   const [area, setArea] = useState('Ubud');
   const [guests, setGuests] = useState('4');
@@ -227,7 +229,7 @@ export default function ConciergeFinder({ allVillas = [], currentVilla, onSelect
                         className="btn btn-light finder-chip-btn" 
                         onClick={() => handleOpenVilla(v.id)}
                       >
-                        {v.name} · {v.beds}BR ({formatUSD(v.price)})
+                        {v.name} · {v.beds}BR ({formatBscMoney(v.price, currency)})
                       </button>
                     ))}
                   </div>
@@ -256,7 +258,7 @@ export default function ConciergeFinder({ allVillas = [], currentVilla, onSelect
                           </p>
                           <div className="finder-card-bottom">
                             <div className="finder-card-price">
-                              <strong>{formatUSD(v.price)}</strong> <span>/ night</span>
+                              <strong>{formatBscMoney(v.price, currency)}</strong> <span>/ night</span>
                             </div>
                             <span className="finder-card-action">View Villa →</span>
                           </div>
@@ -316,7 +318,7 @@ export default function ConciergeFinder({ allVillas = [], currentVilla, onSelect
                           </p>
                           <div className="finder-card-bottom">
                             <div className="finder-card-price">
-                              <strong>{formatUSD(v.price)}</strong> <span>/ night</span>
+                              <strong>{formatBscMoney(v.price, currency)}</strong> <span>/ night</span>
                             </div>
                             <span className="finder-card-action">View Villa →</span>
                           </div>

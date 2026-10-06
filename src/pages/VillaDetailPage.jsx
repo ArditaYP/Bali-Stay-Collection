@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { formatUSD, calculateNights, checkDateRangeAvailability } from '../data/villasData';
+import { calculateNights, checkDateRangeAvailability } from '../data/villasData';
+import { formatBscMoney } from '../utils/bscFormat';
 import GalleryModal from '../components/Modals/GalleryModal';
 import BookingModal from '../components/Modals/BookingModal';
 import CalendarPicker from '../components/CalendarPicker';
@@ -29,6 +30,9 @@ const REVIEW_PREVIEW_COUNT = 6;
  * @param {boolean} props.isSaved - Status apakah villa ini disimpan di wishlist
  * @param {Function} props.onToggleSave - Callback untuk toggle wishlist
  * @param {Object} props.searchParams - Parameter tanggal dan tamu awal dari pencarian
+ * @param {string} [props.currency='USD'] - Mata uang aktif ('USD' atau 'IDR')
+ * @param {Function} [props.onCurrencyChange] - Callback perubahan mata uang global
+ * @returns {React.JSX.Element} Elemen JSX Halaman Detail Villa
  */
 export default function VillaDetailPage({
   villa,
@@ -37,7 +41,9 @@ export default function VillaDetailPage({
   onSelectSimilarVilla,
   isSaved,
   onToggleSave,
-  searchParams
+  searchParams,
+  currency = 'USD',
+  onCurrencyChange
 }) {
   // State untuk tanggal dan jumlah tamu pada widget reservasi
   const [checkIn, setCheckIn] = useState(searchParams.checkIn || '2026-10-12');
@@ -349,11 +355,13 @@ export default function VillaDetailPage({
 
           {/* Section: Deskripsi Villa */}
           <div className="section">
-            <p className="desc-text">{villa.description}</p>
+            <p className="desc-text" style={{ whiteSpace: 'pre-line' }}>
+              {typeof villa.description === 'string' ? villa.description.replace(/\\n/g, '\n') : villa.description}
+            </p>
             {showFullDesc && (
               <div className="desc-full-wrapper" style={{ marginTop: '14px', whiteSpace: 'pre-line' }}>
-                <p className="desc-text">
-                  {villa.fullDesc || "The villa sits a 7-minute drive from local beach clubs and restaurants, but far enough from the main strip to stay peaceful at night. Our housekeeping team visits daily, and a dedicated host is reachable by WhatsApp throughout your stay."}
+                <p className="desc-text" style={{ whiteSpace: 'pre-line' }}>
+                  {typeof villa.fullDesc === 'string' ? villa.fullDesc.replace(/\\n/g, '\n') : (villa.fullDesc || "The villa sits a 7-minute drive from local beach clubs and restaurants, but far enough from the main strip to stay peaceful at night. Our housekeeping team visits daily, and a dedicated host is reachable by WhatsApp throughout your stay.")}
                 </p>
               </div>
             )}
@@ -422,7 +430,7 @@ export default function VillaDetailPage({
         <div className="booking-col" id="booking-widget-section">
           <div className="booking-card">
             <div className="booking-price">
-              <span className="amt">{formatUSD(villa.price)}</span>
+              <span className="amt">{formatBscMoney(villa.price, currency)}</span>
               <span className="unit">/ night</span>
               <span className="booking-rating">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="#141413">
@@ -497,20 +505,20 @@ export default function VillaDetailPage({
             {/* Kalkulasi Otomatis Rincian Biaya */}
             <div className="price-breakdown">
               <div className="price-row">
-                <span>{formatUSD(villa.price)} x {nights} nights</span>
-                <span>{formatUSD(subtotal)}</span>
+                <span>{formatBscMoney(villa.price, currency)} x {nights} nights</span>
+                <span>{formatBscMoney(subtotal, currency)}</span>
               </div>
               <div className="price-row">
                 <span>Cleaning fee</span>
-                <span>{formatUSD(cleaningFee)}</span>
+                <span>{formatBscMoney(cleaningFee, currency)}</span>
               </div>
               <div className="price-row">
                 <span>Direct service fee</span>
-                <span style={{ color: '#2F6B3A', fontWeight: 600 }}>$0</span>
+                <span style={{ color: '#2F6B3A', fontWeight: 600 }}>{currency === 'IDR' ? 'Rp 0' : '$0'}</span>
               </div>
               <div className="price-row total">
                 <span>Total</span>
-                <span>{formatUSD(total)}</span>
+                <span>{formatBscMoney(total, currency)}</span>
               </div>
             </div>
           </div>
@@ -659,6 +667,7 @@ export default function VillaDetailPage({
           allVillas={allVillas}
           currentVilla={villa}
           onSelectVilla={onSelectSimilarVilla}
+          currency={currency}
         />
       </section>
 
@@ -707,7 +716,7 @@ export default function VillaDetailPage({
                   <div className="name">{simVilla.name}</div>
                   <div className="loc">{simVilla.location}, Bali</div>
                   <div className="price">
-                    {formatUSD(simVilla.price)} <span>/ night</span>
+                    {formatBscMoney(simVilla.price, currency)} <span>/ night</span>
                   </div>
                 </div>
               </div>
@@ -719,7 +728,7 @@ export default function VillaDetailPage({
       {/* Floating Bottom Bar Khusus Layar Ponsel (Mobile Devices) */}
       <div className="mobile-bottom-bar">
         <div className="bottom-price">
-          <strong>{formatUSD(villa.price)} <small style={{ fontWeight: 400, color: 'var(--muted)', fontSize: '12px' }}>/ night</small></strong>
+          <strong>{formatBscMoney(villa.price, currency)} <small style={{ fontWeight: 400, color: 'var(--muted)', fontSize: '12px' }}>/ night</small></strong>
           <span>{nights} nights · {checkIn.slice(5)} – {checkOut.slice(5)}</span>
         </div>
         <button
@@ -760,6 +769,7 @@ export default function VillaDetailPage({
         checkOut={checkOut}
         nights={nights}
         guests={selectedGuests}
+        currency={currency}
         onBookingSuccess={(bookingRecord) => {
           console.log('Reservasi baru berhasil disimpan:', bookingRecord);
         }}

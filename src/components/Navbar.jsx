@@ -12,8 +12,18 @@ import React, { useState } from 'react';
  * @param {number} props.wishlistCount - Jumlah villa yang saat ini tersimpan di wishlist
  * @param {Function} props.onOpenWishlist - Fungsi callback untuk membuka drawer / modal wishlist
  * @param {Function} props.onOpenListVilla - Fungsi callback untuk membuka modal 'List Your Villa'
+ * @param {string} [props.currency='USD'] - Mata uang aktif ('USD' atau 'IDR')
+ * @param {Function} [props.onCurrencyChange] - Fungsi callback untuk mengubah preferensi mata uang
+ * @returns {React.JSX.Element} Elemen JSX Navbar atas
  */
-export default function Navbar({ onGoHome, wishlistCount = 0, onOpenWishlist, onOpenListVilla }) {
+export default function Navbar({
+  onGoHome,
+  wishlistCount = 0,
+  onOpenWishlist,
+  onOpenListVilla,
+  currency = 'USD',
+  onCurrencyChange
+}) {
   // State untuk membuka / menutup menu navigasi mobile
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -95,6 +105,26 @@ export default function Navbar({ onGoHome, wishlistCount = 0, onOpenWishlist, on
           )}
         </button>
 
+        {/* Pill Pengalih Mata Uang USD / IDR */}
+        <div className="cur" role="group" aria-label="Currency">
+          <button
+            type="button"
+            className={currency === 'USD' ? 'active' : ''}
+            aria-pressed={currency === 'USD'}
+            onClick={() => onCurrencyChange && onCurrencyChange('USD')}
+          >
+            USD
+          </button>
+          <button
+            type="button"
+            className={currency === 'IDR' ? 'active' : ''}
+            aria-pressed={currency === 'IDR'}
+            onClick={() => onCurrencyChange && onCurrencyChange('IDR')}
+          >
+            IDR
+          </button>
+        </div>
+
         {/* Tombol Pendaftaran Villa bagi Partner Host (Desktop) */}
         <button 
           type="button" 
@@ -125,6 +155,32 @@ export default function Navbar({ onGoHome, wishlistCount = 0, onOpenWishlist, on
 
       {/* Drawer Menu Navigasi Layar HP & Tablet */}
       <div className={`mobile-nav-menu ${isMobileMenuOpen ? 'open' : ''}`}>
+        <div style={{ padding: '12px 18px 4px' }}>
+          <div className="cur" role="group" aria-label="Mobile Currency">
+            <button
+              type="button"
+              className={currency === 'USD' ? 'active' : ''}
+              aria-pressed={currency === 'USD'}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                onCurrencyChange && onCurrencyChange('USD');
+              }}
+            >
+              USD
+            </button>
+            <button
+              type="button"
+              className={currency === 'IDR' ? 'active' : ''}
+              aria-pressed={currency === 'IDR'}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                onCurrencyChange && onCurrencyChange('IDR');
+              }}
+            >
+              IDR
+            </button>
+          </div>
+        </div>
         <button type="button" onClick={() => handleScrollToSection('results-section')}>
           Explore All Villas
         </button>

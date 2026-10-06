@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { formatUSD } from '../../data/villasData';
+import { formatBscMoney } from '../../utils/bscFormat';
 
 /**
  * Komponen WishlistDrawer
@@ -12,13 +12,16 @@ import { formatUSD } from '../../data/villasData';
  * @param {Object[]} props.savedVillas - Array objek villa yang ada di wishlist
  * @param {Function} props.onSelectVilla - Callback untuk membuka halaman detail villa tertentu
  * @param {Function} props.onRemoveFromWishlist - Callback untuk menghapus villa dari wishlist
+ * @param {string} [props.currency='USD'] - Pilihan mata uang aktif ('USD' atau 'IDR')
+ * @returns {React.JSX.Element|null} Elemen JSX Drawer Wishlist
  */
 export default function WishlistDrawer({
   isOpen,
   onClose,
   savedVillas = [],
   onSelectVilla,
-  onRemoveFromWishlist
+  onRemoveFromWishlist,
+  currency = 'USD'
 }) {
   useEffect(() => {
     if (isOpen) {
@@ -48,6 +51,11 @@ export default function WishlistDrawer({
         </button>
 
         <div style={{ marginBottom: '20px' }}>
+          <img 
+            src="/logo.svg" 
+            alt="Bali Stay Collection" 
+            style={{ height: '24px', width: 'auto', marginBottom: '8px', display: 'block' }} 
+          />
           <h2 style={{ fontSize: '22px', fontWeight: 700, margin: '0 0 4px' }}>
             Saved Villas ({savedVillas.length})
           </h2>
@@ -88,7 +96,7 @@ export default function WishlistDrawer({
                 <div>
                   <h4 style={{ fontSize: '14px', fontWeight: 700, margin: '0 0 2px' }}>{villa.name}</h4>
                   <p style={{ fontSize: '12px', color: 'var(--muted)', margin: '0 0 4px' }}>{villa.location} &middot; {villa.beds} beds</p>
-                  <b style={{ fontSize: '13px', color: 'var(--ink)' }}>{formatUSD(villa.price)} <span style={{ fontSize: '11px', fontWeight: 400, color: 'var(--muted)' }}>/ night</span></b>
+                  <b style={{ fontSize: '13px', color: 'var(--ink)' }}>{formatBscMoney(villa.price, currency)} <span style={{ fontSize: '11px', fontWeight: 400, color: 'var(--muted)' }}>/ night</span></b>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                   <button
