@@ -7,11 +7,12 @@ import VillaContentEditor from './pages/VillaContentEditor';
 import WishlistDrawer from './components/Modals/WishlistDrawer';
 import ListVillaModal from './components/Modals/ListVillaModal';
 import { INITIAL_VILLAS, getDefaultDate } from './data/villasData';
-import { BSC_VILLAS } from './data/bscVillasData';
+import { BSC_VILLAS, ACTIVE_AIRBNB_VILLA_IDS, AIRBNB_ONLY_VILLA_IDS } from './data/bscVillasData';
 
 /** Pemetaan ID alias antara katalog villa dan data asli airbnbVillas */
 const VILLA_ALIAS_MAP = {
-  'villa-habitas': 'the-palms-villa-canggu',
+  'villa-habitas': 'villa-habitas',
+  'the-palms-villa-canggu': 'villa-habitas',
   'st-lau': 'st-lau-ubud',
   'balangan-cliff-villa': 'iconic-cliff-top-villa',
   'villa-angkasa': 'angkasa-ubud',
@@ -32,11 +33,52 @@ const VILLA_ALIAS_MAP = {
  * - Parameter pencarian terintegrasi
  */
 export default function App() {
-  // State data master villa (bisa bertambah jika host mendaftarkan villa baru atau diedit di editor)
+  // State data master villa (menggabungkan data segar INITIAL_VILLAS dengan data tersimpan di LocalStorage)
   const [villas, setVillas] = useState(() => {
     const saved = localStorage.getItem('bsc_villas');
-    return saved ? JSON.parse(saved) : INITIAL_VILLAS;
+    if (!saved) return INITIAL_VILLAS;
+    try {
+      const parsed = JSON.parse(saved);
+      const savedIds = new Set(parsed.map(v => v.id));
+      const newVillas = INITIAL_VILLAS.filter(v => !savedIds.has(v.id));
+      const updated = parsed.map(v => {
+        const fresh = INITIAL_VILLAS.find(iv => iv.id === v.id);
+        if (fresh) {
+          return {
+            ...fresh,
+            ...v,
+            images: fresh.images?.length ? fresh.images : v.images,
+            img: fresh.img || v.img,
+            reviews: fresh.reviews?.length ? fresh.reviews : v.reviews,
+            rating: fresh.rating ?? v.rating,
+            reviewsCount: fresh.reviewsCount ?? v.reviewsCount,
+            amenities: fresh.amenities?.length ? fresh.amenities : v.amenities,
+            price: fresh.price || v.price,
+            description: fresh.description || v.description,
+            shortDesc: fresh.shortDesc || v.shortDesc,
+            fullDesc: fresh.fullDesc || v.fullDesc,
+            descriptionSections: fresh.descriptionSections || v.descriptionSections
+          };
+        }
+        return v;
+      });
+      return [...updated, ...newVillas];
+    } catch {
+      return INITIAL_VILLAS;
+    }
   });
+
+  // Mode filter sementara: hanya menampilkan 13 villa murni dari tautan listing Airbnb
+  // (termasuk 4 villa awal: Habitas, Balangan, St. Lau, Angkasa + 9 villa baru)
+  const isAirbnbOnlyMode = true;
+
+  // Daftar villa aktif untuk katalog Explore (13 villa murni Airbnb)
+  const activeCatalogVillas = useMemo(() => {
+    if (!isAirbnbOnlyMode) return BSC_VILLAS;
+    return AIRBNB_ONLY_VILLA_IDS
+      .map(id => BSC_VILLAS.find(bv => bv.id === id))
+      .filter(Boolean);
+  }, [isAirbnbOnlyMode]);
 
   // State navigasi halaman ('explore' | 'detail' | 'editor')
   const [currentPage, setCurrentPage] = useState(() => {
@@ -124,6 +166,7 @@ export default function App() {
   /**
    * Menangani toggle (tambah atau hapus) ID villa dari daftar wishlist
    * @param {string} villaId - ID unik villa yang di-klik love
+   * @returns {void}
    */
   const handleToggleSaveVilla = (villaId) => {
     setSavedVillaIds((prev) => {
@@ -139,6 +182,7 @@ export default function App() {
    * Menangani pembukaan halaman detail villa
    * Mengatur villa aktif dan mengubah tampilan ke halaman detail dengan scroll ke atas
    * @param {string} villaId - ID unik villa yang dipilih
+   * @returns {void}
    */
   const handleOpenVillaDetail = (villaId) => {
     setActiveVillaId(villaId);
@@ -148,6 +192,7 @@ export default function App() {
 
   /**
    * Menavigasikan pengguna ke halaman editor konten villa
+   * @returns {void}
    */
   const handleOpenEditor = () => {
     window.location.hash = 'editor';
@@ -157,6 +202,7 @@ export default function App() {
 
   /**
    * Mengembalikan navigasi pengguna ke halaman utama (Katalog Explore)
+   * @returns {void}
    */
   const handleGoHome = () => {
     if (window.location.hash.includes('editor')) {
@@ -169,6 +215,7 @@ export default function App() {
   /**
    * Menambahkan villa baru hasil pendaftaran partner ke daftar katalog
    * @param {Object} newVillaData - Data villa yang diinput oleh pemilik villa
+   * @returns {void}
    */
   const handleAddHostVilla = (newVillaData) => {
     const newVilla = {
@@ -235,7 +282,10 @@ export default function App() {
           name: bscItem?.name || aliased.name,
           category: bscItem?.tier || aliased.category,
           price: bscItem?.price || aliased.price,
-          img: bscItem?.img || aliased.img || aliased.images?.[0] || ''
+          img: bscItem?.img || aliased.img || aliased.images?.[0] || '',
+          shortDesc: aliased.shortDesc || bscItem?.desc,
+          fullDesc: aliased.fullDesc || aliased.description,
+          descriptionSections: aliased.descriptionSections || null
         };
       }
     }
@@ -296,12 +346,14 @@ export default function App() {
   // Mendapatkan daftar objek villa yang ada di wishlist
   const savedVillasList = villas.filter(v => savedVillaIds.includes(v.id));
 
-  // Menghasilkan daftar lengkap villa untuk editor konten (mencakup 51 BSC villas dan initial/added villas)
+  // Menghasilkan daftar lengkap villa untuk editor konten (mencakup 13 villa Airbnb di urutan teratas)
   const allEditorVillas = useMemo(() => {
-    const bscFullList = BSC_VILLAS.map(bv => resolveVilla(bv.id));
-    const existingIds = new Set(bscFullList.map(v => v.id));
+    const priorityList = AIRBNB_ONLY_VILLA_IDS.map(id => resolveVilla(id)).filter(Boolean);
+    const priorityIds = new Set(priorityList.map(v => v.id));
+    const otherBscList = BSC_VILLAS.map(bv => resolveVilla(bv.id)).filter(v => !priorityIds.has(v.id));
+    const existingIds = new Set([...priorityList, ...otherBscList].map(v => v.id));
     const extraVillas = villas.filter(v => !existingIds.has(v.id));
-    return [...bscFullList, ...extraVillas];
+    return [...priorityList, ...otherBscList, ...extraVillas];
   }, [villas, resolveVilla]);
 
   return (
@@ -334,7 +386,7 @@ export default function App() {
         />
       ) : currentPage === 'explore' ? (
         <ExplorePage 
-          villas={BSC_VILLAS}
+          villas={activeCatalogVillas}
           onSelectVilla={handleOpenVillaDetail}
           savedVillaIds={savedVillaIds}
           onToggleSave={handleToggleSaveVilla}
@@ -349,7 +401,7 @@ export default function App() {
       ) : (
         <VillaDetailPage 
           villa={currentVilla}
-          allVillas={villas}
+          allVillas={activeCatalogVillas.map(bv => resolveVilla(bv.id))}
           onBackToCatalog={handleGoHome}
           onSelectSimilarVilla={handleOpenVillaDetail}
           isSaved={savedVillaIds.includes(currentVilla.id)}

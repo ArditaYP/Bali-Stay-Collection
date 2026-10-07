@@ -19,6 +19,40 @@ export const CONFIG = {
   videoEmbed: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
 };
 
+/**
+ * Daftar 13 ID villa yang berasal langsung dari tautan listing Airbnb
+ * (termasuk 4 villa awal: Habitas, Balangan, St. Lau, Angkasa + 9 villa baru)
+ */
+export const AIRBNB_ONLY_VILLA_IDS = [
+  'villa-habitas',
+  'tranquil-sanctuary-pererenan',
+  'tropical-canggu-villa',
+  'luxe-beach-villa-seminyak',
+  'tropical-elegance-seseh',
+  'balangan-cliff-villa',
+  'yellow-moon-uluwatu',
+  'st-lau',
+  'casa-kaya-bingin',
+  'luxury-tropical-bingin',
+  'chic-tropical-bingin',
+  'five-bedroom-designer-umalas',
+  'villa-angkasa'
+];
+
+/**
+ * Daftar ID villa aktif dengan data autentik Airbnb
+ * (13 villa baru hasil import link Airbnb + 5 villa kurasi dari website sebelumnya).
+ * Disusun berurutan sehingga 13 villa baru berada di urutan awal untuk kemudahan pengecekan.
+ */
+export const ACTIVE_AIRBNB_VILLA_IDS = [
+  ...AIRBNB_ONLY_VILLA_IDS,
+  'villa-samudra-canggu',
+  'villa-kayu-raja-seminyak',
+  'villa-cendana-seminyak',
+  'cliffside-panorama-uluwatu',
+  'mandapa-jungle-villa'
+];
+
 export const TIERS_INFO = {
   Standard: {
     name: 'Standard',
@@ -921,19 +955,19 @@ export const BSC_VILLAS = [
       "#CBB9C9",
       "#E9DCE6"
     ],
-    "img": "/airbnb/the-palms-villa-canggu/photos/photo-01.jpg",
+    "img": "/airbnb/villa-habitas/photos/photo-01.jpg",
     "why": "Built for slow mornings and easy evenings with private lagoon pool, king beds in every room, and walkable cafes in Pererenan.",
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
-    "pick": false,
+    "pick": true,
     "desc": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features architect-designed and rice-field views.",
     "know": [
       "Walkable to trendy cafes and restaurants in Pererenan.",
       "A nanny service and pool fence are available on request through our concierge.",
       "Free parking fits up to 2 cars plus scooters."
     ],
-    "aliasId": "the-palms-villa-canggu"
+    "aliasId": "villa-habitas"
   },
   {
     "id": "villa-surga",
@@ -2001,7 +2035,7 @@ export const BSC_VILLAS = [
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
-    "pick": false,
+    "pick": true,
     "desc": "3-bedroom private pool villa in Canggu & Berawa, steps from Echo Beach with custom rattan furnishings and lush garden.",
     "know": [
       "5-minute stroll to Echo Beach surf break.",
@@ -2124,7 +2158,7 @@ export const BSC_VILLAS = [
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
-    "pick": false,
+    "pick": true,
     "desc": "4-bedroom luxury cliff-edge villa in Uluwatu, perched above Bingin Beach with infinity pool and sunset panorama.",
     "know": [
       "Uninterrupted 180° Indian Ocean sunset view.",
@@ -2171,6 +2205,351 @@ export const BSC_VILLAS = [
     "know": [
       "Spectacular open-concept bamboo architecture.",
       "Unobstructed jungle and Ayung River valley view."
+    ]
+  },
+  {
+    "id": "tranquil-sanctuary-pererenan",
+    "name": "Tranquil 1BR Sanctuary in Prime Pererenan",
+    "area": "Pererenan",
+    "beds": 1,
+    "baths": 2,
+    "guests": 2,
+    "price": 160,
+    "tier": "Standard",
+    "trips": [
+      "Couples",
+      "Honeymoon",
+      "Quiet retreat"
+    ],
+    "setting": [
+      "Garden setting"
+    ],
+    "am": [
+      "Private pool",
+      "High-speed WiFi",
+      "Kitchenette",
+      "Daily housekeeping"
+    ],
+    "tone": [
+      "#CBB9C9",
+      "#E9DCE6"
+    ],
+    "img": "/airbnb/tranquil-sanctuary-pererenan/photos/photo-01.jpg",
+    "why": "A serene 1-bedroom oasis in prime Pererenan with private pool and effortless walk to artisan cafes.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": false,
+    "desc": "1-bedroom intimate sanctuary in prime Pererenan for up to 2 guests with private pool.",
+    "know": [
+      "Located in a tranquil lane with minimal traffic.",
+      "Walking distance to top Pererenan cafés and bakeries."
+    ]
+  },
+  {
+    "id": "tropical-canggu-villa",
+    "name": "Modern Tropical 4BR Villa in Central Canggu",
+    "area": "Canggu & Berawa",
+    "beds": 4,
+    "baths": 4,
+    "guests": 8,
+    "price": 340,
+    "tier": "Deluxe",
+    "trips": [
+      "Friends group",
+      "Family"
+    ],
+    "setting": [
+      "Village setting"
+    ],
+    "am": [
+      "Private pool",
+      "Full kitchen",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/tropical-canggu-villa/photos/photo-01.jpg",
+    "why": "Heart-of-Canggu location, private sparkling pool, and high guest satisfaction rating of 4.93 with 135+ reviews.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "4-bedroom modern tropical villa in central Canggu for up to 8 guests with private pool.",
+    "know": [
+      "Moments from Canggu's best dining and beach clubs.",
+      "Spacious living pavilion perfect for groups."
+    ]
+  },
+  {
+    "id": "luxe-beach-villa-seminyak",
+    "name": "Luxe & Stylish 3BR Villa Near Beach",
+    "area": "Umalas & Seminyak",
+    "beds": 3,
+    "baths": 4,
+    "guests": 6,
+    "price": 310,
+    "tier": "Deluxe",
+    "trips": [
+      "Friends group",
+      "Beach lovers"
+    ],
+    "setting": [
+      "Short walk to beach"
+    ],
+    "am": [
+      "Private pool",
+      "Near the beach",
+      "Full kitchen",
+      "Air conditioning"
+    ],
+    "tone": [
+      "#D5B8A8",
+      "#EFDCD2"
+    ],
+    "img": "/airbnb/luxe-beach-villa-seminyak/photos/photo-01.jpg",
+    "why": "Prime Seminyak location just steps from the sand, sunset beach clubs, and boutique shopping.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "3-bedroom stylish villa in Seminyak steps from the beach for up to 6 guests with pool.",
+    "know": [
+      "Steps from Seminyak Beach and famous beach clubs.",
+      "Open-air tropical living area with private pool."
+    ]
+  },
+  {
+    "id": "tropical-elegance-seseh",
+    "name": "Tropical Elegance 2BR Villa by Beach",
+    "area": "Seseh",
+    "beds": 2,
+    "baths": 3,
+    "guests": 4,
+    "price": 240,
+    "tier": "Deluxe",
+    "trips": [
+      "Couples",
+      "Quiet retreat"
+    ],
+    "setting": [
+      "Coastal village",
+      "Short walk to beach"
+    ],
+    "am": [
+      "Private pool",
+      "Ocean breeze",
+      "High-speed WiFi",
+      "Full kitchen"
+    ],
+    "tone": [
+      "#B8C9B2",
+      "#DCE8D6"
+    ],
+    "img": "/airbnb/tropical-elegance-seseh/photos/photo-01.jpg",
+    "why": "Spectacular 4.98 rating in peaceful Seseh Beach, combining calm village living with immediate beach access.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "2-bedroom elegant villa in Seseh for up to 4 guests with private pool and ocean breezes.",
+    "know": [
+      "Nestled in peaceful Seseh, free from heavy traffic.",
+      "Short stroll to black-sand coastline and coastal walks."
+    ]
+  },
+  {
+    "id": "yellow-moon-uluwatu",
+    "name": "Yellow Moon Tropical Sanctuary",
+    "area": "Uluwatu & Bukit",
+    "beds": 3,
+    "baths": 4,
+    "guests": 6,
+    "price": 390,
+    "tier": "Premium",
+    "trips": [
+      "Friends group",
+      "Surf & Sunsets"
+    ],
+    "setting": [
+      "Hillside breezes"
+    ],
+    "am": [
+      "Private pool",
+      "Ocean breeze",
+      "Full kitchen",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#9FB7C7",
+      "#D5E2EA"
+    ],
+    "img": "/airbnb/yellow-moon-uluwatu/photos/photo-01.jpg",
+    "why": "Sunken lounge, generous timber pool deck, and warm island architecture nestled in Uluwatu.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "3-bedroom tropical sanctuary in Uluwatu for up to 6 guests with pool.",
+    "know": [
+      "Convenient access to top surf breaks in Uluwatu and Padang Padang.",
+      "Sunken outdoor lounge beside the swimming pool."
+    ]
+  },
+  {
+    "id": "casa-kaya-bingin",
+    "name": "CASA KĀYA Tropical Villa",
+    "area": "Uluwatu & Bukit",
+    "beds": 1,
+    "baths": 2,
+    "guests": 2,
+    "price": 175,
+    "tier": "Standard",
+    "trips": [
+      "Couples",
+      "Honeymoon"
+    ],
+    "setting": [
+      "Cliffside village"
+    ],
+    "am": [
+      "Private pool",
+      "High-speed WiFi",
+      "Kitchenette",
+      "Air conditioning"
+    ],
+    "tone": [
+      "#D5E2EA",
+      "#9FB7C7"
+    ],
+    "img": "/airbnb/casa-kaya-bingin/photos/photo-01.jpg",
+    "why": "Boutique 1-bedroom tropical aesthetic sanctuary minutes from Bingin's famous turquoise beaches.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": false,
+    "desc": "1-bedroom boutique villa near Bingin Beach for up to 2 guests with private pool.",
+    "know": [
+      "Minutes from Bingin Beach stairs and cafés.",
+      "Minimalist Mediterranean-inspired architectural details."
+    ]
+  },
+  {
+    "id": "luxury-tropical-bingin",
+    "name": "Luxury 3BR Tropical Villa in Bingin",
+    "area": "Uluwatu & Bukit",
+    "beds": 3,
+    "baths": 4,
+    "guests": 6,
+    "price": 370,
+    "tier": "Premium",
+    "trips": [
+      "Family",
+      "Friends group"
+    ],
+    "setting": [
+      "Near beach"
+    ],
+    "am": [
+      "Private pool",
+      "Full kitchen",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#A9B9C9",
+      "#D5E2EA"
+    ],
+    "img": "/airbnb/luxury-tropical-bingin/photos/photo-01.jpg",
+    "why": "Lush garden pool, premium finishes, and breezy open-plan living right in Bingin.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "3-bedroom luxury villa in Bingin for up to 6 guests with private pool.",
+    "know": [
+      "Surrounded by tropical frangipani and palm trees.",
+      "Easy access to Bingin and Padang Padang beaches."
+    ]
+  },
+  {
+    "id": "chic-tropical-bingin",
+    "name": "2BR Chic Tropical Villa Bingin",
+    "area": "Uluwatu & Bukit",
+    "beds": 2,
+    "baths": 2,
+    "guests": 4,
+    "price": 260,
+    "tier": "Deluxe",
+    "trips": [
+      "Friends group",
+      "Couples"
+    ],
+    "setting": [
+      "Near beach"
+    ],
+    "am": [
+      "Private pool",
+      "High-speed WiFi",
+      "Full kitchen",
+      "Air conditioning"
+    ],
+    "tone": [
+      "#C5D3DC",
+      "#9FB7C7"
+    ],
+    "img": "/airbnb/chic-tropical-bingin/photos/photo-01.jpg",
+    "why": "Polished concrete, warm timber, and 4.97 guest rating minutes from Bingin Beach.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": false,
+    "desc": "2-bedroom chic villa in Bingin for up to 4 guests with private pool.",
+    "know": [
+      "Exceptional 4.97 rating across 30+ verified guest reviews.",
+      "Minutes from Bingin surf breaks and sunset cliff spots."
+    ]
+  },
+  {
+    "id": "five-bedroom-designer-umalas",
+    "name": "Five Bedroom Designer Villa Umalas",
+    "area": "Umalas & Seminyak",
+    "beds": 5,
+    "baths": 5,
+    "guests": 9,
+    "price": 580,
+    "tier": "Luxury",
+    "trips": [
+      "Large group",
+      "Celebration",
+      "Family"
+    ],
+    "setting": [
+      "Garden estate"
+    ],
+    "am": [
+      "Private pool",
+      "Dedicated staff",
+      "Full kitchen",
+      "Air conditioning"
+    ],
+    "tone": [
+      "#DFD3C3",
+      "#D5B8A8"
+    ],
+    "img": "/airbnb/five-bedroom-designer-umalas/photos/photo-01.jpg",
+    "why": "Grand 5-bedroom architectural estate with massive pool and dedicated staff right next to Berawa.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "5-bedroom designer estate in Umalas for up to 9 guests with huge pool and staff.",
+    "know": [
+      "Features large 18-meter swimming pool and manicured estate grounds.",
+      "Prime location bridging quiet Umalas and vibrant Berawa."
     ]
   }
 ];

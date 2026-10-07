@@ -1594,6 +1594,46 @@ h1.villa-title {
   color: var(--ink);
 }
 
+.show-more-inline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 4px 0;
+  font-size: 14.5px;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--ink, #141413);
+  font-family: inherit;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.show-more-inline-btn:hover {
+  opacity: 0.8;
+  color: var(--primary, #E4572E);
+}
+
+.show-more-inline-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.desc-expanded-wrapper {
+  animation: fadeInDown 0.25s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .sleep-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -2493,6 +2533,18 @@ mark.review-highlight {
 
   .rm-list {
     overflow: visible;
+  }
+}
+
+/* ===== Modal Popup Penjelasan Villa (About this space) ===== */
+.modal-content.desc-modal-content {
+  max-width: 680px;
+  padding: 32px 32px 36px;
+}
+
+@media (max-width: 768px) {
+  .modal-content.desc-modal-content {
+    padding: 24px 18px 28px !important;
   }
 }
 

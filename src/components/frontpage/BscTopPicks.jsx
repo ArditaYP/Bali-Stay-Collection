@@ -28,9 +28,12 @@ export default function BscTopPicks({
   onSelectVilla
 }) {
   // Filter villa yang ditandai sebagai pick: true (mengecualikan Villa Habitas) dan membatasi tepat 9 villa
-  const topPickedVillas = villas
-    .filter(v => v.pick && v.id !== 'villa-habitas')
-    .slice(0, 9);
+  const topPickedVillas = React.useMemo(() => {
+    const picked = villas.filter(v => v.pick && v.id !== 'villa-habitas');
+    if (picked.length >= 9) return picked.slice(0, 9);
+    const others = villas.filter(v => !v.pick && v.id !== 'villa-habitas' && v.img);
+    return [...picked, ...others].slice(0, 9);
+  }, [villas]);
 
   return (
     <section className="sec" id="picks">

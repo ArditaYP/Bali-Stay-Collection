@@ -16,6 +16,146 @@ import { getMentionsForReviews, reviewMatchesTopic, getTopicKeywords } from '../
 const REVIEW_PREVIEW_COUNT = 6;
 
 /**
+ * Memformat dan merender blok teks deskripsi villa menjadi elemen JSX terstruktur
+ * Mendeteksi judul bagian huruf kapital (seperti LIVING & DINING, KITCHEN, dll)
+ * dan memformat paragraf serta subjudul secara rapi.
+ * 
+ * @param {string} text - Teks deskripsi lengkap villa
+ * @returns {React.JSX.Element[]} Array elemen paragraf dan subjudul JSX terformat
+ */
+function renderFormattedDescription(text) {
+  if (!text) return null;
+  const normalized = typeof text === 'string' ? text.replace(/\\n/g, '\n') : String(text);
+  const blocks = normalized.split(/\n\s*\n/);
+
+  return blocks.map((block, index) => {
+    const trimmed = block.trim();
+    if (!trimmed) return null;
+
+    // Abaikan dan hilangkan bagian REGISTRATION DETAILS / NIB / KBLI sesuai instruksi pengguna
+    const upper = trimmed.toUpperCase();
+    if (
+      upper.includes('REGISTRATION DETAILS') ||
+      upper.includes('REGISTRATION DETAIL') ||
+      /^NIB:\s*\d+/i.test(trimmed) ||
+      /^KBLI:\s*\d+/i.test(trimmed)
+    ) {
+      return null;
+    }
+
+    // Deteksi apakah blok ini merupakan judul bagian kapital (misal: LIVING & DINING, KITCHEN, dll)
+    const isHeaderLine = /^[A-Z0-9\s&•·\-_/:]{3,40}$/.test(trimmed.split('\n')[0]);
+    if (isHeaderLine && trimmed.split('\n').length === 1) {
+      return (
+        <h4 
+          key={index} 
+          style={{
+            fontSize: '15px',
+            fontWeight: 700,
+            letterSpacing: '0.5px',
+            color: 'var(--ink, #141413)',
+            marginTop: '20px',
+            marginBottom: '8px',
+            textTransform: 'uppercase'
+          }}
+        >
+          {trimmed}
+        </h4>
+      );
+    }
+
+    // Jika blok memiliki judul kapital di baris pertama diikuti penjelasan di baris berikutnya
+    const lines = trimmed.split('\n');
+    if (lines.length > 1 && /^[A-Z0-9\s&•·\-_/:]{3,40}$/.test(lines[0].trim())) {
+      const header = lines[0].trim();
+      const body = lines.slice(1).join('\n');
+      return (
+        <div key={index} style={{ marginTop: '18px', marginBottom: '12px' }}>
+          <h4 
+            style={{
+              fontSize: '15px',
+              fontWeight: 700,
+              letterSpacing: '0.5px',
+              color: 'var(--ink, #141413)',
+              marginBottom: '6px',
+              textTransform: 'uppercase'
+            }}
+          >
+            {header}
+          </h4>
+          <p 
+            style={{
+              fontSize: '14.5px',
+              lineHeight: 1.7,
+              color: 'var(--ink-soft, #484841)',
+              margin: 0,
+              whiteSpace: 'pre-line'
+            }}
+          >
+            {body}
+          </p>
+        </div>
+      );
+    }
+
+    return (
+      <p 
+        key={index}
+        style={{
+          fontSize: '14.5px',
+          lineHeight: 1.7,
+          color: 'var(--ink-soft, #484841)',
+          marginTop: 0,
+          marginBottom: '14px',
+          whiteSpace: 'pre-line'
+        }}
+      >
+        {trimmed}
+      </p>
+    );
+  });
+}
+
+/**
+ * Merender konten penjelasan detail villa secara lengkap dan terstruktur ke bawah (inline accordion).
+ * Menampilkan teks deskripsi utama, serta bagian akses tamu dan tim lokal jika relevan.
+ * 
+ * @param {Object} v - Objek data villa aktif
+ * @returns {React.JSX.Element|null} Elemen JSX detail penjelasan lengkap villa
+ */
+function renderDetailDescription(v) {
+  if (!v) return null;
+  const hasCustomFullDesc = Boolean(v.fullDesc && typeof v.fullDesc === 'string' && v.fullDesc.trim().length > 0);
+  const primaryText = hasCustomFullDesc ? v.fullDesc : (v.description || v.shortDesc || '');
+
+  return (
+    <div className="desc-expanded-wrapper" style={{ marginTop: '4px' }}>
+      {renderFormattedDescription(primaryText)}
+
+      {!hasCustomFullDesc && (
+        <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px dashed var(--line, #E8E6DF)' }}>
+          <h4 
+            style={{ 
+              fontSize: '14px', 
+              fontWeight: 700, 
+              color: 'var(--ink, #141413)', 
+              marginBottom: '6px',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px'
+            }}
+          >
+            Guest Access & Dedicated Support
+          </h4>
+          <p style={{ fontSize: '14px', lineHeight: 1.65, color: 'var(--ink-soft, #484841)', margin: 0 }}>
+            Enjoy private and exclusive access to the entire villa and its private pool. Daily housekeeping and our on-the-ground Bali Stay Collection concierge are available throughout your stay.
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
  * Komponen Halaman VillaDetailPage (Halaman Rincian & Reservasi Villa)
  * Mengimplementasikan tata letak dan interaktivitas persis sesuai desain mockup: villa-kana-retreat-detail.html.
  * Telah disempurnakan dengan responsivitas adaptif penuh:
@@ -54,7 +194,8 @@ export default function VillaDetailPage({
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [galleryInitialIndex, setGalleryInitialIndex] = useState(null);
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [showFullDesc, setShowFullDesc] = useState(false);
+  // State untuk ekspansi penjelasan detail villa ke bawah (inline accordion Show more / Show less)
+  const [isDescExpanded, setIsDescExpanded] = useState(false);
   // State untuk modal "Show all reviews"
   const [isReviewsOpen, setIsReviewsOpen] = useState(false);
 
@@ -90,10 +231,23 @@ export default function VillaDetailPage({
     return total;
   }, [villa.images]);
 
-  // Sinkronisasi ulasan & reset pilihan mention saat properti villa berubah
+  // Penjelasan ringkas untuk tampilan awal di halaman detail sebelum tombol Show more diklik
+  const previewDescription = useMemo(() => {
+    if (villa.shortDesc && typeof villa.shortDesc === 'string' && villa.shortDesc.trim().length > 0) {
+      return villa.shortDesc.trim();
+    }
+    const desc = typeof villa.description === 'string' ? villa.description : '';
+    if (desc.length > 220) {
+      return desc.slice(0, 200).trim() + '...';
+    }
+    return desc;
+  }, [villa.shortDesc, villa.description]);
+
+  // Sinkronisasi ulasan, reset pilihan mention & reset ekspansi deskripsi saat properti villa berubah
   useEffect(() => {
     setReviews(villa.reviews || []);
     setSelectedMention(null);
+    setIsDescExpanded(false);
   }, [villa]);
 
   // Ekstraksi topik-topik mention yang relevan untuk villa ini
@@ -353,24 +507,53 @@ export default function VillaDetailPage({
             </div>
           </div>
 
-          {/* Section: Deskripsi Villa */}
-          <div className="section">
-            <p className="desc-text" style={{ whiteSpace: 'pre-line' }}>
-              {typeof villa.description === 'string' ? villa.description.replace(/\\n/g, '\n') : villa.description}
-            </p>
-            {showFullDesc && (
-              <div className="desc-full-wrapper" style={{ marginTop: '14px', whiteSpace: 'pre-line' }}>
-                <p className="desc-text" style={{ whiteSpace: 'pre-line' }}>
-                  {typeof villa.fullDesc === 'string' ? villa.fullDesc.replace(/\\n/g, '\n') : (villa.fullDesc || "The villa sits a 7-minute drive from local beach clubs and restaurants, but far enough from the main strip to stay peaceful at night. Our housekeeping team visits daily, and a dedicated host is reachable by WhatsApp throughout your stay.")}
+          {/* Section: Deskripsi Villa (Penjelasan Ringkas di Awal & Ekspansi ke Bawah via Show more / Show less) */}
+          <div className="section" id="about-space-section">
+            <h2 style={{ fontSize: '19px', fontWeight: 700, margin: '0 0 12px' }}>About this space</h2>
+            {!isDescExpanded ? (
+              <>
+                <p className="desc-text" style={{ whiteSpace: 'pre-line', marginBottom: '14px', lineHeight: 1.65 }}>
+                  {previewDescription}
                 </p>
+                <button 
+                  type="button" 
+                  className="show-more-inline-btn" 
+                  onClick={() => setIsDescExpanded(true)}
+                  aria-expanded="false"
+                  aria-controls="villa-full-desc"
+                  aria-label="Tampilkan penjelasan lengkap villa ke bawah"
+                >
+                  Show more
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+              </>
+            ) : (
+              <div id="villa-full-desc">
+                {renderDetailDescription(villa)}
+                <button 
+                  type="button" 
+                  className="show-more-inline-btn" 
+                  onClick={() => {
+                    setIsDescExpanded(false);
+                    const section = document.getElementById('about-space-section');
+                    if (section) {
+                      section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  style={{ marginTop: '14px' }}
+                  aria-expanded="true"
+                  aria-controls="villa-full-desc"
+                  aria-label="Tutup penjelasan lengkap villa"
+                >
+                  Show less
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="18 15 12 9 6 15" />
+                  </svg>
+                </button>
               </div>
             )}
-            <span 
-              className="show-more" 
-              onClick={() => setShowFullDesc(!showFullDesc)}
-            >
-              {showFullDesc ? 'Show less' : 'Show more'}
-            </span>
           </div>
 
           {/* Section: Pembagian Kamar Tidur (Where you'll sleep) */}
@@ -750,6 +933,7 @@ export default function VillaDetailPage({
         villaName={villa.name}
         initialPhotoIndex={galleryInitialIndex}
       />
+
 
       {/* Modal Semua Review (dibuka dari tombol "Show all reviews") */}
       <ReviewsModal

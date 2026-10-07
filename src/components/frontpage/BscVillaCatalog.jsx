@@ -61,9 +61,9 @@ export default function BscVillaCatalog({
   const [selectedAmenities, setSelectedAmenities] = useState([]);
   const [minBeds, setMinBeds] = useState(0);
   const [sortBy, setSortBy] = useState('rec');
-  const [shownCount, setShownCount] = useState(12);
+  const [shownCount, setShownCount] = useState(24);
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
-  const PAGE_SIZE = 12;
+  const PAGE_SIZE = 24;
 
   // Sinkronisasi tingkat kemewahan jika diklik dari kartu Levels
   useEffect(() => {

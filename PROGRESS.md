@@ -862,9 +862,184 @@ src/
      - Layar desktop (> 980px): Grid 3 kolom dengan pola `[ ][  ]` / `[ ][ ][ ]` / `[    ]`.
      - Layar tablet (<= 980px): Grid 2 kolom seimbang (Canggu & Seseh span 2, area lain span 1).
      - Layar ponsel (<= 640px): Grid 1 kolom tumpuk vertikal seragam.
+### 5.25. Impor Otomatis Data Asli 13 Villa Airbnb & Integrasi Menyeluruh ke Web
+- **Latar Belakang & Permintaan Pengguna**:
+  - Pengguna memberikan 14 tautan kamar villa Airbnb untuk diambil seluruh datanya (spesifikasi, foto resolusi tinggi, rating, ulasan tamu terverifikasi) dan diintegrasikan langsung ke dalam website Bali Stay Collection ("ambil aja data nya dulu, abis tu masukin sudah ke web kita").
+- **Hasil Audit & Pengecekan 14 Tautan Airbnb**:
+  - **13 Tautan Aktif (HTTP 200 OK)**:
+    1. `1227088687659654852`: **Villa Habitas** (Pererenan) — 4 Kamar · 4.5 Bath · 8 Tamu · ★5.0 (2 review) *(Top Picks BSC)*
+    2. `1472810975642833657`: **Tranquil 1BR Sanctuary in Prime Pererenan!** (Pererenan) — 1 Kamar · 2 Bath · 2 Tamu · ★4.89 (38 review)
+    3. `48112412`: **Modern Tropical 4BR Villa in Central Canggu** (Canggu) — 4 Kamar · 4 Bath · 8 Tamu · ★4.93 (135 review)
+    4. `1239607319731763224`: **Luxe & Stylish 3BR Villa Just Steps from the Beach** (Seminyak) — 3 Kamar · 3.5 Bath · 6 Tamu · ★4.81 (58 review)
+    5. `1344632024593729408`: **Tropical Elegance 2BR Villa – Steps from the Beach** (Seseh Beach) — 2 Kamar · 2.5 Bath · 4 Tamu · ★4.98 (43 review)
+    6. `1365727502132237034`: **Iconic 5BR Cliff Top Villa with 180° Ocean View** (Balangan / Bukit) — 5 Kamar · 4.5 Bath · 10 Tamu · ★4.42 (24 review) *(Top Picks BSC: Balangan Cliff Villa)*
+    7. `1435827081108148692`: **Yellow Moon, A Tropical 3BR Sanctuary in Uluwatu** (Uluwatu) — 3 Kamar · 3.5 Bath · 6 Tamu · ★4.80 (50 review)
+    8. `1517027661326621037`: **St. Lau – Signature 3BR Hideaway in Ubud** (Ubud) — 3 Kamar · 3 Bath · 8 Tamu · ★4.80 (46 review) *(Top Picks BSC: St. Lau)*
+    9. `1521544022364650655`: **CASA KĀYA – Tropical 1BR Villa Near Bingin Beaches** (Bingin Beach) — 1 Kamar · 2 Bath · 2 Tamu · ★4.87 (31 review)
+    10. `1547562543907085427`: **Luxury 3BR Tropical Villa in Uluwatu • Near Beach** (Bingin Beach) — 3 Kamar · 3.5 Bath · 6 Tamu · ★4.76 (37 review)
+    11. `1558539228609452633`: **2BR Chic Tropical Villa • Minutes to Bingin Beaches** (Bingin Beach) — 2 Kamar · 2 Bath · 4 Tamu · ★4.97 (30 review)
+    12. `1562881107580894513`: **Five Bedroom Designer Villa next to Berawa** (Umalas) — 5 Kamar · 5 Bath · 9 Tamu · Listing baru
+    13. `1634534758752754577`: **Angkasa : 5BR Ubud Villa with Infinity Pool & Views** (Ubud) — 5 Kamar · 5.5 Bath · 10 Tamu · ★4.74 (23 review) *(Top Picks BSC: Villa Angkasa)*
+  - **1 Tautan Tidak Aktif**: Tautan nomor 4 (`1233774514996234782`) berstatus **HTTP 410 (Gone / Dinonaktifkan oleh host)** sehingga dilewati secara aman.
+- **Perubahan yang Diterapkan**:
+  1. **Pemutakhiran & Eksekusi Script Scraper ([`scripts/import-airbnb.mjs`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/scripts/import-airbnb.mjs))**:
+     - Menggunakan `fileURLToPath(import.meta.url)` untuk penanganan path Windows dengan spasi tanpa bug encoding URL `%20`.
+     - Mengunduh hingga 20 foto resolusi tinggi terbaik untuk setiap villa baru ke `/public/airbnb/<slug>/photos/photo-XX.jpg`.
+     - Mengambil ulasan terverifikasi dan mengunduh foto profil reviewer ke `/public/airbnb/<slug>/avatars/`.
+     - Menyatukan data baru dan mempertahankan villa kurasi sebelumnya ke dalam [`src/data/airbnbVillas.json`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/airbnbVillas.json) (total 19 villa terstruktur).
+  2. **Pemasangan Foto Asli Airbnb Villa Habitas ([`src/data/bscVillasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/bscVillasData.js))**:
+     - Menghubungkan `villa-habitas` dengan foto asli `/airbnb/villa-habitas/photos/photo-01.jpg` dan alias `villa-habitas`.
+  3. **Konfigurasi Spesifikasi & Fasilitas Villa Baru ([`src/data/villasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/villasData.js))**:
+     - Menambahkan entri detail lengkap di `VILLA_DETAILS` untuk seluruh villa baru (`tranquil-sanctuary-pererenan`, `tropical-canggu-villa`, `luxe-beach-villa-seminyak`, `tropical-elegance-seseh`, `yellow-moon-uluwatu`, `casa-kaya-bingin`, `luxury-tropical-bingin`, `chic-tropical-bingin`, `five-bedroom-designer-umalas`).
+     - Menyertakan penetapan harga terkurasi, kamar tidur, fasilitas lengkap, dan deskripsi suasana liburan.
+  4. **Pendaftaran ke Katalog 51+ Villa BSC ([`src/data/bscVillasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/bscVillasData.js))**:
+     - Memasukkan entri 9 villa baru ke dalam array `BSC_VILLAS` dengan data filter lengkap (area, kamar tidur, tamu, fasilitas, tier, setting, trip type) sehingga langsung dapat dicari di katalog utama depan.
+  5. **Penguatan Sinkronisasi State & LocalStorage ([`src/App.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/App.jsx))**:
+     - Memperbarui pemetaan alias `VILLA_ALIAS_MAP` untuk menghubungkan `villa-habitas` secara langsung.
+     - Mengimplementasikan penggabungan cerdas (*smart merge*) pada inisialisasi state `villas` di `App.jsx`, sehingga browser yang memiliki riwayat LocalStorage lama otomatis menerima penambahan villa baru tanpa harus menghapus cache browser manual.
 - **Hasil**:
-  - Build Vite sukses 100% tanpa error (`npm.cmd run build`).
-  - Posisi tata letak persis sesuai diagram ide user dengan foto yang tetap tampil instan.
+  - Ke-13 villa Airbnb kini terintegrasi 100% ke seluruh ekosistem web: kartu beranda, filter pencarian katalog, galeri foto detail, ulasan tamu asli, dan sistem reservasi booking.
+  - Verifikasi build Vite lulus sempurna via `npm.cmd run build` tanpa error (0 error).
+  - Standar kepatuhan Indonesian JSDoc pada setiap fungsi di `.jsx`, `.js`, `.mjs` terpenuhi 100%.
+
+### 5.26 Mode Review Sementara: Menampilkan Khusus 18 Villa Autentik Airbnb
+- **Kebutuhan Pengguna**: Memunculkan sementara **hanya** villa-villa yang baru ditambahkan dari link Airbnb dan villa-villa yang diambil dari website sebelumnya, agar pengguna dapat memeriksa dan memverifikasi kualitas foto, data, ulasan, serta detailnya tanpa terdistraksi oleh 40+ villa mockup.
+- **Rincian 18 Villa yang Ditampilkan**:
+  1. **13 Villa Baru Hasil Import Airbnb**:
+     1. `villa-habitas` — Villa Habitas (Pererenan)
+     2. `tranquil-sanctuary-pererenan` — Tranquil 1BR Sanctuary in Prime Pererenan (Pererenan)
+     3. `tropical-canggu-villa` — Modern Tropical 4BR Villa in Central Canggu (Canggu & Berawa)
+     4. `luxe-beach-villa-seminyak` — Luxe & Stylish 3BR Villa Near Beach (Umalas & Seminyak)
+     5. `tropical-elegance-seseh` — Tropical Elegance 2BR Villa by Beach (Seseh)
+     6. `balangan-cliff-villa` — Balangan Cliff Villa / Iconic 5BR Cliff Top (Uluwatu & Bukit)
+     7. `yellow-moon-uluwatu` — Yellow Moon Tropical Sanctuary (Uluwatu & Bukit)
+     8. `st-lau` — St. Lau (Ubud)
+     9. `casa-kaya-bingin` — CASA KĀYA Tropical Villa (Uluwatu & Bukit)
+     10. `luxury-tropical-bingin` — Luxury 3BR Tropical Villa in Bingin (Uluwatu & Bukit)
+     11. `chic-tropical-bingin` — 2BR Chic Tropical Villa Bingin (Uluwatu & Bukit)
+     12. `five-bedroom-designer-umalas` — Five Bedroom Designer Villa Umalas (Umalas & Seminyak)
+     13. `villa-angkasa` — Villa Angkasa (Ubud)
+  2. **5 Villa Kurasi dari Website Sebelumnya**:
+     14. `villa-samudra-canggu` — Villa Samudra (Canggu & Berawa)
+     15. `villa-kayu-raja-seminyak` — Villa Kayu Raja (Umalas & Seminyak)
+     16. `villa-cendana-seminyak` — Villa Cendana (Umalas & Seminyak)
+     17. `cliffside-panorama-uluwatu` — Cliffside Panorama (Uluwatu & Bukit)
+     18. `mandapa-jungle-villa` — Mandapa Jungle Villa (Ubud)
+- **Implementasi Teknis**:
+  - **`ACTIVE_AIRBNB_VILLA_IDS`** didefinisikan dan diekspor di [`src/data/bscVillasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/bscVillasData.js).
+  - Di [`src/App.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/App.jsx), `activeCatalogVillas` memfilter katalog beranda [`ExplorePage`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/ExplorePage.jsx), rekomendasi similar villas di [`VillaDetailPage`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/VillaDetailPage.jsx), dan menempatkan ke-18 villa ini di prioritas teratas editor konten [`VillaContentEditor`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/VillaContentEditor.jsx).
+  - Di [`src/components/frontpage/BscTopPicks.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscTopPicks.jsx), grid 3x3 (9 kartu villa) diisi oleh 9 villa pilihan terbaik yang semuanya memiliki foto autentik Airbnb dan catatan inspeksi.
+  - Di [`src/components/frontpage/BscVillaCatalog.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/frontpage/BscVillaCatalog.jsx), pagination `PAGE_SIZE` diatur ke 24 sehingga ke-18 villa langsung terpampang jelas dalam satu halaman tanpa perlu menekan tombol 'Show more'.
+### 5.27 Mode Filter Eksklusif: 13 Villa Murni dari Tautan Airbnb
+- **Instruksi Pengguna**: *"coba munculin yang dari airbnb aja dulu"* — Menampilkan **hanya 13 villa yang berasal langsung dari link listing Airbnb** (4 villa awal: Habitas, Balangan, St. Lau, Angkasa + 9 villa baru yang di-scrape), tanpa mengikutsertakan 5 villa kurasi dari website sebelumnya.
+- **Daftar 13 Villa Murni Airbnb**:
+  1. `villa-habitas` — Villa Habitas (Pererenan)
+  2. `tranquil-sanctuary-pererenan` — Tranquil 1BR Sanctuary in Prime Pererenan (Pererenan)
+  3. `tropical-canggu-villa` — Modern Tropical 4BR Villa in Central Canggu (Canggu & Berawa)
+  4. `luxe-beach-villa-seminyak` — Luxe & Stylish 3BR Villa Near Beach (Umalas & Seminyak)
+  5. `tropical-elegance-seseh` — Tropical Elegance 2BR Villa by Beach (Seseh)
+  6. `balangan-cliff-villa` — Balangan Cliff Villa / Iconic 5BR Cliff Top (Uluwatu & Bukit)
+  7. `yellow-moon-uluwatu` — Yellow Moon Tropical Sanctuary (Uluwatu & Bukit)
+  8. `st-lau` — St. Lau (Ubud)
+  9. `casa-kaya-bingin` — CASA KĀYA Tropical Villa (Uluwatu & Bukit)
+  10. `luxury-tropical-bingin` — Luxury 3BR Tropical Villa in Bingin (Uluwatu & Bukit)
+  11. `chic-tropical-bingin` — 2BR Chic Tropical Villa Bingin (Uluwatu & Bukit)
+  12. `five-bedroom-designer-umalas` — Five Bedroom Designer Villa Umalas (Umalas & Seminyak)
+  13. `villa-angkasa` — Villa Angkasa (Ubud)
+- **Implementasi**:
+  - Didefinisikan `AIRBNB_ONLY_VILLA_IDS` di [`src/data/bscVillasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/bscVillasData.js).
+  - Di [`src/App.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/App.jsx), `isAirbnbOnlyMode = true` membatasi data katalog [`ExplorePage`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/ExplorePage.jsx), serupa pada [`VillaDetailPage`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/VillaDetailPage.jsx), dan menempatkan ke-13 villa ini di prioritas teratas editor [`VillaContentEditor`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/VillaContentEditor.jsx).
+  - Tampilan katalog menampilkan *"13 villas across Bali"* dengan 9 top picks pilihan yang semuanya memiliki 20 foto autentik Airbnb.
+- **Hasil & Verifikasi**:
+  - `npm.cmd run build` lulus 100% dengan 0 error.
+  - Server Vite berjalan mulus di `http://localhost:5173`.
+
+### 5.28 Fitur Penjelasan Villa Ringkas & Modal Popup Detail Penjelasan ("Show More")
+- **Kebutuhan Pengguna & Coach**:
+  - *"penjelasan villa harus ada show more, jadi diawal penjelasn dikit aja, setelah klik show more keluar popup yang isinya detail penjelasan."*
+  - Memastikan data villa lainnya tersimpan aman di arsip tanpa hilang.
+- **Implementasi**:
+  1. **Tampilan Awal Ringkas di Halaman Detail ([`src/pages/VillaDetailPage.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/VillaDetailPage.jsx))**:
+     - Menghitung `previewDescription` dari `villa.shortDesc` atau cuplikan 2–3 kalimat awal dari `villa.description`.
+     - Menampilkan teks ringkas yang elegan diikuti tombol interaktif **"Show more >"** bergaya khas Airbnb.
+  2. **Komponen Modal Popup Baru ([`src/components/Modals/DescriptionModal.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/components/Modals/DescriptionModal.jsx))**:
+     - Membuka popup modal terpusat dengan latar belakang blur transparan saat "Show more" diklik.
+     - Menyediakan header modal: Judul *"About this space"*, nama villa, lokasi, rating, dan tombol silang (✕).
+     - Strip fasilitas ringkas: Entire villa, kapasitas tamu, kamar tidur, kamar mandi, dan kolam renang pribadi.
+     - Body modal memformat seluruh isi penjelasan secara terstruktur: gambaran umum, area hidup/makan, susunan kamar tidur, akses tamu, layanan tim lokal/housekeeping harian, dan ketentuan penting lainnya.
+     - Mendukung penutupan dengan tombol Escape, klik area backdrop, atau tombol "Done".
+  3. **Keamanan Data & Pengarsipan**:
+     - Seluruh 65+ villa mockup dan 5 villa kurasi sebelumnya tetap tersimpan utuh dan aman di [`src/data/bscVillasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/bscVillasData.js) serta [`src/data/villasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/villasData.js).
+     - Sistem hanya menerapkan filter tampilan (`isAirbnbOnlyMode = true`), sehingga dapat dipulihkan atau dialihkan kapan saja dengan satu baris kode.
+- **Hasil & Verifikasi**:
+  - `npm.cmd run build` lulus 100% dengan 0 error.
+  - Hot Module Replacement (HMR) aktif di `http://localhost:5173`.
+
+### 5.29 Penyesuaian Fitur Show More: Ekspansi Deskripsi ke Bawah (Inline Accordion Expand/Collapse)
+- **Klarifikasi Pengguna**: *"kayak nya show more nya ga pop op gitu deh maksud nya, maksud nya mungkin show more nya kebawah gitu"*
+- **Implementasi**:
+  1. Mengganti mekanisme popup modal dengan ekspansi langsung ke bawah (inline accordion expand/collapse) pada section `#about-space-section` di [`src/pages/VillaDetailPage.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/VillaDetailPage.jsx).
+  2. Kondisi Tertutup (`!isDescExpanded`):
+     - Menampilkan penjelasan ringkas (`previewDescription` dari `villa.shortDesc` atau cuplikan awal deskripsi).
+     - Menampilkan tombol **"Show more"** dengan ikon panah ke bawah (chevron down).
+  3. Kondisi Terbuka (`isDescExpanded`):
+     - Menampilkan konten penjelasan lengkap terstruktur menggunakan helper `renderDetailDescription(villa)` dan `renderFormattedDescription(primaryText)`.
+     - Subjudul kapital (seperti LIVING & DINING, KITCHEN, BEDROOMS & BATHROOMS, GUEST ACCESS, dll) otomatis diformat rapi dengan spasi paragraf elegan.
+     - Menampilkan tombol **"Show less"** dengan ikon panah ke atas (chevron up).
+     - Saat "Show less" diklik, layar menggulir halus (*smooth scroll*) kembali ke posisi `#about-space-section` agar posisi pembacaan tetap nyaman.
+  4. Animasi & Styling:
+     - Menambahkan keyframes animasi `@keyframes fadeInDown` dan kelas `.desc-expanded-wrapper` di [`src/index.css`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/index.css) untuk transisi pembukaan yang mulus.
+     - Reset otomatis: Saat pengguna beralih atau memilih villa lain, state `isDescExpanded` otomatis kembali tertutup/ringkas.
+  5. Keamanan Data:
+     - Seluruh data villa mockup (65+) dan data villa sebelumnya tetap aman tersimpan di arsip data store tanpa ada yang terhapus.
+- **Hasil & Verifikasi**:
+  - `npm.cmd run build` lulus 100% dengan 0 error.
+  - Server Vite aktif di `http://localhost:5173`.
+
+### 5.30 Sinkronisasi Deskripsi Lengkap 100% Autentik dari Airbnb untuk Seluruh 13 Villa
+- **Pertanyaan Pengguna**: *"deskripsi setiap hotel sudah sesuai dengan airbnb?"*
+- **Kondisi Sebelumnya vs Sekarang**:
+  - *Sebelumnya*: Data yang di-scrape dari Airbnb baru mencakup nama, foto HD, rating, rincian kategori review, dan review tamu. Teks deskripsi (*About this space*) pada sebagian villa masih berupa ringkasan pendek.
+  - *Sekarang*: Telah dilakukan ekstraksi langsung (*deep scraping*) terhadap endpoint `PDP_DESCRIPTION_MODAL` resmi dari Airbnb untuk ke-13 listing villa.
+- **Implementasi**:
+  1. Dibuat modul ekstraksi deskripsi pada [`scripts/import-airbnb.mjs`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/scripts/import-airbnb.mjs) dengan helper `cleanAirbnbHtml` ber-JSDoc bahasa Indonesia.
+  2. Seluruh 13 villa di [`src/data/airbnbVillas.json`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/airbnbVillas.json) kini memiliki:
+     - `shortDesc`: Paragraf pembuka asli dari host Airbnb.
+     - `description`: Ringkasan overview resmi.
+     - `fullDesc`: Teks lengkap (2.300 – 4.100 karakter) yang memuat bagian `THE SPACE`, `GUEST ACCESS`, `OTHER THINGS TO NOTE` (fasilitas gratis, penawaran concierge), hingga nomor registrasi resmi perizinan (NIB/KBLI).
+     - `descriptionSections`: Array blok terstruktur tiap bagian modal.
+  3. Di [`src/data/villasData.js`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/villasData.js) dan [`src/App.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/App.jsx), logika mapping `INITIAL_VILLAS` dan `resolveVilla` disinkronkan agar selalu memprioritaskan deskripsi segar asli Airbnb.
+- **Daftar 13 Villa yang Tersinkronisasi Penuh**:
+  1. `villa-habitas` — Villa Habitas (Pererenan)
+  2. `tranquil-sanctuary-pererenan` — Villa Solani (Pererenan)
+  3. `tropical-canggu-villa` — Casa Kameelya (Canggu / Berawa)
+  4. `luxe-beach-villa-seminyak` — Villa Vaya (Batu Belig / Seminyak)
+  5. `tropical-elegance-seseh` — Villa Halle (Seseh Beach)
+  6. `iconic-cliff-top-villa` / `balangan-cliff-villa` — 5-Bedroom Cliff-Top Villa (Balangan)
+  7. `yellow-moon-uluwatu` — Yellow Moon (Uluwatu / Melasti)
+  8. `st-lau-ubud` / `st-lau` — Villa St. Lau (Ubud)
+  9. `casa-kaya-bingin` — CASA KĀYA (Bingin)
+  10. `luxury-tropical-bingin` — Padang Senang (Bingin / Padang Padang)
+  11. `chic-tropical-bingin` — TĀRA Bingin Villa (Bingin)
+  12. `five-bedroom-designer-umalas` — Villa Ithaki (Umalas / Berawa)
+  13. `angkasa-ubud` / `villa-angkasa` — Villa Angkasa (Ubud)
+- **Hasil & Verifikasi**:
+  - `npm.cmd run build` lulus 100% dengan 0 error.
+  - Server Vite aktif di `http://localhost:5173`.
+
+### 5.31 Penghapusan Bagian REGISTRATION DETAILS (NIB & KBLI)
+- **Instruksi Pengguna**: *"ini di hilang kan ya REGISTRATION DETAILS"*
+- **Implementasi**:
+  1. Membersihkan data mentah di [`src/data/airbnbVillas.json`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/data/airbnbVillas.json) sehingga bagian `REGISTRATION DETAILS` dan nomor izin perizinan `NIB` / `KBLI` dihapus dari string `fullDesc` dan array `descriptionSections`.
+  2. Menambahkan filter pengabaian di [`scripts/import-airbnb.mjs`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/scripts/import-airbnb.mjs) sehingga eksekusi scraping berikutnya secara otomatis melewati bagian nomor registrasi/izin.
+  3. Memasang filter pengaman (*defense-in-depth*) pada fungsi `renderFormattedDescription` di [`src/pages/VillaDetailPage.jsx`](file:///C:/Users/CSO%20KUTA%202/Documents/web/BaliStayCollection/src/pages/VillaDetailPage.jsx) agar blok teks yang menyebutkan `REGISTRATION DETAILS`, `NIB:`, atau `KBLI:` tidak pernah dirender ke antarmuka pengguna.
+- **Hasil & Verifikasi**:
+  - Tidak ada lagi teks `REGISTRATION DETAILS` yang tampil pada modal / accordion deskripsi villa.
+  - `npm.cmd run build` lulus 100% (0 error).
+  - Server Vite aktif di `http://localhost:5173`.
+
+
+
 
 ---
 
