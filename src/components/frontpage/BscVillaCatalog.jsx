@@ -20,6 +20,18 @@ const bestFor = (v) => {
   return 'Best for small groups';
 };
 
+const EXCLUDED_AMENITIES = new Set([
+  'private pool',
+  'daily staff',
+  'high-speed wifi',
+  'kitchenette',
+  'air conditioning'
+]);
+
+const isExcludedAmenity = (name) => {
+  if (!name) return false;
+  return EXCLUDED_AMENITIES.has(name.trim().toLowerCase());
+};
 
 /**
  * Komponen BscVillaCatalog
@@ -69,8 +81,14 @@ export default function BscVillaCatalog({
 
   const allAmenities = useMemo(() => {
     const set = new Set();
-    villas.forEach(v => (v.am || []).forEach(a => set.add(a)));
-    return Array.from(set);
+    villas.forEach(v => {
+      (v.am || []).forEach(a => {
+        if (!isExcludedAmenity(a)) {
+          set.add(a);
+        }
+      });
+    });
+    return Array.from(set).sort();
   }, [villas]);
 
   // State filter interaktif
@@ -327,7 +345,8 @@ export default function BscVillaCatalog({
                 { label: 'Any', value: 0 },
                 { label: '2+', value: 2 },
                 { label: '3+', value: 3 },
-                { label: '4+', value: 4 }
+                { label: '5+', value: 5 },
+                { label: '6+', value: 6 },
               ].map(opt => (
                 <label key={opt.value} className="ck">
                   <input

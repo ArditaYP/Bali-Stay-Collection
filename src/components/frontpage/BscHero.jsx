@@ -44,7 +44,7 @@ export default function BscHero({
             Find a Bali villa you can book with confidence
           </h1>
           <p className="lead">
-Hand-picked private villas. Zero hidden fees. On-the-ground local support          </p>
+          Hand-picked private villas. On-the-ground local support          </p>
         </div>
 
         {/* Form Pencarian Cepat */}
