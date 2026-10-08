@@ -111,7 +111,7 @@ export const DESTINATIONS_SUMMARY = [
     layout: 'wide',
     description: 'Cafés, iconic beach clubs, and legendary surf breaks. The most vibrant epicenter of coastal Bali.',
     tone: ['#D8C9A8', '#EFE6CF'],
-    image: '/destinations/canggu.jpg',
+    image: '/destinations/canggu.jpg?v=20261008',
     objectPosition: 'center 72%',
     fallback: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=85'
   },
@@ -122,7 +122,7 @@ export const DESTINATIONS_SUMMARY = [
     layout: 'norm',
     description: 'Dramatic ocean limestone cliffs, world-class surf, and sunset beach clubs.',
     tone: ['#9FB7C7', '#D5E2EA'],
-    image: '/destinations/uluwatu.jpg',
+    image: '/destinations/uluwatu.jpg?v=20261008',
     objectPosition: 'center 50%',
     fallback: 'https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&w=1200&q=85'
   },
@@ -137,25 +137,26 @@ export const DESTINATIONS_SUMMARY = [
     fallback: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?auto=format&fit=crop&w=1200&q=85'
   },
   {
-    name: 'Ubud',
-    count: 4,
-    badge: 'Cultural Sanctuary',
-    layout: 'norm',
-    description: 'Lush rainforest valleys, emerald rice terraces, and tranquil highland mornings.',
-    tone: ['#C7CDBB', '#E2E7D6'],
-    image: '/destinations/ubud.jpg',
-    fallback: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=1200&q=85'
-  },
-  {
     name: 'Seseh',
     count: 1,
     badge: '✦ Hidden Gem',
-    layout: 'full',
+    layout: 'norm',
     description: 'Untouched black-sand coastal village, peaceful lanes, and authentic Balinese tranquility just minutes from Canggu.',
     tone: ['#B8C9B2', '#DCE8D6'],
-    image: '/destinations/seseh.jpg',
-    objectPosition: 'center 55%',
+    image: '/destinations/seseh.jpg?v=20261008',
+    objectPosition: 'center 50%',
     fallback: 'https://images.unsplash.com/photo-1559628233-eb1b1a45564b?auto=format&fit=crop&w=1200&q=85'
+  },
+  {
+    name: 'Ubud',
+    count: 4,
+    badge: 'Cultural Sanctuary',
+    layout: 'full',
+    description: 'Lush rainforest valleys, emerald rice terraces, and tranquil highland mornings.',
+    tone: ['#C7CDBB', '#E2E7D6'],
+    image: '/destinations/ubud.jpg?v=20261008c',
+    objectPosition: 'center 50%',
+    fallback: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=1200&q=85'
   }
 ];
 

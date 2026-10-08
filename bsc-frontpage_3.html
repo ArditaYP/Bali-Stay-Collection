@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bali Stay Collection — Private Villas in Bali, Managed by a Local Team</title>
+<meta name="description" content="Private pool villas in Canggu, Pererenan, Umalas, Uluwatu and Ubud, from Standard to Luxury. Every villa inspected in person, total price shown upfront, local team on call.">
+<style>
+  /* ===== EDIT ME: brand tokens ===== */
+  :root{
+    --accent:#16294D; --accent-dark:#0C1B38; --accent-soft:#E8ECF4;
+    --ink:#0C1B38; --ink-soft:#3E4C58; --muted:#5E6B76; --line:#E0E5E8;
+    --bg:#FFFFFF; --warm:#F2F5F6; --ok:#2F6B3A; --ok-bg:#EAF4EC;
+    --radius:16px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--bg);line-height:1.5}
+  a{color:inherit;text-decoration:none}
+  button,input,select{font-family:inherit;font-size:inherit}
+  img{max-width:100%;display:block}
+  :focus-visible{outline:3px solid #1B5FD6;outline-offset:2px}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;font-weight:600;border-radius:12px;padding:12px 20px;min-height:44px;transition:background .15s,box-shadow .15s,transform .15s}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:var(--accent-dark)}
+  .btn-ghost{background:#fff;border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink)}
+  h1,h2,h3{margin:0;letter-spacing:-.02em}
+  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-dark)}
+  .sec{padding:64px 0}
+  .sec-head{margin-bottom:28px}
+  .sec-head h2{font-size:30px;margin-top:6px}
+  .sec-head p{color:var(--muted);margin:8px 0 0;max-width:640px}
+
+  .lvl{display:inline-flex;gap:2px;vertical-align:-2px;margin-right:6px}
+  .lvl svg{width:13px;height:13px}
+  .tag .lvl svg path{stroke:var(--accent-dark);stroke-width:1.6}
+  .best{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:4px}
+  .meter{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:12px 0 2px}
+  .meter div{font-size:11px;color:var(--muted);line-height:1.2;display:flex;flex-direction:column;justify-content:space-between}
+  .meter .bar{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:4px}
+  .meter .bar i{height:5px;border-radius:3px;background:var(--line)}
+  .meter .bar i.on{background:var(--accent)}
+  .meter .bar i.half{background:linear-gradient(90deg,var(--accent) 50%,var(--line) 50%)}
+  .mnote{font-size:12px;color:var(--muted);margin:2px 0 0}
+  .seal{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:4px 10px;border-radius:100px;font-weight:600}
+  .seal.ok{background:var(--ok-bg);color:var(--ok)}
+  .seal.wait{border:1px dashed #B7C1C8;color:var(--ink-soft);background:#fff;font-weight:500}
+  .tcard .meter{grid-template-columns:repeat(5,1fr);margin-top:10px}
+  .tcard .lvlbig{margin-bottom:2px}.tcard .lvlbig svg{width:20px;height:20px}
+  .rev{margin-top:28px;background:#fff;border:1px dashed #C9D1D6;border-radius:16px;padding:18px 22px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+  .rev b{display:block;margin-bottom:2px}.rev p{margin:0;color:var(--ink-soft);font-size:14.5px}
+  .tcard .meter div{font-size:10px}
+  .mockbar{background:#FFF3C4;color:#5C4600;font-size:13px;display:flex;gap:12px;justify-content:center;align-items:center;padding:6px 16px;text-align:center}
+  .mockbar button{border:1px solid #C9A400;background:transparent;border-radius:6px;padding:2px 10px;cursor:pointer;color:inherit;font-size:12px}
+  .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .tcard{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px;transition:transform .2s,box-shadow .2s,border-color .2s}
+  .tcard:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(15,30,43,.1);border-color:var(--ink)}
+  .tcard b{font-size:20px}.tcard .n{font-size:13px;font-weight:700;color:var(--accent-dark)}.tcard p{margin:0;font-size:14px;color:var(--ink-soft)}
+  .tcard .for{font-size:13px;color:var(--muted);margin-top:auto;padding-top:8px}
+  .more{display:flex;justify-content:center;margin:24px 0 0}
+  /* topbar + nav */
+  .topbar{background:var(--ink);color:#E0E5E8;font-size:13px;text-align:center;padding:8px 16px}
+  header.nav{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
+  .logo i{width:34px;height:34px;border-radius:9px;background:var(--accent);display:grid;place-items:center}
+  .nav-links{display:flex;gap:28px;font-size:14.5px;color:var(--ink-soft)}
+  .nav-links a:hover{color:var(--accent-dark)}
+  .nav-cta{display:flex;gap:10px;align-items:center}
+  .cur{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+  .cur button{border:none;background:#fff;padding:8px 12px;cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);min-height:36px}
+  .cur button[aria-pressed=true]{background:var(--ink);color:#fff}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--warm),var(--bg));padding:64px 0 0}
+  .hero-in{max-width:780px;margin:0 auto;text-align:center}
+  .hero h1{font-size:clamp(32px,5vw,52px);line-height:1.1}
+  .hero p.lead{font-size:18px;color:var(--ink-soft);margin:16px auto 0;max-width:620px}
+  .search{max-width:1040px;margin:36px auto 0;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 24px 56px rgba(15,30,43,.09);padding:10px;display:grid;grid-template-columns:1.3fr 1fr 1fr .8fr auto;gap:2px}
+  .search label{display:block;padding:12px 18px;border-radius:12px;text-align:left;cursor:pointer}
+  .search label:hover{background:var(--bg)}
+  .search .lb{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .search select,.search input{border:none;background:transparent;width:100%;padding:4px 0 0;color:var(--ink);font-weight:500;outline:none}
+  .search .btn{border-radius:14px;padding:0 28px}
+  .trust-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1040px;margin:28px auto 0;padding:0 0 44px}
+  .ts{display:flex;gap:12px;align-items:flex-start;font-size:13.5px;color:var(--ink-soft);text-align:left}
+  .ts svg{flex:none;margin-top:2px}
+  .ts b{display:block;color:var(--ink);font-size:14px}
+
+  /* destinations */
+  .dest{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .dcard{position:relative;border-radius:var(--radius);overflow:hidden;min-height:210px;display:flex;align-items:flex-end;padding:16px;color:#fff;border:none;cursor:pointer;text-align:left;transition:transform .2s,box-shadow .2s}
+  .dcard:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(15,30,43,.16)}
+  .dcard::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(15,30,43,.62))}
+  .dcard>div{position:relative;z-index:1}
+  .dcard b{font-size:19px;display:block}
+  .dcard small{opacity:.92;font-size:13px}
+
+  /* cards */
+  .grid-picks{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .pick{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:box-shadow .2s,transform .2s}
+  .pick:hover{box-shadow:0 14px 30px rgba(15,30,43,.1);transform:translateY(-2px)}
+  .ph{position:relative;aspect-ratio:4/3;background-size:cover;background-position:center}
+  .ph .tag{position:absolute;left:12px;bottom:12px}
+  .ph .heart{position:absolute;top:12px;right:12px}
+  .heart{width:40px;height:40px;border-radius:50%;border:none;background:rgba(255,255,255,.92);display:grid;place-items:center;cursor:pointer}
+  .heart[aria-pressed=true] svg{fill:#16294D;stroke:#16294D}
+  .tag{background:#fff;border-radius:8px;padding:4px 10px;font-size:12px;font-weight:700}
+  .pbody{padding:16px 18px 18px}
+  .pbody h3{font-size:17px}
+  .meta{color:var(--muted);font-size:13.5px;margin-top:2px}
+  .why{margin:12px 0 0;font-size:14px;color:var(--ink-soft);background:var(--accent-soft);border-radius:10px;padding:10px 12px}
+  .why b{color:var(--accent-dark)}
+  .price-row{display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px;gap:10px}
+  .price-row .pr{font-size:20px;font-weight:700}
+  .price-row .pr small{font-size:13px;font-weight:400;color:var(--muted)}
+  .total{font-size:12.5px;color:var(--muted)}
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+  .bdg{font-size:12px;padding:4px 10px;border-radius:100px;border:1px solid var(--line);color:var(--ink-soft);background:#fff}
+  .bdg.ok{background:var(--ok-bg);color:var(--ok);border-color:transparent;font-weight:600}
+  .bdg.new{background:var(--ink);color:#fff;border-color:transparent;font-weight:600}
+
+  /* results */
+  .results{display:grid;grid-template-columns:280px 1fr;gap:36px;align-items:start}
+  .filters{position:sticky;top:88px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .filters h3{font-size:15px;margin:0 0 12px}
+  .fg{margin-bottom:22px}
+  .fg label.ck{display:flex;gap:10px;align-items:center;font-size:14px;color:var(--ink-soft);padding:6px 0;cursor:pointer}
+  .fg input[type=checkbox],.fg input[type=radio]{accent-color:var(--accent);width:18px;height:18px}
+  .fg input[type=range]{width:100%;accent-color:var(--accent)}
+  .rng{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+  .rbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:18px}
+  .rbar h2{font-size:22px}
+  .rbar select{border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:#fff;min-height:44px}
+  .list{display:flex;flex-direction:column;gap:18px}
+  .row{display:grid;grid-template-columns:300px 1fr;gap:20px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;transition:box-shadow .2s}
+  .row:hover{box-shadow:0 12px 28px rgba(15,30,43,.1)}
+  .row .ph{border-radius:12px;aspect-ratio:auto;min-height:210px}
+  .row .rb{display:flex;flex-direction:column}
+  .row h3{font-size:18px}
+  .rb .desc{font-size:14px;color:var(--ink-soft);margin:8px 0 0}
+  .rb .bottom{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-top:14px}
+  .empty{background:#fff;border:1px dashed var(--line);border-radius:var(--radius);padding:40px;text-align:center;color:var(--muted)}
+  .fbtn{display:none}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:100px;padding:8px 16px;min-height:40px;cursor:pointer;font-weight:600;font-size:14px;color:var(--ink-soft)}
+  .chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .chip:hover{border-color:var(--ink)}
+
+  /* verify */
+  .verify{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:center}
+  .checks{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;list-style:none;margin:0;padding:0}
+  .checks li{display:flex;gap:10px;font-size:14.5px;color:var(--ink-soft);align-items:flex-start}
+  .checks svg{flex:none;margin-top:3px}
+  .panel{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px}
+  /* compare */
+  table.cmp{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;font-size:14.5px}
+  .cmp th,.cmp td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line)}
+  .cmp thead th{background:var(--warm);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+  .cmp tbody tr:last-child td{border-bottom:none}
+  .cmp td:nth-child(2){color:var(--ok);font-weight:600}
+  .team{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .person{text-align:center}
+  .avatar{width:96px;height:96px;border-radius:50%;margin:0 auto 12px;background:var(--warm);display:grid;place-items:center;font-weight:700;color:var(--accent-dark);font-size:26px;border:3px solid #fff;box-shadow:0 0 0 1px var(--line)}
+  .person b{display:block}
+  .person span{color:var(--muted);font-size:13.5px}
+  .promise{background:var(--ink);color:#E6EBED;border-radius:24px;padding:40px;display:grid;grid-template-columns:1fr 1fr;gap:36px}
+  .promise h2{color:#fff}
+  .promise ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+  .promise li{display:flex;gap:12px}
+  .early{background:var(--accent-soft);border-radius:24px;padding:36px;display:flex;justify-content:space-between;gap:24px;align-items:center;flex-wrap:wrap}
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:4px 20px;margin-bottom:10px}
+  .faq summary{cursor:pointer;font-weight:600;padding:16px 0;min-height:44px}
+  .faq p{margin:0 0 16px;color:var(--ink-soft)}
+  .legal{background:var(--warm);border-radius:var(--radius);padding:24px;font-size:14px;color:var(--ink-soft);display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .legal b{display:block;color:var(--ink);margin-bottom:2px}
+  footer{background:var(--ink);color:#B7C1C8;padding:44px 0;margin-top:64px;font-size:14px}
+  .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .foot a:hover{color:#fff}
+  .wa{position:fixed;right:20px;bottom:20px;z-index:50;background:#1E8E4E;color:#fff;border-radius:100px;padding:14px 20px;font-weight:600;box-shadow:0 10px 24px rgba(0,0,0,.2);display:flex;gap:8px;align-items:center}
+
+  /* trust additions */
+  .vid{display:grid;grid-template-columns:1.25fr 1fr;gap:36px;align-items:center}
+  .player{position:relative;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#CBB9C9,#E9DCE6);border:none;cursor:pointer;width:100%;display:grid;place-items:center;padding:0}
+  .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .play{width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;box-shadow:0 12px 30px rgba(15,30,43,.25)}
+  .player small{position:absolute;left:16px;bottom:14px;background:rgba(15,30,43,.7);color:#fff;border-radius:8px;padding:5px 10px;font-size:12.5px}
+  .tourform{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}
+  .tourform label{display:block;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:12px 0 4px}
+  .tourform select,.tourform input{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 12px;min-height:44px;background:#fff}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .search label{min-width:0}
+  .search input[type=date]{min-width:0}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+  .card h3{font-size:17px;margin:10px 0 6px}
+  .card p,.card li{font-size:14.5px;color:var(--ink-soft)}
+  .card ul{margin:8px 0 0;padding-left:18px}
+  .ico{width:42px;height:42px;border-radius:12px;background:var(--accent-soft);display:grid;place-items:center}
+  .pay-logos{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .pay-logos span{border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:12.5px;font-weight:600;color:var(--ink-soft);background:var(--bg)}
+  table.ext{width:100%;border-collapse:collapse;font-size:14.5px}
+  .ext td{padding:10px 0;border-bottom:1px solid var(--line)}
+  .ext td:last-child{text-align:right;font-weight:600;white-space:nowrap}
+  .ext tr:last-child td{border-bottom:none}
+  details.know{margin-top:12px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:2px 14px}
+  details.know summary{cursor:pointer;font-weight:600;font-size:14px;padding:10px 0;min-height:44px;display:flex;align-items:center}
+  details.know ul{margin:0 0 12px;padding-left:18px;font-size:13.5px;color:var(--ink-soft)}
+  .socials{display:flex;gap:14px;flex-wrap:wrap}
+  .ph-note{font-size:12.5px;color:var(--muted);margin-top:10px}
+
+  @media (max-width:980px){
+    .wrap{padding:0 20px}
+    .nav-links{display:none}
+    .search{grid-template-columns:1fr}
+    .search .btn{grid-column:1/-1;min-height:52px}
+    .trust-strip{grid-template-columns:1fr 1fr}
+    .dest{grid-template-columns:1fr 1fr}
+    .grid-picks{grid-template-columns:1fr}
+    .results{grid-template-columns:1fr}
+    .filters{position:static;display:none}
+    .filters.open{display:block}
+    .fbtn{display:inline-flex}
+    .row{grid-template-columns:1fr}
+    .verify,.promise{grid-template-columns:1fr}
+    .team{grid-template-columns:1fr 1fr}
+    .legal{grid-template-columns:1fr}
+    .vid,.grid3,.grid2{grid-template-columns:1fr}
+    .checks{grid-template-columns:1fr}
+    .cmp th,.cmp td{padding:10px;font-size:13px}
+  }
+  @media(max-width:980px){.tiers{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.tiers{grid-template-columns:1fr}}
+.eyebrow{color:#9A7326}.meter .bar i.on{background:#B8893B}.meter .bar i.half{background:linear-gradient(90deg,#B8893B 50%,var(--line) 50%)}.tag .lvl svg path{stroke:#9A7326}.seal.ok{background:#F6EEDC;color:#7A5A1A}.hero{background:linear-gradient(180deg,#0C1B38 0%,#16294D 100%)}
+.hero h1{color:#fff}.hero p.lead{color:#C9D3E6}.hero .eyebrow{color:#D2B073}
+.hero .ts{color:#C9D3E6}.hero .ts b{color:#fff}.hero .ts svg{stroke:#D2B073}
+.hero .search{border-color:transparent;box-shadow:0 24px 56px rgba(0,0,0,.35)}
+</style>
+</head>
+<body>
+
+<div class="mockbar" id="mockbar"><span><b>MOCKUP</b> &middot; 51 villas from Owner's list &middot; levels are a desk draft &middot; photos, prices and inspection dates pending</span><button type="button" onclick="this.parentNode.remove()" aria-label="Hide note">Hide</button></div>
+<div class="topbar">Managed directly by our local team in Bali &middot; Total price shown upfront &middot; Free reschedule on selected villas</div>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="Bali Stay Collection home">
+      <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg></i>
+      Bali Stay Collection
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#villas">Villas</a><a href="#destinations">Destinations</a><a href="#verify">How we verify</a><a href="#team">Our team</a><a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="cur" role="group" aria-label="Currency">
+        <button type="button" data-cur="USD" aria-pressed="true">USD</button>
+        <button type="button" data-cur="IDR" aria-pressed="false">IDR</button>
+      </div>
+      <a class="btn btn-primary" href="#villas">Find a villa</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-in">
+      <div class="eyebrow">Private villas &middot; Canggu &middot; Pererenan &middot; Umalas &middot; Uluwatu &middot; Ubud</div>
+      <h1 style="margin-top:12px">Find a Bali villa you can book with confidence</h1>
+      <p class="lead">Hand-picked private villas, inspected in person by our local team. See the total price upfront and get answers from real people.</p>
+    </div>
+
+    <form class="search" id="searchForm" aria-label="Search villas">
+      <label><span class="lb">Where</span>
+        <select id="sArea"><option value="">All destinations</option></select></label>
+      <label><span class="lb">Check-in</span><input type="date" id="sIn"></label>
+      <label><span class="lb">Check-out</span><input type="date" id="sOut"></label>
+      <label><span class="lb">Guests</span><input type="number" id="sGuests" min="1" max="20" value="2"></label>
+      <button class="btn btn-primary" type="submit">Search villas</button>
+    </form>
+
+    <div class="trust-strip">
+      <div class="ts"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg><div><b>Inspected in person</b>Every villa checked by our team</div></div>
+      <div class="ts"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg><div><b>Total price upfront</b>No surprises at checkout</div></div>
+      <div class="ts"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg><div><b>Clear cancellation terms</b>Shown on every villa</div></div>
+      <div class="ts"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Local team on call</b>Real people, in Bali</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="destinations">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Explore</div><h2>Explore by destination</h2><p>Choose the feel of your stay, then browse the villas. Tap an area to filter.</p></div>
+    <div class="dest" id="destGrid"></div>
+  </div>
+</section>
+
+<section class="sec" id="levels" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Choose your level</div><h2>From simple and stylish to full luxury</h2><p>Every villa has a private pool. The level tells you the design, service and extras to expect. Tap a level to see those villas.</p></div>
+    <div class="tiers" id="tierGrid"></div>
+    <p class="mnote" style="margin-top:12px">The bars show our own 5-point check (design, pool &amp; outdoor, view &amp; setting, service, amenities). It is a BSC level, not a guest rating. Levels are confirmed after each inspection.</p>
+    <div class="rev"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0C1B38" stroke-width="1.8"><path d="M21 12a9 9 0 01-13.5 7.8L3 21l1.3-4.4A9 9 0 1121 12z"/></svg><div><b>Guest reviews: real ones only</b><p>BSC is new, so you will not see stars here yet. After the first stays, verified guest reviews appear on each villa, labelled with their source and never edited.</p></div></div>
+  </div>
+</section>
+
+<section class="sec" style="background:#fff;border-block:1px solid var(--line);margin-top:64px">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Our top picks</div><h2>Villas our team would book for their own family</h2><p>Chosen by us, with the reason why. New to BSC, so we show our own level check and inspection notes instead of star ratings.</p></div>
+    <div class="grid-picks" id="picks"></div>
+  </div>
+</section>
+
+<section class="sec" id="villas">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">All villas</div><h2>Find your villa</h2></div>
+    <div class="results">
+      <aside class="filters" id="filters" aria-label="Filters">
+        <div class="fg" id="fgPrice">
+          <h3>Price per night</h3>
+          <input type="range" id="fPrice" min="50" max="600" step="10" value="600" aria-label="Maximum price per night">
+          <div class="rng"><span>$50</span><b id="fPriceVal">Up to $600</b><span>$600+</span></div>
+        </div>
+        <div class="fg"><h3>Villa level</h3><div id="fTier"></div></div>
+        <div class="fg"><h3>Trip type</h3><div id="fTrip"></div></div>
+        <div class="fg"><h3>Setting &amp; view</h3><div id="fSet"></div></div>
+        <div class="fg"><h3>Bedrooms</h3>
+          <label class="ck"><input type="radio" name="beds" value="0" checked> Any</label>
+          <label class="ck"><input type="radio" name="beds" value="2"> 2+</label>
+          <label class="ck"><input type="radio" name="beds" value="3"> 3+</label>
+          <label class="ck"><input type="radio" name="beds" value="4"> 4+</label>
+        </div>
+        <div class="fg"><h3>Must have</h3><div id="fAm"></div></div>
+        <button class="btn btn-ghost" type="button" id="reset" style="width:100%">Reset filters</button>
+      </aside>
+
+      <div>
+        <div class="rbar">
+          <div><h2 id="count">Villas</h2><div class="meta" id="sub"></div></div>
+          <div style="display:flex;gap:10px">
+            <button class="btn btn-ghost fbtn" type="button" id="toggleF">Filters</button>
+            <label class="meta" style="display:flex;align-items:center;gap:8px">Sort
+              <select id="sort"><option value="rec">Recommended</option><option value="pa" class="po">Price: low to high</option><option value="pd" class="po">Price: high to low</option><option value="bd">Most bedrooms</option><option value="g">Most guests</option></select>
+            </label>
+          </div>
+        </div>
+        <div class="chips" id="chips" role="group" aria-label="Quick filters"></div>
+        <details class="know" style="margin:0 0 16px"><summary>What do the levels mean?</summary><ul><li><b>Standard:</b> clean, comfortable, good value. Private pool, simple design, essentials covered.</li><li><b>Deluxe:</b> stylish and well equipped, in a good location, with some service.</li><li><b>Premium:</b> designer villas with larger pools, stronger service and notable extras.</li><li><b>Luxury:</b> architect-level design, signature pools, dedicated staff or a villa manager and a standout setting.</li></ul></details>
+        <div class="list" id="list" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="verify" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap verify">
+    <div>
+      <div class="eyebrow">Our standard</div>
+      <h2 style="font-size:32px;margin:6px 0 14px">How we verify every villa</h2>
+      <p style="color:var(--ink-soft)">A villa only goes live on Bali Stay Collection after our team has visited it and checked the points below. Photos are taken by our team, and we note the date of the last inspection on each listing.</p>
+      <a class="btn btn-ghost" href="#villas" style="margin-top:14px">Browse verified villas</a>
+    </div>
+    <div class="panel">
+      <ul class="checks">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Photos match the real villa</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Pool clean and safe</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Air conditioning tested</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>WiFi speed measured</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Hot water and water pressure</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Kitchen fully equipped</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Bedding and towels fresh</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Walking distances measured</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Safety: locks, smoke alarm, first aid</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Staff briefed and reachable</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Noise level checked day and night</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Owner confirms availability</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section class="sec" id="tour">
+  <div class="wrap vid">
+    <div>
+      <button class="player" type="button" id="player" aria-label="Play villa tour video">
+        <span class="play"><svg width="28" height="28" viewBox="0 0 24 24" fill="#16294D"><path d="M8 5v14l11-7z"/></svg></span>
+        <small>Unedited walkthrough &middot; [Casa Pere, filmed Oct 2026]</small>
+      </button>
+      <p class="ph-note">Add your YouTube link in CONFIG.videoEmbed. Keep it raw: one continuous walk through, no heavy editing.</p>
+    </div>
+    <form class="tourform" id="tourForm">
+      <div class="eyebrow">See it before you book</div>
+      <h2 style="font-size:26px;margin:6px 0 6px">Book a 10-minute live video tour</h2>
+      <p style="margin:0;color:var(--ink-soft)">A member of our team walks you through the villa on a video call, and answers your questions on the spot. Free, no obligation.</p>
+      <label for="tVilla">Villa</label><select id="tVilla"></select>
+      <label for="tWhen">Preferred day &amp; time</label><input id="tWhen" placeholder="e.g. Tuesday 10:00 Bali time">
+      <label for="tName">Your first name</label><input id="tName" placeholder="Name">
+      <button class="btn btn-primary" type="submit" style="width:100%;margin-top:16px">Request a video tour</button>
+      <p class="ph-note" id="tNote"></p>
+    </form>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Why book direct</div><h2>Book direct, know exactly who you are dealing with</h2></div>
+    <table class="cmp">
+      <thead><tr><th></th><th>Bali Stay Collection</th><th>Typical booking platforms</th></tr></thead>
+      <tbody>
+        <tr><td>Who answers your questions</td><td>The local team that manages the villa</td><td>Often a chat bot or a remote agent</td></tr>
+        <tr><td>Price</td><td>Total shown upfront</td><td>Fees may appear at checkout</td></tr>
+        <tr><td>Changes to your plans</td><td>Free reschedule on selected villas</td><td>Depends on each host</td></tr>
+        <tr><td>Help during your stay</td><td>On-call local team</td><td>Platform support, often remote</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sec" id="team" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Our team</div><h2>The people behind your stay</h2><p>Real names, real faces, based in Bali. Replace the placeholders below with your team.</p></div>
+    <div class="team">
+      <div class="person"><div class="avatar">KW</div><b>Ketut Wiratama</b><span>Founder &amp; Villa Manager</span></div>
+      <div class="person"><div class="avatar">[ ]</div><b>[Name]</b><span>Guest Relations</span></div>
+      <div class="person"><div class="avatar">[ ]</div><b>[Name]</b><span>Operations &amp; Housekeeping</span></div>
+      <div class="person"><div class="avatar">[ ]</div><b>[Name]</b><span>Villa Inspector</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="promise">
+      <div><div class="eyebrow" style="color:#D2B073">Our promise</div><h2 style="font-size:30px;margin:6px 0 12px">The BSC Stay Promise</h2><p style="color:#C9D1D6">What you see is what you get. If something is not right, we put it right, quickly.</p></div>
+      <ul>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D2B073" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg><span><b style="color:#fff">Photos are real.</b> Taken by our team and dated.</span></li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D2B073" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg><span><b style="color:#fff">Fixed fast.</b> Issues reported during your stay are handled by our on-call team.</span></li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D2B073" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg><span><b style="color:#fff">Moved if needed.</b> If a villa does not match its listing, we offer a comparable villa or a refund as per our policy.</span></li>
+      </ul>
+    </div>
+    <p class="meta" style="margin-top:10px">[Owner to confirm exact policy wording before publishing.]</p>
+  </div>
+</section>
+
+
+<section class="sec" style="background:#fff;border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Safe &amp; accountable</div><h2>Licensed, insured and ready for emergencies</h2><p>Show only what is true. Replace each placeholder with your real document or leave the line out.</p></div>
+    <div class="grid3">
+      <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" stroke-width="2"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg></div><h3>Licensed operator</h3><p>[PT legal name] &middot; NIB [number]<br>Tourism business licence: [number]<br><span class="ph-note">Link to your OSS/NIB extract if allowed.</span></p></div>
+      <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" stroke-width="2"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg></div><h3>Emergency protocol</h3><ul><li>On-call team reachable [hours]</li><li>Nearest clinic: [name, X min]</li><li>Nearest hospital: [name, X min]</li><li>First-aid kit and smoke alarm in every villa</li></ul></div>
+      <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" stroke-width="2"><path d="M3 12h18M12 3v18"/></svg></div><h3>Pool &amp; child safety</h3><ul><li>Pool depth and fencing stated on every villa</li><li>Pool fence or nanny on request, where available</li><li>[Insurance details, if you have them]</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">Booking &amp; payment</div><h2>Simple, secure and transparent</h2></div>
+    <div class="grid3">
+      <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg></div><h3>Pay the way you prefer</h3><p>[e.g. card, bank transfer, other]. You receive a written confirmation right after booking.</p><div class="pay-logos"><span>[Visa]</span><span>[Mastercard]</span><span>[Bank transfer]</span></div><p class="ph-note">Show only methods you actually accept.</p></div>
+      <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" stroke-width="2"><path d="M12 2v20M17 6H9.5a3 3 0 000 6h5a3 3 0 010 6H6"/></svg></div><h3>Reserve with a deposit</h3><p>[e.g. 30% to confirm, balance due [X] days before arrival]. Security deposit: [amount], returned within [X] days after check-out.</p></div>
+      <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div><h3>Price breakdown, no surprises</h3><p>You see the nightly rate, [cleaning fee], [taxes] and the total before you pay. Extras like transfers or a chef are quoted separately.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap grid2">
+    <div class="card">
+      <div class="eyebrow">Before you arrive</div>
+      <h3 style="font-size:22px;margin:6px 0 8px">Your arrival guide</h3>
+      <p>Everything in one place: how check-in works, house rules, WiFi, who to call and where to eat. We send it with your confirmation.</p>
+      <ul><li>Check-in from [time], check-out by [time]</li><li>Staff greet you at the villa [or: self check-in steps]</li><li>Emergency contacts and nearest clinic</li><li>Local tips: cafés, spas and beaches with real distances</li></ul>
+      <a class="btn btn-ghost" href="#" style="margin-top:14px">Preview a sample guide</a>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Extras, fixed prices</div>
+      <h3 style="font-size:22px;margin:6px 0 8px">Make your stay easier</h3>
+      <table class="ext"><tbody>
+        <tr><td>Airport transfer (up to [4] guests)</td><td>[$ amount]</td></tr>
+        <tr><td>Private chef dinner</td><td>from [$ amount]</td></tr>
+        <tr><td>In-villa massage (per person)</td><td>from [$ amount]</td></tr>
+        <tr><td>Scooter or car with driver</td><td>from [$ amount] / day</td></tr>
+        <tr><td>Baby cot / high chair</td><td>[free / $ amount]</td></tr>
+      </tbody></table>
+      <p class="ph-note">Fill in only services you really provide. Fixed prices published upfront build trust.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="early">
+      <div style="max-width:620px">
+        <div class="eyebrow">Reviews</div>
+        <h2 style="font-size:26px;margin:6px 0 8px">Be one of our first verified guests</h2>
+        <p style="margin:0;color:var(--ink-soft)">We only show reviews from guests who stayed with us, so there are no ratings yet. Instead, you can read our inspection notes on every villa. Early guests get [early-guest perk, e.g. complimentary welcome dinner].</p>
+      </div>
+      <a class="btn btn-primary" href="#villas">See available villas</a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="faq" style="padding-top:0">
+  <div class="wrap faq" style="max-width:860px">
+    <div class="sec-head"><div class="eyebrow">Questions</div><h2>Before you book</h2></div>
+    <details><summary>Why are there no star ratings yet?</summary><p>We are a new brand and only show reviews from verified BSC guests. Until they come in, every villa shows our inspection notes and the date it was last checked.</p></details>
+    <details><summary>Is the price shown the final price?</summary><p>The total shown includes [what is included: taxes, cleaning, service]. Anything extra, like transfers or a chef, is quoted separately before you pay.</p></details>
+    <details><summary>What is your cancellation policy?</summary><p>Each villa shows its policy on the card and on the villa page. [Add default policy, e.g. free reschedule up to 7 days before check-in.]</p></details>
+    <details><summary>How do I pay, and is it secure?</summary><p>[Describe payment methods and deposit handling.] You receive a written confirmation with your booking details.</p></details>
+    <details><summary>Who do I contact during my stay?</summary><p>Our on-call local team. You get their details in your booking confirmation.</p></details>
+  </div>
+</section>
+
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="legal">
+      <div><b>Company</b>[PT legal name]<br>[NIB / business licence number]</div>
+      <div><b>Office in Bali</b>[Full address]<br>[Google Maps link]</div>
+      <div><b>Contact</b>[Email] &middot; [WhatsApp]<br>Replies: [e.g. within 1 hour, 8am-10pm WITA]</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><b style="color:#fff">Bali Stay Collection</b><br>Private villas in Bali, managed by a local team.</div>
+    <div><div style="display:flex;gap:22px;flex-wrap:wrap"><a href="#villas">Villas</a><a href="#verify">How we verify</a><a href="#tour">Video tour</a><a href="#faq">FAQ</a><a href="#">Terms</a><a href="#">Privacy</a></div><div class="socials" style="margin-top:12px"><a href="#">Find us on Google Maps</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">hello@[yourdomain].com</a></div></div>
+    <div>&copy; 2026 Bali Stay Collection</div>
+  </div>
+</footer>
+
+<a class="wa" href="#" id="wa" aria-label="Chat with our team on WhatsApp">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 12a9 9 0 01-13.5 7.8L3 21l1.3-4.4A9 9 0 1121 12z"/></svg> Chat with us
+</a>
+
+<script>
+/* ===== EDIT ME: configuration ===== */
+var CONFIG = {
+  idrRate: 16000,                 // USD to IDR, update regularly
+  whatsapp: '',                   // e.g. '628123456789' (no + or spaces)
+  defaultNights: 6,
+  startInDays: 14,
+  videoEmbed: ''                  // e.g. 'https://www.youtube.com/embed/VIDEO_ID'
+};
+
+/* ===== VILLA DATA: 51 villas from Owner's list (5 Oct 2026).
+   Levels (Standard/Deluxe/Premium/Luxury) = desk draft from the tier workbook; confirm after inspection.
+   price: null = "rates on request". Add a number (USD per night) to switch on price filter, sort and totals.
+   img: path/URL of a real photo ('' shows a colour placeholder).
+   verified: set true and updated:'Oct 2026' only after your team has inspected the villa.
+   No ratings are shown. Add them only when real BSC reviews exist. ===== */
+var VILLAS = [
+  {"sc": [3, 3, 3, 3, 3], "id": "coco-bay", "name": "Coco Bay", "area": "Canggu & Berawa", "beds": 8, "baths": 8, "guests": 16, "price": null, "tier": "Luxury", "trips": ["Friends group", "Celebration", "Wellness retreat"], "setting": ["Walk to the beach"], "am": ["Private pool", "Daily staff", "Chef on request", "Wellness facilities", "Villa manager"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "Right by the beach with cafés around the corner, eight bedrooms and a full staff for a big group.", "cancel": "", "verified": false, "updated": "", "pick": true, "desc": "8-bedroom private pool villa in Canggu & Berawa, for up to 16 guests. Features architect-designed, a dedicated villa manager and a short walk to the beach.", "know": []},
+  {"sc": [3, 3, 2, 3, 3], "id": "the-bull-house", "name": "The Bull House", "area": "Umalas & Seminyak", "beds": 6, "baths": 7, "guests": 12, "price": null, "tier": "Luxury", "trips": ["Friends group", "Family", "Celebration"], "setting": ["Walk to the beach"], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning", "Villa manager"], "tone": ["#B4BDCE", "#DFE4EE"], "img": "", "why": "Six bedrooms, a personal butler, a 15 m pool and a media room, close to Batu Belig beach.", "cancel": "", "verified": false, "updated": "", "pick": true, "desc": "6-bedroom private pool villa in Umalas & Seminyak, for up to 12 guests. Features a dedicated villa manager and a short walk to the beach.", "know": []},
+  {"sc": [2, 2, 3, 3, 3], "id": "villa-imala", "name": "Villa Imala", "area": "Uluwatu & Bukit", "beds": 6, "baths": 5, "guests": 12, "price": null, "tier": "Luxury", "trips": ["Friends group", "Family", "Celebration", "Wellness retreat"], "setting": ["Ocean view"], "am": ["Private pool", "Daily staff", "Chef on request", "Wellness facilities", "Villa manager"], "tone": ["#9FB7C7", "#D5E2EA"], "img": "", "why": "Ocean and hillside views, six bedrooms, and a dedicated villa manager. Built for celebrations in Uluwatu.", "cancel": "", "verified": false, "updated": "", "pick": true, "desc": "6-bedroom private pool villa in Uluwatu & Bukit, for up to 12 guests. Features ocean views, a dedicated villa manager and wellness facilities.", "know": []},
+  {"sc": [3, 3, 1, 2, 2], "id": "house-terra", "name": "House Terra", "area": "Pererenan", "beds": 5, "baths": 6, "guests": 12, "price": null, "tier": "Premium", "trips": ["Friends group", "Family", "Celebration", "Wellness retreat"], "setting": [], "am": ["Private pool", "Daily staff", "Air conditioning", "Wellness facilities"], "tone": ["#CBB9C9", "#E9DCE6"], "img": "", "why": "Designed by Biombo Architects, with a private hot tub and a pool made for long afternoons in Pererenan.", "cancel": "", "verified": false, "updated": "", "pick": true, "desc": "5-bedroom private pool villa in Pererenan, for up to 12 guests. Features architect-designed and wellness facilities.", "know": []},
+  {"sc": [2, 1, 2, 2, 2], "id": "villa-kanopi", "name": "Villa Kanopi", "area": "Umalas & Seminyak", "beds": 3, "baths": 3, "guests": 6, "price": null, "tier": "Premium", "trips": ["Friends group", "Family"], "setting": ["Walkable to cafés"], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning", "Walk to cafés"], "tone": ["#B4BDCE", "#DFE4EE"], "img": "", "why": "A brand-new three-bedroom villa on a quiet lane, a short stroll from Umalas restaurants and cafés.", "cancel": "", "verified": false, "updated": "", "pick": true, "desc": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests. Features cafés within walking distance.", "know": []},
+  {"sc": [2, 1, 1, 2, 1], "id": "villa-tala", "name": "Villa Tala", "area": "Pererenan", "beds": 1, "baths": 1, "guests": 2, "price": null, "tier": "Deluxe", "trips": ["Couples", "Honeymoon"], "setting": ["Garden setting"], "am": ["Private pool", "Daily staff"], "tone": ["#CBB9C9", "#E9DCE6"], "img": "", "why": "A designer one-bedroom for two, near Pererenan restaurants. Simple, quiet and well priced for couples.", "cancel": "", "verified": false, "updated": "", "pick": true, "desc": "1-bedroom private pool villa in Pererenan, for up to 2 guests.", "know": []},
+  {"sc": [2, 3, 2, 2, 3], "id": "berawa-breeze", "name": "Berawa Breeze", "area": "Canggu & Berawa", "beds": 4, "baths": 4, "guests": 8, "price": null, "tier": "Luxury", "trips": ["Friends group", "Family", "Celebration", "Wellness retreat"], "setting": ["Walkable to cafés", "Walk to the beach"], "am": ["Private pool", "Daily staff", "Chef on request", "Wellness facilities", "Walk to cafés"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features a short walk to the beach, cafés within walking distance and wellness facilities.", "know": []},
+  {"sc": [2, 3, 2, 2, 3], "id": "villa-aless", "name": "Villa Aless", "area": "Canggu & Berawa", "beds": 4, "baths": 5, "guests": 10, "price": null, "tier": "Luxury", "trips": ["Friends group", "Family", "Celebration", "Wellness retreat"], "setting": [], "am": ["Private pool", "Daily staff", "Chef on request", "Wellness facilities"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 10 guests. Features wellness facilities.", "know": []},
+  {"sc": [2, 3, 2, 2, 2], "id": "villa-vida", "name": "Villa Vida", "area": "Canggu & Berawa", "beds": 5, "baths": 5, "guests": 20, "price": null, "tier": "Premium", "trips": ["Friends group", "Family", "Celebration"], "setting": ["Rice-field view", "Walkable to cafés", "Walk to the beach"], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning", "Walk to cafés"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "5-bedroom private pool villa in Canggu & Berawa, for up to 20 guests. Features rice-field views, a short walk to the beach and cafés within walking distance.", "know": ["Maximum guest number to be confirmed (16 to 20)."]},
+  {"sc": [2, 3, 1, 2, 3], "id": "beyond-the-palms", "name": "Beyond the Palms", "area": "Canggu & Berawa", "beds": 4, "baths": 4, "guests": 8, "price": null, "tier": "Premium", "trips": ["Friends group", "Family", "Wellness retreat"], "setting": ["Garden setting"], "am": ["Private pool", "Chef on request", "Wellness facilities"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features wellness facilities.", "know": ["Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."]},
+  {"sc": [3, 3, 1, 3, 1], "id": "cala-blanca", "name": "Cala Blanca", "area": "Pererenan", "beds": 4, "baths": 5, "guests": 8, "price": null, "tier": "Premium", "trips": ["Friends group", "Family"], "setting": ["Garden setting"], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#CBB9C9", "#E9DCE6"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features architect-designed.", "know": []},
+  {"sc": [2, 1, 2, 2, 3], "id": "villa-ithaki", "name": "Villa Ithaki", "area": "Umalas & Seminyak", "beds": 5, "baths": 5, "guests": 9, "price": null, "tier": "Premium", "trips": ["Friends group", "Family", "Wellness retreat"], "setting": [], "am": ["Private pool", "Daily staff", "Chef on request", "Wellness facilities"], "tone": ["#B4BDCE", "#DFE4EE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "5-bedroom private pool villa in Umalas & Seminyak, for up to 9 guests. Features architect-designed and wellness facilities.", "know": ["Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."]},
+  {"sc": [2, 2, 2, 2, 2], "id": "villa-satiya", "name": "Villa Satiya", "area": "Pererenan", "beds": 4, "baths": 5, "guests": 8, "price": null, "tier": "Premium", "trips": ["Friends group", "Family"], "setting": ["Rice-field view"], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#CBB9C9", "#E9DCE6"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features rice-field views.", "know": []},
+  {"sc": [2, 1, 3, 2, 2], "id": "villa-loedi", "name": "Villa Loedi", "area": "Uluwatu & Bukit", "beds": 4, "baths": 5, "guests": 8, "price": null, "tier": "Premium", "trips": ["Friends group", "Family"], "setting": ["Ocean view"], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#9FB7C7", "#D5E2EA"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Uluwatu & Bukit, for up to 8 guests. Features architect-designed and ocean views.", "know": []},
+  {"sc": [2, 3, 1, 1, 3], "id": "bedouin-house", "name": "Bedouin House", "area": "Pererenan", "beds": 2, "baths": 2, "guests": 4, "price": null, "tier": "Premium", "trips": ["Couples", "Honeymoon", "Wellness retreat"], "setting": ["Garden setting"], "am": ["Private pool", "Daily staff", "Chef on request", "Wellness facilities"], "tone": ["#CBB9C9", "#E9DCE6"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "2-bedroom private pool villa in Pererenan, for up to 4 guests. Features architect-designed and wellness facilities.", "know": []},
+  {"sc": [1, 2, 3, 2, 1], "id": "balangan-cliff-villa", "name": "Balangan Cliff Villa", "area": "Uluwatu & Bukit", "beds": 5, "baths": 5, "guests": 10, "price": null, "tier": "Premium", "trips": ["Friends group", "Family", "Celebration"], "setting": ["Ocean view", "Cliff top", "Walk to the beach"], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#9FB7C7", "#D5E2EA"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "5-bedroom private pool villa in Uluwatu & Bukit, for up to 10 guests. Features ocean views and a short walk to the beach.", "know": []},
+  {"sc": [2, 2, 2, 2, 1], "id": "villa-amanora", "name": "Villa Amanora", "area": "Canggu & Berawa", "beds": 5, "baths": 6, "guests": 10, "price": null, "tier": "Premium", "trips": ["Friends group", "Family", "Celebration"], "setting": ["Walkable to cafés", "Walk to the beach"], "am": ["Private pool", "Daily staff", "Chef on request", "Walk to cafés"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "5-bedroom private pool villa in Canggu & Berawa, for up to 10 guests. Features a short walk to the beach and cafés within walking distance.", "know": []},
+  {"sc": [2, 2, 1, 2, 2], "id": "villa-milana", "name": "Villa Milana", "area": "Canggu & Berawa", "beds": 5, "baths": 5, "guests": 12, "price": null, "tier": "Premium", "trips": ["Friends group", "Family", "Celebration"], "setting": ["Garden setting"], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "5-bedroom private pool villa in Canggu & Berawa, for up to 12 guests. Features architect-designed.", "know": []},
+  {"sc": [1, 2, 2, 2, 2], "id": "villa-taijasa", "name": "Villa Taijasa", "area": "Umalas & Seminyak", "beds": 5, "baths": 6, "guests": 10, "price": null, "tier": "Premium", "trips": ["Friends group", "Family", "Celebration"], "setting": ["Rice-field view", "Walkable to cafés"], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning", "Walk to cafés"], "tone": ["#B4BDCE", "#DFE4EE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "5-bedroom private pool villa in Umalas & Seminyak, for up to 10 guests. Features rice-field views and cafés within walking distance.", "know": []},
+  {"sc": [2, 2, 2, 2, 1], "id": "casa-kameelya", "name": "Casa Kameelya", "area": "Canggu & Berawa", "beds": 4, "baths": 4, "guests": 8, "price": null, "tier": "Premium", "trips": ["Friends group", "Family"], "setting": ["Garden setting"], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.", "know": []},
+  {"sc": [2, 2, 2, 2, 1], "id": "villa-habitas", "name": "Villa Habitas", "area": "Pererenan", "beds": 4, "baths": 5, "guests": 8, "price": null, "tier": "Premium", "trips": ["Friends group", "Family"], "setting": ["Rice-field view"], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#CBB9C9", "#E9DCE6"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features architect-designed and rice-field views.", "know": []},
+  {"sc": [1, 2, 2, 2, 2], "id": "villa-surga", "name": "Villa Surga", "area": "Ubud", "beds": 4, "baths": 4, "guests": 8, "price": null, "tier": "Premium", "trips": ["Friends group", "Family"], "setting": ["Valley view"], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning"], "tone": ["#C7CDBB", "#E2E7D6"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Ubud, for up to 8 guests. Features valley views.", "know": []},
+  {"sc": [2, 2, 2, 2, 1], "id": "villa-mango-2", "name": "Villa Mango 2", "area": "Canggu & Berawa", "beds": 4, "baths": 5, "guests": 8, "price": null, "tier": "Premium", "trips": ["Friends group", "Family"], "setting": ["Walkable to cafés", "Walk to the beach"], "am": ["Private pool", "Daily staff", "Chef on request", "Walk to cafés"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features a short walk to the beach and cafés within walking distance.", "know": []},
+  {"sc": [2, 2, 1, 2, 2], "id": "padang-senang", "name": "Padang Senang", "area": "Uluwatu & Bukit", "beds": 3, "baths": 4, "guests": 6, "price": null, "tier": "Premium", "trips": ["Friends group", "Family"], "setting": ["Walkable to cafés", "Walk to the beach"], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning", "Walk to cafés"], "tone": ["#9FB7C7", "#D5E2EA"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "3-bedroom private pool villa in Uluwatu & Bukit, for up to 6 guests. Features a short walk to the beach and cafés within walking distance.", "know": []},
+  {"sc": [2, 1, 2, 2, 2], "id": "villa-alva", "name": "Villa Alva", "area": "Umalas & Seminyak", "beds": 3, "baths": 4, "guests": 6, "price": null, "tier": "Premium", "trips": ["Friends group", "Family"], "setting": ["Walkable to cafés"], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning", "Walk to cafés"], "tone": ["#B4BDCE", "#DFE4EE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests. Features architect-designed and cafés within walking distance.", "know": []},
+  {"sc": [2, 2, 2, 2, 1], "id": "villa-le-papillon", "name": "Villa LE PAPILLON", "area": "Umalas & Seminyak", "beds": 2, "baths": 3, "guests": 4, "price": null, "tier": "Premium", "trips": ["Couples", "Honeymoon"], "setting": ["Walkable to cafés"], "am": ["Private pool", "Daily staff", "Chef on request", "Walk to cafés"], "tone": ["#B4BDCE", "#DFE4EE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features architect-designed and cafés within walking distance.", "know": []},
+  {"sc": [2, 2, 1, 3, 1], "id": "casa-noema", "name": "Casa Noema", "area": "Umalas & Seminyak", "beds": 2, "baths": 3, "guests": 4, "price": null, "tier": "Premium", "trips": ["Couples", "Honeymoon"], "setting": ["Garden setting"], "am": ["Private pool", "Daily staff", "Villa manager"], "tone": ["#B4BDCE", "#DFE4EE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features a dedicated villa manager.", "know": []},
+  {"sc": [1, 2, 2, 2, 1], "id": "villa-angkasa", "name": "Villa Angkasa", "area": "Ubud", "beds": 5, "baths": 6, "guests": 10, "price": null, "tier": "Deluxe", "trips": ["Friends group", "Family", "Celebration"], "setting": ["Rice-field view"], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#C7CDBB", "#E2E7D6"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "5-bedroom private pool villa in Ubud, for up to 10 guests. Features rice-field views.", "know": ["Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."]},
+  {"sc": [2, 2, 1, 2, 1], "id": "villa-akar", "name": "Villa Akar", "area": "Canggu & Berawa", "beds": 4, "baths": 5, "guests": 8, "price": null, "tier": "Deluxe", "trips": ["Friends group", "Family"], "setting": [], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.", "know": ["Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."]},
+  {"sc": [2, 2, 1, 2, 1], "id": "villa-daun-by-teduh", "name": "Villa Daun (by Teduh)", "area": "Canggu & Berawa", "beds": 4, "baths": 5, "guests": 8, "price": null, "tier": "Deluxe", "trips": ["Friends group", "Family"], "setting": [], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.", "know": ["Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."]},
+  {"sc": [1, 1, 2, 2, 2], "id": "villa-vida-mira", "name": "Villa Vida Mira", "area": "Canggu & Berawa", "beds": 4, "baths": 4, "guests": 9, "price": null, "tier": "Deluxe", "trips": ["Friends group", "Family"], "setting": ["Walk to the beach"], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 9 guests. Features a short walk to the beach.", "know": []},
+  {"sc": [2, 1, 1, 2, 2], "id": "st-lau", "name": "St. Lau", "area": "Ubud", "beds": 3, "baths": 3, "guests": 8, "price": null, "tier": "Deluxe", "trips": ["Friends group", "Family"], "setting": ["Garden setting"], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#C7CDBB", "#E2E7D6"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "3-bedroom private pool villa in Ubud, for up to 8 guests.", "know": []},
+  {"sc": [1, 1, 2, 2, 2], "id": "villa-mahina", "name": "Villa Mahina", "area": "Canggu & Berawa", "beds": 3, "baths": 3, "guests": 6, "price": null, "tier": "Deluxe", "trips": ["Friends group", "Family"], "setting": ["Walk to the beach"], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "3-bedroom private pool villa in Canggu & Berawa, for up to 6 guests. Features a short walk to the beach.", "know": []},
+  {"sc": [1, 3, 1, 1, 2], "id": "villa-serenity", "name": "Villa Serenity", "area": "Canggu & Berawa", "beds": 3, "baths": 3, "guests": 6, "price": null, "tier": "Deluxe", "trips": ["Friends group", "Family", "Wellness retreat"], "setting": [], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning", "Wellness facilities"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "3-bedroom private pool villa in Canggu & Berawa, for up to 6 guests. Features wellness facilities.", "know": []},
+  {"sc": [2, 1, 2, 2, 1], "id": "t-ra-bingin-villa", "name": "TĀRA Bingin Villa", "area": "Uluwatu & Bukit", "beds": 2, "baths": 2, "guests": 4, "price": null, "tier": "Deluxe", "trips": ["Couples", "Honeymoon"], "setting": [], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#9FB7C7", "#D5E2EA"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "2-bedroom private pool villa in Uluwatu & Bukit, for up to 4 guests.", "know": []},
+  {"sc": [1, 1, 2, 2, 2], "id": "villa-halle", "name": "Villa Halle", "area": "Seseh", "beds": 2, "baths": 3, "guests": 4, "price": null, "tier": "Deluxe", "trips": ["Couples", "Honeymoon"], "setting": ["Walk to the beach"], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning"], "tone": ["#B8C9B2", "#DCE8D6"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "2-bedroom private pool villa in Seseh, for up to 4 guests. Features a short walk to the beach.", "know": ["Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."]},
+  {"sc": [1, 1, 2, 2, 2], "id": "villa-golden", "name": "Villa Golden", "area": "Canggu & Berawa", "beds": 2, "baths": 2, "guests": 4, "price": null, "tier": "Deluxe", "trips": ["Couples", "Honeymoon"], "setting": ["Walkable to cafés"], "am": ["Private pool", "Daily staff", "Chef on request", "Walk to cafés"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features cafés within walking distance.", "know": []},
+  {"sc": [1, 1, 1, 3, 2], "id": "alua-taupe", "name": "Alua Taupe", "area": "Umalas & Seminyak", "beds": 1, "baths": 1, "guests": 2, "price": null, "tier": "Deluxe", "trips": ["Couples", "Honeymoon"], "setting": [], "am": ["Private pool", "Daily staff", "Air conditioning", "Villa manager"], "tone": ["#B4BDCE", "#DFE4EE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "1-bedroom private pool villa in Umalas & Seminyak, for up to 2 guests. Features a dedicated villa manager.", "know": []},
+  {"sc": [0, 2, 1, 2, 2], "id": "lady-swan-villa", "name": "Lady Swan Villa", "area": "Canggu & Berawa", "beds": 4, "baths": 3, "guests": 8, "price": null, "tier": "Deluxe", "trips": ["Friends group", "Family"], "setting": ["Garden setting"], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.", "know": []},
+  {"sc": [1, 1, 1, 2, 2], "id": "yellow-moon", "name": "Yellow Moon", "area": "Uluwatu & Bukit", "beds": 3, "baths": 4, "guests": 6, "price": null, "tier": "Deluxe", "trips": ["Friends group", "Family", "Wellness retreat"], "setting": [], "am": ["Private pool", "Daily staff", "Chef on request", "Wellness facilities"], "tone": ["#9FB7C7", "#D5E2EA"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "3-bedroom private pool villa in Uluwatu & Bukit, for up to 6 guests. Features wellness facilities.", "know": []},
+  {"sc": [1, 1, 2, 2, 1], "id": "casa-nala", "name": "Casa Nala", "area": "Umalas & Seminyak", "beds": 2, "baths": 2, "guests": 4, "price": null, "tier": "Deluxe", "trips": ["Couples", "Honeymoon", "Wellness retreat"], "setting": ["Ocean view", "Walkable to cafés"], "am": ["Private pool", "Daily staff", "Chef on request", "Wellness facilities", "Walk to cafés"], "tone": ["#B4BDCE", "#DFE4EE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features ocean views, cafés within walking distance and wellness facilities.", "know": []},
+  {"sc": [2, 1, 1, 1, 2], "id": "chateau-retreat", "name": "Chateau Retreat", "area": "Umalas & Seminyak", "beds": 2, "baths": 2, "guests": 4, "price": null, "tier": "Deluxe", "trips": ["Couples", "Honeymoon"], "setting": ["Garden setting"], "am": ["Private pool", "Air conditioning"], "tone": ["#B4BDCE", "#DFE4EE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features architect-designed.", "know": []},
+  {"sc": [2, 1, 1, 2, 1], "id": "casa-k-ya", "name": "CASA KĀYA", "area": "Uluwatu & Bukit", "beds": 1, "baths": 2, "guests": 2, "price": null, "tier": "Deluxe", "trips": ["Couples", "Honeymoon"], "setting": ["Garden setting"], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#9FB7C7", "#D5E2EA"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "1-bedroom private pool villa in Uluwatu & Bukit, for up to 2 guests.", "know": []},
+  {"sc": [1, 1, 1, 2, 1], "id": "pererenan-four-bedroom-villa", "name": "Pererenan Four-Bedroom Villa", "area": "Pererenan", "beds": 4, "baths": 4, "guests": 8, "price": null, "tier": "Standard", "trips": ["Friends group", "Family"], "setting": [], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#CBB9C9", "#E9DCE6"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "4-bedroom private pool villa in Pererenan, for up to 8 guests.", "know": []},
+  {"sc": [1, 1, 1, 2, 1], "id": "villa-vaya", "name": "Villa Vaya", "area": "Umalas & Seminyak", "beds": 3, "baths": 4, "guests": 6, "price": null, "tier": "Standard", "trips": ["Friends group", "Family"], "setting": [], "am": ["Private pool", "Daily staff"], "tone": ["#B4BDCE", "#DFE4EE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests.", "know": []},
+  {"sc": [1, 1, 1, 1, 2], "id": "villa-infinity", "name": "Villa Infinity", "area": "Canggu & Berawa", "beds": 2, "baths": 2, "guests": 4, "price": null, "tier": "Standard", "trips": ["Couples", "Wellness retreat"], "setting": [], "am": ["Private pool", "Daily staff", "Chef on request", "Air conditioning", "Wellness facilities"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features wellness facilities.", "know": []},
+  {"sc": [1, 1, 1, 1, 2], "id": "terea", "name": "Terea", "area": "Canggu & Berawa", "beds": 2, "baths": 3, "guests": 4, "price": null, "tier": "Standard", "trips": ["Couples"], "setting": ["Garden setting"], "am": ["Private pool", "Chef on request", "Air conditioning"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features architect-designed.", "know": []},
+  {"sc": [1, 1, 1, 2, 1], "id": "villa-solani", "name": "Villa Solani", "area": "Pererenan", "beds": 1, "baths": 2, "guests": 2, "price": null, "tier": "Standard", "trips": ["Couples"], "setting": ["Garden setting"], "am": ["Private pool", "Daily staff", "Chef on request"], "tone": ["#CBB9C9", "#E9DCE6"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "1-bedroom private pool villa in Pererenan, for up to 2 guests.", "know": []},
+  {"sc": [1, 1, 1, 1, 2], "id": "aozora-villas", "name": "Aozora Villas", "area": "Uluwatu & Bukit", "beds": 1, "baths": 1, "guests": 2, "price": null, "tier": "Standard", "trips": ["Couples"], "setting": [], "am": ["Private pool", "Daily staff", "Air conditioning"], "tone": ["#9FB7C7", "#D5E2EA"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "1-bedroom private pool villa in Uluwatu & Bukit, for up to 2 guests.", "know": []},
+  {"sc": [1, 1, 0, 1, 1], "id": "khaleela-villas", "name": "Khaleela Villas", "area": "Canggu & Berawa", "beds": 2, "baths": 2, "guests": 4, "price": null, "tier": "Standard", "trips": ["Couples"], "setting": [], "am": ["Private pool", "Daily staff"], "tone": ["#B9C7CF", "#E4EBEE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests.", "know": ["Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."]},
+  {"sc": [1, 1, 0, 1, 1], "id": "alua-loft", "name": "Alua Loft", "area": "Umalas & Seminyak", "beds": 1, "baths": 1, "guests": 2, "price": null, "tier": "Standard", "trips": ["Couples"], "setting": [], "am": ["Private pool", "Daily staff"], "tone": ["#B4BDCE", "#DFE4EE"], "img": "", "why": "", "cancel": "", "verified": false, "updated": "", "pick": false, "desc": "1-bedroom private pool villa in Umalas & Seminyak, for up to 2 guests.", "know": ["The beach is about 2.3 km away, so a scooter or driver is useful."]}
+];
+
+/* ===== App logic ===== */
+(function(){
+  var $=function(s,c){return (c||document).querySelector(s)};
+  var $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
+  var cur='USD', fav={};
+  try{fav=JSON.parse(localStorage.getItem('bscFav')||'{}')}catch(e){}
+
+  function money(usd){return cur==='USD'?'$'+Math.round(usd).toLocaleString('en-US'):'Rp '+(Math.round(usd*CONFIG.idrRate/1000)*1000).toLocaleString('id-ID')}
+  function iso(d){return d.toISOString().slice(0,10)}
+  function fmt(s){var d=new Date(s+'T00:00:00');return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}
+  var today=new Date(), inD=new Date(today.getTime()+CONFIG.startInDays*864e5), outD=new Date(inD.getTime()+CONFIG.defaultNights*864e5);
+  $('#sIn').value=iso(inD);$('#sOut').value=iso(outD);$('#sIn').min=iso(today);
+  function nights(){var a=new Date($('#sIn').value),b=new Date($('#sOut').value);var n=Math.round((b-a)/864e5);return n>0?n:0}
+
+  var areas=Array.from(new Set(VILLAS.map(function(v){return v.area}))).sort(function(a,b){return VILLAS.filter(function(v){return v.area===b}).length-VILLAS.filter(function(v){return v.area===a}).length});
+  var TIERS=['Standard','Deluxe','Premium','Luxury'];
+  function uniq(k){return Array.from(new Set([].concat.apply([],VILLAS.map(function(v){return v[k]})))).sort()}
+  var tiers=TIERS.filter(function(t){return VILLAS.some(function(v){return v.tier===t})});
+  var trips=uniq('trips'), sets=uniq('setting');
+  var ams=Array.from(new Set([].concat.apply([],VILLAS.map(function(v){return v.am})))).sort();
+  areas.forEach(function(a){var o=document.createElement('option');o.value=a;o.textContent=a;$('#sArea').appendChild(o)});
+  function boxes(list,name){return list.map(function(c){return '<label class="ck"><input type="checkbox" name="'+name+'" value="'+c+'"> '+c+'</label>'}).join('')}
+  $('#fTier').innerHTML=boxes(tiers,'tier');$('#fTrip').innerHTML=boxes(trips,'trip');$('#fSet').innerHTML=boxes(sets,'set');
+  var chipList=tiers.map(function(t){return ['tier',t]}).concat(['Couples','Honeymoon','Family','Friends group'].filter(function(t){return trips.indexOf(t)>-1}).map(function(t){return ['trip',t]}));
+  $('#chips').innerHTML=chipList.map(function(c){return '<button type="button" class="chip" data-chip="'+c[0]+'|'+c[1]+'" aria-pressed="false">'+c[1]+'</button>'}).join('');
+  $('#fAm').innerHTML=ams.map(function(a){return '<label class="ck"><input type="checkbox" name="am" value="'+a+'"> '+a+'</label>'}).join('');
+
+  var palette={'Pererenan':['#CBB9C9','#E9DCE6'],'Canggu & Berawa':['#B9C7CF','#E4EBEE'],'Ubud':['#C7CDBB','#E2E7D6'],'Uluwatu & Bukit':['#9FB7C7','#D5E2EA'],'Umalas & Seminyak':['#B4BDCE','#DFE4EE'],'Seseh':['#B8C9B2','#DCE8D6']};
+  var HAS_PRICE=VILLAS.some(function(v){return v.price});
+  var PAGE=12, shown=PAGE;
+  var CRIT=['Design','Pool & outdoor','View & setting','Service','Amenities'];
+  var LEAF='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19C5 10 10 4 20 4c0 10-6 15-15 15zM5 19l8-8"/></svg>';
+  function leaves(n,total){var s='';for(var i=0;i<4;i++){s+=LEAF.replace('<path','<path fill="'+(i<n?'#16294D':'none')+'" stroke="#0C1B38"')}return '<span class="lvl" role="img" aria-label="BSC Level '+n+' of 4">'+s+'</span>'}
+  function lvl(t){return leaves(TIERS.indexOf(t)+1)+t}
+  function meter(sc){return '<div class="meter">'+sc.map(function(x,i){var b='';for(var k=0;k<3;k++){var d=x-k;b+='<i class="'+(d>=1?'on':d>=0.5?'half':'')+'"></i>'}return '<div>'+CRIT[i]+'<span class="bar">'+b+'</span></div>'}).join('')+'</div>'}
+  function bestFor(v){var w=v.am.indexOf('Wellness facilities')>-1;if(v.beds<=2)return 'Best for couples';if(v.tier==='Luxury'&&v.guests>=10)return 'Best for celebrations';if(v.guests>=10)return 'Best for big groups';if(w)return 'Best for wellness trips';if(v.beds>=3&&v.trips.indexOf('Family')>-1)return 'Best for families & friends';return 'Best for small groups'}
+  function tierAvg(t){var vs=VILLAS.filter(function(v){return v.tier===t});return CRIT.map(function(c,i){return vs.reduce(function(a,v){return a+v.sc[i]},0)/vs.length})}
+  if(!HAS_PRICE){var fp=$('#fgPrice');if(fp)fp.style.display='none';$$('.po').forEach(function(o){o.remove()})}
+  var TDESC={Standard:'Clean, comfortable, good value. Simple design, essentials covered.',Deluxe:'Stylish and well equipped, in a good location, with some service.',Premium:'Designer villas, larger pools, stronger service and notable extras.',Luxury:'Architect-level design, signature pools, dedicated staff, standout setting.'};
+  var TFOR={Standard:'Good for couples and small groups',Deluxe:'Good for friends and families',Premium:'Good for groups who want more',Luxury:'Good for celebrations and special trips'};
+  $('#destGrid').innerHTML=areas.map(function(a){
+    var vs=VILLAS.filter(function(v){return v.area===a});var min=HAS_PRICE?Math.min.apply(null,vs.map(function(v){return v.price})):0;var lv=TIERS.filter(function(t){return vs.some(function(v){return v.tier===t})});var rg=lv.length>1?lv[0]+' to '+lv[lv.length-1]:lv[0];
+    var t=(palette[a]||['#ccc','#eee']);
+    return '<button type="button" class="dcard" data-area="'+a+'" style="background:linear-gradient(135deg,'+t[0]+','+t[1]+')"><div><b>'+a+'</b><small>'+vs.length+' villa'+(vs.length>1?'s':'')+' &middot; '+(HAS_PRICE?'from <span data-usd="'+min+'">'+money(min)+'</span> / night':rg)+'</small></div></button>';
+  }).join('');
+
+  function bg(v){return v.img?'background-image:url('+v.img+')':'background:linear-gradient(135deg,'+v.tone[0]+','+v.tone[1]+')'}
+  var heart='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0C1B38" stroke-width="2"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z"/></svg>';
+  function heartBtn(v){return '<button class="heart" type="button" data-fav="'+v.id+'" aria-pressed="'+(!!fav[v.id])+'" aria-label="Save '+v.name+'">'+heart+'</button>'}
+  function badges(v){return '<div class="badges"><span class="bdg new">New on BSC</span>'+(v.verified?'<span class="seal ok"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Inspected by BSC &middot; '+v.updated+'</span>':'<span class="seal wait">Inspection scheduled</span>')+(v.cancel?'<span class="bdg">'+v.cancel+'</span>':'')+'</div>'}
+  function knowBlock(v){return v.know&&v.know.length?'<details class="know"><summary>Good to know</summary><ul>'+v.know.map(function(k){return '<li>'+k+'</li>'}).join('')+'</ul></details>':''}
+  function priceBlock(v){if(!v.price)return '<div><div class="pr" style="font-size:16px">Rates on request</div><div class="total">Get a total price for your dates</div></div>';var n=nights();return '<div><div class="pr"><span data-usd="'+v.price+'">'+money(v.price)+'</span> <small>/ night</small></div>'+(n?'<div class="total">'+money(v.price*n)+' total for '+n+' night'+(n>1?'s':'')+'</div>':'')+'</div>'}
+
+  function renderPicks(){
+    $('#picks').innerHTML=VILLAS.filter(function(v){return v.pick}).map(function(v){
+      return '<article class="pick"><div class="ph" style="'+bg(v)+'"><span class="tag">'+lvl(v.tier)+'</span>'+heartBtn(v)+'</div><div class="pbody"><div class="best">'+bestFor(v)+'</div><h3>'+v.name+'</h3><div class="meta">'+v.area+' &middot; '+v.beds+' bed &middot; '+v.guests+' guests</div><p class="why"><b>Why we picked it:</b> '+v.why+'</p>'+badges(v)+'<div class="price-row">'+priceBlock(v)+'<a class="btn btn-primary" href="#">View villa</a></div></div></article>';
+    }).join('');
+  }
+
+  function filtered(){
+    var area=$('#sArea').value, g=+$('#sGuests').value||1, maxP=+$('#fPrice').value;
+    var cs=$$('input[name=tier]:checked').map(function(i){return i.value});
+    var ts=$$('input[name=trip]:checked').map(function(i){return i.value});
+    var ss=$$('input[name=set]:checked').map(function(i){return i.value});
+    var as=$$('input[name=am]:checked').map(function(i){return i.value});
+    var beds=+($$('input[name=beds]:checked')[0]||{value:0}).value;
+    var r=VILLAS.filter(function(v){
+      return (!area||v.area===area)&&v.guests>=g&&(!HAS_PRICE||maxP>=600||v.price<=maxP)&&(!cs.length||cs.indexOf(v.tier)>-1)&&(!ts.length||ts.some(function(t){return v.trips.indexOf(t)>-1}))&&(!ss.length||ss.some(function(t){return v.setting.indexOf(t)>-1}))&&v.beds>=beds&&as.every(function(a){return v.am.indexOf(a)>-1});
+    });
+    var s=$('#sort').value;
+    if(s==='pa')r.sort(function(a,b){return a.price-b.price});
+    if(s==='pd')r.sort(function(a,b){return b.price-a.price});
+    if(s==='g')r.sort(function(a,b){return b.guests-a.guests});
+    if(s==='bd')r.sort(function(a,b){return b.beds-a.beds});
+    return r;
+  }
+  function renderList(keep){
+    if(keep!==true)shown=PAGE;
+    var r=filtered(), n=nights();
+    $('#count').textContent=r.length+(r.length===1?' villa':' villas')+($('#sArea').value?' in '+$('#sArea').value:' across Bali');
+    $('#sub').textContent=(n?fmt($('#sIn').value)+' to '+fmt($('#sOut').value)+' · '+n+' night'+(n>1?'s':'')+' · ':'')+$('#sGuests').value+' guest'+(+$('#sGuests').value>1?'s':'');
+    $('#fPriceVal').textContent=(+$('#fPrice').value>=600?'Any price':'Up to '+money(+$('#fPrice').value));
+    $$('.chip').forEach(function(c){var p=c.dataset.chip.split('|');var i=$('input[name='+p[0]+'][value="'+p[1]+'"]');c.setAttribute('aria-pressed',!!(i&&i.checked))});
+    if(!r.length){$('#list').innerHTML='<div class="empty"><b>No villas match these filters.</b><br>Try changing the dates, number of guests or removing a filter.<br><br><button class="btn btn-ghost" type="button" id="reset2">Reset filters</button></div>';var b=$('#reset2');if(b)b.onclick=reset;return}
+    $('#list').innerHTML=r.slice(0,shown).map(function(v){
+      return '<article class="row"><div class="ph" style="'+bg(v)+'"><span class="tag">'+lvl(v.tier)+'</span>'+heartBtn(v)+'</div><div class="rb"><div class="best">'+bestFor(v)+'</div><h3>'+v.name+'</h3><div class="meta">'+v.area+' &middot; '+v.beds+' bed &middot; '+v.baths+' bath &middot; '+v.guests+' guests</div><p class="desc">'+v.desc+'</p>'+meter(v.sc)+'<p class="mnote">BSC level check, not a guest rating</p><p style="margin:0"></p><div class="badges">'+v.am.map(function(a){return '<span class="bdg">'+a+'</span>'}).join('')+'</div>'+badges(v)+knowBlock(v)+'<div class="bottom">'+priceBlock(v)+'<a class="btn btn-primary" href="#">'+(v.price?'View details':'Check dates')+'</a></div></div></article>';
+    }).join('')+(r.length>shown?'<div class="more"><button class="btn btn-ghost" type="button" id="moreBtn">Show '+Math.min(PAGE,r.length-shown)+' more villas ('+(r.length-shown)+' left)</button></div>':'');
+    var mb=$('#moreBtn');if(mb)mb.onclick=function(){shown+=PAGE;renderList(true)};
+  }
+  function renderTiers(){$('#tierGrid').innerHTML=TIERS.map(function(t){var n=VILLAS.filter(function(v){return v.tier===t}).length;return '<button type="button" class="tcard" data-tier="'+t+'"><span class="n">'+n+' villas</span><span class="lvlbig">'+leaves(TIERS.indexOf(t)+1).replace('class="lvl"','class="lvl"')+'</span><b>'+t+'</b><p>'+TDESC[t]+'</p>'+meter(tierAvg(t))+'<span class="for">'+TFOR[t]+'</span></button>'}).join('')}
+  function renderAll(){renderTiers();renderPicks();renderList();$$('.dcard small [data-usd]').forEach(function(e){e.textContent=money(+e.dataset.usd)})}
+  function reset(){$$('.filters input[type=checkbox]').forEach(function(i){i.checked=false});$$('input[name=beds]')[0].checked=true;$('#fPrice').value=600;$('#sArea').value='';$('#sGuests').value=$('#sGuests').value;$('#sort').value='rec';renderList()}
+
+  $('#searchForm').addEventListener('submit',function(e){e.preventDefault();renderList();$('#villas').scrollIntoView({behavior:'smooth'})});
+  $$('.filters input,#sort,#sArea,#sGuests,#sIn,#sOut').forEach(function(i){i.addEventListener('input',renderList);i.addEventListener('change',renderList)});
+  $('#reset').onclick=reset;
+  $('#toggleF').onclick=function(){$('#filters').classList.toggle('open')};
+  document.addEventListener('click',function(e){
+    var ch=e.target.closest('.chip');if(ch){var q=ch.dataset.chip.split('|');var bx=$('input[name='+q[0]+'][value="'+q[1]+'"]');if(bx){bx.checked=!bx.checked;renderList()}}
+    var tc=e.target.closest('.tcard');if(tc){$$('input[name=tier]').forEach(function(i){i.checked=(i.value===tc.dataset.tier)});renderList();$('#villas').scrollIntoView({behavior:'smooth'})}
+    var d=e.target.closest('.dcard');if(d){$('#sArea').value=d.dataset.area;renderList();$('#villas').scrollIntoView({behavior:'smooth'})}
+    var h=e.target.closest('[data-fav]');if(h){var id=h.dataset.fav;fav[id]=!fav[id];try{localStorage.setItem('bscFav',JSON.stringify(fav))}catch(x){}renderAll()}
+    var c=e.target.closest('[data-cur]');if(c){cur=c.dataset.cur;$$('[data-cur]').forEach(function(b){b.setAttribute('aria-pressed',b===c)});renderAll()}
+  });
+
+  $('#tVilla').innerHTML=VILLAS.map(function(v){return '<option>'+v.name+'</option>'}).join('');
+  $('#player').addEventListener('click',function(){
+    if(!CONFIG.videoEmbed){$('#player').insertAdjacentHTML('beforeend','<small style="left:auto;right:16px;top:14px;bottom:auto">Add your video link in CONFIG.videoEmbed</small>');return}
+    this.outerHTML='<div class="player"><iframe src="'+CONFIG.videoEmbed+'?autoplay=1" title="Villa tour" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>';
+  });
+  $('#tourForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var m='Hi Bali Stay Collection, I would like a live video tour of '+$('#tVilla').value+'. Preferred time: '+($('#tWhen').value||'flexible')+'. Name: '+($('#tName').value||'-');
+    if(CONFIG.whatsapp){window.open('https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(m),'_blank')}
+    else{$('#tNote').textContent='Demo mode: add your WhatsApp number in CONFIG.whatsapp so this button opens a chat with your message.'}
+  });
+  var wa=$('#wa');wa.href=CONFIG.whatsapp?'https://wa.me/'+CONFIG.whatsapp:'#';
+  renderAll();
+})();
+</script>
+</body>
+</html>

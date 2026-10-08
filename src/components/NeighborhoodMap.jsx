@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { 
@@ -10,22 +10,22 @@ import {
 /**
  * Komponen NeighborhoodMap
  * Menampilkan modul peta interaktif 'Where you'll be' ala Airbnb dengan fitur:
- * - Peta nyata (Leaflet + CartoDB/OpenStreetMap) yang dapat di-zoom dan digeser
+ * - Peta nyata (Leaflet + OpenStreetMap) yang dapat di-zoom dan digeser
  * - Pin lokasi villa dengan lingkaran radius privasi halus khas villa mewah
  * - Bar pencarian tempat sekitar (cafe, pantai, beach club, yoga, dll.)
  * - Tombol filter kategori tempat menarik
  * - Pin tempat interaktif dengan sinkronisasi klik dua arah (daftar kartu & peta)
- * - Tautan langsung petunjuk arah ke Google Maps
+ * - Tautan langsung petunjuk arah ke Google Maps dengan event isolation lengkap
  * 
  * @param {Object} props
  * @param {Object} props.villa - Objek data villa yang sedang aktif ditampilkan
  * @returns {React.JSX.Element} Elemen JSX Peta Lokasi Lingkungan Sekitar
  */
 export default function NeighborhoodMap({ villa }) {
-  // Koordinat geografis villa
-  const villaCoords = useMemo(() => getVillaCoordinates(villa.id), [villa.id]);
+  // Koordinat geografis villa (didukung resolusi alias & area cerdas)
+  const villaCoords = useMemo(() => getVillaCoordinates(villa?.id, villa), [villa?.id, villa]);
   // Seluruh daftar tempat menarik di sekitar villa ini
-  const allPlaces = useMemo(() => getNearbyPlaces(villa.id), [villa.id]);
+  const allPlaces = useMemo(() => getNearbyPlaces(villa?.id, villa), [villa?.id, villa]);
 
   // State pencarian teks dari input user
   const [searchQuery, setSearchQuery] = useState('');
@@ -42,12 +42,32 @@ export default function NeighborhoodMap({ villa }) {
   const placesLayerGroupRef = useRef(null);
   // Ref peta marker dictionary (id -> L.marker)
   const markersDictRef = useRef({});
+  // Ref tombol floating gmaps
+  const floatingGmapsRef = useRef(null);
+  // Ref elemen DOM kartu tempat untuk scrolling halus
+  const placeCardsRef = useRef({});
+
+  // URL Google Maps untuk villa: Menggunakan nama bersih villa + area terkurasi di Bali
+  const villaGmapsUrl = useMemo(() => {
+    let cleanName = (villa?.name || '')
+      .split(/–|-|•|:/)[0]
+      .replace(/\b\d+BR\b/gi, '')
+      .trim();
+
+    if (cleanName.length < 3) {
+      cleanName = villa?.name || 'Villa';
+    }
+
+    const area = villaCoords?.areaName || villa?.location || villa?.address || 'Bali';
+    const query = `${cleanName}, ${area}, Bali`;
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+  }, [villa?.name, villa?.location, villa?.address, villaCoords?.areaName]);
 
   /**
    * Menghasilkan elemen HTML ikon custom untuk marker villa utama
    * @returns {L.DivIcon} Ikon Leaflet custom untuk villa
    */
-  const createVillaIcon = () => {
+  const createVillaIcon = useCallback(() => {
     return L.divIcon({
       className: 'custom-villa-marker',
       html: `
@@ -62,7 +82,7 @@ export default function NeighborhoodMap({ villa }) {
       iconAnchor: [21, 21],
       popupAnchor: [0, -22]
     });
-  };
+  }, [villa.name]);
 
   /**
    * Menghasilkan elemen HTML ikon custom untuk marker tempat menarik di sekitar (POI)
@@ -70,7 +90,7 @@ export default function NeighborhoodMap({ villa }) {
    * @param {boolean} isSelected - Menandakan apakah tempat sedang dipilih
    * @returns {L.DivIcon} Ikon Leaflet custom untuk tempat
    */
-  const createPlaceIcon = (place, isSelected) => {
+  const createPlaceIcon = useCallback((place, isSelected) => {
     return L.divIcon({
       className: `custom-place-marker ${isSelected ? 'selected' : ''}`,
       html: `
@@ -82,7 +102,7 @@ export default function NeighborhoodMap({ villa }) {
       iconAnchor: isSelected ? [19, 19] : [16, 16],
       popupAnchor: [0, -18]
     });
-  };
+  }, []);
 
   /**
    * Menyaring daftar tempat berdasarkan filter kategori dan kata kunci pencarian
@@ -118,6 +138,10 @@ export default function NeighborhoodMap({ villa }) {
       mapInstanceRef.current.remove();
       mapInstanceRef.current = null;
     }
+    // Hapus ID leaflet jika tersisa di elemen DOM kontainer
+    if (mapContainerRef.current._leaflet_id) {
+      delete mapContainerRef.current._leaflet_id;
+    }
 
     // Inisialisasi peta Leaflet baru berpusat di koordinat villa
     const map = L.map(mapContainerRef.current, {
@@ -130,7 +154,7 @@ export default function NeighborhoodMap({ villa }) {
     // Tambahkan kontrol zoom di pojok kanan bawah
     L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-    // Layer Tile Peta OpenStreetMap Resmi (100% Bebas API Key & Selalu Aktif)
+    // Layer Tile Peta OpenStreetMap Resmi
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       maxZoom: 19
@@ -151,14 +175,13 @@ export default function NeighborhoodMap({ villa }) {
       zIndexOffset: 1000
     }).addTo(map);
 
-    const villaGmapsUrl = `https://www.google.com/maps/search/?api=1&query=${villaCoords.lat},${villaCoords.lng}`;
     villaMarker.bindPopup(`
       <div class="map-popup-card">
         <strong class="map-popup-title">${villa.name}</strong>
         <p class="map-popup-sub">📍 ${villaCoords.areaName}</p>
         <span class="map-popup-badge">Perkiraan Area Villa</span>
         <div class="map-popup-actions">
-          <a href="${villaGmapsUrl}" target="_blank" rel="noopener noreferrer" class="map-popup-gmaps-btn">
+          <a href="${villaGmapsUrl}" target="_blank" rel="noopener noreferrer" class="map-popup-gmaps-btn" onclick="event.stopPropagation()">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
             </svg>
@@ -166,23 +189,106 @@ export default function NeighborhoodMap({ villa }) {
           </a>
         </div>
       </div>
-    `);
+    `, { maxWidth: 280 });
 
-    // Grup layer untuk tempat-tempat di sekitar
+    villaMarker.on('click', () => {
+      setSelectedPlaceId(null);
+      villaMarker.openPopup();
+    });
+
+    // Layer group untuk marker tempat-tempat di sekitar
     const placesLayer = L.layerGroup().addTo(map);
     placesLayerGroupRef.current = placesLayer;
     mapInstanceRef.current = map;
 
+    // Cegah interaksi di dalam popup merembet ke peta
+    map.on('popupopen', (e) => {
+      const popupNode = e.popup.getElement();
+      if (popupNode) {
+        L.DomEvent.disableClickPropagation(popupNode);
+        L.DomEvent.disableScrollPropagation(popupNode);
+      }
+    });
+
+    // Reset pilihan tempat saat klik pada latar peta kosong
+    map.on('click', () => {
+      setSelectedPlaceId(null);
+    });
+
+    // InvalidateSize saat window di-resize atau tab browser kembali aktif (focus)
+    const handleResize = () => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.invalidateSize();
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('focus', handleResize);
+
+    // ResizeObserver untuk memantau perubahan ukuran kontainer peta secara presisi
+    let resizeObserver = null;
+    if (typeof ResizeObserver !== 'undefined' && mapContainerRef.current) {
+      resizeObserver = new ResizeObserver(() => {
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.invalidateSize();
+        }
+      });
+      resizeObserver.observe(mapContainerRef.current);
+    }
+
+    // Invalidate size setelah jeda singkat saat mount awal
+    const timer = setTimeout(() => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.invalidateSize();
+      }
+    }, 250);
+
     return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('focus', handleResize);
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
       if (mapInstanceRef.current) {
         mapInstanceRef.current.remove();
         mapInstanceRef.current = null;
       }
+      if (mapContainerRef.current && mapContainerRef.current._leaflet_id) {
+        delete mapContainerRef.current._leaflet_id;
+      }
     };
-  }, [villaCoords, villa.name]);
+  }, [villaCoords, villa.name, villaGmapsUrl, createVillaIcon]);
+
+  // Isolasi tombol floating Google Maps dari propagasi event Leaflet
+  useEffect(() => {
+    if (floatingGmapsRef.current) {
+      L.DomEvent.disableClickPropagation(floatingGmapsRef.current);
+      L.DomEvent.disableScrollPropagation(floatingGmapsRef.current);
+    }
+  }, []);
 
   /**
-   * Memperbarui marker tempat menarik di peta saat daftar filteredPlaces berubah
+   * Menghasilkan URL pencarian resmi Google Maps untuk tempat sekitar (POI).
+   * Format query: Nama Tempat Bersih, Area Villa, Bali
+   * Ini langsung membuka profil tempat resmi di Google Maps (foto, ulasan, menu, jam buka,
+   * dan tombol "Rute/Directions" asli bawaan Google Maps) serta 100% bebas dari error rute.
+   */
+  const getPlaceGmapsUrl = useCallback((place) => {
+    const cleanPlaceName = place.name
+      .split('/')[0]
+      .replace(/\(.*?\)/g, '')
+      .trim();
+    const area = villaCoords?.areaName || villa?.location || 'Bali';
+    const query = `${cleanPlaceName}, ${area}, Bali`;
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+  }, [villaCoords?.areaName, villa?.location]);
+
+  /**
+   * Membuat layer marker tempat sekitar saat daftar filteredPlaces berubah
+   * CATATAN PENTING: Effect ini HANYA bergantung pada filteredPlaces.
+   * Tidak bergantung pada selectedPlaceId agar layer TIDAK di-clear/dihancurkan
+   * setiap kali user mengklik pin atau kartu tempat.
    */
   useEffect(() => {
     if (!mapInstanceRef.current || !placesLayerGroupRef.current) return;
@@ -194,11 +300,12 @@ export default function NeighborhoodMap({ villa }) {
     filteredPlaces.forEach((place) => {
       const isSelected = place.id === selectedPlaceId;
       const marker = L.marker([place.lat, place.lng], {
-        icon: createPlaceIcon(place, isSelected)
+        icon: createPlaceIcon(place, isSelected),
+        zIndexOffset: isSelected ? 500 : 0
       });
 
-      // Konten Popup saat pin diklik dengan link langsung rute Google Maps
-      const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${place.lat},${place.lng}`;
+      // Konten Popup saat pin diklik dengan link Google Maps resmi tempat ini
+      const googleMapsUrl = getPlaceGmapsUrl(place);
       const popupContent = `
         <div class="map-popup-card">
           <div class="map-popup-header">
@@ -210,11 +317,11 @@ export default function NeighborhoodMap({ villa }) {
           </div>
           <p class="map-popup-desc">${place.highlight}</p>
           <div class="map-popup-actions">
-            <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="map-popup-gmaps-btn">
+            <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer" class="map-popup-gmaps-btn" onclick="event.stopPropagation()">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
               </svg>
-              Buka Rute di Google Maps &nearr;
+              Buka di Google Maps &nearr;
             </a>
           </div>
         </div>
@@ -222,52 +329,92 @@ export default function NeighborhoodMap({ villa }) {
 
       marker.bindPopup(popupContent, { maxWidth: 280 });
 
-      // Event saat marker diklik
+      // Event saat marker diklik di peta
       marker.on('click', () => {
         setSelectedPlaceId(place.id);
+        marker.openPopup();
+        // Gulir kartu terkait di panel kanan agar terlihat
+        const cardEl = placeCardsRef.current[place.id];
+        if (cardEl) {
+          cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
       });
 
       marker.addTo(placesLayerGroupRef.current);
       markersDictRef.current[place.id] = marker;
     });
+  }, [filteredPlaces, createPlaceIcon, getPlaceGmapsUrl]);
+
+  /**
+   * Memperbarui visual aktif (ikon & z-index) secara instan tanpa me-recreate layer Leaflet
+   */
+  useEffect(() => {
+    filteredPlaces.forEach((place) => {
+      const marker = markersDictRef.current[place.id];
+      if (marker) {
+        const isSelected = place.id === selectedPlaceId;
+        marker.setIcon(createPlaceIcon(place, isSelected));
+        marker.setZIndexOffset(isSelected ? 500 : 0);
+      }
+    });
+  }, [selectedPlaceId, filteredPlaces, createPlaceIcon]);
+
+  /**
+   * Reset selectedPlaceId jika tempat yang sedang aktif tersaring keluar oleh pencarian/kategori
+   */
+  useEffect(() => {
+    if (selectedPlaceId && !filteredPlaces.some((p) => p.id === selectedPlaceId)) {
+      setSelectedPlaceId(null);
+    }
   }, [filteredPlaces, selectedPlaceId]);
 
   /**
    * Menangani klik pada salah satu kartu tempat di daftar kanan
-   * Menggeser peta ke posisi tempat tersebut secara halus dan membuka popup
+   * Menggeser peta secara halus dan membuka popup secara andal
    * @param {Object} place - Objek tempat yang dipilih
-   * @returns {void}
    */
-  const handleSelectPlace = (place) => {
+  const handleSelectPlace = useCallback((place) => {
     setSelectedPlaceId(place.id);
     if (!mapInstanceRef.current) return;
 
-    // Geser peta secara halus (smooth flyTo)
-    mapInstanceRef.current.flyTo([place.lat, place.lng], 15, {
-      duration: 1.2,
-      easeLinearity: 0.25
-    });
-
-    // Buka popup marker terkait
+    const map = mapInstanceRef.current;
     const marker = markersDictRef.current[place.id];
-    if (marker) {
-      setTimeout(() => {
+
+    const currentCenter = map.getCenter();
+    const isAlreadyAtTarget = 
+      Math.abs(currentCenter.lat - place.lat) < 0.0001 &&
+      Math.abs(currentCenter.lng - place.lng) < 0.0001 &&
+      map.getZoom() === 15;
+
+    if (isAlreadyAtTarget) {
+      if (marker) {
         marker.openPopup();
-      }, 500);
+      }
+    } else {
+      map.flyTo([place.lat, place.lng], 15, {
+        duration: 0.8,
+        easeLinearity: 0.25
+      });
+
+      if (marker) {
+        map.once('moveend', () => {
+          marker.openPopup();
+        });
+      }
     }
-  };
+  }, []);
 
   /**
    * Mengembalikan posisi peta ke pusat lokasi villa utama
-   * @returns {void}
    */
-  const handleRecenterVilla = () => {
+  const handleRecenterVilla = useCallback(() => {
     setSelectedPlaceId(null);
     if (!mapInstanceRef.current) return;
+    mapInstanceRef.current.closePopup();
     mapInstanceRef.current.flyTo([villaCoords.lat, villaCoords.lng], 14, {
-      duration: 1.2
+      duration: 0.9
     });
-  };
+  }, [villaCoords.lat, villaCoords.lng]);
 
   return (
     <div className="neighborhood-section">
@@ -295,7 +442,7 @@ export default function NeighborhoodMap({ villa }) {
             📍 Fokus ke Villa
           </button>
           <a 
-            href={`https://www.google.com/maps/search/?api=1&query=${villaCoords.lat},${villaCoords.lng}`}
+            href={villaGmapsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-outline btn-sm gmaps-header-btn"
@@ -367,11 +514,14 @@ export default function NeighborhoodMap({ villa }) {
           
           {/* Tombol Melayang Google Maps di Pojok Kanan Atas Peta */}
           <a 
-            href={`https://www.google.com/maps/search/?api=1&query=${villaCoords.lat},${villaCoords.lng}`}
+            ref={floatingGmapsRef}
+            href={villaGmapsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="neighborhood-floating-gmaps"
             title="Buka tampilan peta ini di Google Maps"
+            onClick={(e) => e.stopPropagation()}
+            onMouseDown={(e) => e.stopPropagation()}
           >
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
@@ -403,14 +553,23 @@ export default function NeighborhoodMap({ villa }) {
             {filteredPlaces.length > 0 ? (
               filteredPlaces.map((place) => {
                 const isSelected = place.id === selectedPlaceId;
-                const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${place.lat},${place.lng}`;
+                const googleMapsUrl = getPlaceGmapsUrl(place);
                 return (
                   <div 
                     key={place.id}
+                    ref={(el) => {
+                      if (el) placeCardsRef.current[place.id] = el;
+                    }}
                     className={`neighborhood-place-card ${isSelected ? 'active' : ''}`}
                     onClick={() => handleSelectPlace(place)}
                     role="button"
                     tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleSelectPlace(place);
+                      }
+                    }}
                   >
                     <div className="place-card-top">
                       <div className="place-card-icon">{place.icon}</div>
@@ -442,12 +601,12 @@ export default function NeighborhoodMap({ villa }) {
                         rel="noopener noreferrer" 
                         className="place-directions-link"
                         onClick={(e) => e.stopPropagation()}
-                        title="Buka rute perjalanan di Google Maps"
+                        title="Buka profil tempat ini di Google Maps"
                       >
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                         </svg>
-                        Buka Rute &nearr;
+                        Buka di Maps &nearr;
                       </a>
                     </div>
                   </div>

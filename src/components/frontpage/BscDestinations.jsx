@@ -77,20 +77,48 @@ export default function BscDestinations({
                 }}
               >
                 {imgSrc && (
-                  <img
-                    src={imgSrc}
-                    alt={`${dest.name}, Bali`}
-                    className="dcard-img"
-                    style={dest.objectPosition ? { objectPosition: dest.objectPosition } : undefined}
-                    loading="eager"
-                    decoding="sync"
-                    fetchPriority="high"
-                    onError={(e) => {
-                      if (dest.fallback && e.currentTarget.src !== dest.fallback) {
-                        e.currentTarget.src = dest.fallback;
-                      }
-                    }}
-                  />
+                  <>
+                    {dest.objectFit === 'contain' && (
+                      <img
+                        src={imgSrc}
+                        alt=""
+                        aria-hidden="true"
+                        className="dcard-img-blur"
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          right: 0,
+                          bottom: 0,
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                          filter: 'blur(24px) brightness(0.65)',
+                          transform: 'scale(1.15)',
+                          zIndex: 0,
+                          pointerEvents: 'none'
+                        }}
+                      />
+                    )}
+                    <img
+                      src={imgSrc}
+                      alt={`${dest.name}, Bali`}
+                      className="dcard-img"
+                      style={{
+                        ...(dest.objectPosition ? { objectPosition: dest.objectPosition } : {}),
+                        ...(dest.objectFit ? { objectFit: dest.objectFit } : {}),
+                        ...(dest.objectFit === 'contain' ? { zIndex: 1 } : {})
+                      }}
+                      loading="eager"
+                      decoding="sync"
+                      fetchPriority="high"
+                      onError={(e) => {
+                        if (dest.fallback && e.currentTarget.src !== dest.fallback) {
+                          e.currentTarget.src = dest.fallback;
+                        }
+                      }}
+                    />
+                  </>
                 )}
                 <div className="dcard-overlay" />
                 <div className="dcard-body">

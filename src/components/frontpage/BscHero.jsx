@@ -37,15 +37,14 @@ export default function BscHero({
     <section className="hero">
       <div className="wrap">
         <div className="hero-in">
-          <div className="eyebrow" style={{ color: 'var(--accent-dark)' }}>
+          {/* <div className="eyebrow">
             Private villas &middot; Canggu &middot; Pererenan &middot; Umalas &middot; Uluwatu &middot; Ubud
-          </div>
+          </div> */}
           <h1 style={{ marginTop: '8px' }}>
             Find a Bali villa you can book with confidence
           </h1>
           <p className="lead">
-            Hand-picked private villas managed by our on-the-ground team. What you see is what you get — verified in person, no hidden fees, local support when you need it.
-          </p>
+Hand-picked private villas. Zero hidden fees. On-the-ground local support          </p>
         </div>
 
         {/* Form Pencarian Cepat */}
@@ -113,7 +112,7 @@ export default function BscHero({
         {/* 4 Pilar Kepercayaan (Trust Strip) */}
         <div className="trust-strip">
           <div className="ts">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D2B073" strokeWidth="2">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
               <polyline points="9 22 9 12 15 12 15 22" />
             </svg>
@@ -124,7 +123,7 @@ export default function BscHero({
           </div>
 
           <div className="ts">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D2B073" strokeWidth="2">
               <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
               <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
@@ -135,7 +134,7 @@ export default function BscHero({
           </div>
 
           <div className="ts">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D2B073" strokeWidth="2">
               <rect x="4" y="11" width="16" height="9" rx="2" />
               <path d="M8 11V7a4 4 0 0 1 8 0v4" />
             </svg>
@@ -146,7 +145,7 @@ export default function BscHero({
           </div>
 
           <div className="ts">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D2B073" strokeWidth="2">
               <circle cx="12" cy="12" r="9" />
               <path d="M12 7v5l3 2" />
             </svg>
@@ -157,8 +156,6 @@ export default function BscHero({
           </div>
         </div>
       </div>
-      <br></br>
-
-    </section >
+    </section>
   );
 }

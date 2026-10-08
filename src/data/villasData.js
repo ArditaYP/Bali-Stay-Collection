@@ -392,20 +392,21 @@ export const POPULAR_DESTINATIONS = [
   {
     name: 'Ubud',
     count: '3 villas',
-    image: '/destinations/ubud.jpg',
+    image: '/destinations/ubud.jpg?v=20261008c',
+    objectPosition: 'center 50%',
     bg: '#C7CDBB'
   },
   {
     name: 'Canggu',
     count: '2 villas',
-    image: '/destinations/canggu.jpg',
+    image: '/destinations/canggu.jpg?v=20261008',
     objectPosition: 'center 72%',
     bg: '#CBC3A8'
   },
   {
     name: 'Uluwatu',
     count: '2 villas',
-    image: '/destinations/uluwatu.jpg',
+    image: '/destinations/uluwatu.jpg?v=20261008',
     objectPosition: 'center 50%',
     bg: '#A9B9C9'
   }

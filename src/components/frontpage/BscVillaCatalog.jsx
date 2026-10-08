@@ -1,6 +1,26 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { formatBscMoney } from '../../utils/bscFormat';
 
+const CRITERIA = ['Design', 'Pool & outdoor', 'View & setting', 'Service', 'Amenities'];
+
+const DEFAULT_TIER_SCORES = {
+  Standard: [1.0, 1.0, 0.75, 1.38, 1.38],
+  Deluxe: [1.35, 1.35, 1.41, 1.94, 1.59],
+  Premium: [1.95, 2.05, 1.76, 2.05, 1.76],
+  Luxury: [2.4, 2.8, 2.4, 2.6, 3.0]
+};
+
+const bestFor = (v) => {
+  const w = v.am && v.am.includes('Wellness facilities');
+  if (v.beds <= 2) return 'Best for couples';
+  if (v.tier === 'Luxury' && v.guests >= 10) return 'Best for celebrations';
+  if (v.guests >= 10) return 'Best for big groups';
+  if (w) return 'Best for wellness trips';
+  if (v.beds >= 3 && v.trips && v.trips.includes('Family')) return 'Best for families & friends';
+  return 'Best for small groups';
+};
+
+
 /**
  * Komponen BscVillaCatalog
  * Menampilkan katalog lengkap villa dengan panel filter sisi kiri (sidebar),
@@ -478,8 +498,8 @@ export default function BscVillaCatalog({
                             width="18"
                             height="18"
                             viewBox="0 0 24 24"
-                            fill={isSaved ? '#E05638' : 'none'}
-                            stroke={isSaved ? '#E05638' : '#141413'}
+                            fill={isSaved ? '#16294D' : 'none'}
+                            stroke={isSaved ? '#16294D' : '#0C1B38'}
                             strokeWidth="2"
                           >
                             <path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z" />
@@ -489,6 +509,7 @@ export default function BscVillaCatalog({
 
                       {/* Detail Kartu Villa */}
                       <div className="rb">
+                        <div className="best">{bestFor(villa)}</div>
                         <h3 
                           onClick={() => onSelectVilla(villa.id)}
                           style={{ cursor: 'pointer' }}
@@ -500,20 +521,42 @@ export default function BscVillaCatalog({
                         </div>
                         <p className="desc">{villa.desc}</p>
 
+                        {/* BSC 5-Point Check Meter */}
+                        <div className="meter">
+                          {(villa.sc || DEFAULT_TIER_SCORES[villa.tier] || [1, 1, 1, 1, 1]).map((score, sIdx) => (
+                            <div key={sIdx}>
+                              {CRITERIA[sIdx]}
+                              <span className="bar">
+                                {[0, 1, 2].map((k) => {
+                                  const diff = score - k;
+                                  const statusClass = diff >= 1 ? 'on' : diff >= 0.5 ? 'half' : '';
+                                  return <i key={k} className={statusClass} />;
+                                })}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                        <p className="mnote">BSC level check, not a guest rating</p>
+
                         {/* Amenities Badges */}
-                        <div className="badges">
+                        <div className="badges" style={{ marginTop: '10px' }}>
                           {(villa.am || []).map(am => (
                             <span key={am} className="bdg">{am}</span>
                           ))}
                         </div>
 
                         {/* Inspection Status Badges */}
-                        <div className="badges">
+                        <div className="badges" style={{ marginTop: '6px' }}>
                           <span className="bdg new">New on BSC</span>
                           {villa.verified ? (
-                            <span className="bdg ok">Inspected {villa.updated}</span>
+                            <span className="seal ok">
+                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" strokeWidth="3">
+                                <path d="M20 6L9 17l-5-5" />
+                              </svg>
+                              Inspected by BSC &middot; {villa.updated || 'Recent'}
+                            </span>
                           ) : (
-                            <span className="bdg">Inspection pending</span>
+                            <span className="seal wait">Inspection scheduled</span>
                           )}
                           {villa.cancel && (
                             <span className="bdg">{villa.cancel}</span>

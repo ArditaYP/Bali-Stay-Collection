@@ -17,7 +17,7 @@ export default function BscFooter({ onOpenListVilla, onOpenEditor }) {
   return (
     <>
       {/* Seksi Legalitas & Kontak Perusahaan */}
-      <section className="sec sec-legal" id="legal">
+      {/* <section className="sec sec-legal" id="legal">
         <div className="wrap">
           <div className="legal">
             <div>
@@ -40,7 +40,7 @@ export default function BscFooter({ onOpenListVilla, onOpenEditor }) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Footer Utama */}
       <footer>
@@ -80,7 +80,6 @@ export default function BscFooter({ onOpenListVilla, onOpenEditor }) {
               <a href="#villas">Villas</a>
               <a href="#verify">How we verify</a>
               <a href="#tour">Video tour</a>
-              <a href="#faq">FAQ</a>
               {onOpenEditor && (
                 <a href="#editor" onClick={(e) => { e.preventDefault(); onOpenEditor(); }}>
                   Villa Content Editor

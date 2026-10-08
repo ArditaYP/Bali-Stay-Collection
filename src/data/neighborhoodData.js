@@ -61,6 +61,18 @@ export const VILLA_COORDINATES = {
     lng: 115.2410,
     areaName: 'Sayan Ridge, Ubud',
     subtitle: 'Secluded bamboo sanctuary nestled beside the sacred Ayung River.'
+  },
+  'tropical-elegance-seseh': {
+    lat: -8.6435,
+    lng: 115.1120,
+    areaName: 'Seseh Beach',
+    subtitle: 'Serene coastal village where traditional Bali meets calm sunset beaches.'
+  },
+  'five-bedroom-designer-umalas': {
+    lat: -8.6650,
+    lng: 115.1520,
+    areaName: 'Umalas, Kerobokan',
+    subtitle: 'Tranquil upscale enclave nestled between vibrant Seminyak & trendy Berawa.'
   }
 };
 
@@ -860,28 +872,298 @@ export const NEARBY_PLACES_BY_VILLA = {
       duration: '65 min drive',
       highlight: 'Bali primary international airport terminal.'
     }
+  ],
+
+  // 10. SESEH BEACH
+  'tropical-elegance-seseh': [
+    {
+      id: 'se-1',
+      name: 'Seseh Beach',
+      category: 'beach',
+      categoryLabel: 'Beach & Sunset',
+      icon: '🏖️',
+      lat: -8.6440,
+      lng: 115.1110,
+      distance: '250 m',
+      duration: '3 min walk',
+      highlight: 'Peaceful black sand beach with authentic fishing boats and dramatic sunset views.'
+    },
+    {
+      id: 'se-2',
+      name: 'Seseh General Store',
+      category: 'cafe',
+      categoryLabel: 'Artisan Cafe',
+      icon: '☕',
+      lat: -8.6425,
+      lng: 115.1135,
+      distance: '300 m',
+      duration: '4 min walk',
+      highlight: 'Charming neighborhood hangout serving sourdough toast, specialty coffee, and natural wines.'
+    },
+    {
+      id: 'se-3',
+      name: 'Udara Bali Yoga Detox & Spa',
+      category: 'wellness',
+      categoryLabel: 'Yoga & Wellness',
+      icon: '🧘',
+      lat: -8.6430,
+      lng: 115.1105,
+      distance: '350 m',
+      duration: '4 min walk',
+      highlight: 'Oceanfront holistic yoga shalas, sound healing, aerial yoga, and sauna caves.'
+    },
+    {
+      id: 'se-4',
+      name: 'Tanah Lot Temple',
+      category: 'wellness',
+      categoryLabel: 'Historic Sea Temple',
+      icon: '🛕',
+      lat: -8.6212,
+      lng: 115.0868,
+      distance: '5.2 km',
+      duration: '12 min drive',
+      highlight: 'Iconic ancient rock temple perched on offshore rock formation amidst breaking waves.'
+    },
+    {
+      id: 'se-5',
+      name: 'La Brisa Bali Beach Club',
+      category: 'beachclub',
+      categoryLabel: 'Beach Club',
+      icon: '🍹',
+      lat: -8.6558,
+      lng: 115.1246,
+      distance: '3.4 km',
+      duration: '8 min drive',
+      highlight: 'Bohemian eco-chic beach club crafted from reclaimed fishing boats on Echo Beach.'
+    },
+    {
+      id: 'se-6',
+      name: 'Pepito Market Pererenan',
+      category: 'groceries',
+      categoryLabel: 'Supermarket',
+      icon: '🛒',
+      lat: -8.6445,
+      lng: 115.1325,
+      distance: '2.4 km',
+      duration: '6 min drive',
+      highlight: 'Premium gourmet supermarket with fresh produce, cheese, bakery, and imported goods.'
+    },
+    {
+      id: 'se-7',
+      name: 'Ngurah Rai International Airport (DPS)',
+      category: 'transit',
+      categoryLabel: 'Airport',
+      icon: '✈️',
+      lat: -8.7482,
+      lng: 115.1672,
+      distance: '22 km',
+      duration: '45 min drive',
+      highlight: 'Bali primary international airport terminal.'
+    }
+  ],
+
+  // 11. UMALAS
+  'five-bedroom-designer-umalas': [
+    {
+      id: 'um-1',
+      name: 'Nook Bali',
+      category: 'dining',
+      categoryLabel: 'Ricefield Dining',
+      icon: '🍽️',
+      lat: -8.6698,
+      lng: 115.1565,
+      distance: '1.2 km',
+      duration: '4 min drive',
+      highlight: 'Iconic open-air dining with sweeping vistas across lush green rice paddies.'
+    },
+    {
+      id: 'um-2',
+      name: '7AM Bakers Club Umalas',
+      category: 'cafe',
+      categoryLabel: 'Specialty Bakery',
+      icon: '🥐',
+      lat: -8.6612,
+      lng: 115.1528,
+      distance: '650 m',
+      duration: '8 min walk',
+      highlight: 'Acclaimed artisanal bakery crafting viennoiserie, gourmet sandwiches, and specialty coffee.'
+    },
+    {
+      id: 'um-3',
+      name: 'Finns Beach Club & Berawa Beach',
+      category: 'beachclub',
+      categoryLabel: 'Beach Club & Surf',
+      icon: '🍹',
+      lat: -8.6652,
+      lng: 115.1365,
+      distance: '2.6 km',
+      duration: '7 min drive',
+      highlight: 'World-famous beachfront venue with 4 swimming pools, 9 bars, and live DJ sets.'
+    },
+    {
+      id: 'um-4',
+      name: 'Batu Belig Beach',
+      category: 'beach',
+      categoryLabel: 'Beach & Sunset',
+      icon: '🏖️',
+      lat: -8.6750,
+      lng: 115.1450,
+      distance: '2.1 km',
+      duration: '6 min drive',
+      highlight: 'Long stretch of sandy beach popular for horse riding, beach walks, and sunset drinks.'
+    },
+    {
+      id: 'um-5',
+      name: 'Amo Spa Canggu / Umalas',
+      category: 'wellness',
+      categoryLabel: 'Day Spa & Wellness',
+      icon: '💆',
+      lat: -8.6575,
+      lng: 115.1375,
+      distance: '2.3 km',
+      duration: '6 min drive',
+      highlight: 'Modern wellness center with sauna, ice bath, magnesium plunge, and body treatments.'
+    },
+    {
+      id: 'um-6',
+      name: 'Pepito Express Umalas',
+      category: 'groceries',
+      categoryLabel: 'Supermarket',
+      icon: '🛒',
+      lat: -8.6645,
+      lng: 115.1535,
+      distance: '450 m',
+      duration: '5 min walk',
+      highlight: 'Convenient grocery store for daily fresh groceries, cold beverages, and snacks.'
+    },
+    {
+      id: 'um-7',
+      name: 'Ngurah Rai International Airport (DPS)',
+      category: 'transit',
+      categoryLabel: 'Airport',
+      icon: '✈️',
+      lat: -8.7482,
+      lng: 115.1672,
+      distance: '15 km',
+      duration: '35 min drive',
+      highlight: 'Bali primary international airport terminal.'
+    }
   ]
 };
 
 /**
- * Mendapatkan koordinat geografis villa berdasarkan ID
+ * Mapping alias ID villa agar ID dari airbnbVillas.json dan bscVillasData.js selalu cocok
+ */
+export const VILLA_COORDINATES_ALIAS = {
+  // Alias 13 Villa Airbnb Utama
+  'st-lau': 'st-lau-ubud',
+  'balangan-cliff-villa': 'iconic-cliff-top-villa',
+  'villa-angkasa': 'angkasa-ubud',
+  'the-palms-villa-canggu': 'the-palms-villa-canggu',
+  'villa-habitas': 'the-palms-villa-canggu',
+  'tranquil-sanctuary-pererenan': 'the-palms-villa-canggu',
+  'tropical-canggu-villa': 'villa-samudra-canggu',
+  'coco-bay': 'villa-samudra-canggu',
+  'luxe-beach-villa-seminyak': 'villa-kayu-raja-seminyak',
+  'the-bull-house': 'villa-kayu-raja-seminyak',
+  'villa-cendana-seminyak': 'villa-cendana-seminyak',
+  'villa-kanopi': 'villa-cendana-seminyak',
+  'yellow-moon-uluwatu': 'cliffside-panorama-uluwatu',
+  'villa-imala': 'cliffside-panorama-uluwatu',
+  'casa-kaya-bingin': 'cliffside-panorama-uluwatu',
+  'luxury-tropical-bingin': 'cliffside-panorama-uluwatu',
+  'chic-tropical-bingin': 'cliffside-panorama-uluwatu',
+  'tropical-elegance-seseh': 'tropical-elegance-seseh',
+  'five-bedroom-designer-umalas': 'five-bedroom-designer-umalas',
+  'mandapa-jungle-villa': 'mandapa-jungle-villa',
+  'villa-surga': 'mandapa-jungle-villa'
+};
+
+/**
+ * Mendapatkan koordinat geografis villa berdasarkan ID atau objek villa
+ * Mendukung pencocokan langsung, alias Airbnb, dan pencocokan area cerdas.
  * @param {string} villaId - ID unik villa
+ * @param {Object} [villa] - Objek villa lengkap (opsional, untuk deteksi area otomatis)
  * @returns {{lat: number, lng: number, areaName: string, subtitle: string}} Objek data koordinat villa
  */
-export function getVillaCoordinates(villaId) {
-  return VILLA_COORDINATES[villaId] || {
-    lat: -8.5190,
-    lng: 115.2630,
-    areaName: 'Bali',
-    subtitle: 'Prime tropical retreat in Bali.'
-  };
+export function getVillaCoordinates(villaId, villa = null) {
+  // 1. Cek langsung di VILLA_COORDINATES
+  if (villaId && VILLA_COORDINATES[villaId]) {
+    return VILLA_COORDINATES[villaId];
+  }
+
+  // 2. Cek di tabel alias
+  const aliasKey = villaId ? VILLA_COORDINATES_ALIAS[villaId] : null;
+  if (aliasKey && VILLA_COORDINATES[aliasKey]) {
+    return VILLA_COORDINATES[aliasKey];
+  }
+
+  // 3. Pencocokan area cerdas jika objek villa diteruskan
+  const area = (villa?.location || villa?.address || villa?.area || '').toLowerCase();
+  if (area.includes('uluwatu') || area.includes('bingin') || area.includes('balangan') || area.includes('bukit') || area.includes('pecatu')) {
+    return VILLA_COORDINATES['iconic-cliff-top-villa'];
+  }
+  if (area.includes('pererenan')) {
+    return VILLA_COORDINATES['the-palms-villa-canggu'];
+  }
+  if (area.includes('seseh')) {
+    return VILLA_COORDINATES['tropical-elegance-seseh'];
+  }
+  if (area.includes('umalas')) {
+    return VILLA_COORDINATES['five-bedroom-designer-umalas'];
+  }
+  if (area.includes('canggu') || area.includes('berawa')) {
+    return VILLA_COORDINATES['villa-samudra-canggu'];
+  }
+  if (area.includes('seminyak') || area.includes('petitenget') || area.includes('kerobokan')) {
+    return VILLA_COORDINATES['villa-kayu-raja-seminyak'];
+  }
+  if (area.includes('ubud') || area.includes('sayan') || area.includes('gianyar')) {
+    return VILLA_COORDINATES['st-lau-ubud'];
+  }
+
+  // Default fallback
+  return VILLA_COORDINATES['st-lau-ubud'];
 }
 
 /**
- * Mendapatkan daftar tempat menarik di sekitar villa berdasarkan ID
+ * Mendapatkan daftar tempat menarik di sekitar villa berdasarkan ID atau objek villa
  * @param {string} villaId - ID unik villa
+ * @param {Object} [villa] - Objek villa lengkap (opsional)
  * @returns {Array<Object>} Daftar objek tempat menarik di sekitar villa
  */
-export function getNearbyPlaces(villaId) {
-  return NEARBY_PLACES_BY_VILLA[villaId] || NEARBY_PLACES_BY_VILLA['st-lau-ubud'];
+export function getNearbyPlaces(villaId, villa = null) {
+  if (villaId && NEARBY_PLACES_BY_VILLA[villaId]) {
+    return NEARBY_PLACES_BY_VILLA[villaId];
+  }
+
+  const aliasKey = villaId ? VILLA_COORDINATES_ALIAS[villaId] : null;
+  if (aliasKey && NEARBY_PLACES_BY_VILLA[aliasKey]) {
+    return NEARBY_PLACES_BY_VILLA[aliasKey];
+  }
+
+  const area = (villa?.location || villa?.address || villa?.area || '').toLowerCase();
+  if (area.includes('uluwatu') || area.includes('bingin') || area.includes('balangan') || area.includes('bukit') || area.includes('pecatu')) {
+    return NEARBY_PLACES_BY_VILLA['iconic-cliff-top-villa'];
+  }
+  if (area.includes('pererenan')) {
+    return NEARBY_PLACES_BY_VILLA['the-palms-villa-canggu'];
+  }
+  if (area.includes('seseh')) {
+    return NEARBY_PLACES_BY_VILLA['tropical-elegance-seseh'];
+  }
+  if (area.includes('umalas')) {
+    return NEARBY_PLACES_BY_VILLA['five-bedroom-designer-umalas'];
+  }
+  if (area.includes('canggu') || area.includes('berawa')) {
+    return NEARBY_PLACES_BY_VILLA['villa-samudra-canggu'];
+  }
+  if (area.includes('seminyak') || area.includes('petitenget') || area.includes('kerobokan')) {
+    return NEARBY_PLACES_BY_VILLA['villa-kayu-raja-seminyak'];
+  }
+  if (area.includes('ubud') || area.includes('sayan') || area.includes('gianyar')) {
+    return NEARBY_PLACES_BY_VILLA['st-lau-ubud'];
+  }
+
+  return NEARBY_PLACES_BY_VILLA['st-lau-ubud'];
 }

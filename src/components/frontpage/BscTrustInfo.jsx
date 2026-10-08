@@ -29,7 +29,7 @@ export default function BscTrustInfo({ onSeeVillasClick }) {
   return (
     <>
       {/* 1. Safe & Accountable */}
-      <section className="sec sec-safe" id="safe" style={{ background: '#fff', borderBlock: '1px solid var(--line)' }}>
+      <section className="sec sec-safe" id="safe">
         <div className="wrap">
           <div className="sec-head">
             <div className="eyebrow">Safe &amp; accountable</div>
@@ -40,7 +40,7 @@ export default function BscTrustInfo({ onSeeVillasClick }) {
           <div className="grid3">
             <div className="card">
               <div className="ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D2B073" strokeWidth="2">
                   <path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z" />
                 </svg>
               </div>
@@ -54,7 +54,7 @@ export default function BscTrustInfo({ onSeeVillasClick }) {
 
             <div className="card">
               <div className="ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D2B073" strokeWidth="2">
                   <path d="M12 8v4l3 2" />
                   <circle cx="12" cy="12" r="9" />
                 </svg>
@@ -70,7 +70,7 @@ export default function BscTrustInfo({ onSeeVillasClick }) {
 
             <div className="card">
               <div className="ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D2B073" strokeWidth="2">
                   <path d="M3 12h18M12 3v18" />
                 </svg>
               </div>
@@ -86,7 +86,7 @@ export default function BscTrustInfo({ onSeeVillasClick }) {
       </section>
 
       {/* 2. Booking & Payment */}
-      <section className="sec sec-booking" id="booking">
+      {/* <section className="sec sec-booking" id="booking">
         <div className="wrap">
           <div className="sec-head">
             <div className="eyebrow">Booking &amp; payment</div>
@@ -132,10 +132,10 @@ export default function BscTrustInfo({ onSeeVillasClick }) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* 3. Arrival Guide & Extras */}
-      <section className="sec sec-arrival" id="arrival">
+      {/* <section className="sec sec-arrival" id="arrival">
         <div className="wrap grid2">
           <div className="card">
             <div className="eyebrow">Before you arrive</div>
@@ -182,7 +182,7 @@ export default function BscTrustInfo({ onSeeVillasClick }) {
             <p className="ph-note">Fill in only services you really provide. Fixed prices published upfront build trust.</p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* 4. Early Verified Guests Banner */}
       <section className="sec sec-early" id="early-guests">

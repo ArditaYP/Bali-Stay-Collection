@@ -12,10 +12,10 @@ import BscVillaCatalog from '../components/frontpage/BscVillaCatalog';
 import BscVerification from '../components/frontpage/BscVerification';
 import BscLiveTour from '../components/frontpage/BscLiveTour';
 import BscComparisonTable from '../components/frontpage/BscComparisonTable';
+import BscExperiences from '../components/frontpage/BscExperiences';
 import BscTeamSection from '../components/frontpage/BscTeamSection';
 import BscStayPromise from '../components/frontpage/BscStayPromise';
 import BscTrustInfo from '../components/frontpage/BscTrustInfo';
-import BscFaq from '../components/frontpage/BscFaq';
 import BscFooter from '../components/frontpage/BscFooter';
 
 /**
@@ -158,11 +158,11 @@ export default function ExplorePage({
           onSelectDestination={handleSelectDestination}
         />
 
-        {/* 5. From Simple and Stylish to Full Luxury (Levels) */}
+        {/* 5. From Simple and Stylish to Full Luxury (Levels)
         <BscLevels 
           villas={villas}
           onSelectLevel={handleSelectLevel}
-        />
+        /> */}
 
         {/* 6. Our Top Picks (9 Villa Pilihan Terbaik) */}
         <BscTopPicks 
@@ -196,23 +196,22 @@ export default function ExplorePage({
         <BscLiveTour 
           villas={villas}
         />
-
-        {/* 10. Book Direct, Know Exactly Who You Are Dealing With (Tabel Perbandingan) */}
+        {/* 10. Beyond the Stay - Experiences (Layanan Opsional Kedatangan) */}
+        <BscExperiences />
+        
+        {/* 11f. Book Direct, Know Exactly Who You Are Dealing With (Tabel Perbandingan) */}
         <BscComparisonTable />
 
-        {/* 11. The People Behind Your Stay (Tim BSC Bali) */}
-        <BscTeamSection />
+        {/* 12. The People Behind Your Stay (Tim BSC Bali) */}
+        {/* <BscTeamSection /> */}
 
         {/* 12. The BSC Stay Promise */}
-        <BscStayPromise />
+        {/* <BscStayPromise /> */}
 
-        {/* 13. Safe & Accountable, Booking & Payment, Panduan Kedatangan & Extras, First Verified Guests */}
+        {/* 14. Safe & Accountable, Booking & Payment, Panduan Kedatangan & Extras, First Verified Guests */}
         <BscTrustInfo 
           onSeeVillasClick={handleSubmitSearch}
         />
-
-        {/* 14. Before You Book (Accordion FAQ) */}
-        <BscFaq />
 
         {/* 15. Legalitas Perusahaan, Footer Resmi & Tombol Mengambang WhatsApp */}
         <BscFooter 

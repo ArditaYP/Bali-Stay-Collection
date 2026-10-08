@@ -411,6 +411,7 @@ export default function App() {
           onCurrencyChange={handleCurrencyChange}
         />
       )}
+      
 
       {/* Footer Bawah - Tampil khusus pada halaman Detail dan Editor */}
       {currentPage !== 'explore' && (

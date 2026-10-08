@@ -77,12 +77,7 @@ export default function BscNavbar({
 
   return (
     <>
-      {/* 1. Topbar Pengumuman Jaminan Langsung */}
-      <div className="topbar">
-        Managed directly by our local team in Bali &middot; Total price shown upfront &middot; Free reschedule on selected villas
-      </div>
-
-      {/* 2. Header Navigasi Resmi dengan kelas dinamis nav-hero / nav-scrolled */}
+      {/* Header Navigasi Resmi dengan kelas dinamis nav-hero / nav-scrolled */}
       <header className={`nav ${isScrolledPastHero ? 'nav-scrolled' : 'nav-hero'}`}>
         <div className="nav-in">
           {/* Logo Brand Resmi */}
@@ -103,9 +98,9 @@ export default function BscNavbar({
           <nav className="nav-links" aria-label="Main Navigation">
             <a href="#villas" onClick={(e) => handleScrollToSection(e, 'villas')}>Villas</a>
             <a href="#destinations" onClick={(e) => handleScrollToSection(e, 'destinations')}>Destinations</a>
+            <a href="#experiences" onClick={(e) => handleScrollToSection(e, 'experiences')}>Experiences</a>
             <a href="#verify" onClick={(e) => handleScrollToSection(e, 'verify')}>How we verify</a>
             <a href="#team" onClick={(e) => handleScrollToSection(e, 'team')}>Our team</a>
-            <a href="#faq" onClick={(e) => handleScrollToSection(e, 'faq')}>FAQ</a>
           </nav>
 
           {/* Sisi Kanan: Wishlist, Currency Toggle, Tombol CTA & Hamburger Mobile */}
@@ -184,9 +179,9 @@ export default function BscNavbar({
             <nav className="nav-mobile-links" aria-label="Mobile Navigation">
               <a href="#villas" onClick={(e) => handleScrollToSection(e, 'villas')}>Villas</a>
               <a href="#destinations" onClick={(e) => handleScrollToSection(e, 'destinations')}>Destinations</a>
+              <a href="#" onClick={(e) => handleScrollToSection(e, 'team')}>Experiences</a>
               <a href="#verify" onClick={(e) => handleScrollToSection(e, 'verify')}>How we verify</a>
               <a href="#team" onClick={(e) => handleScrollToSection(e, 'team')}>Our team</a>
-              <a href="#faq" onClick={(e) => handleScrollToSection(e, 'faq')}>FAQ</a>
               {wishlistCount > 0 && onOpenWishlist && (
                 <a href="#wishlist" onClick={(e) => { e.preventDefault(); handleWishlistClick(); }}>
                   Saved Wishlist ({wishlistCount})
