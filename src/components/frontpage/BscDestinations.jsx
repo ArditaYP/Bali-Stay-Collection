@@ -81,6 +81,7 @@ export default function BscDestinations({
                     src={imgSrc}
                     alt={`${dest.name}, Bali`}
                     className="dcard-img"
+                    style={dest.objectPosition ? { objectPosition: dest.objectPosition } : undefined}
                     loading="eager"
                     decoding="sync"
                     fetchPriority="high"

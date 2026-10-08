@@ -102,6 +102,7 @@ export default function Destinations({
                 src={dest.image} 
                 alt={`${dest.name}, Bali`} 
                 className="dest-card-img" 
+                style={dest.objectPosition ? { objectPosition: dest.objectPosition } : undefined}
                 loading="lazy" 
               />
               <div className="dest-card-overlay" />

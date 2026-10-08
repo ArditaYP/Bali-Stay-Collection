@@ -741,6 +741,11 @@ section.destinations h2 {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  clip-path: inset(0 round 16px);
+  isolation: isolate;
+  contain: paint;
   height: 180px;
   cursor: pointer;
   background-color: #242220;

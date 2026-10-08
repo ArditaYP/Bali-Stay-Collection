@@ -399,12 +399,14 @@ export const POPULAR_DESTINATIONS = [
     name: 'Canggu',
     count: '2 villas',
     image: '/destinations/canggu.jpg',
+    objectPosition: 'center 72%',
     bg: '#CBC3A8'
   },
   {
     name: 'Uluwatu',
     count: '2 villas',
     image: '/destinations/uluwatu.jpg',
+    objectPosition: 'center 50%',
     bg: '#A9B9C9'
   }
 ];
