@@ -317,6 +317,20 @@ OTHER THINGS TO NOTE
     description: 'A masterpiece of contemporary architecture on the border of Umalas and Berawa. Features five opulent master suites, private 18-meter swimming pool, sunken lounge, manicured lawn, and dedicated villa concierge.',
     amenities: ['Private pool', 'Dedicated staff', 'Chef on request', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Free parking']
   },
+  'villa-imala': {
+    name: 'Exclusive 6BR Uluwatu Villa with Gym & Ocean View',
+    category: 'Luxury',
+    price: 720,
+    cleaningFee: 80,
+    freeCancel: true,
+    cardBg: '#9FB7C7',
+    bookedDays: [8, 9, 21, 22],
+    address: 'Uluwatu, Badung, Bali',
+    location: 'Uluwatu & Bukit',
+    shortDesc: 'Ultra-luxury 6-bedroom ocean-view villa in Uluwatu with 80m² pool, panoramic fitness gym, and in-villa spa.',
+    description: 'Welcome to Villa Imala, a spectacular 6-bedroom luxury private villa in Uluwatu offering ocean views, expansive living spaces, 80m² pool, panoramic glass-walled gym, and private spa room minutes from Savaya and Melasti Beach.',
+    amenities: ['Private pool', 'Ocean view', 'Gym & fitness', 'Private spa room', 'Villa manager', 'Chef on request', 'Daily housekeeping', 'High-speed WiFi', 'Free parking']
+  },
   'mandapa-jungle-villa': {
     category: 'Standard',
     price: 290,

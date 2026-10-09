@@ -21,9 +21,18 @@ export default function BscDestinations({
   villas = [],
   currency = 'USD',
   onSelectArea,
-  onSelectDestination
+  onSelectDestination,
+  destinationsData = null
 }) {
   const activeVillas = (villas && villas.length > 0) ? villas : BSC_VILLAS;
+
+  // Gunakan data dinamis jika tersedia, atau fallback ke DESTINATIONS_SUMMARY resmi
+  const destinationsList = (destinationsData && destinationsData.length > 0)
+    ? DESTINATIONS_SUMMARY.map(defaultDest => {
+        const custom = destinationsData.find(d => (d.name === defaultDest.name || d.title === defaultDest.name || d.id === defaultDest.name));
+        return custom ? { ...defaultDest, ...custom, image: custom.image || defaultDest.image } : defaultDest;
+      })
+    : DESTINATIONS_SUMMARY;
 
   /**
    * Menangani klik pada kartu destinasi:
@@ -53,7 +62,7 @@ export default function BscDestinations({
 
         {/* Grid Destinasi Sesuai Format Kotak Asli bsc-frontpage_1.html */}
         <div className="dest" id="destGrid">
-          {DESTINATIONS_SUMMARY.map((dest) => {
+          {destinationsList.map((dest) => {
             const areaVillas = activeVillas.filter(v => v.area === dest.name);
             const count = areaVillas.length || dest.count;
             const pricedVillas = areaVillas.filter(v => v.price && v.price > 0);

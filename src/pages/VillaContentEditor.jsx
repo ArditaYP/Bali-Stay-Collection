@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { formatBscMoney } from '../utils/bscFormat';
 import { CONFIG } from '../data/bscVillasData';
+import HomepageMediaEditor from '../components/editor/HomepageMediaEditor';
 
 /**
  * Daftar fasilitas standar yang sering dipilih untuk villa di Bali
@@ -79,6 +80,11 @@ export default function VillaContentEditor({
   // State status proses penyimpanan ke server database
   const [isSaving, setIsSaving] = useState(false);
 
+  // State untuk navigasi tab editor ('villas' | 'homepage')
+  const [editorTab, setEditorTab] = useState('villas');
+  const [homepageData, setHomepageData] = useState(null);
+  const [isSavingHomepage, setIsSavingHomepage] = useState(false);
+
   // State untuk manajemen foto villa
   const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
   const [newImageUrl, setNewImageUrl] = useState('');
@@ -88,6 +94,59 @@ export default function VillaContentEditor({
   useEffect(() => {
     setEditableVillas(villas);
   }, [villas]);
+
+  // Mengambil data media halaman depan saat editor dibuka
+  useEffect(() => {
+    const fetchHomepage = async () => {
+      try {
+        const resp = await fetch('/BaliStayCollection/api/homepage.php');
+        if (resp.ok) {
+          const json = await resp.json();
+          if (json.success) {
+            setHomepageData(json);
+            localStorage.setItem('bsc_homepage_media', JSON.stringify(json));
+            return;
+          }
+        }
+      } catch (e) {
+        console.warn('API homepage offline, loading fallback:', e);
+      }
+      const saved = localStorage.getItem('bsc_homepage_media');
+      if (saved) {
+        try {
+          setHomepageData(JSON.parse(saved));
+        } catch (e) {}
+      }
+    };
+    fetchHomepage();
+  }, []);
+
+  /**
+   * Menangani penyimpanan perubahan foto dan media halaman depan
+   * @param {Object} updatedData - Data foto & konten halaman depan yang diperbarui
+   */
+  const handleSaveHomepage = async (updatedData) => {
+    setIsSavingHomepage(true);
+    try {
+      setHomepageData(updatedData);
+      localStorage.setItem('bsc_homepage_media', JSON.stringify(updatedData));
+      const resp = await fetch('/BaliStayCollection/api/homepage.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedData)
+      });
+      const resJson = await resp.json();
+      if (resJson.success) {
+        showToast('✅ Foto dan konten halaman depan berhasil disimpan ke database!');
+      } else {
+        showToast('⚠️ Data disimpan secara lokal (' + (resJson.error || 'Server notice') + ')');
+      }
+    } catch (err) {
+      showToast('✅ Tersimpan di penyimpanan lokal browser.');
+    } finally {
+      setIsSavingHomepage(false);
+    }
+  };
 
   // Villa yang sedang dipilih di form
   const selectedVilla = editableVillas.find(v => v.id === selectedVillaId) || editableVillas[0];
@@ -484,8 +543,35 @@ ${(selectedVilla.amenities || []).join(', ')}
         </div>
       </div>
 
-      {/* Konten Utama Editor: 2 Kolom (Sidebar Daftar Villa + Form Editor & Preview) */}
-      <div className="editor-layout">
+      {/* Tab Navigasi Mode: Konten Villa vs Foto Halaman Depan */}
+      <div className="editor-mode-switcher-bar">
+        <button
+          type="button"
+          className={`editor-mode-tab-btn ${editorTab === 'villas' ? 'active' : ''}`}
+          onClick={() => setEditorTab('villas')}
+        >
+          🏡 Kelola Konten Villa ({editableVillas.length} Villa)
+        </button>
+        <button
+          type="button"
+          className={`editor-mode-tab-btn ${editorTab === 'homepage' ? 'active' : ''}`}
+          onClick={() => setEditorTab('homepage')}
+        >
+          🖼️ Kelola Foto Halaman Depan (Destinasi &amp; Experiences)
+        </button>
+      </div>
+
+      {editorTab === 'homepage' ? (
+        <HomepageMediaEditor
+          homepageData={homepageData}
+          onSave={handleSaveHomepage}
+          onBackToWeb={onBackToCatalog}
+          showToast={showToast}
+          isSaving={isSavingHomepage}
+        />
+      ) : (
+        /* Konten Utama Editor: 2 Kolom (Sidebar Daftar Villa + Form Editor & Preview) */
+        <div className="editor-layout">
         {/* Kolom Kiri: Navigasi Daftar Villa */}
         <aside className="editor-sidebar">
           <div className="editor-search-box">
@@ -1039,6 +1125,7 @@ ${(selectedVilla.amenities || []).join(', ')}
           )}
         </main>
       </div>
+      )}
     </div>
   );
 }

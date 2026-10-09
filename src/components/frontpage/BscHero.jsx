@@ -20,8 +20,13 @@ export default function BscHero({
   areas = [],
   searchParams,
   onSearchChange,
-  onSubmitSearch
+  onSubmitSearch,
+  heroData = null
 }) {
+  const headline = heroData?.headline || 'Find a Bali villa you can book with confidence';
+  const leadText = heroData?.lead || 'Hand-picked private villas. On-the-ground local support';
+  const bgImage = heroData?.bgImage || '';
+
   /**
    * Menangani pengiriman form pencarian hero
    * @param {React.FormEvent} e - Event submit form
@@ -34,17 +39,22 @@ export default function BscHero({
   };
 
   return (
-    <section className="hero">
+    <section 
+      className="hero" 
+      style={bgImage ? {
+        backgroundImage: `linear-gradient(rgba(244, 241, 234, 0.88), rgba(244, 241, 234, 0.94)), url('${bgImage}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      } : {}}
+    >
       <div className="wrap">
         <div className="hero-in">
-          {/* <div className="eyebrow">
-            Private villas &middot; Canggu &middot; Pererenan &middot; Umalas &middot; Uluwatu &middot; Ubud
-          </div> */}
           <h1 style={{ marginTop: '8px' }}>
-            Find a Bali villa you can book with confidence
+            {headline}
           </h1>
           <p className="lead">
-          Hand-picked private villas. On-the-ground local support          </p>
+            {leadText}
+          </p>
         </div>
 
         {/* Form Pencarian Cepat */}

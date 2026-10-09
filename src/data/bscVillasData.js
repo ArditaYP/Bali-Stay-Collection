@@ -36,7 +36,8 @@ export const AIRBNB_ONLY_VILLA_IDS = [
   'luxury-tropical-bingin',
   'chic-tropical-bingin',
   'five-bedroom-designer-umalas',
-  'villa-angkasa'
+  'villa-angkasa',
+  'villa-imala'
 ];
 
 /**
@@ -297,7 +298,8 @@ export const BSC_VILLAS = [
       "Wellness retreat"
     ],
     "setting": [
-      "Ocean view"
+      "Ocean view",
+      "Cliff top"
     ],
     "am": [
       "Private pool",
@@ -310,14 +312,18 @@ export const BSC_VILLAS = [
       "#9FB7C7",
       "#D5E2EA"
     ],
-    "img": "/airbnb/cliffside-panorama-uluwatu/photos/photo-01.jpg",
-    "why": "Ocean and hillside views, six bedrooms, and a dedicated villa manager. Built for celebrations in Uluwatu.",
-    "cancel": "",
-    "verified": false,
-    "updated": "",
+    "img": "/airbnb/villa-imala/photos/photo-01.jpg",
+    "why": "Spectacular 6BR ocean-view villa in Uluwatu with an 80m² pool, panoramic glass-wall gym, and private spa room minutes from Savaya.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
     "pick": true,
-    "desc": "6-bedroom private pool villa in Uluwatu & Bukit, for up to 12 guests. Features ocean views, a dedicated villa manager and wellness facilities.",
-    "know": []
+    "desc": "Ultra-luxury 6-bedroom ocean-view villa in Uluwatu for up to 12 guests with 80m² pool, panoramic fitness gym, and in-villa spa.",
+    "know": [
+      "80m² private swimming pool with sundeck and rooftop ocean-view daybeds.",
+      "Dedicated private spa room and panoramic glass-wall fitness gym.",
+      "Minutes away from Savaya Beach Club and Melasti Beach."
+    ]
   },
   {
     "id": "house-terra",

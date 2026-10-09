@@ -54,7 +54,8 @@ export default function ExplorePage({
   onOpenListVilla,
   currency = 'USD',
   onCurrencyChange,
-  onOpenEditor
+  onOpenEditor,
+  onOpenSearch
 }) {
   // State mata uang aktif dengan sinkronisasi ke prop atau fallback lokal
   const [internalCurrency, setInternalCurrency] = useState(currency);
@@ -65,6 +66,33 @@ export default function ExplorePage({
   const nights = useMemo(() => {
     return calculateNights(searchParams.checkIn, searchParams.checkOut);
   }, [searchParams.checkIn, searchParams.checkOut]);
+
+  // State media dinamis halaman depan (foto destinasi, experiences, hero)
+  const [homepageMedia, setHomepageMedia] = useState(() => {
+    const saved = localStorage.getItem('bsc_homepage_media');
+    if (saved) {
+      try { return JSON.parse(saved); } catch (e) {}
+    }
+    return null;
+  });
+
+  useEffect(() => {
+    const fetchHomepage = async () => {
+      try {
+        const resp = await fetch('/BaliStayCollection/api/homepage.php');
+        if (resp.ok) {
+          const json = await resp.json();
+          if (json.success) {
+            setHomepageMedia(json);
+            localStorage.setItem('bsc_homepage_media', JSON.stringify(json));
+          }
+        }
+      } catch (e) {
+        // Fallback ke localStorage atau default resmi
+      }
+    };
+    fetchHomepage();
+  }, []);
 
   // Daftar nama kawasan unik untuk dropdown pencarian hero
   const areas = useMemo(() => {
@@ -140,6 +168,7 @@ export default function ExplorePage({
         onCurrencyChange={handleCurrencyChange}
         wishlistCount={savedVillaIds.length}
         onOpenWishlist={onOpenWishlist}
+        onOpenSearch={onOpenSearch}
       />
 
       <main id="top">
@@ -149,6 +178,7 @@ export default function ExplorePage({
           searchParams={searchParams}
           onSearchChange={handleSearchChange}
           onSubmitSearch={handleSubmitSearch}
+          heroData={homepageMedia?.hero}
         />
 
         {/* 4. Explore by Destination */}
@@ -156,6 +186,7 @@ export default function ExplorePage({
           villas={villas}
           currency={activeCurrency}
           onSelectDestination={handleSelectDestination}
+          destinationsData={homepageMedia?.destinations}
         />
 
         {/* 5. From Simple and Stylish to Full Luxury (Levels)
@@ -197,7 +228,7 @@ export default function ExplorePage({
           villas={villas}
         />
         {/* 10. Beyond the Stay - Experiences (Layanan Opsional Kedatangan) */}
-        <BscExperiences />
+        <BscExperiences experiencesData={homepageMedia?.experiences} />
         
         {/* 11f. Book Direct, Know Exactly Who You Are Dealing With (Tabel Perbandingan) */}
         <BscComparisonTable />

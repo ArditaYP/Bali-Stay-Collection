@@ -1142,8 +1142,48 @@ src/
   - Baris 3: `[    ]` - Seseh (full banner / 3 kolom)
 - **Penetapan Foto Autentik Sesuai Permintaan**:
   - **Ubud** (`/destinations/ubud.jpg`): Foto terasering sawah hijau Tegallalang & lembah tropis Ubud (pindahan dari seseh).
-  - **Uluwatu & Bukit** (`/destinations/uluwatu.jpg`): Foto tebing kapur megah Pura Luhur Uluwatu yang menjulang langsung di atas pantai dan ombak laut.
-  - **Canggu & Berawa** (`/destinations/canggu.jpg`): Foto pantai Echo Beach Canggu dengan ombak pesisir, peselancar, dan garis pantai.
-  - **Umalas & Seminyak** (`/destinations/seminyak.jpg`): Foto sunset Seminyak Beach (Double Six) dengan payung pantai khas Bali.
-  - **Seseh** (`/destinations/seseh.jpg`): Foto autentik Pantai Seseh dengan pasir hitam vulkanik, batu karang pantai, dan deburan ombak.
-  - **Pererenan** (`/destinations/pererenan.jpg`): Foto pantai senja keemasan dengan deburan ombak pesisir Pererenan.
+---
+
+## 9. Pembaruan Milestone 5.36: Fitur Pencarian Web, Penambahan 2 Villa Airbnb, & Editor Foto Halaman Depan
+
+### 9.1 Fitur Pencarian Web (Dual-Layer Search Architecture)
+1. **Spotlight Quick Search Modal (`SearchModal.jsx`)**:
+   - Shortcut keyboard global: `⌘K` (Mac) atau `Ctrl+K` (Windows).
+   - Tombol pemicu pencarian interaktif di desktop Navbar (`.nav-search-btn`) dan mobile drawer.
+   - Pencarian real-time multi-kriteria: nama villa, kawasan (Uluwatu, Canggu, Ubud, dll.), kamar tidur, rating, fasilitas (kolam renang, gym, chef, ocean view), dan kategori kemewahan.
+   - Kartu pratinjau mewah dengan thumbnail, rating bintang terverifikasi, badge kawasan, kapasitas tamu, dan harga per malam.
+   - Chip filter cepat: Uluwatu, Canggu, Pererenan, Ubud, Seminyak, Ocean View, Private Pool, Gym, Luxury.
+2. **Live Catalog Instant Search (`BscVillaCatalog.jsx`)**:
+   - Kolom pencarian langsung di atas katalog villa `#results-section` dengan ikon SVG dan tombol hapus input `✕`.
+   - Menyaring seluruh 50+ villa secara langsung (*instant reactive filtering*) seiring pengguna mengetik.
+
+### 9.2 Penambahan & Sinkronisasi 2 Villa Airbnb
+1. **Villa Imala (`villa-imala` - Airbnb Room ID: 1569243074057240780)**:
+   - Nama: Exclusive 6BR Uluwatu Villa with Gym & Ocean View
+   - Lokasi: Uluwatu & Bukit
+   - Spesifikasi: 6 Kamar Tidur, 8 Tempat Tidur, 5 Kamar Mandi, Kapasitas 12 Tamu
+   - Rating: ★ 4.94 (18 reviews asli terverifikasi)
+   - Fasilitas Utama: Kolam renang 80m², gym panorama berdinding kaca menghadap laut, ruang spa pribadi, rooftop teras daybed sunset, 5 menit ke Savaya & Pantai Melasti.
+   - Unduhan Foto Autentik: 20 foto resolusi tinggi diunduh ke `public/airbnb/villa-imala/photos/photo-01.jpg` s/d `photo-20.jpg`.
+   - Data tersinkronisasi di `src/data/airbnbVillas.json`, `src/data/bscVillasData.js`, `src/data/villasData.js`, dan MySQL `balistay_db.villas`.
+2. **Balangan Cliff Villa / Iconic Cliff Top Villa (`balangan-cliff-villa` / `iconic-cliff-top-villa` - Airbnb Room ID: 1365727502132237034)**:
+   - Nama: Iconic 5BR Cliff Top Villa with 180° Ocean View
+   - Lokasi: Balangan Beach, Uluwatu & Bukit
+   - Spesifikasi: 5 Kamar Tidur, 5 Tempat Tidur, 4.5/5 Kamar Mandi, Kapasitas 10 Tamu
+   - Rating: ★ 4.42 (24 reviews terverifikasi)
+   - Harga: Patokan menengah USD $495 / malam
+   - Terhubung ganda (*dual-alias*) di seluruh aplikasi.
+
+### 9.3 Fitur Editor Foto Halaman Depan (`HomepageMediaEditor.jsx` & `api/homepage.php`)
+1. **Tab Switcher di `#editor` (`VillaContentEditor.jsx`)**:
+   - `[ 🏡 Kelola Konten Villa ]` untuk mengedit 50+ villa individu.
+   - `[ 🖼️ Kelola Foto Halaman Depan ]` untuk mengedit foto-foto halaman utama.
+2. **Manajemen Media Halaman Depan**:
+   - **Explore Destinations Photos**: Mengedit foto 6 kartu kawasan (Pererenan, Canggu & Berawa, Uluwatu & Bukit, Ubud & Gianyar, Umalas & Seminyak, Sanur & East Bali), upload gambar dari komputer (kompresi server GD WebP via `/api/upload.php`), input URL, ubah badge, dan deskripsi kawasan.
+   - **Beyond the Stay (Experiences)**: Mengedit foto 4 layanan tambahan (Airport Transfer, Private Chef, Wellness, Explore Bali).
+   - **Hero Section Media**: Mengatur foto latar belakang hero, headline, dan sub-heading.
+3. **Penyimpanan Dual-Layer & Endpoint REST API**:
+   - Endpoint: `GET /api/homepage.php` dan `POST /api/homepage.php`.
+   - Tabel MySQL: `balistay_db.homepage_media`.
+   - Fallback otomatis: `localStorage.getItem('bsc_homepage_media')` untuk preview/deployment tanpa MySQL offline.
+

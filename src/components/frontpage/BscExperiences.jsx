@@ -13,8 +13,8 @@ import React from 'react';
  * 
  * @returns {React.JSX.Element} Elemen JSX Experiences
  */
-export default function BscExperiences() {
-  const experiences = [
+export default function BscExperiences({ experiencesData = null }) {
+  const defaultExperiences = [
     {
       title: 'Airport Transfer',
       desc: 'Private arrival and departure service.',
@@ -36,6 +36,10 @@ export default function BscExperiences() {
       image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=84'
     }
   ];
+
+  const experiences = (experiencesData && experiencesData.length > 0)
+    ? experiencesData
+    : defaultExperiences;
 
   return (
     <section className="sec sec-experiences section alt" id="experiences">

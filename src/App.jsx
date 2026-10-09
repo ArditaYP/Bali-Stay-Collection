@@ -9,6 +9,7 @@ import VillaDetailPage from './pages/VillaDetailPage';
 import VillaContentEditor from './pages/VillaContentEditor';
 import WishlistDrawer from './components/Modals/WishlistDrawer';
 import ListVillaModal from './components/Modals/ListVillaModal';
+import SearchModal from './components/Modals/SearchModal';
 import { INITIAL_VILLAS, getDefaultDate } from './data/villasData';
 import { BSC_VILLAS, ACTIVE_AIRBNB_VILLA_IDS, AIRBNB_ONLY_VILLA_IDS } from './data/bscVillasData';
 
@@ -21,7 +22,7 @@ const VILLA_ALIAS_MAP = {
   'villa-angkasa': 'angkasa-ubud',
   'coco-bay': 'villa-samudra-canggu',
   'the-bull-house': 'villa-kayu-raja-seminyak',
-  'villa-imala': 'cliffside-panorama-uluwatu',
+  'villa-imala': 'villa-imala',
   'villa-kanopi': 'villa-cendana-seminyak',
   'villa-surga': 'mandapa-jungle-villa'
 };
@@ -140,6 +141,7 @@ export default function App() {
   // State kontrol modal
   const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isListVillaOpen, setIsListVillaOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   // State mata uang aktif ('USD' | 'IDR') yang disinkronkan dengan LocalStorage
   const [currency, setCurrency] = useState(() => {
@@ -457,6 +459,7 @@ export default function App() {
           currency={currency}
           onCurrencyChange={handleCurrencyChange}
           onOpenEditor={handleOpenEditor}
+          onOpenSearch={() => setIsSearchOpen(true)}
         />
       ) : (
         <div className="bsc-frontpage">
@@ -468,6 +471,7 @@ export default function App() {
             onOpenWishlist={() => setIsWishlistOpen(true)}
             onGoHome={handleGoHome}
             isDetailPage={true}
+            onOpenSearch={() => setIsSearchOpen(true)}
           />
           <VillaDetailPage 
             villa={currentVilla}
@@ -512,6 +516,15 @@ export default function App() {
         isOpen={isListVillaOpen}
         onClose={() => setIsListVillaOpen(false)}
         onAddVilla={handleAddHostVilla}
+      />
+
+      {/* Modal Pencarian Cepat Spotlight (⌘K) */}
+      <SearchModal 
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        villas={allEditorVillas}
+        onSelectVilla={handleOpenVillaDetail}
+        currency={currency}
       />
     </div>
   );

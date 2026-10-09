@@ -92,6 +92,7 @@ export default function BscVillaCatalog({
   }, [villas]);
 
   // State filter interaktif
+  const [catalogSearchKeyword, setCatalogSearchKeyword] = useState('');
   const [maxPrice, setMaxPrice] = useState(600);
   const [selectedTiers, setSelectedTiers] = useState([]);
   const [selectedTrips, setSelectedTrips] = useState([]);
@@ -116,6 +117,7 @@ export default function BscVillaCatalog({
    * @returns {void}
    */
   const handleResetFilters = () => {
+    setCatalogSearchKeyword('');
     setMaxPrice(600);
     setSelectedTiers([]);
     setSelectedTrips([]);
@@ -186,6 +188,29 @@ export default function BscVillaCatalog({
     const guests = parseInt(searchParams.guests, 10) || 1;
 
     const list = villas.filter(v => {
+      // Filter kata kunci pencarian teks
+      if (catalogSearchKeyword.trim()) {
+        const q = catalogSearchKeyword.trim().toLowerCase();
+        const name = (v.name || '').toLowerCase();
+        const area = (v.area || v.location || '').toLowerCase();
+        const why = (v.why || '').toLowerCase();
+        const desc = (v.desc || v.description || '').toLowerCase();
+        const am = (v.am || []).join(' ').toLowerCase();
+        const tier = (v.tier || '').toLowerCase();
+        const setting = (v.setting || []).join(' ').toLowerCase();
+        if (
+          !name.includes(q) &&
+          !area.includes(q) &&
+          !why.includes(q) &&
+          !desc.includes(q) &&
+          !am.includes(q) &&
+          !tier.includes(q) &&
+          !setting.includes(q)
+        ) {
+          return false;
+        }
+      }
+
       // Filter wilayah
       if (area && v.area !== area) return false;
       // Filter kapasitas tamu
@@ -221,6 +246,7 @@ export default function BscVillaCatalog({
     return sorted;
   }, [
     villas,
+    catalogSearchKeyword,
     searchParams.location,
     searchParams.guests,
     maxPrice,
@@ -434,6 +460,65 @@ export default function BscVillaCatalog({
                     <option value="g">Most guests</option>
                   </select>
                 </label>
+              </div>
+            </div>
+
+            {/* Live Search Input Bar */}
+            <div className="catalog-search-wrap" style={{ margin: '14px 0 16px' }}>
+              <div className="catalog-search-box" style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '10px 16px',
+                background: '#ffffff',
+                border: '1px solid var(--line, #e7e5e4)',
+                borderRadius: '12px',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.03)'
+              }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#78716c" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Search 50+ villas by name, destination, or amenities (e.g. Imala, Canggu, Ocean view)..."
+                  value={catalogSearchKeyword}
+                  onChange={(e) => {
+                    setCatalogSearchKeyword(e.target.value);
+                    setShownCount(PAGE_SIZE);
+                  }}
+                  style={{
+                    flex: 1,
+                    border: 'none',
+                    outline: 'none',
+                    fontSize: '14.5px',
+                    fontFamily: 'inherit',
+                    color: 'var(--ink, #1c1917)',
+                    background: 'transparent'
+                  }}
+                />
+                {catalogSearchKeyword && (
+                  <button
+                    type="button"
+                    onClick={() => setCatalogSearchKeyword('')}
+                    style={{
+                      border: 'none',
+                      background: '#f5f5f4',
+                      borderRadius: '50%',
+                      width: '24px',
+                      height: '24px',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '12px',
+                      color: '#57534e'
+                    }}
+                    title="Clear search"
+                  >
+                    ✕
+                  </button>
+                )}
               </div>
             </div>
 

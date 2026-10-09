@@ -345,6 +345,24 @@ CREATE TABLE custom_date_rates (
 );
 ```
 
+### 9. Tabel `homepage_media`
+Menyimpan konfigurasi foto, media banner, dan copywriting dinamis untuk seksi halaman depan (Destinasi, Experiences, dan Hero Banner) yang dapat diedit langsung melalui CMS `#editor`.
+```sql
+CREATE TABLE homepage_media (
+    id VARCHAR(100) PRIMARY KEY,             -- 'dest_canggu', 'exp_chef', 'hero_main'
+    section VARCHAR(50) NOT NULL,            -- 'destinations', 'experiences', 'hero'
+    title VARCHAR(255) NOT NULL,             -- Nama kawasan / judul layanan
+    subtitle VARCHAR(255) NULL,
+    description TEXT NULL,                   -- Deskripsi kartu
+    badge VARCHAR(100) NULL,                 -- '★ Most Popular Hub', 'Clifftops & Sunsets'
+    image VARCHAR(500) NOT NULL,             -- URL foto lokal (/uploads/...) atau CDN
+    fallback_image VARCHAR(500) NULL,
+    display_order INT DEFAULT 0,
+    meta_json LONGTEXT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+```
+
 ---
 
 ## 6. SPESIFIKASI REST API ENDPOINT

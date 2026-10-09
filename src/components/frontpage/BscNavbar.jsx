@@ -21,13 +21,28 @@ export default function BscNavbar({
   wishlistCount = 0,
   onOpenWishlist,
   onGoHome,
-  isDetailPage = false
+  isDetailPage = false,
+  onOpenSearch
 }) {
   // State untuk membuka / menutup menu navigasi mobile drawer
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // State apakah posisi scroll browser telah melewati hero dan memasuki section destinations
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
+
+  // Listener shortcut global Command+K / Ctrl+K
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (typeof onOpenSearch === 'function') {
+          onOpenSearch();
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onOpenSearch]);
 
   useEffect(() => {
     /**
@@ -130,8 +145,26 @@ export default function BscNavbar({
             <a href="#team" onClick={(e) => handleScrollToSection(e, 'team')}>Our team</a>
           </nav>
 
-          {/* Sisi Kanan: Wishlist, Currency Toggle, Tombol CTA & Hamburger Mobile */}
+          {/* Sisi Kanan: Quick Search, Wishlist, Currency Toggle, Tombol CTA & Hamburger Mobile */}
           <div className="nav-cta">
+            {/* Tombol Quick Search (Spotlight ⌘K) */}
+            {onOpenSearch && (
+              <button
+                type="button"
+                className="nav-search-btn"
+                onClick={onOpenSearch}
+                title="Search villas & destinations (⌘K)"
+                aria-label="Search villas and destinations"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <span className="nav-search-text">Search...</span>
+                <kbd className="nav-search-kbd">⌘K</kbd>
+              </button>
+            )}
+
             {/* Tombol Wishlist jika ada yang disimpan */}
             {wishlistCount > 0 && onOpenWishlist && (
               <button
@@ -203,6 +236,24 @@ export default function BscNavbar({
         {/* 3. Menu Drawer Dropdown untuk Tablet & Mobile */}
         {isMobileMenuOpen && (
           <div className="nav-mobile-drawer open" id="mobileNavMenu">
+            {onOpenSearch && (
+              <button
+                type="button"
+                className="nav-mobile-search-btn"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  onOpenSearch();
+                }}
+              >
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <span>Search Villas & Destinations</span>
+                <kbd>⌘K</kbd>
+              </button>
+            )}
+
             <nav className="nav-mobile-links" aria-label="Mobile Navigation">
               <a href="#villas" onClick={(e) => handleScrollToSection(e, 'villas')}>Villas</a>
               <a href="#destinations" onClick={(e) => handleScrollToSection(e, 'destinations')}>Destinations</a>
