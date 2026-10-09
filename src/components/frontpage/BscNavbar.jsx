@@ -1,18 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import AirbnbSearchBar from './AirbnbSearchBar';
+
+/**
+ * Format rentang tanggal ringkas untuk pill pencarian melayang
+ * @param {string} [checkIn] - Tanggal check-in
+ * @param {string} [checkOut] - Tanggal check-out
+ * @returns {string} String rentang tanggal terformat
+ */
+function formatDateRange(checkIn, checkOut) {
+  if (!checkIn && !checkOut) return 'Any week';
+  const format = (str) => {
+    try {
+      const d = new Date(str);
+      return d.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+    } catch {
+      return str;
+    }
+  };
+  if (checkIn && checkOut) return `${format(checkIn)} – ${format(checkOut)}`;
+  if (checkIn) return `From ${format(checkIn)}`;
+  return `Until ${format(checkOut)}`;
+}
 
 /**
  * Komponen BscNavbar
  * Menampilkan bilah pengumuman atas (topbar) dan bilah navigasi utama (header.nav)
  * dengan responsivitas adaptif penuh untuk desktop, tablet, dan smartphone:
- * - Warna Adaptif Dinamis: Berwarna senada dengan latar hero saat berada di atas,
- *   lalu otomatis beralih warna menjadi putih jernih elegan saat mencapai section destinations.
- * - Spacing & Navigasi Presisi: Terintegrasi dengan link tujuan dan menu drawer mobile.
+ * - Opsi A (Standar Emas Airbnb): Saat halaman di-scroll melewati Hero,
+ *   muncul Sticky Compact Search Capsule di tengah navbar.
+ * - Jika kapsul melayang diklik, akan membuka panel pencarian Where, When, Who lengkap
+ *   langsung di posisi scroll saat itu juga tanpa harus kembali ke atas.
  * 
  * @param {Object} props
  * @param {string} props.currency - Mata uang aktif ('USD' atau 'IDR')
  * @param {Function} props.onCurrencyChange - Callback untuk mengubah mata uang
  * @param {number} [props.wishlistCount=0] - Jumlah villa yang tersimpan di wishlist
  * @param {Function} [props.onOpenWishlist] - Callback untuk membuka modal wishlist
+ * @param {Function} [props.onGoHome] - Callback kembali ke beranda
+ * @param {boolean} [props.isDetailPage=false] - Apakah sedang berada di halaman detail
+ * @param {Function} [props.onOpenSearch] - Callback shortcut Command+K
+ * @param {Object} [props.searchParams={}] - Parameter pencarian aktif
+ * @param {Function} [props.onSearchChange] - Callback saat parameter pencarian berubah
+ * @param {Function} [props.onSubmitSearch] - Callback saat submit pencarian
+ * @param {string[]} [props.areas=[]] - Daftar kawasan
  * @returns {React.JSX.Element} Elemen JSX navigasi BSC
  */
 export default function BscNavbar({
@@ -22,13 +52,23 @@ export default function BscNavbar({
   onOpenWishlist,
   onGoHome,
   isDetailPage = false,
-  onOpenSearch
+  onOpenSearch,
+  searchParams = {},
+  onSearchChange,
+  onSubmitSearch,
+  areas = []
 }) {
   // State untuk membuka / menutup menu navigasi mobile drawer
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // State apakah posisi scroll browser telah melewati hero dan memasuki section destinations
+  // State apakah posisi scroll browser telah melewati hero
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
+
+  // State apakah panel pencarian floating expanded di navbar sedang terbuka
+  const [isExpandedSearchOpen, setIsExpandedSearchOpen] = useState(false);
+
+  // Ref dropdown container
+  const expandedRef = useRef(null);
 
   // Listener shortcut global Command+K / Ctrl+K
   useEffect(() => {
@@ -39,6 +79,9 @@ export default function BscNavbar({
           onOpenSearch();
         }
       }
+      if (e.key === 'Escape') {
+        setIsExpandedSearchOpen(false);
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -46,17 +89,17 @@ export default function BscNavbar({
 
   useEffect(() => {
     /**
-     * Memantau posisi scroll browser untuk menyesuaikan warna navbar antara section hero dan destinations
+     * Memantau posisi scroll browser untuk memicu sticky compact pill di navbar
      * @returns {void}
      */
     const handleScroll = () => {
-      const destEl = document.getElementById('destinations');
-      if (destEl) {
-        const rect = destEl.getBoundingClientRect();
-        // Ketika bagian atas section destinations telah mencapai area dekat navbar (tinggi navbar ~72px)
-        setIsScrolledPastHero(rect.top <= 85);
+      const heroEl = document.querySelector('.hero');
+      if (heroEl) {
+        const rect = heroEl.getBoundingClientRect();
+        // Ketika bagian bawah hero telah mencapai navbar
+        setIsScrolledPastHero(rect.bottom <= 90);
       } else {
-        setIsScrolledPastHero(window.scrollY > 80);
+        setIsScrolledPastHero(window.scrollY > 200);
       }
     };
 
@@ -65,9 +108,15 @@ export default function BscNavbar({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Tutup expanded search jika user scroll kembali ke atas (hero)
+  useEffect(() => {
+    if (!isScrolledPastHero) {
+      setIsExpandedSearchOpen(false);
+    }
+  }, [isScrolledPastHero]);
+
   /**
    * Menggulir halaman secara halus ke bagian section yang dituju
-   * Sekaligus menutup menu navigasi mobile jika sedang terbuka
    * @param {React.MouseEvent} e - Event klik
    * @param {string} sectionId - ID elemen target tujuan
    * @returns {void}
@@ -75,6 +124,7 @@ export default function BscNavbar({
   const handleScrollToSection = (e, sectionId) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
+    setIsExpandedSearchOpen(false);
     if (onGoHome) {
       onGoHome();
       setTimeout(() => {
@@ -99,6 +149,7 @@ export default function BscNavbar({
   const handleLogoClick = (e) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
+    setIsExpandedSearchOpen(false);
     if (onGoHome) {
       onGoHome();
       return;
@@ -112,15 +163,33 @@ export default function BscNavbar({
    */
   const handleWishlistClick = () => {
     setIsMobileMenuOpen(false);
+    setIsExpandedSearchOpen(false);
     if (typeof onOpenWishlist === 'function') {
       onOpenWishlist();
     }
   };
 
+  /**
+   * Menangani submit pencarian dari expanded search bar di navbar
+   * @returns {void}
+   */
+  const handleExpandedSubmit = () => {
+    setIsExpandedSearchOpen(false);
+    if (typeof onSubmitSearch === 'function') {
+      onSubmitSearch();
+    }
+    const el = document.getElementById('villas');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const activeLocation = searchParams?.location || 'Anywhere';
+  const activeDates = formatDateRange(searchParams?.checkIn, searchParams?.checkOut);
+  const activeGuests = `${searchParams?.guests || 2} guests`;
+
   return (
     <>
       {/* Header Navigasi Resmi dengan kelas dinamis nav-hero / nav-scrolled */}
-      <header className={`nav ${isScrolledPastHero ? 'nav-scrolled' : 'nav-hero'}`}>
+      <header className={`nav ${isScrolledPastHero ? 'nav-scrolled has-sticky-search' : 'nav-hero'}`}>
         <div className="nav-in">
           {/* Logo Brand Resmi */}
           <a
@@ -136,19 +205,43 @@ export default function BscNavbar({
             />
           </a>
 
-          {/* Tautan Navigasi Desktop (Tampil pada layar lebar > 980px) */}
-          <nav className="nav-links" aria-label="Main Navigation">
-            <a href="#villas" onClick={(e) => handleScrollToSection(e, 'villas')}>Villas</a>
-            <a href="#destinations" onClick={(e) => handleScrollToSection(e, 'destinations')}>Destinations</a>
-            <a href="#experiences" onClick={(e) => handleScrollToSection(e, 'experiences')}>Experiences</a>
-            <a href="#verify" onClick={(e) => handleScrollToSection(e, 'verify')}>How we verify</a>
-            <a href="#team" onClick={(e) => handleScrollToSection(e, 'team')}>Our team</a>
-          </nav>
+          {/* OPSI A: Kapsul Pencarian Melayang di Tengah Navbar Saat Di-Scroll */}
+          {isScrolledPastHero ? (
+            <div className="nav-sticky-capsule-wrapper">
+              <button
+                type="button"
+                className="nav-sticky-search-pill"
+                onClick={() => setIsExpandedSearchOpen(prev => !prev)}
+                aria-label="Search villas anywhere in Bali"
+              >
+                <span className="ns-pill-item bold">{activeLocation}</span>
+                <span className="ns-pill-divider" />
+                <span className="ns-pill-item">{activeDates}</span>
+                <span className="ns-pill-divider" />
+                <span className="ns-pill-item muted">{activeGuests}</span>
+                <span className="ns-pill-icon">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          ) : (
+            /* Tautan Navigasi Desktop Saat Berada di Hero */
+            <nav className="nav-links" aria-label="Main Navigation">
+              <a href="#villas" onClick={(e) => handleScrollToSection(e, 'villas')}>Villas</a>
+              <a href="#destinations" onClick={(e) => handleScrollToSection(e, 'destinations')}>Destinations</a>
+              <a href="#experiences" onClick={(e) => handleScrollToSection(e, 'experiences')}>Experiences</a>
+              <a href="#verify" onClick={(e) => handleScrollToSection(e, 'verify')}>How we verify</a>
+              <a href="#team" onClick={(e) => handleScrollToSection(e, 'team')}>Our team</a>
+            </nav>
+          )}
 
           {/* Sisi Kanan: Quick Search, Wishlist, Currency Toggle, Tombol CTA & Hamburger Mobile */}
           <div className="nav-cta">
             {/* Tombol Quick Search (Spotlight ⌘K) */}
-            {onOpenSearch && (
+            {onOpenSearch && !isScrolledPastHero && (
               <button
                 type="button"
                 className="nav-search-btn"
@@ -200,106 +293,70 @@ export default function BscNavbar({
               </button>
             </div>
 
-            {/* Tombol Utama 'Find a villa' */}
-            <a
-              className="btn btn-primary"
-              href="#villas"
-              onClick={(e) => handleScrollToSection(e, 'villas')}
-            >
-              Find a villa
-            </a>
-
-            {/* Tombol Hamburger Khusus Tablet & Mobile */}
+            {/* Tombol Hamburger Menu Mobile */}
             <button
               type="button"
-              className="nav-mobile-toggle"
+              className="nav-hamburger-btn"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-              aria-expanded={isMobileMenuOpen}
+              aria-label="Toggle mobile menu"
             >
-              {isMobileMenuOpen ? (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              ) : (
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="4" y1="6" x2="20" y2="6" />
-                  <line x1="4" y1="12" x2="20" y2="12" />
-                  <line x1="4" y1="18" x2="20" y2="18" />
-                </svg>
-              )}
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                {isMobileMenuOpen ? (
+                  <path d="M18 6L6 18M6 6l12 12" />
+                ) : (
+                  <path d="M3 12h18M3 6h18M3 18h18" />
+                )}
+              </svg>
             </button>
           </div>
         </div>
 
-        {/* 3. Menu Drawer Dropdown untuk Tablet & Mobile */}
-        {isMobileMenuOpen && (
-          <div className="nav-mobile-drawer open" id="mobileNavMenu">
-            {onOpenSearch && (
-              <button
-                type="button"
-                className="nav-mobile-search-btn"
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  onOpenSearch();
-                }}
-              >
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-                <span>Search Villas & Destinations</span>
-                <kbd>⌘K</kbd>
-              </button>
-            )}
+        {/* OPSI A: FLOATING EXPANDED SEARCH PANEL DI BAWAH NAVBAR */}
+        {isScrolledPastHero && isExpandedSearchOpen && (
+          <div className="nav-expanded-search-overlay" onClick={() => setIsExpandedSearchOpen(false)}>
+            <div 
+              className="nav-expanded-search-container" 
+              ref={expandedRef}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="expanded-search-header">
+                <span>Refine your search in Bali</span>
+                <button 
+                  type="button" 
+                  className="expanded-close-btn"
+                  onClick={() => setIsExpandedSearchOpen(false)}
+                >
+                  ✕
+                </button>
+              </div>
 
-            <nav className="nav-mobile-links" aria-label="Mobile Navigation">
+              <AirbnbSearchBar
+                activeTab="stays"
+                areas={areas}
+                searchParams={searchParams}
+                onSearchChange={onSearchChange}
+                onSubmitSearch={handleExpandedSubmit}
+                isCompact={true}
+              />
+            </div>
+          </div>
+        )}
+      </header>
+
+      {/* Mobile Drawer Menu */}
+      {isMobileMenuOpen && (
+        <div className="mobile-drawer-overlay" onClick={() => setIsMobileMenuOpen(false)}>
+          <div className="mobile-drawer-content" onClick={(e) => e.stopPropagation()}>
+            <div className="mobile-drawer-links">
               <a href="#villas" onClick={(e) => handleScrollToSection(e, 'villas')}>Villas</a>
               <a href="#destinations" onClick={(e) => handleScrollToSection(e, 'destinations')}>Destinations</a>
               <a href="#experiences" onClick={(e) => handleScrollToSection(e, 'experiences')}>Experiences</a>
               <a href="#verify" onClick={(e) => handleScrollToSection(e, 'verify')}>How we verify</a>
               <a href="#team" onClick={(e) => handleScrollToSection(e, 'team')}>Our team</a>
-              {wishlistCount > 0 && onOpenWishlist && (
-                <a href="#wishlist" onClick={(e) => { e.preventDefault(); handleWishlistClick(); }}>
-                  Saved Wishlist ({wishlistCount})
-                </a>
-              )}
-            </nav>
-
-            <div className="nav-mobile-footer">
-              {/* Currency toggle cadangan di mobile drawer */}
-              <div className="cur" role="group" aria-label="Mobile Currency">
-                <button
-                  type="button"
-                  className={currency === 'USD' ? 'active' : ''}
-                  aria-pressed={currency === 'USD'}
-                  onClick={() => onCurrencyChange('USD')}
-                >
-                  USD
-                </button>
-                <button
-                  type="button"
-                  className={currency === 'IDR' ? 'active' : ''}
-                  aria-pressed={currency === 'IDR'}
-                  onClick={() => onCurrencyChange('IDR')}
-                >
-                  IDR
-                </button>
-              </div>
-
-              <a
-                className="btn btn-primary"
-                href="#villas"
-                onClick={(e) => handleScrollToSection(e, 'villas')}
-                style={{ flex: 1, textAlign: 'center' }}
-              >
-                Find a villa
-              </a>
             </div>
           </div>
-        )}
-      </header>
+        </div>
+      )}
     </>
   );
 }

@@ -169,6 +169,10 @@ export default function ExplorePage({
         wishlistCount={savedVillaIds.length}
         onOpenWishlist={onOpenWishlist}
         onOpenSearch={onOpenSearch}
+        searchParams={searchParams}
+        onSearchChange={handleSearchChange}
+        onSubmitSearch={handleSubmitSearch}
+        areas={areas}
       />
 
       <main id="top">

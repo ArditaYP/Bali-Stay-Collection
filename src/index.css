@@ -6169,3 +6169,632 @@ mark.review-highlight {
   border-color: #16294D;
   box-shadow: 0 4px 12px rgba(22, 41, 77, 0.15);
 }
+
+/* ==========================================================================
+   EXPEDIA SERVICE TABS & AIRBNB SEARCH BAR (WHERE, WHEN, WHO)
+   ========================================================================== */
+
+/* 1. Expedia Service Tabs Container */
+.expedia-tabs-container {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto 16px;
+  max-width: 860px;
+  position: relative;
+  z-index: 10;
+}
+
+.expedia-tabs-scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  border-radius: 40px;
+  border: 1px solid rgba(22, 41, 77, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.expedia-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  background: transparent;
+  color: #4a5568;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.expedia-tab-icon {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  transition: transform 0.2s ease;
+}
+
+.expedia-tab-btn:hover {
+  color: #16294D;
+  background: rgba(22, 41, 77, 0.04);
+}
+
+.expedia-tab-btn.active {
+  color: #16294D;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgba(22, 41, 77, 0.12);
+}
+
+.expedia-tab-btn.active .expedia-tab-icon {
+  color: #D2B073;
+  transform: scale(1.08);
+}
+
+.expedia-tab-active-indicator {
+  position: absolute;
+  bottom: 4px;
+  left: 20px;
+  right: 20px;
+  height: 2.5px;
+  background: #D2B073;
+  border-radius: 3px;
+}
+
+/* 2. Floating Pill Search Bar ala Airbnb */
+.airbnb-search-wrapper {
+  max-width: 890px;
+  margin: 0 auto 36px;
+  position: relative;
+  z-index: 20;
+  width: 100%;
+}
+
+.airbnb-search-bar {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 48px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12), 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 8px 10px 8px 18px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.airbnb-search-bar.has-active-popover {
+  background: #f7f7f7;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.16);
+}
+
+.airbnb-search-segment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 36px;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+  transition: background 0.2s ease;
+  position: relative;
+}
+
+.airbnb-search-segment:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.airbnb-search-segment.active {
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  z-index: 5;
+}
+
+.airbnb-seg-label {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #222222;
+  margin-bottom: 3px;
+}
+
+.airbnb-seg-value {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #222222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.airbnb-seg-value.placeholder {
+  color: #717171;
+  font-weight: 500;
+}
+
+.airbnb-seg-divider {
+  width: 1px;
+  height: 32px;
+  background: #e2e8f0;
+  flex-shrink: 0;
+}
+
+.airbnb-search-segment.active + .airbnb-seg-divider,
+.airbnb-seg-divider:has(+ .airbnb-search-segment.active) {
+  opacity: 0;
+}
+
+/* Hidden Date Inputs */
+.hidden-date-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Inline Inputs for Cars & Experiences */
+.inline-text-input,
+.inline-select {
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: #222222;
+  outline: none;
+  width: 100%;
+  padding: 0;
+}
+
+.inline-select {
+  cursor: pointer;
+}
+
+/* 3. Tombol Submit Search Bulat/Kapsul Mewah */
+.airbnb-search-btn-container {
+  padding-left: 8px;
+  flex-shrink: 0;
+}
+
+.airbnb-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #16294D 0%, #203a6b 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 36px;
+  padding: 14px 22px;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(22, 41, 77, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.airbnb-submit-btn:hover {
+  background: linear-gradient(135deg, #D2B073 0%, #b89352 100%);
+  box-shadow: 0 6px 20px rgba(210, 176, 115, 0.4);
+  transform: scale(1.03);
+}
+
+/* 4. Popover Menu (Where & Guests) */
+.airbnb-popover {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.16), 0 0 1px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 100;
+  animation: popoverFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes popoverFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Destinations Popover */
+.destinations-popover {
+  width: 440px;
+  padding: 24px;
+}
+
+.popover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: #717171;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+
+.popover-clear-btn {
+  background: transparent;
+  border: none;
+  color: #16294D;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.destinations-popover-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.dest-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  width: 100%;
+}
+
+.dest-option-btn:hover {
+  background: #f7f7f7;
+}
+
+.dest-option-btn.selected {
+  background: #f0f4f9;
+  border-color: #16294D;
+}
+
+.dest-opt-icon {
+  font-size: 22px;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.dest-opt-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.dest-opt-info b {
+  font-size: 14.5px;
+  color: #222222;
+}
+
+.dest-opt-info small {
+  font-size: 12px;
+  color: #717171;
+}
+
+/* Guests Stepper Popover */
+.guests-popover {
+  right: 0;
+  left: auto;
+  width: 360px;
+  padding: 24px;
+}
+
+.guest-stepper-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.guest-stepper-row:first-of-type {
+  padding-top: 0;
+}
+
+.stepper-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #222222;
+}
+
+.stepper-sub {
+  font-size: 12.5px;
+  color: #717171;
+}
+
+.stepper-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.stepper-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #b0b0b0;
+  background: #ffffff;
+  font-size: 18px;
+  color: #717171;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.stepper-btn:hover:not(:disabled) {
+  border-color: #222222;
+  color: #222222;
+}
+
+.stepper-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: #e0e0e0;
+}
+
+.stepper-num {
+  font-size: 15px;
+  font-weight: 700;
+  color: #222222;
+  min-width: 18px;
+  text-align: center;
+}
+
+.popover-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.popover-footer small {
+  font-size: 11.5px;
+  color: #888888;
+}
+
+.popover-done-btn {
+  background: #16294D;
+  color: #ffffff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.popover-done-btn:hover {
+  background: #D2B073;
+}
+
+/* ==========================================================================
+   OPSI A: STICKY COMPACT SEARCH CAPSULE DI NAVBAR SAAT SCROLL
+   ========================================================================== */
+.nav-sticky-capsule-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  max-width: 480px;
+  margin: 0 16px;
+  animation: fadeInPill 0.25s ease-out;
+}
+
+@keyframes fadeInPill {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.nav-sticky-search-pill {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  border-radius: 32px;
+  padding: 6px 8px 6px 16px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+}
+
+.nav-sticky-search-pill:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  transform: translateY(-1px);
+}
+
+.ns-pill-item {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #222222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ns-pill-item.bold {
+  font-weight: 700;
+  color: #16294D;
+}
+
+.ns-pill-item.muted {
+  color: #717171;
+  font-weight: 500;
+}
+
+.ns-pill-divider {
+  width: 1px;
+  height: 18px;
+  background: #e2e8f0;
+  margin: 0 10px;
+  flex-shrink: 0;
+}
+
+.ns-pill-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #16294D;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.nav-sticky-search-pill:hover .ns-pill-icon {
+  background: #D2B073;
+}
+
+/* Expanded Floating Search Overlay in Navbar */
+.nav-expanded-search-overlay {
+  position: fixed;
+  top: 72px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+.nav-expanded-search-container {
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+  padding: 24px 32px 32px;
+  width: 90%;
+  max-width: 890px;
+  height: fit-content;
+  position: relative;
+  animation: slideDownModal 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideDownModal {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.expanded-search-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #16294D;
+}
+
+.expanded-close-btn {
+  background: #f1f5f9;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #475569;
+}
+
+.expanded-close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+/* Responsivitas Mobile */
+@media (max-width: 860px) {
+  .airbnb-search-bar {
+    border-radius: 24px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .airbnb-seg-divider {
+    display: none;
+  }
+
+  .airbnb-search-segment {
+    padding: 8px 12px;
+    background: #f8fafc;
+    border-radius: 14px;
+  }
+
+  .airbnb-submit-btn {
+    width: 100%;
+    justify-content: center;
+    border-radius: 16px;
+    padding: 14px;
+  }
+
+  .destinations-popover,
+  .guests-popover {
+    width: 100%;
+    position: static;
+    border-radius: 18px;
+    box-shadow: none;
+    border: 1px solid #e2e8f0;
+    margin-top: 8px;
+  }
+
+  .nav-sticky-capsule-wrapper {
+    max-width: 240px;
+    margin: 0 8px;
+  }
+
+  .ns-pill-divider:nth-of-type(2),
+  .ns-pill-item.muted {
+    display: none;
+  }
+}
+

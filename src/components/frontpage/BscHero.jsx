@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ExpediaServiceTabs from './ExpediaServiceTabs';
+import AirbnbSearchBar from './AirbnbSearchBar';
 
 /**
  * Komponen BscHero
- * Menampilkan seksi hero utama sesuai dengan tata letak dan copywriting resmi bsc-frontpage_1.html:
- * - Kicker kawasan utama di Bali
- * - Headline judul utama: 'Find a Bali villa you can book with confidence'
- * - Lead description pengantar brand BSC
- * - Form pencarian instan (Area, Check-in, Check-out, Guests)
- * - Trust strip 4 pilar jaminan kepercayaan (Private pool, Verified in person, Clear cancellation, Local team)
+ * Menampilkan seksi hero utama Bali Stay Collection:
+ * - Tab kategori layanan ala Expedia.com (Stays, Cars, Packages, Things to do - tanpa flight dan cruises)
+ * - Formulir pencarian floating capsule ala Airbnb (Where, When, Who) dengan id="searchForm"
+ * - 4 Pilar jaminan kepercayaan (Private pool, Verified in person, Clear cancellation, Dedicated local team)
  * 
  * @param {Object} props
  * @param {string[]} props.areas - Daftar nama area/kawasan Bali
  * @param {Object} props.searchParams - Parameter pencarian saat ini
  * @param {Function} props.onSearchChange - Callback saat input form berubah
  * @param {Function} props.onSubmitSearch - Callback saat tombol submit pencarian diklik
+ * @param {Object} [props.heroData=null] - Data headline, lead, dan background hero kustom
  * @returns {React.JSX.Element} Elemen JSX Hero BSC
  */
 export default function BscHero({
@@ -23,20 +24,11 @@ export default function BscHero({
   onSubmitSearch,
   heroData = null
 }) {
+  const [activeTab, setActiveTab] = useState('stays');
+
   const headline = heroData?.headline || 'Find a Bali villa you can book with confidence';
   const leadText = heroData?.lead || 'Hand-picked private villas. On-the-ground local support';
   const bgImage = heroData?.bgImage || '';
-
-  /**
-   * Menangani pengiriman form pencarian hero
-   * @param {React.FormEvent} e - Event submit form
-   */
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (typeof onSubmitSearch === 'function') {
-      onSubmitSearch();
-    }
-  };
 
   return (
     <section 
@@ -57,67 +49,20 @@ export default function BscHero({
           </p>
         </div>
 
-        {/* Form Pencarian Cepat */}
-        <form className="search" onSubmit={handleSubmit} id="searchForm">
-          <label htmlFor="sArea">
-            <span className="lb">Where</span>
-            <select
-              id="sArea"
-              value={searchParams.location || searchParams.area || ''}
-              onChange={(e) => {
-                if (typeof onSearchChange === 'function') {
-                  onSearchChange('location', e.target.value);
-                  onSearchChange('area', e.target.value);
-                }
-              }}
-            >
-              <option value="">All Bali</option>
-              {areas.map((a) => (
-                <option key={a} value={a}>{a}</option>
-              ))}
-            </select>
-          </label>
+        {/* 1. Tab Kategori Layanan ala Expedia.com */}
+        <ExpediaServiceTabs 
+          activeTab={activeTab} 
+          onTabChange={setActiveTab} 
+        />
 
-          <label htmlFor="sIn">
-            <span className="lb">Check-in</span>
-            <input
-              type="date"
-              id="sIn"
-              value={searchParams.checkIn || ''}
-              onChange={(e) => onSearchChange('checkIn', e.target.value)}
-            />
-          </label>
-
-          <label htmlFor="sOut">
-            <span className="lb">Check-out</span>
-            <input
-              type="date"
-              id="sOut"
-              value={searchParams.checkOut || ''}
-              onChange={(e) => onSearchChange('checkOut', e.target.value)}
-            />
-          </label>
-
-          <label htmlFor="sGuests">
-            <span className="lb">Guests</span>
-            <select
-              id="sGuests"
-              value={searchParams.guests || 2}
-              onChange={(e) => onSearchChange('guests', Number(e.target.value))}
-            >
-              <option value="1">1 guest</option>
-              <option value="2">2 guests</option>
-              <option value="4">4 guests</option>
-              <option value="6">6 guests</option>
-              <option value="8">8 guests</option>
-              <option value="10">10+ guests</option>
-            </select>
-          </label>
-
-          <button className="btn btn-primary" type="submit">
-            See villas
-          </button>
-        </form>
+        {/* 2. Formulir Pencarian Floating Capsule ala Airbnb (id="searchForm") */}
+        <AirbnbSearchBar 
+          activeTab={activeTab}
+          areas={areas}
+          searchParams={searchParams}
+          onSearchChange={onSearchChange}
+          onSubmitSearch={onSubmitSearch}
+        />
 
         {/* 4 Pilar Kepercayaan (Trust Strip) */}
         <div className="trust-strip">
@@ -138,30 +83,34 @@ export default function BscHero({
               <polyline points="22 4 12 14.01 9 11.01" />
             </svg>
             <div>
-              <b>Verified in person by our team</b>
-              Real photos, real distances, tested WiFi
+              <b>Verified in person</b>
+              Every bedroom, bathroom & amenity checked
             </div>
           </div>
 
           <div className="ts">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D2B073" strokeWidth="2">
-              <rect x="4" y="11" width="16" height="9" rx="2" />
-              <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
             </svg>
             <div>
-              <b>Clear cancellation terms</b>
-              Shown on every villa
+              <b>Clear cancellation</b>
+              Fair terms so you can plan with ease
             </div>
           </div>
 
           <div className="ts">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D2B073" strokeWidth="2">
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 7v5l3 2" />
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
             </svg>
             <div>
-              <b>Local team on call</b>
-              Real people, in Bali
+              <b>Dedicated local team</b>
+              On call 7 days a week in Bali
             </div>
           </div>
         </div>

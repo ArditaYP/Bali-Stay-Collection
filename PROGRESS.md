@@ -1408,4 +1408,30 @@ src/
    - Seluruh perubahan diverifikasi dan dikomit secara lokal.
    - **TIDAK ADA `git push`** yang dilakukan ke remote repository.
 
+### 9.11 Implementasi Tab Layanan Expedia & Search Bar Ikonik Airbnb (Where, When, Who + Sticky Navbar Capsule Opsi A)
+1. **Latar Belakang & Permintaan Pengguna**:
+   - Pengguna meminta agar formulir `id="searchForm"` di seksi Hero ditransformasikan menjadi search bar interaktif ala Airbnb (`Where`, `When`, `Who`).
+   - Pengguna meminta penambahan tab kategori layanan di atasnya seperti Expedia.com (merujuk ke file screenshot `tambahan di hero.png`), dengan instruksi khusus: **menghilangkan Flight dan Cruises**.
+   - Untuk perilaku saat di-scroll, pengguna memilih **Opsi A**: bar pencarian di Hero mengecil menjadi **Sticky Compact Search Capsule** di tengah Navbar yang dapat diklik untuk membuka panel Where-When-Who mengambang di mana saja.
+2. **Komponen yang Dibangun & Diintegrasikan**:
+   - `src/components/frontpage/ExpediaServiceTabs.jsx`:
+     - Menampilkan 4 tab kategori utama: **Stays** (35 Villas), **Cars** (Chauffeur), **Packages** (VIP Bundles), dan **Things to do** (Curated Experiences).
+     - Desain visual responsif dengan scrollbar halus dan indikator garis aktif.
+   - `src/components/frontpage/AirbnbSearchBar.jsx`:
+     - Formulir `id="searchForm"` mengadopsi struktur floating capsule Airbnb:
+       - **Where**: Popover pemilihan kawasan interaktif dengan visual jumlah villa asli (All Bali 35, Canggu 14, Pererenan 6, Uluwatu 6, Umalas 5, Ubud 3, Seseh 1).
+       - **When (Check-in & Check-out)**: Tampilan tanggal terformat dengan input date yang mulus.
+       - **Who**: Popover counter stepper ala Airbnb untuk Adults, Children, dan Infants.
+       - **Tombol Submit**: Kapsul bulat/ikonik dengan ikon kaca pembesar dan micro-animasi hover.
+       - Mendukung form adaptif untuk tab Cars, Packages, dan Things to do.
+   - `src/components/frontpage/BscNavbar.jsx` (Opsi A - Sticky Capsule):
+     - Saat scroll browser melewati Hero (`isScrolledPastHero = true`), tautan teks digantikan oleh **Sticky Compact Search Capsule** di tengah navbar:
+       `[ Anywhere · Any week · 2 guests 🔍 ]`.
+     - Saat kapsul diklik, membuka panel Where-When-Who mengambang dengan backdrop overlay mewah di posisi scroll tersebut tanpa perlu scroll balik ke atas.
+3. **Verifikasi Build & Status Git**:
+   - `npm run build` berhasil 100% (0 error).
+   - Seluruh perubahan dikomit secara lokal.
+   - **TIDAK ADA `git push`** yang dilakukan ke remote repository.
+
+
 
