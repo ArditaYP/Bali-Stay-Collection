@@ -76,7 +76,7 @@ const isVillaInDestination = (villa, destName) => {
  */
 export default function BscDestinations({
   villas = [],
-  currency = 'USD',
+  _currency = 'USD',
   onSelectArea,
   onSelectDestination,
   destinationsData = null

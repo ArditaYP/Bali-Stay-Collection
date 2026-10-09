@@ -101,9 +101,14 @@ export default function BscNavbar({
       if (heroEl) {
         const rect = heroEl.getBoundingClientRect();
         // Ketika bagian bawah hero telah mencapai navbar
-        setIsScrolledPastHero(rect.bottom <= 90);
+        const pastHero = rect.bottom <= 90;
+        setIsScrolledPastHero(pastHero);
+        if (!pastHero) {
+          setIsExpandedSearchOpen(false);
+        }
       } else {
         setIsScrolledPastHero(false);
+        setIsExpandedSearchOpen(false);
       }
     };
 
@@ -111,13 +116,6 @@ export default function BscNavbar({
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isDetailPage]);
-
-  // Tutup expanded search jika user scroll kembali ke atas (hero)
-  useEffect(() => {
-    if (!isScrolledPastHero) {
-      setIsExpandedSearchOpen(false);
-    }
-  }, [isScrolledPastHero]);
 
   /**
    * Menggulir halaman secara halus ke bagian section yang dituju
@@ -276,7 +274,7 @@ export default function BscNavbar({
             {/* Tombol Hamburger Menu Mobile */}
             <button
               type="button"
-              className="nav-hamburger-btn"
+              className="nav-mobile-toggle nav-hamburger-btn"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle mobile menu"
             >
@@ -347,21 +345,60 @@ export default function BscNavbar({
             </div>
           </div>
         )}
-      </header>
+        {/* Mobile Drawer Menu Resmi BSC di Dalam Navbar Header */}
+        <div className={`nav-mobile-drawer ${isMobileMenuOpen ? 'open' : ''}`}>
+          <div className="nav-mobile-links">
+            <a href="#villas" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'villas'); }}>Villas</a>
+            <a href="#destinations" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'destinations'); }}>Destinations</a>
+            <a href="#experiences" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'experiences'); }}>Experiences</a>
+            <a href="#verify" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'verify'); }}>How we verify</a>
+            <a href="#team" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'team'); }}>Our team</a>
+          </div>
 
-      {/* Mobile Drawer Menu */}
-      {isMobileMenuOpen && (
-        <div className="mobile-drawer-overlay" onClick={() => setIsMobileMenuOpen(false)}>
-          <div className="mobile-drawer-content" onClick={(e) => e.stopPropagation()}>
-            <div className="mobile-drawer-links">
-              <a href="#villas" onClick={(e) => handleScrollToSection(e, 'villas')}>Villas</a>
-              <a href="#destinations" onClick={(e) => handleScrollToSection(e, 'destinations')}>Destinations</a>
-              <a href="#experiences" onClick={(e) => handleScrollToSection(e, 'experiences')}>Experiences</a>
-              <a href="#verify" onClick={(e) => handleScrollToSection(e, 'verify')}>How we verify</a>
-              <a href="#team" onClick={(e) => handleScrollToSection(e, 'team')}>Our team</a>
+          <div className="nav-mobile-footer">
+            <div className="cur" role="group" aria-label="Currency">
+              <button
+                type="button"
+                className={currency === 'USD' ? 'active' : ''}
+                aria-pressed={currency === 'USD'}
+                onClick={() => { setIsMobileMenuOpen(false); onCurrencyChange('USD'); }}
+              >
+                USD
+              </button>
+              <button
+                type="button"
+                className={currency === 'IDR' ? 'active' : ''}
+                aria-pressed={currency === 'IDR'}
+                onClick={() => { setIsMobileMenuOpen(false); onCurrencyChange('IDR'); }}
+              >
+                IDR
+              </button>
             </div>
+
+            {wishlistCount > 0 && onOpenWishlist && (
+              <button
+                type="button"
+                onClick={() => { setIsMobileMenuOpen(false); handleWishlistClick(); }}
+                className="nav-wishlist-btn"
+                aria-label="View saved wishlist"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" strokeWidth="2">
+                  <path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z" />
+                </svg>
+                <span>Saved ({wishlistCount})</span>
+              </button>
+            )}
           </div>
         </div>
+      </header>
+
+      {/* Backdrop penutup jika mobile drawer terbuka */}
+      {isMobileMenuOpen && (
+        <div 
+          className="nav-mobile-backdrop"
+          onClick={() => setIsMobileMenuOpen(false)}
+          aria-hidden="true"
+        />
       )}
     </>
   );

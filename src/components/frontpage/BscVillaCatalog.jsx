@@ -22,7 +22,7 @@ const toSafeArray = (val) => {
       try {
         const parsed = JSON.parse(val);
         if (Array.isArray(parsed)) return parsed;
-      } catch (e) {}
+      } catch {}
     }
     return [val.trim()];
   }

@@ -23,9 +23,9 @@ import {
  */
 export default function NeighborhoodMap({ villa }) {
   // Koordinat geografis villa (didukung resolusi alias & area cerdas)
-  const villaCoords = useMemo(() => getVillaCoordinates(villa?.id, villa), [villa?.id, villa]);
+  const villaCoords = useMemo(() => getVillaCoordinates(villa?.id, villa), [villa]);
   // Seluruh daftar tempat menarik di sekitar villa ini
-  const allPlaces = useMemo(() => getNearbyPlaces(villa?.id, villa), [villa?.id, villa]);
+  const allPlaces = useMemo(() => getNearbyPlaces(villa?.id, villa), [villa]);
 
   // State pencarian teks dari input user
   const [searchQuery, setSearchQuery] = useState('');
@@ -243,6 +243,7 @@ export default function NeighborhoodMap({ villa }) {
       }
     }, 250);
 
+    const currentContainer = mapContainerRef.current;
     return () => {
       clearTimeout(timer);
       window.removeEventListener('resize', handleResize);
@@ -254,8 +255,8 @@ export default function NeighborhoodMap({ villa }) {
         mapInstanceRef.current.remove();
         mapInstanceRef.current = null;
       }
-      if (mapContainerRef.current && mapContainerRef.current._leaflet_id) {
-        delete mapContainerRef.current._leaflet_id;
+      if (currentContainer && currentContainer._leaflet_id) {
+        delete currentContainer._leaflet_id;
       }
     };
   }, [villaCoords, villa.name, villaGmapsUrl, createVillaIcon]);
@@ -282,7 +283,7 @@ export default function NeighborhoodMap({ villa }) {
     const area = villaCoords?.areaName || villa?.location || 'Bali';
     const query = `${cleanPlaceName}, ${area}, Bali`;
     return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
-  }, [villaCoords?.areaName, villa?.location]);
+  }, [villaCoords?.areaName, villa]);
 
   /**
    * Membuat layer marker tempat sekitar saat daftar filteredPlaces berubah
@@ -343,7 +344,7 @@ export default function NeighborhoodMap({ villa }) {
       marker.addTo(placesLayerGroupRef.current);
       markersDictRef.current[place.id] = marker;
     });
-  }, [filteredPlaces, createPlaceIcon, getPlaceGmapsUrl]);
+  }, [filteredPlaces, selectedPlaceId, createPlaceIcon, getPlaceGmapsUrl]);
 
   /**
    * Memperbarui visual aktif (ikon & z-index) secara instan tanpa me-recreate layer Leaflet

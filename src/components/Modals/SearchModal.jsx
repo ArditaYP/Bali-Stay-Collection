@@ -64,12 +64,12 @@ export default function SearchModal({
    * Menangani pemilihan villa
    * @param {string} villaId - ID villa yang dipilih
    */
-  const handleSelect = (villaId) => {
+  const handleSelect = useCallback((villaId) => {
     onClose();
     if (typeof onSelectVilla === 'function') {
       onSelectVilla(villaId);
     }
-  };
+  }, [onClose, onSelectVilla]);
 
   /**
    * Mengatur kata kunci pencarian dari chip preset
@@ -121,7 +121,7 @@ export default function SearchModal({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, searchResults, selectedIndex]);
+  }, [isOpen, searchResults, selectedIndex, onClose, handleSelect]);
 
   // Gulir otomatis item yang dipilih ke dalam pandangan
   useEffect(() => {

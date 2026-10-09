@@ -519,6 +519,24 @@
   padding-top: 8px;
 }
 
+.bsc-frontpage .nav-mobile-backdrop {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(12, 27, 56, 0.45);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 85;
+  animation: bscFadeIn 0.2s ease-out;
+}
+
+@keyframes bscFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* hero */
 .bsc-frontpage .hero {
   background: #16294D;

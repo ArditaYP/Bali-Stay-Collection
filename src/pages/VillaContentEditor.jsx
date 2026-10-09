@@ -115,7 +115,9 @@ export default function VillaContentEditor({
       if (saved) {
         try {
           setHomepageData(JSON.parse(saved));
-        } catch (e) {}
+        } catch {
+          // Abaikan kesalahan parse localStorage
+        }
       }
     };
     fetchHomepage();
@@ -141,7 +143,7 @@ export default function VillaContentEditor({
       } else {
         showToast('⚠️ Data disimpan secara lokal (' + (resJson.error || 'Server notice') + ')');
       }
-    } catch (err) {
+    } catch {
       showToast('✅ Tersimpan di penyimpanan lokal browser.');
     } finally {
       setIsSavingHomepage(false);

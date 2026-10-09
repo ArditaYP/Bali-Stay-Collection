@@ -11,7 +11,7 @@ import WishlistDrawer from './components/Modals/WishlistDrawer';
 import ListVillaModal from './components/Modals/ListVillaModal';
 import SearchModal from './components/Modals/SearchModal';
 import { INITIAL_VILLAS, getDefaultDate } from './data/villasData';
-import { BSC_VILLAS, ACTIVE_AIRBNB_VILLA_IDS, AIRBNB_ONLY_VILLA_IDS } from './data/bscVillasData';
+import { BSC_VILLAS, AIRBNB_ONLY_VILLA_IDS } from './data/bscVillasData';
 
 /** Pemetaan ID alias antara katalog villa dan data asli airbnbVillas */
 const VILLA_ALIAS_MAP = {

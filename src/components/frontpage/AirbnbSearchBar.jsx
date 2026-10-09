@@ -22,7 +22,7 @@ import AirbnbDatePopover from './AirbnbDatePopover';
  */
 export default function AirbnbSearchBar({
   activeTab = 'stays',
-  areas = [],
+  _areas = [],
   searchParams = {},
   onSearchChange,
   onSubmitSearch,
@@ -56,7 +56,7 @@ export default function AirbnbSearchBar({
     if (typeof onSearchChange === 'function' && totalGuests !== searchParams.guests) {
       onSearchChange('guests', totalGuests);
     }
-  }, [adults, children]);
+  }, [adults, children, searchParams.guests, onSearchChange]);
 
   // Listener click outside untuk menutup popover
   useEffect(() => {

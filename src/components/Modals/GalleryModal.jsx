@@ -168,13 +168,6 @@ export default function GalleryModal({
     }
   }, [isOpen, initialPhotoIndex, photoItems.length]);
 
-  /**
-   * Foto-foto yang ditampilkan pada strip thumbnail (bisa difilter per ruangan atau semua foto)
-   */
-  const visiblePhotos = useMemo(() => {
-    if (selectedRoom === 'ALL') return photoItems;
-    return photoItems.filter(p => p.room === selectedRoom);
-  }, [photoItems, selectedRoom]);
 
   // Objek foto aktif saat ini
   const currentPhoto = photoItems[activePhotoIndex] || photoItems[0] || null;

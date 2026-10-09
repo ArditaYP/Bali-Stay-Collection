@@ -404,7 +404,7 @@ export default function VillaDetailPage({
   onToggleSave,
   searchParams,
   currency = 'USD',
-  onCurrencyChange
+  _onCurrencyChange
 }) {
   // State untuk tanggal dan jumlah tamu pada widget reservasi
   const [checkIn, setCheckIn] = useState(searchParams.checkIn || '2026-10-12');
@@ -463,6 +463,20 @@ export default function VillaDetailPage({
     }
     return desc;
   }, [villa.shortDesc, villa.description]);
+
+  // Kalkulasi aman ratings breakdown untuk menghindari crash jika properti tidak ada
+  const breakdown = useMemo(() => {
+    const rb = villa.ratingsBreakdown || {};
+    const baseScore = typeof villa.rating === 'number' ? villa.rating : 4.9;
+    return {
+      cleanliness: rb.cleanliness || baseScore,
+      accuracy: rb.accuracy || baseScore,
+      checkIn: rb.checkIn || baseScore,
+      communication: rb.communication || baseScore,
+      location: rb.location || baseScore,
+      value: rb.value || baseScore
+    };
+  }, [villa.ratingsBreakdown, villa.rating]);
 
   // Sinkronisasi ulasan, reset pilihan mention & reset ekspansi deskripsi saat properti villa berubah
   useEffect(() => {
@@ -653,7 +667,7 @@ export default function VillaDetailPage({
                 <circle cx="8.5" cy="8.5" r="1.5"/>
                 <polyline points="21 15 16 10 5 21"/>
               </svg>
-              <span>1 / {villa.images.length}</span>
+              <span>1 / {villa.images?.length || 1}</span>
             </div>
           </div>
 
@@ -698,7 +712,7 @@ export default function VillaDetailPage({
             onClick={() => handleOpenGallery(null)}
             role="button"
             tabIndex={0}
-            title={`Buka seluruh galeri foto (${villa.images.length} foto)`}
+            title={`Buka seluruh galeri foto (${villa.images?.length || 0} foto)`}
           >
             <div className="gallery-more-overlay">
               <span className="gallery-more-text">
@@ -715,16 +729,16 @@ export default function VillaDetailPage({
           {/* Section: Host Info */}
           <div className="section host-row">
             <div className="host-left">
-              <h2>{villa.host.tagline}</h2>
-              <p>{villa.guests} guests &middot; {villa.beds} bedrooms &middot; {villa.beds} beds &middot; {villa.bathrooms} bathrooms</p>
+              <h2>{villa.host?.tagline || 'Entire villa hosted by Bali Stay Collection'}</h2>
+              <p>{villa.guests} guests &middot; {villa.beds} bedrooms &middot; {villa.beds} beds &middot; {villa.bathrooms || villa.baths || villa.beds} bathrooms</p>
             </div>
-            <div className="host-avatar">{villa.host.initials}</div>
+            <div className="host-avatar">{villa.host?.initials || 'BSC'}</div>
           </div>
 
           {/* Section: Fitur Keunggulan */}
           <div className="section">
             <div className="feature-grid">
-              {villa.features.map((feat, idx) => (
+              {(villa.features || []).map((feat, idx) => (
                 <div key={idx} className="feature-item">
                   <div className="feature-icon">
                     {renderFeatureIcon(feat.title)}
@@ -791,7 +805,7 @@ export default function VillaDetailPage({
           <div className="section">
             <h2 style={{ fontSize: '19px', fontWeight: 700, margin: '0 0 18px' }}>Where you'll sleep</h2>
             <div className="sleep-grid">
-              {villa.bedrooms.map((bed, idx) => (
+              {(villa.bedrooms || []).map((bed, idx) => (
                 <div key={idx} className="sleep-card">
                   <div className="icon">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -811,7 +825,7 @@ export default function VillaDetailPage({
           <div className="section">
             <h2 style={{ fontSize: '19px', fontWeight: 700, margin: '0 0 18px' }}>What this place offers</h2>
             <div className="amenity-grid">
-              {villa.amenities.map((amenity, idx) => (
+              {(villa.amenities || []).map((amenity, idx) => (
                 <div key={idx} className="amenity-item">
                   <span className="amenity-icon-wrap" aria-hidden="true">
                     {renderAmenityIcon(amenity)}
@@ -953,33 +967,33 @@ export default function VillaDetailPage({
           <div className="review-bars">
             <div className="bar-row">
               <span style={{ width: '105px' }}>Cleanliness</span>
-              <div className="bar-track"><div className="bar-fill" style={{ width: `${(villa.ratingsBreakdown.cleanliness / 5) * 100}%` }}></div></div>
-              <span>{villa.ratingsBreakdown.cleanliness}</span>
+              <div className="bar-track"><div className="bar-fill" style={{ width: `${(breakdown.cleanliness / 5) * 100}%` }}></div></div>
+              <span>{breakdown.cleanliness}</span>
             </div>
             <div className="bar-row">
               <span style={{ width: '105px' }}>Accuracy</span>
-              <div className="bar-track"><div className="bar-fill" style={{ width: `${(villa.ratingsBreakdown.accuracy / 5) * 100}%` }}></div></div>
-              <span>{villa.ratingsBreakdown.accuracy}</span>
+              <div className="bar-track"><div className="bar-fill" style={{ width: `${(breakdown.accuracy / 5) * 100}%` }}></div></div>
+              <span>{breakdown.accuracy}</span>
             </div>
             <div className="bar-row">
               <span style={{ width: '105px' }}>Check-in</span>
-              <div className="bar-track"><div className="bar-fill" style={{ width: `${(villa.ratingsBreakdown.checkIn / 5) * 100}%` }}></div></div>
-              <span>{villa.ratingsBreakdown.checkIn}</span>
+              <div className="bar-track"><div className="bar-fill" style={{ width: `${(breakdown.checkIn / 5) * 100}%` }}></div></div>
+              <span>{breakdown.checkIn}</span>
             </div>
             <div className="bar-row">
               <span style={{ width: '105px' }}>Communication</span>
-              <div className="bar-track"><div className="bar-fill" style={{ width: `${(villa.ratingsBreakdown.communication / 5) * 100}%` }}></div></div>
-              <span>{villa.ratingsBreakdown.communication}</span>
+              <div className="bar-track"><div className="bar-fill" style={{ width: `${(breakdown.communication / 5) * 100}%` }}></div></div>
+              <span>{breakdown.communication}</span>
             </div>
             <div className="bar-row">
               <span style={{ width: '105px' }}>Location</span>
-              <div className="bar-track"><div className="bar-fill" style={{ width: `${(villa.ratingsBreakdown.location / 5) * 100}%` }}></div></div>
-              <span>{villa.ratingsBreakdown.location}</span>
+              <div className="bar-track"><div className="bar-fill" style={{ width: `${(breakdown.location / 5) * 100}%` }}></div></div>
+              <span>{breakdown.location}</span>
             </div>
             <div className="bar-row">
               <span style={{ width: '105px' }}>Value</span>
-              <div className="bar-track"><div className="bar-fill" style={{ width: `${(villa.ratingsBreakdown.value / 5) * 100}%` }}></div></div>
-              <span>{villa.ratingsBreakdown.value}</span>
+              <div className="bar-track"><div className="bar-fill" style={{ width: `${(breakdown.value / 5) * 100}%` }}></div></div>
+              <span>{breakdown.value}</span>
             </div>
           </div>
         </div>
@@ -1121,7 +1135,7 @@ export default function VillaDetailPage({
                 <div 
                   className="similar-thumb"
                   style={{
-                    backgroundImage: `url('${simVilla.images[0]}')`,
+                    backgroundImage: `url('${simVilla.images?.[0] || simVilla.img || ''}')`,
                     backgroundColor: simVilla.cardBg
                   }}
                 />
