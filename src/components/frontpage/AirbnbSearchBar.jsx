@@ -156,9 +156,10 @@ export default function AirbnbSearchBar({
                     )}
                   </div>
                   <div className="destinations-popover-grid">
+                    {/* Opsi Unggulan All Bali */}
                     <button
                       type="button"
-                      className={`dest-option-btn ${!searchParams.location ? 'selected' : ''}`}
+                      className={`dest-option-btn dest-option-btn-featured ${!searchParams.location ? 'selected' : ''}`}
                       onClick={() => {
                         onSearchChange('location', '');
                         onSearchChange('area', '');
@@ -168,31 +169,34 @@ export default function AirbnbSearchBar({
                       <div className="dest-opt-icon">🌴</div>
                       <div className="dest-opt-info">
                         <b>All Bali</b>
-                        <small>Explore all 35 authentic villas</small>
+                        <small>Explore all 35 authentic luxury villas across Bali</small>
                       </div>
                     </button>
 
-                    {DESTINATIONS_SUMMARY.map((dest) => {
-                      const isSelected = searchParams.location === dest.name;
-                      return (
-                        <button
-                          key={dest.name}
-                          type="button"
-                          className={`dest-option-btn ${isSelected ? 'selected' : ''}`}
-                          onClick={() => {
-                            onSearchChange('location', dest.name);
-                            onSearchChange('area', dest.name);
-                            setActivePopover('dates');
-                          }}
-                        >
-                          <div className="dest-opt-icon">📍</div>
-                          <div className="dest-opt-info">
-                            <b>{dest.name}</b>
-                            <small>{dest.count} luxury villas · {dest.badge}</small>
-                          </div>
-                        </button>
-                      );
-                    })}
+                    {/* Grid 2 Kolom untuk 6 Kawasan Populer */}
+                    <div className="dest-regions-grid">
+                      {DESTINATIONS_SUMMARY.map((dest) => {
+                        const isSelected = searchParams.location === dest.name;
+                        return (
+                          <button
+                            key={dest.name}
+                            type="button"
+                            className={`dest-option-btn ${isSelected ? 'selected' : ''}`}
+                            onClick={() => {
+                              onSearchChange('location', dest.name);
+                              onSearchChange('area', dest.name);
+                              setActivePopover('dates');
+                            }}
+                          >
+                            <div className="dest-opt-icon">📍</div>
+                            <div className="dest-opt-info">
+                              <b>{dest.name}</b>
+                              <small>{dest.count} villas · {dest.badge}</small>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               )}

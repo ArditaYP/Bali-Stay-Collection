@@ -380,9 +380,9 @@ nav.links a:hover, nav.links button:hover {
 /* HERO */
 section.hero {
   position: relative;
-  padding: 68px 48px 30px;
+  padding: 68px 48px 40px;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
   background-color: #101936;
 }
 
@@ -395,6 +395,7 @@ section.hero {
   height: 100%;
   z-index: 1;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .hero-bg-container picture {
@@ -6389,13 +6390,13 @@ mark.review-highlight {
 /* 4. Popover Menu (Where & Guests) */
 .airbnb-popover {
   position: absolute;
-  top: calc(100% + 14px);
+  top: calc(100% + 12px);
   left: 0;
   background: #ffffff;
   border-radius: 28px;
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.16), 0 0 1px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  z-index: 100;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22), 0 0 1px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  z-index: 1000;
   animation: popoverFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -6412,20 +6413,24 @@ mark.review-highlight {
 
 /* Destinations Popover */
 .destinations-popover {
-  width: 440px;
-  padding: 24px;
+  width: 520px;
+  max-width: 94vw;
+  padding: 20px 22px;
+  max-height: min(440px, calc(100vh - 220px));
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 .popover-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   color: #717171;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .popover-clear-btn {
@@ -6441,17 +6446,30 @@ mark.review-highlight {
 .destinations-popover-grid {
   display: flex;
   flex-direction: column;
+}
+
+.dest-option-btn-featured {
+  background: #FAF8F5;
+  border: 1px solid rgba(210, 176, 115, 0.3) !important;
+  margin-bottom: 8px;
+}
+
+.dest-option-btn-featured:hover {
+  background: #f4efe6 !important;
+}
+
+.dest-regions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
-  max-height: 380px;
-  overflow-y: auto;
 }
 
 .dest-option-btn {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 10px 14px;
-  border-radius: 16px;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
   border: 1px solid transparent;
   background: transparent;
   text-align: left;
@@ -6470,10 +6488,10 @@ mark.review-highlight {
 }
 
 .dest-opt-icon {
-  font-size: 22px;
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: #ffffff;
   display: flex;
   align-items: center;
@@ -6485,6 +6503,23 @@ mark.review-highlight {
 .dest-opt-info {
   display: flex;
   flex-direction: column;
+  min-width: 0;
+}
+
+.dest-opt-info b {
+  font-size: 13.5px;
+  color: #222222;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dest-opt-info small {
+  font-size: 11.5px;
+  color: #717171;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dest-opt-info b {

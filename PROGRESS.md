@@ -1419,7 +1419,7 @@ src/
      - Desain visual responsif dengan scrollbar halus dan indikator garis aktif.
    - `src/components/frontpage/AirbnbSearchBar.jsx`:
      - Formulir `id="searchForm"` mengadopsi struktur floating capsule Airbnb:
-       - **Where**: Popover pemilihan kawasan interaktif dengan visual jumlah villa asli (All Bali 35, Canggu 14, Pererenan 6, Uluwatu 6, Umalas 5, Ubud 3, Seseh 1).
+       - **Where**: Popover pemilihan kawasan interaktif dengan visual jumlah villa asli (All Bali 35, Canggu 14, Pererenan 6, Uluwatu 6, Umalas 5, Ubud 3, Seseh 1) dengan layout 2 kolom modern, serta overflow hero visible agar bagian bawah popover terlihat penuh tanpa terpotong.
        - **When (Check-in & Check-out)**: Tampilan tanggal terformat dengan input date yang mulus.
        - **Who**: Popover counter stepper ala Airbnb untuk Adults, Children, dan Infants.
        - **Tombol Submit**: Kapsul bulat/ikonik dengan ikon kaca pembesar dan micro-animasi hover.
