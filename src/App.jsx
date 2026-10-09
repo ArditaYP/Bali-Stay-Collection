@@ -15,6 +15,7 @@ import { BSC_VILLAS, ACTIVE_AIRBNB_VILLA_IDS, AIRBNB_ONLY_VILLA_IDS } from './da
 
 /** Pemetaan ID alias antara katalog villa dan data asli airbnbVillas */
 const VILLA_ALIAS_MAP = {
+  'house-terra': 'house-terra',
   'villa-habitas': 'villa-habitas',
   'the-palms-villa-canggu': 'villa-habitas',
   'st-lau': 'st-lau-ubud',

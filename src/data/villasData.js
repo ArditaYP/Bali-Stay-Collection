@@ -29,6 +29,19 @@ const DEFAULT_FEATURES = [
  * Silakan ubah harga, deskripsi, dan fasilitas di sini sesuai kondisi asli villa.
  */
 const VILLA_DETAILS = {
+  'house-terra': {
+    category: 'Luxury',
+    price: 550, // Patokan menengah (USD / malam)
+    cleaningFee: 50,
+    freeCancel: true,
+    cardBg: '#CBB9C9',
+    bookedDays: [4, 5, 18, 19],
+    address: 'Pererenan, Canggu, Badung, Bali',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam mahakarya arsitektur tropis Biombo di mana kemewahan modern melebur sempurna dengan alam Pererenan. Dilengkapi 5 kamar tidur mewah, piano klasik, kolam renang luas, dan lounge outdoor, nikmati privasi eksklusif tanpa cela.',
+    description: 'Bayangkan melangkah masuk ke dalam mahakarya arsitektur tropis Biombo di mana kemewahan modern melebur sempurna dengan alam Pererenan. Dilengkapi 5 kamar tidur mewah, piano klasik, kolam renang luas, dan lounge outdoor, nikmati privasi eksklusif tanpa cela.',
+    amenities: ['Private pool', 'Dedicated staff', 'Chef on request', 'Villa manager', 'Air conditioning', 'High-speed WiFi']
+  },
+
   'st-lau-ubud': {
     category: 'Honeymoon',
     price: 310, // Patokan menengah (USD / malam)
@@ -37,7 +50,7 @@ const VILLA_DETAILS = {
     cardBg: '#CBB9C9',
     bookedDays: [3, 4, 21, 22],
     address: 'Ubud, Gianyar, Bali',
-    shortDesc: 'A signature 3-bedroom hideaway in Ubud with a private pool and lush tropical surroundings.',
+    shortDesc: 'Biarkan ketenangan hutan tropis Ubud memeluk seluruh panca indera Anda. Dengan dek kolam renang privat yang menghadap rerimbunan hijau dan sentuhan arsitektur khas Bali, villa 3 kamar ini adalah tempat di mana pikiran Anda menemukan kedamaian mutlak.',
     description: 'St. Lau is a private 3-bedroom sanctuary tucked away in Ubud. Open-plan living spaces flow onto a private pool deck surrounded by tropical greenery, with every bedroom designed as a calm retreat after a day exploring Ubud’s rice terraces, cafés and temples.',
     amenities: ['Private pool', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Free parking', 'Daily housekeeping']
   },
@@ -49,7 +62,7 @@ const VILLA_DETAILS = {
     cardBg: '#B9CBC9',
     bookedDays: [6, 7, 23, 24],
     address: 'Balangan Beach, Uluwatu, Badung, Bali',
-    shortDesc: 'An iconic 5-bedroom cliff-top villa with a sweeping 180° view of the Indian Ocean.',
+    shortDesc: 'Tataplah cakrawala Samudra Hindia yang membentang tanpa batas tepat di depan mata Anda. Bertengger megah di atas tebing kapur Balangan, estate 5 kamar tidur ini menyuguhkan kemegahan matahari terbenam spektakuler dan akses pantai eksklusif yang tak terlupakan.',
     description: 'Perched on the cliffs above Balangan Beach, this 5-bedroom villa opens onto an uninterrupted 180° ocean panorama. Spacious indoor-outdoor living, a pool facing the horizon and sunset views every evening make it ideal for families and groups of friends.',
     amenities: ['Private pool', 'Ocean view', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Free parking', 'Daily housekeeping']
   },
@@ -61,7 +74,7 @@ const VILLA_DETAILS = {
     cardBg: '#C7CDBB',
     bookedDays: [8, 9, 25, 26],
     address: 'Ubud, Gianyar, Bali',
-    shortDesc: 'A 5-bedroom Ubud villa with an infinity pool overlooking the jungle valley.',
+    shortDesc: 'Rasakan sensasi melayang di atas kanopi lembah Sungai Ayung dari infinity pool spektakuler villa 5 kamar ini. Udara pegunungan Ubud yang sejuk dan suara alam yang menenteramkan akan memulihkan energi tubuh dan jiwa Anda secara menyeluruh.',
     description: 'Angkasa is a 5-bedroom villa in Ubud built around an infinity pool that seems to float above the surrounding jungle. Generous living and dining areas, a fully equipped kitchen and panoramic views make it a perfect base for larger groups.',
     amenities: ['Infinity pool', 'Jungle view', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Free parking', 'Daily housekeeping']
   },
@@ -73,7 +86,7 @@ const VILLA_DETAILS = {
     cardBg: '#CBC3A8',
     bookedDays: [5, 6, 17, 18],
     address: 'Echo Beach, Canggu, Badung, Bali',
-    shortDesc: 'A boho-chic 3-bedroom sanctuary steps from Echo Beach with private pool and sun deck.',
+    shortDesc: 'Rasakan ritme santai pesisir Canggu dalam pelukan kemewahan bohemian tropis. Kolam renang privat yang asri dan kamar tidur yang luas siap menyambut kepulangan Anda setelah menikmati sunset di pantai.',
     description: 'Villa Samudra blends breezy Mediterranean bohemian aesthetics with traditional Balinese artisanal craftsmanship. Located just 5 minutes from Echo Beach in Canggu, this sanctuary features high-vaulted ceilings, an open-concept living pavilion, custom rattan furnishings, and a turquoise swimming pool framed by swaying palms.',
     amenities: ['Private pool', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Daily housekeeping', 'Near the beach', 'Free parking']
   },
@@ -87,7 +100,7 @@ const VILLA_DETAILS = {
     bookedDays: [10, 11, 22, 23],
     address: 'Pererenan, Canggu, Badung, Bali',
     location: 'Canggu',
-    shortDesc: 'Wake up unhurried. Stroll to a favourite café, linger over dinner, then wander home to your own private pool. This 4-bedroom Pererenan villa sleeps 8, with a king bed in every room, a lagoon-style pool, and a warm local team on hand. Trendy cafés, restaurants and bars are within walking distance, and Canggu centre is a short ride away. Easy, unhurried Bali.',
+    shortDesc: 'Bayangkan bangun setiap pagi disambut pemandangan sawah hijau zamrud dan berenang di laguna pribadi yang menenangkan jiwa. Hanya beberapa langkah santai menuju kafe artisan terbaik Pererenan, surga 4 kamar ini menghadirkan ketenangan mutlak dengan sentuhan pelayanan bintang lima.',
     description: 'Villa Habitas is a private 4-bedroom villa in Pererenan, built for slow mornings and easy evenings. Trendy cafés, restaurants and bars are within walking distance, and Canggu centre is a short ride away.',
     fullDesc: `Villa Habitas is a private 4-bedroom villa in Pererenan, built for slow mornings and easy evenings.
 
@@ -143,7 +156,7 @@ OTHER THINGS TO NOTE
     cardBg: '#CBB9C9',
     bookedDays: [7, 8, 19, 20],
     address: 'Petitenget, Seminyak, Badung, Bali',
-    shortDesc: 'A refined 3-bedroom pool villa within walking distance of Seminyak’s world-class dining.',
+    shortDesc: 'Temukan oase ketenangan di tengah kawasan paling bergengsi Seminyak. Mandi berendam di bathtub batu alam outdoor di bawah langit berbintang dan nikmati kemewahan privasi di pusat denyut kuliner Bali.',
     description: 'Tucked away in the prestigious Petitenget quarter of Seminyak, Villa Kayu Raja is a tranquil haven moments away from renowned beach clubs and culinary hotspots. The villa features lush tropical courtyard gardens, a sparkling central pool with sun loungers, and luxuriously appointed master suites with en-suite terrazzo bathtubs.',
     amenities: ['Private pool', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Daily housekeeping', 'Near the beach', 'Free parking']
   },
@@ -155,7 +168,7 @@ OTHER THINGS TO NOTE
     cardBg: '#DFD3C3',
     bookedDays: [2, 3, 14, 15],
     address: 'Kayu Aya, Seminyak, Badung, Bali',
-    shortDesc: 'An intimate 2-bedroom romantic retreat with private plunge pool and garden bathroom.',
+    shortDesc: 'Ciptakan momen romantis paling berkesan dalam hidup Anda di sanctuary bulan madu privat ini. Dikelilingi taman tropis yang rimbun dan suasana intim, cinta Anda akan mekar lebih indah di Seminyak.',
     description: 'Designed specifically for romantic getaways and honeymoon couples, Villa Cendana is an intimate haven nestled along Seminyak’s quiet lanes. Wake up to breakfast served by the plunge pool, unwind in the semi-open garden bathroom featuring a stone soaking tub, and enjoy serene tropical evenings in secluded privacy.',
     amenities: ['Private pool', 'Romantic outdoor bathtub', 'Air conditioning', 'High-speed WiFi', 'Full kitchen', 'Daily housekeeping', 'Free parking']
   },
@@ -167,7 +180,7 @@ OTHER THINGS TO NOTE
     cardBg: '#A9B9C9',
     bookedDays: [12, 13, 26, 27],
     address: 'Bingin Beach, Uluwatu, Badung, Bali',
-    shortDesc: 'An ultra-luxurious 4-bedroom cliff villa overlooking Bingin Beach and the Indian Ocean.',
+    shortDesc: 'Biarkan pesona lautan biru lepas Uluwatu menghipnotis hari-hari Anda. Duduklah di tepi infinity pool saat matahari perlahan tenggelam, dan nikmati kemewahan hakiki yang hanya dimiliki segelintir orang di dunia.',
     description: 'Perched commandingly on the limestone cliffs of Uluwatu, Cliffside Panorama offers front-row views of world-famous surf breaks and sunset vistas across the Indian Ocean. An infinity pool seemingly merges with the azure horizon, flanked by expansive timber sun decks and contemporary minimalist suites.',
     amenities: ['Infinity pool', 'Ocean view', 'Private chef on request', 'Air conditioning', 'High-speed WiFi', 'Free parking', 'Daily housekeeping']
   },
@@ -181,7 +194,7 @@ OTHER THINGS TO NOTE
     bookedDays: [10, 11, 22, 23],
     address: 'Pererenan, Canggu, Badung, Bali',
     location: 'Pererenan',
-    shortDesc: 'Wake up unhurried. Stroll to a favourite café, linger over dinner, then wander home to your own private pool. This 4-bedroom Pererenan villa sleeps 8 with king beds in every room and a dedicated local team.',
+    shortDesc: 'Bayangkan bangun setiap pagi disambut pemandangan sawah hijau zamrud dan berenang di laguna pribadi yang menenangkan jiwa. Hanya beberapa langkah santai menuju kafe artisan terbaik Pererenan, surga 4 kamar ini menghadirkan ketenangan mutlak dengan sentuhan pelayanan bintang lima.',
     description: 'Villa Habitas is a private 4-bedroom villa in Pererenan, built for slow mornings and easy evenings. Trendy cafés, restaurants and bars are within walking distance, and Canggu centre is a short ride away.',
     amenities: ['Private pool', 'Jungle view', 'River valley view', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Free parking'],
     bedrooms: [
@@ -201,7 +214,7 @@ OTHER THINGS TO NOTE
     bookedDays: [4, 5, 18, 19],
     address: 'Pererenan, Badung, Bali',
     location: 'Pererenan',
-    shortDesc: 'An intimate 1-bedroom sanctuary in prime Pererenan, ideal for couples seeking peaceful luxury.',
+    shortDesc: 'Rasakan kehangatan sinar matahari pagi yang menembus celah dedaunan tropis saat Anda menikmati kopi di tepi plunge pool pribadi. Sanctuary 1 kamar intim ini dirancang khusus untuk pasangan yang mendambakan privasi tanpa batas dan kedamaian sejati.',
     description: 'Tranquil 1BR Sanctuary is tucked in a peaceful lane in prime Pererenan. Featuring minimalist aesthetic design, private plunge pool, lush tropical garden, and seamless indoor-outdoor living moments away from artisan cafés.',
     amenities: ['Private pool', 'High-speed WiFi', 'Air conditioning', 'Kitchenette', 'Daily housekeeping', 'Free parking']
   },
@@ -215,7 +228,7 @@ OTHER THINGS TO NOTE
     bookedDays: [7, 8, 20, 21],
     address: 'Central Canggu, Badung, Bali',
     location: 'Canggu',
-    shortDesc: 'A spacious 4-bedroom modern tropical villa in central Canggu, perfect for groups and families.',
+    shortDesc: 'Biarkan diri Anda tenggelam dalam pesona hidup tropis modern di jantung Canggu. Paviliun terbuka yang lapang, kolam renang berkilau, dan 4 kamar tidur mewah menanti Anda dan orang-orang tercinta untuk merayakan momen berharga bersama.',
     description: 'Located right in the heart of Canggu, this modern tropical villa offers a sparkling central swimming pool, open-concept lounge, generous sundeck, and luxurious air-conditioned bedrooms with en-suite bathrooms.',
     amenities: ['Private pool', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Daily housekeeping', 'Free parking']
   },
@@ -229,7 +242,7 @@ OTHER THINGS TO NOTE
     bookedDays: [9, 10, 22, 23],
     address: 'Seminyak Beach, Badung, Bali',
     location: 'Seminyak',
-    shortDesc: 'A stylish 3-bedroom villa just steps from Seminyak Beach with private pool and chic dining.',
+    shortDesc: 'Dengarkan bisikan deburan ombak pantai Seminyak yang hanya sepelemparan batu dari pintu villa Anda. Perpaduan desain pesisir kontemporer dan kenyamanan mewah yang memastikan liburan tropis Anda terasa istimewa sejak detik pertama.',
     description: 'Luxe & Stylish 3BR Villa is an elegant oasis steps away from Seminyak’s golden sands and famous beach clubs. Designed with contemporary tropical flair, open-air living pavilion, and sun-drenched private pool.',
     amenities: ['Private pool', 'Near the beach', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Free parking']
   },
@@ -243,7 +256,7 @@ OTHER THINGS TO NOTE
     bookedDays: [3, 4, 15, 16],
     address: 'Seseh Beach, Badung, Bali',
     location: 'Seseh',
-    shortDesc: 'A peaceful 2-bedroom haven steps from Seseh Beach with serene pool and ocean breezes.',
+    shortDesc: 'Hirup segarnya angin laut yang berhembus lembut melintasi teras terbuka villa 2 kamar yang elegan ini. Tersembunyi di desa pesisir Seseh yang asri, nikmati kemewahan ruang privat di mana waktu seakan melambat hanya untuk Anda.',
     description: 'Experience the authentic, tranquil charm of coastal Bali at Tropical Elegance. Nestled in the quiet coastal village of Seseh, just moments from black sand beaches and scenic coastal paths.',
     amenities: ['Private pool', 'Ocean breeze', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Daily housekeeping']
   },
@@ -257,7 +270,7 @@ OTHER THINGS TO NOTE
     bookedDays: [6, 7, 24, 25],
     address: 'Uluwatu, Badung, Bali',
     location: 'Uluwatu & Bukit',
-    shortDesc: 'A tropical 3-bedroom sanctuary perched in Uluwatu, combining clifftop breezes and warm island design.',
+    shortDesc: 'Tenggelamkan diri Anda di sunken lounge luar ruangan seraya menikmati semilir angin perbukitan Uluwatu. Desain kayu hangat, kolam renang yang mengundang, dan pelayanan tulus staf kami akan membuat Anda jatuh cinta sejak hari pertama.',
     description: 'Yellow Moon is an architecturally striking 3-bedroom sanctuary in Uluwatu. Features expansive timber pool deck, lush garden, sunken outdoor lounge, and proximity to iconic surf spots.',
     amenities: ['Private pool', 'Ocean breeze', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Free parking']
   },
@@ -271,7 +284,7 @@ OTHER THINGS TO NOTE
     bookedDays: [2, 3, 16, 17],
     address: 'Bingin Beach, Uluwatu, Badung, Bali',
     location: 'Uluwatu & Bukit',
-    shortDesc: 'A romantic 1-bedroom tropical villa near Bingin Beach with private pool and Mediterranean touches.',
+    shortDesc: 'Temukan pelarian romantis berdesain Mediterania tropis yang memesona di tebing Bingin. Lengkungan arsitektur yang anggun dan kolam renang privat menciptakan suasana intim yang sempurna bagi Anda berdua untuk merajut kenangan manis.',
     description: 'CASA KĀYA is a boutique 1-bedroom tropical villa near the shores of Bingin Beach. Perfect for couples, featuring curved archways, private plunge pool, and serene outdoor lounging.',
     amenities: ['Private pool', 'High-speed WiFi', 'Air conditioning', 'Kitchenette', 'Near the beach', 'Free parking']
   },
@@ -285,7 +298,7 @@ OTHER THINGS TO NOTE
     bookedDays: [8, 9, 21, 22],
     address: 'Bingin Beach, Uluwatu, Badung, Bali',
     location: 'Uluwatu & Bukit',
-    shortDesc: 'A luxury 3-bedroom tropical villa in Bingin near pristine beaches and sunset cliffs.',
+    shortDesc: 'Bayangkan bersantai di tepi kolam yang teduh dinaungi pepohonan palem setelah seharian menikmati pantai Bingin. Villa 3 kamar tidur mewah ini memberikan kenyamanan paripurna bagi keluarga atau sahabat yang menginginkan relaksasi tingkat tinggi.',
     description: 'Set in one of Bali’s most sought-after cliffside enclaves, this 3-bedroom villa offers open-plan luxury living, private pool surrounded by frangipani trees, and easy access to Bingin’s turquoise surf.',
     amenities: ['Private pool', 'Ocean view nearby', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Free parking']
   },
@@ -299,7 +312,7 @@ OTHER THINGS TO NOTE
     bookedDays: [5, 6, 19, 20],
     address: 'Bingin Beach, Uluwatu, Badung, Bali',
     location: 'Uluwatu & Bukit',
-    shortDesc: 'A chic 2-bedroom tropical villa minutes from Bingin Beach, designed for effortless island living.',
+    shortDesc: 'Rasakan harmoni antara semen ekspos modern yang elegan dan kehangatan kayu alami di oase 2 kamar tidur ini. Pelayanan manajer villa yang penuh dedikasi memastikan setiap keinginan Anda terpenuhi bahkan sebelum Anda memintanya.',
     description: 'This 2-bedroom chic tropical villa combines polished concrete, warm timber, and lush landscaping. Features sun-soaked pool deck and breezy open living pavilion.',
     amenities: ['Private pool', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Daily housekeeping', 'Free parking']
   },
@@ -313,7 +326,7 @@ OTHER THINGS TO NOTE
     bookedDays: [11, 12, 27, 28],
     address: 'Umalas, Badung, Bali',
     location: 'Umalas & Seminyak',
-    shortDesc: 'An expansive 5-bedroom designer villa next to Berawa with massive pool and dedicated staff.',
+    shortDesc: 'Ketika ukuran dan privasi menjadi prioritas tertinggi Anda, mahakarya arsitektur 5 kamar tidur di perbatasan Umalas dan Berawa ini siap memukau rombongan besar Anda dengan kolam renang 18 meter dan layanan concierge berkelas.',
     description: 'A masterpiece of contemporary architecture on the border of Umalas and Berawa. Features five opulent master suites, private 18-meter swimming pool, sunken lounge, manicured lawn, and dedicated villa concierge.',
     amenities: ['Private pool', 'Dedicated staff', 'Chef on request', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Free parking']
   },
@@ -327,7 +340,7 @@ OTHER THINGS TO NOTE
     bookedDays: [8, 9, 21, 22],
     address: 'Uluwatu, Badung, Bali',
     location: 'Uluwatu & Bukit',
-    shortDesc: 'Ultra-luxury 6-bedroom ocean-view villa in Uluwatu with 80m² pool, panoramic fitness gym, and in-villa spa.',
+    shortDesc: 'Kemewahan tanpa batas menanti Anda di estate 6 kamar prestisius ini. Mulai hari Anda dengan sesi kebugaran di gym berdinding kaca panorama samudra, manjakan diri di ruang spa privat, dan saksikan senja keemasan dari kolam renang 80m² Anda.',
     description: 'Welcome to Villa Imala, a spectacular 6-bedroom luxury private villa in Uluwatu offering ocean views, expansive living spaces, 80m² pool, panoramic glass-walled gym, and private spa room minutes from Savaya and Melasti Beach.',
     amenities: ['Private pool', 'Ocean view', 'Gym & fitness', 'Private spa room', 'Villa manager', 'Chef on request', 'Daily housekeeping', 'High-speed WiFi', 'Free parking']
   },
@@ -339,7 +352,7 @@ OTHER THINGS TO NOTE
     cardBg: '#C7CDBB',
     bookedDays: [4, 5, 20, 21],
     address: 'Sayan Ridge, Ubud, Gianyar, Bali',
-    shortDesc: 'A breathtaking 2-bedroom bamboo architectural villa suspended over the Ayung River valley.',
+    shortDesc: 'Rasakan keselarasan sejati dengan alam di mahakarya arsitektur bambu ramah lingkungan yang melayang di atas lembah Sungai Ayung. Hirup kesegaran udara Ubud dan temukan kembali kedamaian batin Anda yang paling murni.',
     description: 'Experience true harmony with nature at Mandapa Jungle Villa, an architectural wonder crafted entirely from sustainably harvested bamboo. Perched on Ubud’s famous Sayan Ridge, this open-concept sanctuary offers sweeping views of emerald jungle canopies and the murmuring Ayung River below.',
     amenities: ['Private pool', 'Jungle view', 'River valley view', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Free parking']
   },
@@ -351,7 +364,7 @@ OTHER THINGS TO NOTE
     cardBg: '#2C3539',
     bookedDays: [8, 9, 15, 16],
     address: 'Berawa Beach, Canggu, Badung, Bali',
-    shortDesc: 'Villa kontemporer 3 kamar mewah di jantung Berawa, hanya 400 meter dari Pantai Berawa dan Finns Beach Club. Dilengkapi kolam renang pribadi, sunken lounge, dan jendela kedap suara total.',
+    shortDesc: 'Nikmati kemewahan berada di pusat gaya hidup Berawa tanpa mengorbankan ketenangan tidur Anda. Dilengkapi jendela kedap suara total, sunken lounge elegan, dan kolam renang privat, villa 3 kamar ini adalah santuari modern terbaik Anda.',
     description: 'Escape to Villa Mahina, in one of Canggu’s most sought-after locations. Just 400m from Berawa Beach and minutes from Finns Beach Club, this stylish 3-bedroom villa sits in a private residence, offering peace and privacy while being close to Canggu’s best restaurants, cafés, and nightlife.',
     amenities: ['Private pool', 'Sunken lounge', 'Walk to beach (400m)', 'Double-glazed soundproof windows', 'Air conditioning', 'High-speed WiFi', 'Full kitchen', 'Daily housekeeping']
   },
@@ -363,7 +376,7 @@ OTHER THINGS TO NOTE
     cardBg: '#C4A482',
     bookedDays: [3, 4, 18, 19],
     address: 'Canggu, Badung, Bali',
-    shortDesc: 'Oase eksotis bertema gurun di pusat Canggu yang semarak. Menghadirkan 2 kamar tidur nyaman, kolam renang pribadi, kamar mandi terbuka tropis, dan dapur lengkap.',
+    shortDesc: 'Biarkan diri Anda terhanyut dalam kehangatan nuansa gurun pasir yang eksotis di jantung Canggu. Nikmati kesegaran berenang di bawah sinar mentari tropis dan sensasi mandi terbuka bernuansa spa alami yang merelaksasi setiap jengkal tubuh Anda.',
     description: 'Discover Khaleela Villas, a desert-inspired oasis in vibrant Canggu. Its unique charm captivates with immersive desert vibes. This single-story haven boasts two cozy bedrooms for a serene retreat. Lounge by the refreshing pool, basked in sunlight.',
     amenities: ['Private pool', 'Desert-inspired architecture', 'Outdoor tropical shower', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Daily housekeeping', 'Dedicated team']
   },
@@ -375,7 +388,7 @@ OTHER THINGS TO NOTE
     cardBg: '#1F2937',
     bookedDays: [10, 11, 24, 25],
     address: 'Canggu, Badung, Bali',
-    shortDesc: 'Villa berteknologi tinggi 4 kamar baru di Canggu dengan kolam renang 45m², rooftop jacuzzi, sound system Sonos, TV 4K 86 inci, dan area barbekyu pribadi.',
+    shortDesc: 'Rasakan masa depan liburan mewah di mana kecanggihan teknologi berpadu dengan kemegahan tropis. Bersantailah di rooftop jacuzzi, nikmati bioskop proyektor luar ruangan, dan dengarkan alunan musik jernih dari sistem suara Sonos di seluruh sudut villa.',
     description: 'Welcome to Beyond the Palms! This luxurious, high-tech 4-bedroom villa is perfect for anyone who wants a truly unforgettable Bali experience. Features 45sqm pool, massive garden, rooftop jacuzzi, Sonos sound system, and SMEG kitchen.',
     amenities: ['Private pool (45m²)', 'Rooftop jacuzzi', 'Yoga deck', 'Sonos sound system', '86" 4K Smart TV', 'SMEG kitchen', 'Outdoor cinema projector', 'Private BBQ grill']
   },
@@ -387,7 +400,7 @@ OTHER THINGS TO NOTE
     cardBg: '#3A352F',
     bookedDays: [5, 6, 21, 22],
     address: 'Berawa, Canggu, Badung, Bali',
-    shortDesc: 'Villa 4 kamar tidur elegan kontemporer berpredikat Guest Favorite (5.0 bintang) di jantung Berawa. Memiliki ruang keluarga fleksibel ber-AC, kolam renang asri, dan staf berdedikasi.',
+    shortDesc: 'Masuki mahakarya desain kontemporer berpredikat Guest Favorite bintang 5.0 di Berawa. Fleksibilitas ruang keluarga ber-AC yang dapat dibuka menyatu dengan kolam renang asri memberikan kebebasan dan kenyamanan tak tertandingi bagi seluruh keluarga.',
     description: 'Discover Villa Akar, a contemporary four-bedroom villa set in one of Berawa’s most desirable pockets. Features unbeatable location near the beach, modern living spaces filled with natural light, and a dedicated hospitality team.',
     amenities: ['Private pool', 'Guest Favorite 5.0 rating', 'Flexible enclosed/open living', 'Designer architecture by Teduh', 'En-suite master suites', 'High-speed WiFi', 'Daily housekeeping']
   },
@@ -399,7 +412,7 @@ OTHER THINGS TO NOTE
     cardBg: '#8C704B',
     bookedDays: [12, 13, 27, 28],
     address: 'Berawa, Canggu, Badung, Bali',
-    shortDesc: 'Villa 2 kamar bergaya modern chic tepat di seberang Finns Recreation Club di Berawa. Dilengkapi kolam renang pribadi, interior mewah, dan staf pelayanan harian.',
+    shortDesc: 'Kemudahan akses gaya hidup premium Berawa berada tepat di depan pintu Anda. Berada persis di seberang FINNS Recreation Club, villa 2 kamar modern chic ini menyuguhkan interior menawan dan kolam renang privat yang memanjakan liburan Anda.',
     description: 'Nestled in the vibrant Berawa neighborhood, Villa Golden offers a luxurious retreat for discerning travelers. Beautiful design and architecture, located directly opposite FINNS recreation club, few meters from top cafes.',
     amenities: ['Private pool', 'Opposite FINNS Recreation Club', 'Modern chic interior', 'Both en-suite bedrooms', 'Fully equipped kitchen', 'Air conditioning', 'Daily housekeeping']
   },
@@ -411,7 +424,7 @@ OTHER THINGS TO NOTE
     cardBg: '#2F4F4F',
     bookedDays: [7, 8, 22, 23],
     address: 'Ubud, Gianyar, Bali',
-    shortDesc: 'Sanctuary tropis privat 4 kamar di kawasan asri Ubud. Menyuguhkan kolam renang infinity pribadi, suasana hijau yang tenang, staf lengkap, dan akses mudah ke jantung budaya Ubud.',
+    shortDesc: 'Sesuai namanya, temukan serpihan surga tersembunyi di kawasan asri Ubud. Infinity pool pribadi yang menghadap lembah tropis rimbun dan keramahan staf lokal kami akan mengantarkan Anda pada dimensi relaksasi yang belum pernah Anda rasakan sebelumnya.',
     description: 'Welcome to Villa Surga, a private 4-bedroom villa tucked into the lush surroundings of Ubud — ideal for families and groups seeking space, comfort, and a peaceful tropical setting close to Bali’s cultural heart.',
     amenities: ['Private infinity pool', 'Traditional Balinese entrance', 'Lush tropical valley view', 'Full villa staffing', 'All en-suite bathrooms', 'Spacious open living', 'Daily housekeeping']
   }

@@ -51,6 +51,16 @@ Dokumentasi lengkap mengenai status proyek, arsitektur kode, fitur yang telah di
 >      4. **Wajib Cek Git Status & Diff**: Jalankan `git status` dan periksa `git diff` untuk memastikan hanya perubahan yang disepakati yang di-stage.
 >      5. **Wajib Sinkronisasi Catatan PROGRESS.md**: Perbarui file `PROGRESS.md` ini terlebih dahulu agar seluruh riwayat pekerjaan, fitur, dan penyesuaian tercatat rapi sebelum commit.
 >      6. **Pesan Commit Jelas & Informatif**: Gunakan pesan commit yang deskriptif dan mencerminkan apa yang dikerjakan secara transparan (dilarang menggunakan commit satu kata seperti *"update"* atau *"fix"*).
+> 6. **STANDAR COPYWRITING NLP & PERSUASIVE MENTAL TRIGGER BERBASIS BEST REVIEW (PERINTAH WAJIB DARI USER)**:
+>    - **Perintah Eksplisit User**: *"buat baru headline dan description untuk menyakinkan tamu gunakan teknik penulisan hipnotic leanguage patern (nlp) dan persuasive mental trigger ambil tulisan Dari best review yang ada"*.
+>    - **Penerapan Wajib**:
+>      - **Hypnotic Language Patterns (NLP)**: Penggunaan kata-kata sensori kaya VAK (Visual: berkilau, zamrud; Auditory: gemericik, bisikan ombak; Kinesthetic: sejuknya batu alam, kehangatan mentari, kasur empuk), pola *pacing & leading* (*"Bayangkan Anda melangkah masuk..."*, *"Begitu Anda membuka mata..."*), dan praanggapan kenyamanan (*presuppositions*).
+>      - **Persuasive Mental Triggers**: Pemanfaatan *Social Proof* (kutipan ulasan nyata terbaik), *Exclusivity/Scarcity* (mengamankan privasi terisolasi di lokasi prestisius), dan *Authority/Reassurance* (jaminan tim lokal dan kenyamanan bintang lima).
+>      - **Best Reviews Integration**: Kutipan verbatim atau sentimen kunci dari ulasan terbaik tamu Airbnb wajib dicantumkan pada bagian `why`, `desc`, dan `fullDesc`.
+> 7. **PEMBERSIHAN TOTAL VILLA TANPA AIRBNB (MURNI AIRBNB ONLY)**:
+>    - **Perintah Eksplisit User**: *"untuk villa yang terdaftar di website kita tapi tidak ada airbnb nya hilangkan saja agar kita gampang masukin data airbnb nya"*.
+>    - Seluruh mock/dummy villa warisan mockup awal (40+ villa fiktif seperti `coco-bay`, `the-bull-house`, `villa-kanopi`, dll.) **wajib dihilangkan sepenuhnya** dari katalog situs. Katalog hanya boleh memuat villa yang memiliki listing asli Airbnb.
+
 
 ---
 
@@ -1214,3 +1224,65 @@ src/
    - Diperbarui di `VILLA_DETAILS` pada `src/data/villasData.js`.
    - Diperbarui di tabel MySQL `balistay_db.villas` via `api/sync_mysql_6.php`.
    - Routing alias di `src/App.jsx` disinkronkan langsung ke ID masing-masing.
+
+### 9.7 Pembersihan 40+ Mock Villa, Integrasi Penuh House Terra, dan Master Copywriting NLP & Mental Triggers (26 Villa Airbnb Autentik)
+1. **Latar Belakang & Instruksi User**:
+   - Pengguna menginstruksikan untuk:
+     a. **Menghilangkan seluruh villa non-Airbnb**: Menghapus seluruh villa yang terdaftar di situs tanpa listing Airbnb nyata (40+ mock villas warisan draf awal) agar katalog bersih 100% dan memudahkan penambahan listing Airbnb selanjutnya.
+     b. **Master Copywriting NLP & Mental Triggers**: Membuat headline dan deskripsi baru untuk meyakinkan calon tamu menggunakan teknik *Hypnotic Language Patterns* (NLP - VAK sensory, pacing & leading, presuppositions) dan *Persuasive Mental Triggers* (social proof ulasan nyata, eksklusivitas, reassurance), mengambil langsung intisari dari *best reviews* tamu nyata Airbnb.
+     c. **Peringatan Keras Pre-Push Protocol**: Dilarang keras melakukan `git push` ke GitHub secara sembarangan/tanpa izin.
+     d. **Konfirmasi & Integrasi Penuh House Terra**: Memastikan House Terra masuk secara lengkap dengan foto dan ulasan asli Airbnb.
+
+2. **Status & Integrasi Penuh House Terra (`house-terra`)**:
+   - **Airbnb Listing**: Room ID `1181432015759859101` (*"House Terra - 5BR Tropical Pool Villa in Pererenan by Biombo Architects"*).
+   - **Klarifikasi Link**: Link ke-7 yang diberikan pengguna sebelumnya (`1106787074513318766`) adalah **Villa Surga** di Ubud (yang juga sudah masuk). Listing asli House Terra adalah ID `1181432015759859101`.
+   - **Aset Foto HD Lokal**: 8 foto resolusi tinggi telah diunduh dan tersimpan di `public/airbnb/house-terra/photos/photo-01.jpg` s/d `photo-08.jpg`.
+   - **Spesifikasi Lengkap**: 5 Kamar Tidur, 5.5 Kamar Mandi, Kapasitas 10 Tamu, Kolam Renang Tropis, Piano Klasik, Rating 5.0 (Guest Favorite).
+   - **Penyinkronan Sistem**:
+     - Ditambahkan ke `src/data/airbnbVillas.json` lengkap dengan foto, ulasan nyata (Charlotte & Maximilian), dan rating breakdown.
+     - Ditambahkan ke `src/data/villasData.js` (`VILLA_DETAILS`) dengan tarif USD $550/malam dan fasilitas lengkap.
+     - Ditambahkan ke `src/data/bscVillasData.js` (`BSC_VILLAS`) dengan foto utama `/airbnb/house-terra/photos/photo-01.jpg` dan galeri 8 foto asli.
+     - Ditambahkan ke `VILLA_ALIAS_MAP` di `src/App.jsx`.
+
+3. **Pembersihan 40+ Mock Villa**:
+   - Seluruh 40+ mock villa fiktif (`coco-bay`, `the-bull-house`, `villa-kanopi`, `villa-tala`, `berawa-breeze`, `villa-aless`, `villa-vida`, `cala-blanca`, `villa-ithaki`, `villa-satiya`, dll.) telah dihapus dari `BSC_VILLAS`.
+   - Katalog kini murni 100% memuat **26 villa autentik Airbnb**:
+     1. `villa-habitas` (Pererenan - 4BR)
+     2. `tranquil-sanctuary-pererenan` (Pererenan - 1BR)
+     3. `house-terra` (Pererenan - 5BR)
+     4. `tropical-canggu-villa` (Canggu & Berawa - 4BR)
+     5. `villa-samudra-canggu` (Canggu & Berawa - 3BR)
+     6. `villa-mahina` (Canggu & Berawa - 3BR)
+     7. `khaleela-villas` (Canggu & Berawa - 2BR)
+     8. `beyond-the-palms` (Canggu & Berawa - 4BR)
+     9. `villa-akar` (Canggu & Berawa - 4BR)
+     10. `villa-golden` (Canggu & Berawa - 2BR)
+     11. `luxe-beach-villa-seminyak` (Umalas & Seminyak - 3BR)
+     12. `five-bedroom-designer-umalas` (Umalas & Seminyak - 5BR)
+     13. `villa-kayu-raja-seminyak` (Umalas & Seminyak - 3BR)
+     14. `villa-cendana-seminyak` (Umalas & Seminyak - 2BR)
+     15. `tropical-elegance-seseh` (Seseh - 2BR)
+     16. `balangan-cliff-villa` / `iconic-cliff-top-villa` (Uluwatu & Bukit - 5BR)
+     17. `yellow-moon-uluwatu` (Uluwatu & Bukit - 3BR)
+     18. `casa-kaya-bingin` (Uluwatu & Bukit - 1BR)
+     19. `luxury-tropical-bingin` (Uluwatu & Bukit - 3BR)
+     20. `chic-tropical-bingin` (Uluwatu & Bukit - 2BR)
+     21. `cliffside-panorama-uluwatu` (Uluwatu & Bukit - 4BR)
+     22. `villa-imala` (Uluwatu & Bukit - 6BR)
+     23. `st-lau` / `st-lau-ubud` (Ubud - 3BR)
+     24. `villa-angkasa` / `angkasa-ubud` (Ubud - 5BR)
+     25. `villa-surga` (Ubud - 4BR)
+     26. `mandapa-jungle-villa` (Ubud - 2BR)
+   - `AIRBNB_ONLY_VILLA_IDS` dan `ACTIVE_AIRBNB_VILLA_IDS` disinkronkan ke 26 villa tersebut.
+   - Angka ringkasan `DESTINATIONS_SUMMARY` diperbarui agar presisi dengan sebaran 26 villa asli (Pererenan: 3, Canggu & Berawa: 8, Uluwatu & Bukit: 6, Umalas & Seminyak: 4, Seseh: 1, Ubud: 4).
+
+4. **Master NLP Copywriting & Persuasive Mental Triggers**:
+   - Diterapkan secara seragam di `src/data/airbnbVillas.json`, `src/data/villasData.js`, dan `src/data/bscVillasData.js`.
+   - **Headline Format**: Formula judul magnetis `[Nama Villa] – [Emotional/Architectural Hook] [X]BR [Kategori] in [Lokasi]`.
+   - **Why We Picked / Social Proof**: Menampilkan ulasan verbatim atau intisari testimoni terbaik tamu nyata (contoh: *"Ulasan tamu terbaik: 'Mahakarya arsitektur Biombo dengan nilai 10 sempurna! Kolam renang spektakuler, piano klasik, dan privasi mutlak di Pererenan.'"*).
+   - **Sensory VAK & Pacing-Leading**: Mengajak pembaca mengimajinasikan pengalaman menginap (*"Bayangkan Anda melangkah masuk...", "Hirup segarnya angin laut...", "Tenggelamkan diri Anda di sunken lounge..."*).
+
+5. **Hasil Verifikasi Build & Status Git**:
+   - Bundling Vite `npm run build` sukses 100% (0 error).
+   - Seluruh perubahan diverifikasi secara lokal.
+   - **ATURAN DIPATUHI: TIDAK DILAKUKAN `git push` SAMA SEKALI.**
