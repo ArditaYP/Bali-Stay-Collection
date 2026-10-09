@@ -1657,6 +1657,36 @@ src/
    - Pengujian fungsi scroll mengonfirmasi navbar tetap utuh dan pill pencarian berada rapi di baris bawah navbar.
    - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **DILARANG KERAS `git push`** ke remote repository.
 
+### 9.20 Desain Murni Floating Pill (Tanpa Strip Putih Ujung-ke-Ujung) & Animasi Perpindahan Ultra-Smooth
+1. **Latar Belakang & Permintaan Pengguna**:
+   - Pengguna meminta perbaikan visual dan animasi kapsul pencarian:
+     *"perpindahan nya buat animasi nya buat lebih smoot dan juga buat desain nya cuma seperti pill aja, jangan isi putih putih kotak dari ujung sampai ujung gitu"*.
+   - **Akar Masalah**:
+     - Sebelumnya, kapsul pencarian berada di dalam strip kontainer `.nav-sub-search-strip` yang memiliki latar belakang putih solid (`width: 100%`) membentang dari ujung kiri ke ujung kanan layar sehingga membentuk bilah horizontal tebal.
+     - Animasi kemunculan sebelumnya menggunakan keyframe `slideDownSubbar` standar dengan pemutusan DOM instan (`{isScrolledPastHero && ...}`) sehingga saat pengguna scroll balik ke atas, elemen menghilang tiba-tiba tanpa transisi keluar (*abrupt unmount*).
+2. **Solusi & Implementasi**:
+   - **Eliminasi Total Bilah Putih Ujung-ke-Ujung**:
+     - Wrapper diubah menjadi `.nav-floating-search-pill-wrapper` dengan `background: transparent !important`, `border: none !important`, `box-shadow: none !important`, dan `pointer-events: none`.
+     - Tidak ada lagi bilah putih memanjang di bawah navbar. Halaman konten di bawah navbar tetap mengalir bersih.
+     - Hanya tombol kapsul `.nav-sticky-search-pill` itu sendiri yang melayang secara mandiri (*standalone floating pill*) dengan `pointer-events: auto`.
+   - **Desain Kapsul Melayang Mewah (*Pure Floating Capsule Pill*)**:
+     - Sudut melengkung sempurna: `border-radius: 40px`.
+     - Bayangan melayang lembut & berkelas: `box-shadow: 0 8px 24px rgba(22, 41, 77, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04)`.
+     - Border tipis presisi: `1px solid rgba(22, 41, 77, 0.12)`.
+     - Efek hover interaktif: `transform: translateY(-2px)` dengan bayangan lebih kaya `box-shadow: 0 12px 32px rgba(22, 41, 77, 0.18)`.
+     - Ikon kaca pembesar dengan animasi micro-scale (`transform: scale(1.05)`) dan warna aksen emas (`#D2B073`) saat disorot.
+   - **Animasi Perpindahan Buttery-Smooth (Masuk & Keluar Berkesinambungan)**:
+     - Elemen tetap berada di DOM dan dikontrol secara dinamis menggunakan kelas `.is-visible` / `.is-hidden`.
+     - Menggunakan kurva kurvatur premium `cubic-bezier(0.16, 1, 0.3, 1)` dengan durasi 350ms:
+       - **Saat Scroll ke Bawah (Masuk)**: Kapsul meluncur turun dengan lembut dari `translateY(-14px) scale(0.96)` ke `translateY(0) scale(1)` dengan fade-in opacity 0 ke 1.
+       - **Saat Scroll ke Atas (Keluar)**: Kapsul meluncur naik dan memudar halus kembali ke posisi tersembunyi tanpa kedipan.
+3. **Verifikasi & Kepatuhan Aturan**:
+   - `npm run lint`: Lulus dengan 0 error.
+   - `npm run build`: Lulus 100% (2.88s, 0 error).
+   - Animasi teruji mulus 60 FPS pada GPU, dan bilah putih ujung-ke-ujung telah bersih total.
+   - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **DILARANG KERAS `git push`** ke remote repository.
+
+
 
 
 

@@ -193,7 +193,7 @@ export default function BscNavbar({
   return (
     <>
       {/* Header Navigasi Resmi dengan kelas dinamis nav-hero / nav-scrolled */}
-      <header className={`nav ${isScrolledPastHero ? 'nav-scrolled has-sticky-subbar' : 'nav-hero'}`}>
+      <header className={`nav ${isScrolledPastHero ? 'nav-scrolled' : 'nav-hero'}`}>
         <div className="nav-in">
           {/* Logo Brand Resmi */}
           <a
@@ -291,29 +291,31 @@ export default function BscNavbar({
           </div>
         </div>
 
-        {/* Kapsul Pencarian di Bawah Navbar Saat Di-Scroll */}
-        {isScrolledPastHero && (
-          <div className="nav-sub-search-strip">
-            <button
-              type="button"
-              className="nav-sticky-search-pill"
-              onClick={() => setIsExpandedSearchOpen(prev => !prev)}
-              aria-label="Search villas anywhere in Bali"
-            >
-              <span className="ns-pill-item bold">{activeLocation}</span>
-              <span className="ns-pill-divider" />
-              <span className="ns-pill-item">{activeDates}</span>
-              <span className="ns-pill-divider" />
-              <span className="ns-pill-item muted">{activeGuests}</span>
-              <span className="ns-pill-icon">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-              </span>
-            </button>
-          </div>
-        )}
+        {/* Kapsul Pencarian Melayang Murni (Floating Pill) di Bawah Navbar Saat Di-Scroll */}
+        <div 
+          className={`nav-floating-search-pill-wrapper ${isScrolledPastHero ? 'is-visible' : 'is-hidden'}`}
+          aria-hidden={!isScrolledPastHero}
+        >
+          <button
+            type="button"
+            className="nav-sticky-search-pill"
+            onClick={() => setIsExpandedSearchOpen(prev => !prev)}
+            aria-label="Search villas anywhere in Bali"
+            tabIndex={isScrolledPastHero ? 0 : -1}
+          >
+            <span className="ns-pill-item bold">{activeLocation}</span>
+            <span className="ns-pill-divider" />
+            <span className="ns-pill-item">{activeDates}</span>
+            <span className="ns-pill-divider" />
+            <span className="ns-pill-item muted">{activeGuests}</span>
+            <span className="ns-pill-icon">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+            </span>
+          </button>
+        </div>
 
         {/* OPSI A: FLOATING EXPANDED SEARCH PANEL DI BAWAH NAVBAR */}
         {isScrolledPastHero && isExpandedSearchOpen && (
