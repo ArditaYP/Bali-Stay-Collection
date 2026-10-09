@@ -41,6 +41,7 @@ export default function SearchModal({
       const name = (v.name || '').toLowerCase();
       const area = (v.area || v.location || '').toLowerCase();
       const desc = (v.desc || v.description || v.shortDesc || '').toLowerCase();
+      const tier = (v.tier || v.category || '').toLowerCase();
       const amArray = Array.isArray(v.am) ? v.am : (Array.isArray(v.amenities) ? v.amenities : (typeof v.am === 'string' ? [v.am] : []));
       const tripsArray = Array.isArray(v.trips) ? v.trips : (typeof v.trips === 'string' ? [v.trips] : []);
       const amenities = amArray.join(' ').toLowerCase();
