@@ -1062,6 +1062,7 @@ export const VILLA_COORDINATES_ALIAS = {
   'the-palms-villa-canggu': 'the-palms-villa-canggu',
   'villa-habitas': 'the-palms-villa-canggu',
   'tranquil-sanctuary-pererenan': 'the-palms-villa-canggu',
+  'house-terra': 'the-palms-villa-canggu',
   'tropical-canggu-villa': 'villa-samudra-canggu',
   'coco-bay': 'villa-samudra-canggu',
   'luxe-beach-villa-seminyak': 'villa-kayu-raja-seminyak',

@@ -317,6 +317,23 @@ OTHER THINGS TO NOTE
     description: 'A masterpiece of contemporary architecture on the border of Umalas and Berawa. Features five opulent master suites, private 18-meter swimming pool, sunken lounge, manicured lawn, and dedicated villa concierge.',
     amenities: ['Private pool', 'Dedicated staff', 'Chef on request', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Free parking']
   },
+  'house-terra': {
+    category: 'Premium',
+    price: 480,
+    freeCancel: true,
+    cardBg: '#CBB9C9',
+    bookedDays: [],
+    address: 'Pererenan, Badung, Bali',
+    location: 'Pererenan',
+    bedrooms: [
+      { name: 'Bedroom 1', detail: 'King bed · en-suite bathroom' },
+      { name: 'Bedroom 2', detail: 'King bed · en-suite bathroom' },
+      { name: 'Bedroom 3', detail: 'King bed · en-suite bathroom' },
+      { name: 'Bedroom 4', detail: '2 single beds + bunk beds · en-suite bathroom' },
+      { name: 'Bedroom 5', detail: 'King bed · en-suite bathroom' }
+    ],
+    amenities: ['Private pool', 'BBQ area', 'Media room with piano', 'Chef on request', 'Daily housekeeping', 'Concierge service', 'Full kitchen', 'Air conditioning', 'High-speed WiFi']
+  },
   'villa-imala': {
     name: 'Exclusive 6BR Uluwatu Villa with Gym & Ocean View',
     category: 'Luxury',

@@ -42,7 +42,8 @@ export const AIRBNB_ONLY_VILLA_IDS = ['villa-habitas',
   'beyond-the-palms',
   'villa-akar',
   'villa-golden',
-  'villa-surga'];
+  'villa-surga',
+  'house-terra'];
 
 /**
  * Daftar ID villa aktif dengan data autentik Airbnb
@@ -355,14 +356,18 @@ export const BSC_VILLAS = [
       "#CBB9C9",
       "#E9DCE6"
     ],
-    "img": "/airbnb/the-palms-villa-canggu/photos/photo-02.jpg",
-    "why": "Designed by Biombo Architects, with a private hot tub and a pool made for long afternoons in Pererenan.",
+    "img": "/airbnb/house-terra/photos/photo-01.jpg",
+    "why": "Rated 5.0 across all 17 Airbnb stays. Guests call it \"even better than the photos\", spotless, with a team that helps at any hour.",
     "cancel": "",
     "verified": false,
     "updated": "",
     "pick": true,
-    "desc": "5-bedroom private pool villa in Pererenan, for up to 12 guests. Features architect-designed and wellness facilities.",
-    "know": []
+    "desc": "Stunning architect-designed 5-bedroom pool villa in Pererenan for up to 12 guests, loved for its design, spotless upkeep and helpful staff.",
+    "know": [
+      "Airbnb Guest Favorite: 5.0 from 17 reviews, with perfect scores for cleanliness, accuracy and check-in.",
+      "Long tropical pool, sunken living lounge, BBQ lounge and a media room with piano.",
+      "In-villa chef, massage, airport transfer and tours on request through the concierge."
+    ]
   },
   {
     "id": "villa-kanopi",
