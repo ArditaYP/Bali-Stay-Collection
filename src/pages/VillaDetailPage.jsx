@@ -471,6 +471,19 @@ export default function VillaDetailPage({
     setIsDescExpanded(false);
   }, [villa]);
 
+  // Sinkronisasi tanggal dan tamu dari searchParams jika diperbarui dari luar (misal dari Top Picks Show Price)
+  useEffect(() => {
+    if (searchParams?.checkIn) {
+      setCheckIn(searchParams.checkIn);
+    }
+    if (searchParams?.checkOut) {
+      setCheckOut(searchParams.checkOut);
+    }
+    if (searchParams?.guests) {
+      setSelectedGuests(searchParams.guests);
+    }
+  }, [searchParams?.checkIn, searchParams?.checkOut, searchParams?.guests]);
+
   // Ekstraksi topik-topik mention yang relevan untuk villa ini
   const availableMentions = useMemo(() => getMentionsForReviews(reviews), [reviews]);
 

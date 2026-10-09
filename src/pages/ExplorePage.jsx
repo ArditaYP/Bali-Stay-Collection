@@ -207,6 +207,8 @@ export default function ExplorePage({
           savedVillaIds={savedVillaIds}
           onToggleSave={onToggleSave}
           onSelectVilla={onSelectVilla}
+          searchParams={searchParams}
+          onSearchParamsChange={setSearchParams}
         />
 
         {/* 7. All Villas: Find Your Villa (Katalog 51 Villa dengan Sidebar Filter & Paginasi) */}

@@ -1577,4 +1577,28 @@ src/
    - `npm run build` lulus 100% (2.92s, 0 error).
    - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **TIDAK ADA `git push`** yang dilakukan ke remote repository.
 
+### 9.17 Alur Interaktif "Show Price" pada Section Top Picks (#picks): Penundaan Tampilan Harga, Kalender Tanggal & Transisi Masuk ke Detail Villa
+1. **Latar Belakang & Permintaan Pengguna**:
+   - Pengguna meminta perubahan interaksi pada seksi `id="picks"` (Top Picks):
+     *"di section id="picks" itu hilangkan harga nya, arahan nya pencet show price => tanggal => muncul harga nya dan masuk ke dalam villa yang show price nya di pencet, apakah kamu mengerti?"*.
+2. **Implementasi & Solusi Interaksi**:
+   - **Penyembunyian Harga Awal (Clean Rate Prompt)**:
+     - Di seksi `#picks` ([`BscTopPicks.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscTopPicks.jsx)), nominal harga default (`$X / night`) dihilangkan secara default.
+     - Kartu villa menyajikan tombol primer **"Show price"** dengan ikon kalender elegan dan tombol sekunder **"View villa"**.
+   - **Modal Kalender Pemilihan Tanggal Interaktif**:
+     - Mengklik "Show price" membuka modal kalender mengambang di tengah layar (`picks-date-modal-overlay` dengan backdrop blur `rgba(8, 17, 36, 0.68)`).
+     - Menampilkan info ringkas villa target (foto thumbnail, nama villa, badge tier, area & kamar) serta kalender 2 bulan Airbnb (`AirbnbDatePopover`).
+   - **Kalkulasi Real-time & Auto-Redirect ke Detail Villa**:
+     - Begitu pengguna memilih tanggal Check-in dan Check-out, jumlah malam dan total tarif dihitung seketika (`rate x nights`).
+     - Banner konfirmasi hijau menampilkan status: *"Price Unlocked for Your Stay: $X / night · Total $Y for Z nights"*.
+     - Tanggal otomatis disinkronkan ke state global `searchParams` (`checkIn`, `checkOut`) via `onSearchParamsChange`.
+     - Setelah jeda feedback visual 550ms (atau saat tombol *"View Villa with This Price →"* diklik), sistem otomatis membawa pengguna masuk ke dalam halaman detail villa tersebut (`onSelectVilla(villa.id)`).
+   - **Sinkronisasi Otomatis ke Widget Reservasi Detail Villa**:
+     - Di [`VillaDetailPage.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/pages/VillaDetailPage.jsx), ditambahkan `useEffect` sinkronisasi `searchParams` sehingga tanggal yang baru saja dipilih di Top Picks langsung terpasang presisi pada widget pemesanan sidebar tanpa reload.
+3. **Verifikasi & Kepatuhan Aturan**:
+   - `npm run build` berhasil 100% (2.91s, 0 error compiler).
+   - `npm run lint` lulus dengan 0 error.
+   - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **TIDAK ADA `git push`** yang dilakukan ke remote repository.
+
+
 

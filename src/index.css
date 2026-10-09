@@ -7425,3 +7425,294 @@ mark.review-highlight {
   }
 }
 
+/* ============================================================== */
+/* TOP PICKS SHOW PRICE & DATE PICKER MODAL                       */
+/* ============================================================== */
+.picks-price-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.btn-show-price {
+  background: var(--ink, #16294D) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 10px 18px !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  cursor: pointer !important;
+  transition: all 0.18s ease !important;
+  white-space: nowrap !important;
+}
+
+.btn-show-price:hover {
+  background: #0C1B38 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(22, 41, 77, 0.22);
+}
+
+.btn-view-villa-alt {
+  background: #ffffff !important;
+  border: 1px solid var(--line, #E0E5E8) !important;
+  color: var(--ink, #16294D) !important;
+  border-radius: 12px !important;
+  padding: 10px 16px !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.18s ease !important;
+  white-space: nowrap !important;
+}
+
+.btn-view-villa-alt:hover {
+  border-color: var(--ink, #16294D) !important;
+  background: #F8FAFC !important;
+}
+
+.picks-unlocked-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11.5px;
+  color: #15803D;
+  background: #DCFCE7;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* Modal Backdrop & Container */
+.picks-date-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 17, 36, 0.68);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: picksModalFadeIn 0.2s ease;
+}
+
+.picks-date-modal-container {
+  background: #ffffff;
+  border-radius: 28px;
+  max-width: 780px;
+  width: 100%;
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.28), 0 0 1px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  animation: picksModalPopIn 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.picks-date-modal-header {
+  padding: 22px 26px 18px;
+  border-bottom: 1px solid var(--line, #E0E5E8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #FAF8F5;
+}
+
+.picks-date-modal-villa-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.picks-date-modal-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+}
+
+.picks-date-modal-text-wrap {
+  min-width: 0;
+}
+
+.picks-date-modal-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink, #16294D);
+  margin: 0 0 3px;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.picks-date-modal-subtitle {
+  font-size: 13px;
+  color: var(--ink-soft, #5A6A85);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.picks-modal-tier-tag {
+  background: #E8EEF5;
+  color: #16294D;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.picks-date-modal-close {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--line, #E0E5E8);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--ink, #16294D);
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.picks-date-modal-close:hover {
+  background: #F1F5F9;
+  border-color: #CBD5E1;
+  transform: scale(1.05);
+}
+
+.picks-date-modal-body {
+  padding: 16px 22px 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.picks-date-modal-body .dates-popover {
+  position: static !important;
+  transform: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Price Unlock Alert Banner */
+.picks-price-unlock-banner {
+  margin: 10px 24px 22px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #F0FDF4 0%, #DCFCE7 100%);
+  border: 1.5px solid #86EFAC;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  animation: picksBannerSlideUp 0.25s ease;
+}
+
+.picks-price-unlock-info {
+  min-width: 0;
+}
+
+.picks-price-unlock-heading {
+  font-size: 15px;
+  font-weight: 700;
+  color: #15803D;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.picks-price-unlock-details {
+  font-size: 13.5px;
+  color: #166534;
+  margin: 0;
+}
+
+.picks-price-unlock-details strong {
+  font-size: 16px;
+  font-weight: 700;
+  color: #14532D;
+}
+
+.picks-price-unlock-btn {
+  background: #15803D;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 11px 20px;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.picks-price-unlock-btn:hover {
+  background: #166534;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(21, 128, 61, 0.3);
+}
+
+@keyframes picksModalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes picksModalPopIn {
+  from { opacity: 0; transform: scale(0.96) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes picksBannerSlideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+  .picks-price-action {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-show-price, .btn-view-villa-alt {
+    width: 100%;
+    justify-content: center;
+  }
+  .picks-price-unlock-banner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .picks-price-unlock-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
