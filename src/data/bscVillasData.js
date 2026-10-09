@@ -1058,7 +1058,7 @@ export const BSC_VILLAS = [
     "beds": 5,
     "baths": 5,
     "guests": 10,
-    "price": 550,
+    "price": 480,
     "tier": "Premium",
     "trips": [
       "Friends group",
