@@ -1795,3 +1795,15 @@ src/
    - `npm run build`: **Lulus 100% (2.45s, 0 Error)**.
    - Tidak ada lagi `ReferenceError: useCallback is not defined` saat aplikasi dibuka atau saat fitur pencarian diakses.
    - **ATURAN GIT DIPATUHI SECARA KETAT**: Seluruh perbaikan hanya disimpan dalam commit lokal dan **DILARANG KERAS `git push`** ke remote GitHub.
+
+### 9.25 Sinkronisasi Push Penuh ke Remote Repository GitHub (origin/main)
+1. **Instruksi Pengguna**:
+   - Pengguna memberikan instruksi langsung: *"push ke githbu"*
+2. **Proses Eksekusi & Verifikasi Pre-Push**:
+   - Memastikan `npm run lint` lulus dengan **0 Error** (termasuk validasi aturan ketat `no-undef: error`).
+   - Memastikan `npm run build` lulus 100% tanpa kendala bundling.
+   - Menjalankan `git push origin main` untuk mengunggah 24 commit lokal (dari commit `7498fdf` hingga `f6c75bf`), mentransfer seluruh aset, ulasan, copywriting NLP, layout responsif, dan perbaikan stabilitas ke remote repository GitHub.
+3. **Hasil Akhir**:
+   - Status remote GitHub (`https://github.com/ArditaYP/Bali-Stay-Collection.git`):
+     `a90838e..f6c75bf  main -> main`
+   - Cabang lokal sinkron 100% dengan `origin/main` (`working tree clean`).
