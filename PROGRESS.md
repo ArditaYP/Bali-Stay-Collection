@@ -1600,5 +1600,38 @@ src/
    - `npm run lint` lulus dengan 0 error.
    - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **TIDAK ADA `git push`** yang dilakukan ke remote repository.
 
+### 9.18 Penyelarasan Posisi Tombol Horisontal & Penyempurnaan Desain Tombol pada Seksi Top Picks (#picks)
+1. **Latar Belakang & Masalah**:
+   - Pengguna melaporkan bahwa tombol pada kartu villa di seksi `id="picks"` (`BscTopPicks.jsx`) posisinya tidak rata secara horizontal di satu baris yang sama:
+     *"mungkin di perbaiki penempatan tombol dan desain tombol nya, karena saya lihat kurang sekali, tidak rata semua nya ada yang diatas banget ada yang agak ke bawha"*.
+   - **Akar Masalah**:
+     - Kontainer `.bsc-frontpage .pick` belum mengaktifkan `display: flex; flex-direction: column; height: 100%;`.
+     - Kontainer `.bsc-frontpage .pbody` belum mengaktifkan `display: flex; flex-direction: column; flex: 1;`.
+     - Judul villa `h3` dan kotak ulasan `.why` bervariasi panjangnya (antara 2 hingga 4 baris) tanpa `min-height` dan line clamp seragam.
+     - Baris tombol `.price-row` hanya memiliki `margin-top: 14px;` biasa (bukan `margin-top: auto;`), sehingga posisinya mengambang tergantung pada panjang ulasan di atasnya. Kartu dengan ulasan pendek membuat tombol melayang tinggi, sementara kartu dengan ulasan panjang membuat tombol terdorong ke bawah.
+     - Desain tombol di dalam `.picks-price-action` menggunakan `justify-content: space-between` dengan padding tidak seimbang dan tanpa tinggi seragam.
+2. **Solusi & Implementasi**:
+   - **Pensejajaran Sempurna ke Dasar Kartu (*Bottom-Pinned Alignment*)**:
+     - Pada [`src/components/frontpage/bscFrontpage.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/bscFrontpage.css):
+       - `.bsc-frontpage .pick`: Ditambahkan `display: flex; flex-direction: column; height: 100%;`.
+       - `.bsc-frontpage .pbody`: Ditambahkan `display: flex; flex-direction: column; flex: 1;`.
+       - `.bsc-frontpage .pbody h3`: Diberikan `min-height: 44px; line-height: 1.35; -webkit-line-clamp: 2;` sehingga judul 1 baris maupun 2 baris menempati tinggi yang persis sama.
+       - `.bsc-frontpage .why`: Diberikan `min-height: 72px; line-height: 1.45; -webkit-line-clamp: 3;` sehingga kotak ulasan tamu memiliki ketinggian seragam di seluruh kartu.
+       - `.bsc-frontpage .badges`: Diberikan margin bawah rapi `margin-bottom: 14px;`.
+       - `.bsc-frontpage .price-row`: Diberikan `margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line, #E8ECEF); width: 100%;`. Kunci `margin-top: auto;` menjamin bahwa seluruh tombol di baris grid manapun terkunci rata pada satu garis horizontal lurus yang sama.
+   - **Penyempurnaan Desain Tombol Modern & Simetris**:
+     - Pada [`src/index.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/index.css) & [`src/components/frontpage/BscTopPicks.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscTopPicks.jsx):
+       - `.picks-price-action`: Menggunakan layout grid 2-kolom seimbang 50%-50% (`display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%;`).
+       - **Tombol "Show price"**: Latar belakang signature navy BSC (`#16294D`), teks `#ffffff`, border `1.5px solid #16294D`, tinggi seragam `42px`, `border-radius: 12px`, ikon kalender SVG tajam, box shadow halus `0 2px 6px rgba(22, 41, 77, 0.14)`, hover `#0C1B38` dengan elevasi `translateY(-1px)`.
+       - **Tombol "View villa"**: Latar belakang slate lembut (`#F8FAFC`), border `1.5px solid #E2E8F0`, teks `#16294D`, tinggi seragam `42px`, `border-radius: 12px`, ikon panah kanan SVG tajam, hover putih (`#ffffff`) dengan border `#16294D` dan elevasi halus.
+       - **Kondisi Unlocked**: Tombol tunggal `.btn-view-villa-unlocked` dengan tinggi seragam `42px`, padding nyaman `0 16px`, ikon panah kanan, dan info tanggal/harga rapi di sisi kiri.
+       - **Responsif Mobile**: Pada layar <= 640px, tombol secara otomatis tertata rapi full-width vertikal (`grid-template-columns: 1fr;`).
+3. **Verifikasi & Kepatuhan Aturan**:
+   - `npm run lint`: Lulus dengan 0 error.
+   - `npm run build`: Lulus 100% (2.84s, 0 error).
+   - Seluruh baris kartu di grid 3-kolom Top Picks kini memiliki garis dasar tombol horizontal yang lurus, presisi, dan proporsional.
+   - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **DILARANG KERAS `git push`** ke remote repository.
+
+
 
 
