@@ -8,9 +8,9 @@ import { formatUSD } from '../data/villasData';
 const DEFAULT_PREFERRED_VILLA_IDS = [
   'st-lau-ubud',
   'iconic-cliff-top-villa',
-  'the-palms-villa-canggu',
+  'villa-habitas',
   'angkasa-ubud',
-  'villa-samudra-canggu'
+  'tropical-canggu-villa'
 ];
 
 /**

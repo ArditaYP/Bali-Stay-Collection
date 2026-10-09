@@ -26,37 +26,37 @@ export const VILLA_COORDINATES = {
     areaName: 'Sayan Valley, Ubud',
     subtitle: 'Hovering above the lush Ayung River rainforest canopy.'
   },
-  'villa-samudra-canggu': {
+  'tropical-canggu-villa': {
     lat: -8.6540,
     lng: 115.1260,
     areaName: 'Echo Beach, Canggu',
     subtitle: 'Only 400m from world-famous surf breaks, beach clubs, and cafes.'
   },
-  'the-palms-villa-canggu': {
+  'villa-habitas': {
     lat: -8.6480,
     lng: 115.1220,
     areaName: 'Pererenan, Canggu',
     subtitle: 'Walkable to trendy cafes & bars, 5 min ride to Echo Beach & Canggu center.'
   },
-  'villa-kayu-raja-seminyak': {
+  'luxe-beach-villa-seminyak': {
     lat: -8.6830,
     lng: 115.1575,
     areaName: 'Petitenget, Seminyak',
     subtitle: 'Steps from iconic beach clubs like Potato Head & world-class dining.'
   },
-  'villa-cendana-seminyak': {
+  'the-bull-house': {
     lat: -8.6890,
     lng: 115.1610,
     areaName: 'Kayu Aya, Seminyak',
     subtitle: 'Private hideaway off Eat Street with vibrant nightlife and boutiques nearby.'
   },
-  'cliffside-panorama-uluwatu': {
+  'yellow-moon-uluwatu': {
     lat: -8.8055,
     lng: 115.1120,
     areaName: 'Bingin Beach, Uluwatu',
     subtitle: 'Commanding cliff front near Bingin surf break and cliffside seafood grills.'
   },
-  'mandapa-jungle-villa': {
+  'villa-surga': {
     lat: -8.5030,
     lng: 115.2410,
     areaName: 'Sayan Ridge, Ubud',
@@ -347,7 +347,7 @@ export const NEARBY_PLACES_BY_VILLA = {
   ],
 
   // 4. VILLA SAMUDRA CANGGU
-  'villa-samudra-canggu': [
+  'tropical-canggu-villa': [
     {
       id: 'vs-1',
       name: 'Echo Beach',
@@ -447,7 +447,7 @@ export const NEARBY_PLACES_BY_VILLA = {
   ],
 
   // 5. VILLA HABITAS (4BR PERERENAN POOL VILLA)
-  'the-palms-villa-canggu': [
+  'villa-habitas': [
     {
       id: 'tp-1',
       name: 'Pantai Pererenan (Pererenan Beach)',
@@ -535,7 +535,7 @@ export const NEARBY_PLACES_BY_VILLA = {
   ],
 
   // 6. VILLA KAYU RAJA SEMINYAK
-  'villa-kayu-raja-seminyak': [
+  'luxe-beach-villa-seminyak': [
     {
       id: 'kr-1',
       name: 'Potato Head Beach Club',
@@ -623,7 +623,7 @@ export const NEARBY_PLACES_BY_VILLA = {
   ],
 
   // 7. VILLA CENDANA SEMINYAK
-  'villa-cendana-seminyak': [
+  'the-bull-house': [
     {
       id: 'vc-1',
       name: 'Eat Street (Jalan Kayu Aya)',
@@ -699,7 +699,7 @@ export const NEARBY_PLACES_BY_VILLA = {
   ],
 
   // 8. CLIFFSIDE PANORAMA ULUWATU
-  'cliffside-panorama-uluwatu': [
+  'yellow-moon-uluwatu': [
     {
       id: 'cp-1',
       name: 'Bingin Beach',
@@ -787,7 +787,7 @@ export const NEARBY_PLACES_BY_VILLA = {
   ],
 
   // 9. MANDAPA JUNGLE VILLA UBUD
-  'mandapa-jungle-villa': [
+  'villa-surga': [
     {
       id: 'mj-1',
       name: 'Ayung River Valley & Rafting',
@@ -1056,48 +1056,48 @@ export const NEARBY_PLACES_BY_VILLA = {
  */
 export const VILLA_COORDINATES_ALIAS = {
   'villa-infinity-umalas': 'five-bedroom-designer-umalas',
-  'villa-satiya': 'the-palms-villa-canggu',
-  'alua-loft': 'the-palms-villa-canggu',
+  'villa-satiya': 'villa-habitas',
+  'alua-loft': 'villa-habitas',
   'villa-aless': 'five-bedroom-designer-umalas',
-  'wellness-estate-canggu': 'villa-samudra-canggu',
-  'beachside-haven-canggu': 'villa-samudra-canggu',
-  'villa-milana': 'villa-samudra-canggu',
-  'coco-bay': 'villa-samudra-canggu',
-  'berawa-breeze': 'villa-samudra-canggu',
+  'wellness-estate-canggu': 'tropical-canggu-villa',
+  'beachside-haven-canggu': 'tropical-canggu-villa',
+  'villa-milana': 'tropical-canggu-villa',
+  'coco-bay': 'tropical-canggu-villa',
+  'berawa-breeze': 'tropical-canggu-villa',
   'the-bull-house': 'five-bedroom-designer-umalas',
-  'cala-blanca': 'the-palms-villa-canggu',
-  'villa-daun-by-teduh': 'villa-samudra-canggu',
-  'designer-beachside-canggu': 'villa-samudra-canggu',
-  'magnificent-canggu-estate': 'villa-samudra-canggu',
+  'cala-blanca': 'villa-habitas',
+  'villa-daun-by-teduh': 'tropical-canggu-villa',
+  'designer-beachside-canggu': 'tropical-canggu-villa',
+  'magnificent-canggu-estate': 'tropical-canggu-villa',
   // Alias 13 Villa Airbnb Utama
   'st-lau': 'st-lau-ubud',
   'balangan-cliff-villa': 'iconic-cliff-top-villa',
   'villa-angkasa': 'angkasa-ubud',
-  'the-palms-villa-canggu': 'the-palms-villa-canggu',
-  'villa-habitas': 'the-palms-villa-canggu',
-  'tranquil-sanctuary-pererenan': 'the-palms-villa-canggu',
-  'house-terra': 'the-palms-villa-canggu',
-  'tropical-canggu-villa': 'villa-samudra-canggu',
-  'coco-bay': 'villa-samudra-canggu',
-  'luxe-beach-villa-seminyak': 'villa-kayu-raja-seminyak',
-  'the-bull-house': 'villa-kayu-raja-seminyak',
-  'villa-cendana-seminyak': 'villa-cendana-seminyak',
-  'villa-kanopi': 'villa-cendana-seminyak',
-  'yellow-moon-uluwatu': 'cliffside-panorama-uluwatu',
-  'villa-imala': 'cliffside-panorama-uluwatu',
-  'casa-kaya-bingin': 'cliffside-panorama-uluwatu',
-  'luxury-tropical-bingin': 'cliffside-panorama-uluwatu',
-  'chic-tropical-bingin': 'cliffside-panorama-uluwatu',
+  'villa-habitas': 'villa-habitas',
+  'villa-habitas': 'villa-habitas',
+  'tranquil-sanctuary-pererenan': 'villa-habitas',
+  'house-terra': 'villa-habitas',
+  'tropical-canggu-villa': 'tropical-canggu-villa',
+  'coco-bay': 'tropical-canggu-villa',
+  'luxe-beach-villa-seminyak': 'luxe-beach-villa-seminyak',
+  'the-bull-house': 'luxe-beach-villa-seminyak',
+  'the-bull-house': 'the-bull-house',
+  'villa-kanopi': 'the-bull-house',
+  'yellow-moon-uluwatu': 'yellow-moon-uluwatu',
+  'villa-imala': 'yellow-moon-uluwatu',
+  'casa-kaya-bingin': 'yellow-moon-uluwatu',
+  'luxury-tropical-bingin': 'yellow-moon-uluwatu',
+  'chic-tropical-bingin': 'yellow-moon-uluwatu',
   'tropical-elegance-seseh': 'tropical-elegance-seseh',
   'five-bedroom-designer-umalas': 'five-bedroom-designer-umalas',
-  'mandapa-jungle-villa': 'mandapa-jungle-villa',
-  'villa-surga': 'mandapa-jungle-villa',
-  'house-terra': 'the-palms-villa-canggu',
-  'villa-mahina': 'villa-samudra-canggu',
-  'khaleela-villas': 'villa-samudra-canggu',
-  'beyond-the-palms': 'villa-samudra-canggu',
-  'villa-akar': 'villa-samudra-canggu',
-  'villa-golden': 'villa-samudra-canggu'
+  'villa-surga': 'villa-surga',
+  'villa-surga': 'villa-surga',
+  'house-terra': 'villa-habitas',
+  'villa-mahina': 'tropical-canggu-villa',
+  'khaleela-villas': 'tropical-canggu-villa',
+  'beyond-the-palms': 'tropical-canggu-villa',
+  'villa-akar': 'tropical-canggu-villa',
+  'villa-golden': 'tropical-canggu-villa'
 };
 
 /**
@@ -1125,7 +1125,7 @@ export function getVillaCoordinates(villaId, villa = null) {
     return VILLA_COORDINATES['iconic-cliff-top-villa'];
   }
   if (area.includes('pererenan')) {
-    return VILLA_COORDINATES['the-palms-villa-canggu'];
+    return VILLA_COORDINATES['villa-habitas'];
   }
   if (area.includes('seseh')) {
     return VILLA_COORDINATES['tropical-elegance-seseh'];
@@ -1134,10 +1134,10 @@ export function getVillaCoordinates(villaId, villa = null) {
     return VILLA_COORDINATES['five-bedroom-designer-umalas'];
   }
   if (area.includes('canggu') || area.includes('berawa')) {
-    return VILLA_COORDINATES['villa-samudra-canggu'];
+    return VILLA_COORDINATES['tropical-canggu-villa'];
   }
   if (area.includes('seminyak') || area.includes('petitenget') || area.includes('kerobokan')) {
-    return VILLA_COORDINATES['villa-kayu-raja-seminyak'];
+    return VILLA_COORDINATES['luxe-beach-villa-seminyak'];
   }
   if (area.includes('ubud') || area.includes('sayan') || area.includes('gianyar')) {
     return VILLA_COORDINATES['st-lau-ubud'];
@@ -1168,7 +1168,7 @@ export function getNearbyPlaces(villaId, villa = null) {
     return NEARBY_PLACES_BY_VILLA['iconic-cliff-top-villa'];
   }
   if (area.includes('pererenan')) {
-    return NEARBY_PLACES_BY_VILLA['the-palms-villa-canggu'];
+    return NEARBY_PLACES_BY_VILLA['villa-habitas'];
   }
   if (area.includes('seseh')) {
     return NEARBY_PLACES_BY_VILLA['tropical-elegance-seseh'];
@@ -1177,10 +1177,10 @@ export function getNearbyPlaces(villaId, villa = null) {
     return NEARBY_PLACES_BY_VILLA['five-bedroom-designer-umalas'];
   }
   if (area.includes('canggu') || area.includes('berawa')) {
-    return NEARBY_PLACES_BY_VILLA['villa-samudra-canggu'];
+    return NEARBY_PLACES_BY_VILLA['tropical-canggu-villa'];
   }
   if (area.includes('seminyak') || area.includes('petitenget') || area.includes('kerobokan')) {
-    return NEARBY_PLACES_BY_VILLA['villa-kayu-raja-seminyak'];
+    return NEARBY_PLACES_BY_VILLA['luxe-beach-villa-seminyak'];
   }
   if (area.includes('ubud') || area.includes('sayan') || area.includes('gianyar')) {
     return NEARBY_PLACES_BY_VILLA['st-lau-ubud'];

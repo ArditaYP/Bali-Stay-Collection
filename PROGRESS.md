@@ -1374,3 +1374,38 @@ src/
    - **Vite Build**: Lolos 100% tanpa error (`npm run build`).
    - **Git Push**: **DILARANG DAN TIDAK DILAKUKAN `git push`**. Seluruh pengerjaan dikomit di lokal saja sesuai instruksi pengguna.
 
+### 9.10 Pembersihan Total 5 Villa Dummy & Penarikan Penuh Seluruh Foto Asli Airbnb (35 Villa Murni, 3.427 Foto Lokal)
+1. **Latar Belakang & Keluhan Pengguna**:
+   - Pengguna menemukan masih ada data dummy di katalog seperti `Cliffside Panorama – Oceanfront Infinity Villa in Uluwatu` dan foto/review yang belum lengkap.
+   - Instruksi tegas:
+     1. *"tolong yang tidak ada airbnb nya di hilangkan saja dulu"*
+     2. *"dan yang ada airbnb nya pastikan semua foto nya masuk"*
+2. **Eliminasi 5 Villa Dummy & 1 Duplikat**:
+   - Berhasil menghapus 5 entri buatan/dummy yang tidak memiliki listing asli di Airbnb:
+     1. `cliffside-panorama-uluwatu`
+     2. `mandapa-jungle-villa`
+     3. `villa-kayu-raja-seminyak`
+     4. `villa-cendana-seminyak`
+     5. `villa-samudra-canggu`
+     6. Serta alias duplikat `the-palms-villa-canggu` (digantikan langsung oleh ID kanonikal `villa-habitas`).
+   - Direktori lokal sampah di `public/airbnb/` untuk ke-5 dummy tersebut telah dihapus secara bersih.
+3. **Penarikan SEMUA Foto Listing Asli Airbnb (Full Photo Tour)**:
+   - Batasan pemotongan foto (sebelumnya hanya 15-20 foto) telah dihapus sepenuhnya.
+   - Skrip `scripts/clean-dummy-and-sync-photos.mjs` mengekstrak seluruh `mediaItems` dari `PHOTO_TOUR_SCROLLABLE` Airbnb asli.
+   - Total **3.427 foto HD lokal** tersimpan rapi di disk dan terhubung ke katalog & detail modal (rata-rata 34 hingga 214 foto per villa):
+     - Contoh: `coco-bay` (214 foto), `designer-beachside-canggu` (184 foto), `villa-satiya` (157 foto), `the-bull-house` (154 foto), `iconic-cliff-top-villa` (154 foto), `wellness-estate-canggu` (136 foto), `villa-milana` (134 foto), `yellow-moon-uluwatu` (130 foto), `magnificent-canggu-estate` (121 foto), `berawa-breeze` (121 foto), `beyond-the-palms` (120 foto), `villa-surga` (108 foto), `st-lau-ubud` (107 foto), `house-terra` (103 foto), `cala-blanca` (100 foto), `villa-daun-by-teduh` (92 foto), `villa-habitas` (97 foto), `five-bedroom-designer-umalas` (83 foto), `villa-golden` (81 foto), `beachside-haven-canggu` (79 foto), `angkasa-ubud` (77 foto), `villa-infinity-umalas` (77 foto), `casa-kaya-bingin` (77 foto), `tropical-elegance-seseh` (77 foto), `villa-imala` (73 foto), `luxury-tropical-bingin` (63 foto), `chic-tropical-bingin` (62 foto), `tranquil-sanctuary-pererenan` (61 foto), `villa-aless` (56 foto), `alua-loft` (48 foto), `villa-akar` (41 foto), `villa-mahina` (34 foto), `khaleela-villas` (19 foto).
+4. **Pembaruan Sebaran Kawasan (Murni 35 Villa Asli)**:
+   - `DESTINATIONS_SUMMARY` diperbarui presisi:
+     - Canggu & Berawa: 14 villa
+     - Pererenan: 6 villa
+     - Uluwatu & Bukit: 6 villa
+     - Umalas & Seminyak: 5 villa
+     - Ubud: 3 villa
+     - Seseh: 1 villa
+     - **Total: Tepat 35 Villa Mewah Autentik Airbnb**.
+5. **Verifikasi Build & Status Git**:
+   - `npm run build` berhasil 100% (0 error).
+   - Seluruh perubahan diverifikasi dan dikomit secara lokal.
+   - **TIDAK ADA `git push`** yang dilakukan ke remote repository.
+
+

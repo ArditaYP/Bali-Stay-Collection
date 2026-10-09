@@ -15,37 +15,10 @@ import { BSC_VILLAS, ACTIVE_AIRBNB_VILLA_IDS, AIRBNB_ONLY_VILLA_IDS } from './da
 
 /** Pemetaan ID alias antara katalog villa dan data asli airbnbVillas */
 const VILLA_ALIAS_MAP = {
-  'villa-infinity-umalas': 'villa-infinity-umalas',
-  'villa-satiya': 'villa-satiya',
-  'alua-loft': 'alua-loft',
-  'villa-aless': 'villa-aless',
-  'wellness-estate-canggu': 'wellness-estate-canggu',
-  'beachside-haven-canggu': 'beachside-haven-canggu',
-  'villa-milana': 'villa-milana',
-  'coco-bay': 'coco-bay',
-  'berawa-breeze': 'berawa-breeze',
-  'the-bull-house': 'the-bull-house',
-  'cala-blanca': 'cala-blanca',
-  'villa-daun-by-teduh': 'villa-daun-by-teduh',
-  'designer-beachside-canggu': 'designer-beachside-canggu',
-  'magnificent-canggu-estate': 'magnificent-canggu-estate',
-  'house-terra': 'house-terra',
-  'villa-habitas': 'villa-habitas',
-  'the-palms-villa-canggu': 'villa-habitas',
   'st-lau': 'st-lau-ubud',
   'balangan-cliff-villa': 'iconic-cliff-top-villa',
   'villa-angkasa': 'angkasa-ubud',
-  'coco-bay': 'villa-samudra-canggu',
-  'the-bull-house': 'villa-kayu-raja-seminyak',
-  'villa-imala': 'villa-imala',
-  'villa-kanopi': 'villa-cendana-seminyak',
-  'villa-mahina': 'villa-mahina',
-  'khaleela-villas': 'khaleela-villas',
-  'beyond-the-palms': 'beyond-the-palms',
-  'villa-akar': 'villa-akar',
-  'villa-golden': 'villa-golden',
-  'villa-surga': 'villa-surga',
-  'house-terra': 'house-terra'
+  'the-palms-villa-canggu': 'villa-habitas'
 };
 
 /**

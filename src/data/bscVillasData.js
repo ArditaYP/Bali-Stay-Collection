@@ -24,19 +24,19 @@ export const CONFIG = {
  * (termasuk 4 villa awal: Habitas, Balangan, St. Lau, Angkasa + 9 villa baru)
  */
 export const AIRBNB_ONLY_VILLA_IDS = [
+  "st-lau-ubud",
+  "iconic-cliff-top-villa",
+  "angkasa-ubud",
   "villa-habitas",
   "tranquil-sanctuary-pererenan",
   "tropical-canggu-villa",
   "luxe-beach-villa-seminyak",
   "tropical-elegance-seseh",
-  "balangan-cliff-villa",
   "yellow-moon-uluwatu",
-  "st-lau",
   "casa-kaya-bingin",
   "luxury-tropical-bingin",
   "chic-tropical-bingin",
   "five-bedroom-designer-umalas",
-  "villa-angkasa",
   "villa-imala",
   "villa-mahina",
   "khaleela-villas",
@@ -45,11 +45,6 @@ export const AIRBNB_ONLY_VILLA_IDS = [
   "villa-golden",
   "villa-surga",
   "house-terra",
-  "villa-samudra-canggu",
-  "villa-kayu-raja-seminyak",
-  "villa-cendana-seminyak",
-  "cliffside-panorama-uluwatu",
-  "mandapa-jungle-villa",
   "magnificent-canggu-estate",
   "designer-beachside-canggu",
   "villa-daun-by-teduh",
@@ -126,7 +121,7 @@ export const DESTINATIONS_SUMMARY = [
   },
   {
     name: 'Canggu & Berawa',
-    count: 15,
+    count: 14,
     badge: '★ Most Popular Hub',
     layout: 'wide',
     description: 'Cafés, iconic beach clubs, and legendary surf breaks. The most vibrant epicenter of coastal Bali.',
@@ -137,7 +132,7 @@ export const DESTINATIONS_SUMMARY = [
   },
   {
     name: 'Uluwatu & Bukit',
-    count: 7,
+    count: 6,
     badge: 'Clifftops & Sunsets',
     layout: 'norm',
     description: 'Dramatic ocean limestone cliffs, world-class surf, and sunset beach clubs.',
@@ -148,7 +143,7 @@ export const DESTINATIONS_SUMMARY = [
   },
   {
     name: 'Umalas & Seminyak',
-    count: 7,
+    count: 5,
     badge: 'Dining & Boutiques',
     layout: 'norm',
     description: 'World-class dining and chic designer boutiques tucked between rice paddies.',
@@ -169,7 +164,7 @@ export const DESTINATIONS_SUMMARY = [
   },
   {
     name: 'Ubud',
-    count: 4,
+    count: 3,
     badge: 'Cultural Sanctuary',
     layout: 'full',
     description: 'Lush rainforest valleys, emerald rice terraces, and tranquil highland mornings.',
@@ -228,6 +223,75 @@ export const TEAM_MEMBERS = [
 
 export const BSC_VILLAS = [
   {
+    "id": "angkasa-ubud",
+    "name": "Villa Angkasa – Majestic 5BR Rainforest Infinity Villa in Ubud",
+    "area": "Ubud",
+    "beds": 5,
+    "guests": 10,
+    "baths": 5.5,
+    "price": 580,
+    "priceIdr": 9280000,
+    "rating": 4.74,
+    "reviews": 23,
+    "badge": "Guest Favorite",
+    "matchScore": 98,
+    "img": "/airbnb/angkasa-ubud/photos/photo-01.jpg",
+    "desc": "Rasakan sensasi melayang di atas kanopi lembah Sungai Ayung dari infinity pool spektakuler villa 5 kamar ini. Udara pegunungan Ubud yang sejuk dan suara alam yang menenteramkan akan memulihkan energi tubuh dan jiwa Anda secara menyeluruh.",
+    "why": "Rasakan sensasi melayang di atas kanopi lembah Sungai Ayung dari infinity pool spektakuler villa 5 kamar ini. Udara pegunungan Ubud yang sejuk dan suara alam yang menenteramkan akan memulihkan energi tubuh dan jiwa Anda secara menyeluruh.",
+    "amenities": [
+      "Private pool",
+      "High-speed WiFi",
+      "Air conditioning",
+      "Daily housekeeping"
+    ]
+  },
+  {
+    "id": "iconic-cliff-top-villa",
+    "name": "Balangan Cliff Villa – Iconic 5BR Cliff-Edge Oceanfront Estate",
+    "area": "Uluwatu & Bukit",
+    "beds": 5,
+    "guests": 10,
+    "baths": 4.5,
+    "price": 1200,
+    "priceIdr": 19200000,
+    "rating": 4.42,
+    "reviews": 24,
+    "badge": "Guest Favorite",
+    "matchScore": 98,
+    "img": "/airbnb/iconic-cliff-top-villa/photos/photo-01.jpg",
+    "desc": "Tataplah cakrawala Samudra Hindia yang membentang tanpa batas tepat di depan mata Anda. Bertengger megah di atas tebing kapur Balangan, estate 5 kamar tidur ini menyuguhkan kemegahan matahari terbenam spektakuler dan akses pantai eksklusif yang tak terlupakan.",
+    "why": "Tataplah cakrawala Samudra Hindia yang membentang tanpa batas tepat di depan mata Anda. Bertengger megah di atas tebing kapur Balangan, estate 5 kamar tidur ini menyuguhkan kemegahan matahari terbenam spektakuler dan akses pantai eksklusif yang tak terlupakan.",
+    "amenities": [
+      "Private pool",
+      "High-speed WiFi",
+      "Air conditioning",
+      "Daily housekeeping"
+    ]
+  },
+  {
+    "id": "st-lau-ubud",
+    "name": "St. Lau – Timeless 3BR Jungle Sanctuary in Ubud",
+    "area": "Ubud",
+    "beds": 3,
+    "guests": 8,
+    "baths": 3,
+    "price": 420,
+    "priceIdr": 6720000,
+    "rating": 4.8,
+    "reviews": 46,
+    "badge": "Guest Favorite",
+    "matchScore": 98,
+    "img": "/airbnb/st-lau-ubud/photos/photo-01.jpg",
+    "desc": "Biarkan ketenangan hutan tropis Ubud memeluk seluruh panca indera Anda. Dengan dek kolam renang privat yang menghadap rerimbunan hijau dan sentuhan arsitektur khas Bali, villa 3 kamar ini adalah tempat di mana pikiran Anda menemukan kedamaian mutlak.",
+    "why": "Biarkan ketenangan hutan tropis Ubud memeluk seluruh panca indera Anda. Dengan dek kolam renang privat yang menghadap rerimbunan hijau dan sentuhan arsitektur khas Bali, villa 3 kamar ini adalah tempat di mana pikiran Anda menemukan kedamaian mutlak.",
+    "amenities": [
+      "Private pool",
+      "High-speed WiFi",
+      "Air conditioning",
+      "Daily housekeeping"
+    ]
+  },
+  {
     "id": "villa-habitas",
     "name": "Villa Habitas – Serene 4BR Lagoon Sanctuary in Pererenan",
     "area": "Pererenan",
@@ -266,7 +330,9 @@ export const BSC_VILLAS = [
       "A nanny service and pool fence are available on request through our concierge.",
       "Free parking fits up to 2 cars plus scooters."
     ],
-    "aliasId": "villa-habitas"
+    "aliasId": "villa-habitas",
+    "rating": 5,
+    "reviews": 2
   },
   {
     "id": "tranquil-sanctuary-pererenan",
@@ -307,7 +373,9 @@ export const BSC_VILLAS = [
     "know": [
       "Located in a tranquil lane with minimal traffic.",
       "Walking distance to top Pererenan cafés and bakeries."
-    ]
+    ],
+    "rating": 4.89,
+    "reviews": 38
   },
   {
     "id": "tropical-canggu-villa",
@@ -347,7 +415,9 @@ export const BSC_VILLAS = [
     "know": [
       "Moments from Canggu's best dining and beach clubs.",
       "Spacious living pavilion perfect for groups."
-    ]
+    ],
+    "rating": 4.93,
+    "reviews": 72
   },
   {
     "id": "luxe-beach-villa-seminyak",
@@ -388,7 +458,9 @@ export const BSC_VILLAS = [
     "know": [
       "Steps from Seminyak Beach and famous beach clubs.",
       "Open-air tropical living area with private pool."
-    ]
+    ],
+    "rating": 4.81,
+    "reviews": 58
   },
   {
     "id": "tropical-elegance-seseh",
@@ -429,50 +501,9 @@ export const BSC_VILLAS = [
     "know": [
       "Nestled in peaceful Seseh, free from heavy traffic.",
       "Short stroll to black-sand coastline and coastal walks."
-    ]
-  },
-  {
-    "id": "balangan-cliff-villa",
-    "name": "Balangan Cliff Villa – Iconic 5BR Cliff-Edge Oceanfront Estate",
-    "area": "Uluwatu & Bukit",
-    "beds": 5,
-    "baths": 5,
-    "guests": 10,
-    "price": 495,
-    "tier": "Premium",
-    "trips": [
-      "Friends group",
-      "Family",
-      "Celebration"
     ],
-    "setting": [
-      "Ocean view",
-      "Cliff top",
-      "Walk to the beach"
-    ],
-    "am": [
-      "Private pool",
-      "Daily staff",
-      "Chef on request",
-      "Villa manager",
-      "Wellness facilities"
-    ],
-    "tone": [
-      "#9FB7C7",
-      "#D5E2EA"
-    ],
-    "img": "/airbnb/iconic-cliff-top-villa/photos/photo-01.jpg",
-    "why": "Ulasan tamu terbaik: 'Panorama matahari terbenam 180° langsung di atas tebing laut lepas yang tiada duanya di seluruh Bali.'",
-    "cancel": "Free reschedule",
-    "verified": true,
-    "updated": "Oct 2026",
-    "pick": true,
-    "desc": "Tataplah cakrawala Samudra Hindia yang membentang tanpa batas tepat di depan mata Anda. Bertengger megah di atas tebing kapur Balangan, estate 5 kamar tidur ini menyuguhkan kemegahan matahari terbenam spektakuler dan akses pantai eksklusif yang tak terlupakan.",
-    "know": [
-      "Cliff-edge infinity swimming pool facing the Indian Ocean horizon.",
-      "Short walking access down to Balangan surf beach."
-    ],
-    "aliasId": "iconic-cliff-top-villa"
+    "rating": 4.98,
+    "reviews": 43
   },
   {
     "id": "yellow-moon-uluwatu",
@@ -513,49 +544,9 @@ export const BSC_VILLAS = [
     "know": [
       "Convenient access to top surf breaks in Uluwatu and Padang Padang.",
       "Sunken outdoor lounge beside the swimming pool."
-    ]
-  },
-  {
-    "id": "st-lau",
-    "name": "St. Lau – Timeless 3BR Jungle Sanctuary in Ubud",
-    "area": "Ubud",
-    "beds": 3,
-    "baths": 3,
-    "guests": 8,
-    "price": 310,
-    "tier": "Deluxe",
-    "trips": [
-      "Friends group",
-      "Family",
-      "Wellness retreat"
     ],
-    "setting": [
-      "Garden setting",
-      "Rice-field view"
-    ],
-    "am": [
-      "Private pool",
-      "Daily staff",
-      "Chef on request",
-      "Villa manager",
-      "Wellness facilities"
-    ],
-    "tone": [
-      "#C7CDBB",
-      "#E2E7D6"
-    ],
-    "img": "/airbnb/st-lau-ubud/photos/photo-01.jpg",
-    "why": "Ulasan tamu terbaik: 'Suasana hening yang magis di Ubud. Stafnya sangat penuh perhatian, membuat kami merasa dimanjakan seutuhnya.'",
-    "cancel": "Free reschedule",
-    "verified": true,
-    "updated": "Oct 2026",
-    "pick": true,
-    "desc": "Biarkan ketenangan hutan tropis Ubud memeluk seluruh panca indera Anda. Dengan dek kolam renang privat yang menghadap rerimbunan hijau dan sentuhan arsitektur khas Bali, villa 3 kamar ini adalah tempat di mana pikiran Anda menemukan kedamaian mutlak.",
-    "know": [
-      "Open-plan living spaces flow onto private pool deck surrounded by tropical greenery.",
-      "Conveniently close to Ubud centre and Monkey Forest sanctuary."
-    ],
-    "aliasId": "st-lau-ubud"
+    "rating": 4.8,
+    "reviews": 50
   },
   {
     "id": "casa-kaya-bingin",
@@ -595,7 +586,9 @@ export const BSC_VILLAS = [
     "know": [
       "Minutes from Bingin Beach stairs and cafés.",
       "Minimalist Mediterranean-inspired architectural details."
-    ]
+    ],
+    "rating": 4.88,
+    "reviews": 31
   },
   {
     "id": "luxury-tropical-bingin",
@@ -636,7 +629,9 @@ export const BSC_VILLAS = [
     "know": [
       "Surrounded by tropical frangipani and palm trees.",
       "Easy access to Bingin and Padang Padang beaches."
-    ]
+    ],
+    "rating": 4.76,
+    "reviews": 37
   },
   {
     "id": "chic-tropical-bingin",
@@ -676,7 +671,9 @@ export const BSC_VILLAS = [
     "know": [
       "Exceptional 4.97 rating across 30+ verified guest reviews.",
       "Minutes from Bingin surf breaks and sunset cliff spots."
-    ]
+    ],
+    "rating": 4.97,
+    "reviews": 30
   },
   {
     "id": "five-bedroom-designer-umalas",
@@ -716,47 +713,9 @@ export const BSC_VILLAS = [
     "know": [
       "Features large 18-meter swimming pool and manicured estate grounds.",
       "Prime location bridging quiet Umalas and vibrant Berawa."
-    ]
-  },
-  {
-    "id": "villa-angkasa",
-    "name": "Villa Angkasa – Majestic 5BR Rainforest Infinity Villa in Ubud",
-    "area": "Ubud",
-    "beds": 5,
-    "baths": 6,
-    "guests": 10,
-    "price": 420,
-    "tier": "Deluxe",
-    "trips": [
-      "Friends group",
-      "Family",
-      "Celebration"
     ],
-    "setting": [
-      "Rice-field view"
-    ],
-    "am": [
-      "Private pool",
-      "Daily staff",
-      "Chef on request",
-      "Wellness facilities"
-    ],
-    "tone": [
-      "#C7CDBB",
-      "#E2E7D6"
-    ],
-    "img": "/airbnb/angkasa-ubud/photos/photo-01.jpg",
-    "why": "Ulasan tamu terbaik: 'Berenang di infinity pool yang seakan melayang di atas kanopi lembah Sungai Ayung adalah pengalaman spiritual.'",
-    "cancel": "Free reschedule",
-    "verified": true,
-    "updated": "Oct 2026",
-    "pick": true,
-    "desc": "Rasakan sensasi melayang di atas kanopi lembah Sungai Ayung dari infinity pool spektakuler villa 5 kamar ini. Udara pegunungan Ubud yang sejuk dan suara alam yang menenteramkan akan memulihkan energi tubuh dan jiwa Anda secara menyeluruh.",
-    "know": [
-      "Spectacular unhindered jungle and river valley vistas.",
-      "Generous indoor-outdoor dining areas ideal for family retreats."
-    ],
-    "aliasId": "angkasa-ubud"
+    "rating": 4.9,
+    "reviews": 10
   },
   {
     "id": "villa-imala",
@@ -799,7 +758,9 @@ export const BSC_VILLAS = [
       "80m² private swimming pool with sundeck and rooftop ocean-view daybeds.",
       "Dedicated private spa room and panoramic glass-wall fitness gym.",
       "Minutes away from Savaya Beach Club and Melasti Beach."
-    ]
+    ],
+    "rating": 4.94,
+    "reviews": 18
   },
   {
     "id": "villa-mahina",
@@ -844,7 +805,9 @@ export const BSC_VILLAS = [
       "/airbnb/villa-mahina/photos/photo-04.jpg",
       "/airbnb/villa-mahina/photos/photo-05.jpg"
     ],
-    "why": "Ulasan tamu terbaik: 'Hanya 400 meter jalan kaki ke Pantai Berawa dan Finns Club, namun di dalam villa sangat tenang dan privat berkat jendela kedap suara.'"
+    "why": "Ulasan tamu terbaik: 'Hanya 400 meter jalan kaki ke Pantai Berawa dan Finns Club, namun di dalam villa sangat tenang dan privat berkat jendela kedap suara.'",
+    "rating": 4.9,
+    "reviews": 2
   },
   {
     "id": "khaleela-villas",
@@ -889,7 +852,9 @@ export const BSC_VILLAS = [
       "/airbnb/khaleela-villas/photos/photo-04.jpg",
       "/airbnb/khaleela-villas/photos/photo-05.jpg"
     ],
-    "why": "Ulasan tamu terbaik: 'Estetika gurun yang eksotis dan menenangkan di tengah Canggu. Kamar mandi terbukanya sangat luar biasa!'"
+    "why": "Ulasan tamu terbaik: 'Estetika gurun yang eksotis dan menenangkan di tengah Canggu. Kamar mandi terbukanya sangat luar biasa!'",
+    "rating": 4.88,
+    "reviews": 72
   },
   {
     "id": "beyond-the-palms",
@@ -933,7 +898,9 @@ export const BSC_VILLAS = [
       "/airbnb/beyond-the-palms/photos/photo-04.jpg",
       "/airbnb/beyond-the-palms/photos/photo-05.jpg"
     ],
-    "why": "Ulasan tamu terbaik: 'Villa berteknologi tercanggih di Bali! Rooftop jacuzzi saat sunset dan bioskop outdoor menjadikannya liburan impian.'"
+    "why": "Ulasan tamu terbaik: 'Villa berteknologi tercanggih di Bali! Rooftop jacuzzi saat sunset dan bioskop outdoor menjadikannya liburan impian.'",
+    "rating": 4.88,
+    "reviews": 68
   },
   {
     "id": "villa-akar",
@@ -977,7 +944,9 @@ export const BSC_VILLAS = [
       "/airbnb/villa-akar/photos/photo-04.jpg",
       "/airbnb/villa-akar/photos/photo-05.jpg"
     ],
-    "why": "Ulasan tamu terbaik: 'Predikat Guest Favorite 5.0 sempurna! Ruang keluarga fleksibel ber-AC dan layanan staf yang membuat kami merasa seperti raja.'"
+    "why": "Ulasan tamu terbaik: 'Predikat Guest Favorite 5.0 sempurna! Ruang keluarga fleksibel ber-AC dan layanan staf yang membuat kami merasa seperti raja.'",
+    "rating": 5,
+    "reviews": 17
   },
   {
     "id": "villa-golden",
@@ -1019,7 +988,9 @@ export const BSC_VILLAS = [
       "/airbnb/villa-golden/photos/photo-04.jpg",
       "/airbnb/villa-golden/photos/photo-05.jpg"
     ],
-    "why": "Ulasan tamu terbaik: 'Tepat di seberang FINNS Recreation Club, desain chic yang sangat instagramable, dan pelayanan harian yang sempurna.'"
+    "why": "Ulasan tamu terbaik: 'Tepat di seberang FINNS Recreation Club, desain chic yang sangat instagramable, dan pelayanan harian yang sempurna.'",
+    "rating": 4.89,
+    "reviews": 65
   },
   {
     "id": "villa-surga",
@@ -1063,7 +1034,9 @@ export const BSC_VILLAS = [
       "/airbnb/villa-surga/photos/photo-04.jpg",
       "/airbnb/villa-surga/photos/photo-05.jpg"
     ],
-    "why": "Ulasan tamu terbaik: 'Ketenangan sejati di lembah tropis Ubud. Pemandangan hijau sejauh mata memandang dan staf yang melayani dari hati.'"
+    "why": "Ulasan tamu terbaik: 'Ketenangan sejati di lembah tropis Ubud. Pemandangan hijau sejauh mata memandang dan staf yang melayani dari hati.'",
+    "rating": 4.71,
+    "reviews": 72
   },
   {
     "id": "house-terra",
@@ -1128,209 +1101,9 @@ export const BSC_VILLAS = [
       "/airbnb/house-terra/photos/photo-18.jpg",
       "/airbnb/house-terra/photos/photo-19.jpg",
       "/airbnb/house-terra/photos/photo-20.jpg"
-    ]
-  },
-  {
-    "id": "villa-samudra-canggu",
-    "name": "Villa Samudra – Bohemian Tropical Luxury in Echo Beach Canggu",
-    "area": "Canggu & Berawa",
-    "beds": 3,
-    "baths": 3,
-    "guests": 6,
-    "price": 280,
-    "tier": "Deluxe",
-    "trips": [
-      "Friends group",
-      "Beach lovers"
     ],
-    "setting": [
-      "Walk to the beach",
-      "Walkable to cafés"
-    ],
-    "am": [
-      "Private pool",
-      "Walk to cafés",
-      "Near the beach",
-      "Daily staff",
-      "Air conditioning",
-      "High-speed WiFi"
-    ],
-    "tone": [
-      "#D8C9A8",
-      "#EFE6CF"
-    ],
-    "img": "/airbnb/villa-samudra-canggu/photos/photo-01.jpg",
-    "why": "Ulasan tamu terbaik: 'Hanya beberapa langkah dari ombak Echo Beach, desain bohemian mewah yang sangat menenangkan jiwa.'",
-    "cancel": "Free reschedule",
-    "verified": true,
-    "updated": "Oct 2026",
-    "pick": true,
-    "desc": "Rasakan ritme santai pesisir Canggu dalam pelukan kemewahan bohemian tropis. Kolam renang privat yang asri dan kamar tidur yang luas siap menyambut kepulangan Anda setelah menikmati sunset di pantai.",
-    "know": [
-      "5-minute stroll to Echo Beach surf break.",
-      "Private pool with sun deck framed by tropical palms."
-    ]
-  },
-  {
-    "id": "villa-kayu-raja-seminyak",
-    "name": "Villa Kayu Raja – Elegant Tropical Oasis in Petitenget Seminyak",
-    "area": "Umalas & Seminyak",
-    "beds": 3,
-    "baths": 3,
-    "guests": 6,
-    "price": 320,
-    "tier": "Deluxe",
-    "trips": [
-      "Friends group",
-      "Family"
-    ],
-    "setting": [
-      "Walk to the beach",
-      "Walkable to cafés"
-    ],
-    "am": [
-      "Private pool",
-      "Walk to cafés",
-      "Daily staff",
-      "Chef on request",
-      "Air conditioning",
-      "High-speed WiFi"
-    ],
-    "tone": [
-      "#D5B8A8",
-      "#EFDCD2"
-    ],
-    "img": "/airbnb/villa-kayu-raja-seminyak/photos/photo-01.jpg",
-    "why": "Ulasan tamu terbaik: 'Dekat dengan Ku De Ta dan pantai Petitenget, namun di dalam villa terasa begitu hening dan damai.'",
-    "cancel": "Free reschedule",
-    "verified": true,
-    "updated": "Oct 2026",
-    "pick": false,
-    "desc": "Temukan oase ketenangan di tengah kawasan paling bergengsi Seminyak. Mandi berendam di bathtub batu alam outdoor di bawah langit berbintang dan nikmati kemewahan privasi di pusat denyut kuliner Bali.",
-    "know": [
-      "Located in prime Petitenget dining strip.",
-      "Private pool with timber sun deck."
-    ]
-  },
-  {
-    "id": "villa-cendana-seminyak",
-    "name": "Villa Cendana – Romantic Honeymoon Hideaway in Seminyak",
-    "area": "Umalas & Seminyak",
-    "beds": 2,
-    "baths": 2,
-    "guests": 4,
-    "price": 230,
-    "tier": "Deluxe",
-    "trips": [
-      "Couples",
-      "Honeymoon"
-    ],
-    "setting": [
-      "Walkable to cafés"
-    ],
-    "am": [
-      "Private pool",
-      "Walk to cafés",
-      "Daily housekeeping",
-      "Air conditioning",
-      "High-speed WiFi"
-    ],
-    "tone": [
-      "#D5B8A8",
-      "#EFDCD2"
-    ],
-    "img": "/airbnb/villa-cendana-seminyak/photos/photo-01.jpg",
-    "why": "Ulasan tamu terbaik: 'Bulan madu kami di sini sangat magis! Floating breakfast dan kolam renang privat yang tak terlupakan.'",
-    "cancel": "Free reschedule",
-    "verified": true,
-    "updated": "Oct 2026",
-    "pick": false,
-    "desc": "Ciptakan momen romantis paling berkesan dalam hidup Anda di sanctuary bulan madu privat ini. Dikelilingi taman tropis yang rimbun dan suasana intim, cinta Anda akan mekar lebih indah di Seminyak.",
-    "know": [
-      "Perfect for couples and honeymooners.",
-      "Private plunge pool with garden stone tub."
-    ]
-  },
-  {
-    "id": "cliffside-panorama-uluwatu",
-    "name": "Cliffside Panorama – Oceanfront Infinity Villa in Uluwatu",
-    "area": "Uluwatu & Bukit",
-    "beds": 4,
-    "baths": 4,
-    "guests": 8,
-    "price": 540,
-    "tier": "Luxury",
-    "trips": [
-      "Friends group",
-      "Celebration",
-      "Couples"
-    ],
-    "setting": [
-      "Ocean view",
-      "Cliff top"
-    ],
-    "am": [
-      "Private pool",
-      "Daily staff",
-      "Chef on request",
-      "Villa manager",
-      "Wellness facilities"
-    ],
-    "tone": [
-      "#9FB7C7",
-      "#D5E2EA"
-    ],
-    "img": "/airbnb/cliffside-panorama-uluwatu/photos/photo-01.jpg",
-    "why": "Ulasan tamu terbaik: 'Tak ada kata yang sanggup melukiskan keindahan sunset dari infinity pool ini. Menatap ombak Bingin sambil menikmati koktail sungguh magis.'",
-    "cancel": "Free reschedule",
-    "verified": true,
-    "updated": "Oct 2026",
-    "pick": true,
-    "desc": "Biarkan pesona lautan biru lepas Uluwatu menghipnotis hari-hari Anda. Duduklah di tepi infinity pool saat matahari perlahan tenggelam, dan nikmati kemewahan hakiki yang hanya dimiliki segelintir orang di dunia.",
-    "know": [
-      "Uninterrupted 180° Indian Ocean sunset view.",
-      "Horizon infinity swimming pool."
-    ]
-  },
-  {
-    "id": "mandapa-jungle-villa",
-    "name": "Mandapa Jungle Villa – Eco-Luxury Bamboo Sanctuary in Sayan Ubud",
-    "area": "Ubud",
-    "beds": 2,
-    "baths": 2,
-    "guests": 4,
-    "price": 290,
-    "tier": "Premium",
-    "trips": [
-      "Nature getaway",
-      "Wellness retreat",
-      "Couples"
-    ],
-    "setting": [
-      "Rice-field view"
-    ],
-    "am": [
-      "Private pool",
-      "Wellness facilities",
-      "Daily staff",
-      "Air conditioning",
-      "High-speed WiFi"
-    ],
-    "tone": [
-      "#C7CDBB",
-      "#E2E7D6"
-    ],
-    "img": "/airbnb/mandapa-jungle-villa/photos/photo-01.jpg",
-    "why": "Ulasan tamu terbaik: 'Tidur ditemani suara gemericik Sungai Ayung di mahakarya bambu ini adalah retret spiritual yang tak terlupakan.'",
-    "cancel": "Free reschedule",
-    "verified": true,
-    "updated": "Oct 2026",
-    "pick": false,
-    "desc": "Rasakan keselarasan sejati dengan alam di mahakarya arsitektur bambu ramah lingkungan yang melayang di atas lembah Sungai Ayung. Hirup kesegaran udara Ubud dan temukan kembali kedamaian batin Anda yang paling murni.",
-    "know": [
-      "Spectacular open-concept bamboo architecture.",
-      "Unobstructed jungle and Ayung River valley view."
-    ]
+    "rating": 5,
+    "reviews": 17
   },
   {
     "id": "magnificent-canggu-estate",
@@ -1388,7 +1161,9 @@ export const BSC_VILLAS = [
       "/airbnb/magnificent-canggu-estate/photos/photo-13.jpg",
       "/airbnb/magnificent-canggu-estate/photos/photo-14.jpg",
       "/airbnb/magnificent-canggu-estate/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 4.86,
+    "reviews": 42
   },
   {
     "id": "designer-beachside-canggu",
@@ -1446,7 +1221,9 @@ export const BSC_VILLAS = [
       "/airbnb/designer-beachside-canggu/photos/photo-13.jpg",
       "/airbnb/designer-beachside-canggu/photos/photo-14.jpg",
       "/airbnb/designer-beachside-canggu/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 4.96,
+    "reviews": 48
   },
   {
     "id": "villa-daun-by-teduh",
@@ -1504,7 +1281,9 @@ export const BSC_VILLAS = [
       "/airbnb/villa-daun-by-teduh/photos/photo-13.jpg",
       "/airbnb/villa-daun-by-teduh/photos/photo-14.jpg",
       "/airbnb/villa-daun-by-teduh/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 5,
+    "reviews": 16
   },
   {
     "id": "cala-blanca",
@@ -1562,7 +1341,9 @@ export const BSC_VILLAS = [
       "/airbnb/cala-blanca/photos/photo-13.jpg",
       "/airbnb/cala-blanca/photos/photo-14.jpg",
       "/airbnb/cala-blanca/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 4.94,
+    "reviews": 32
   },
   {
     "id": "the-bull-house",
@@ -1620,7 +1401,9 @@ export const BSC_VILLAS = [
       "/airbnb/the-bull-house/photos/photo-13.jpg",
       "/airbnb/the-bull-house/photos/photo-14.jpg",
       "/airbnb/the-bull-house/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 4.77,
+    "reviews": 48
   },
   {
     "id": "berawa-breeze",
@@ -1678,7 +1461,9 @@ export const BSC_VILLAS = [
       "/airbnb/berawa-breeze/photos/photo-13.jpg",
       "/airbnb/berawa-breeze/photos/photo-14.jpg",
       "/airbnb/berawa-breeze/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 4.9,
+    "reviews": 48
   },
   {
     "id": "coco-bay",
@@ -1736,7 +1521,9 @@ export const BSC_VILLAS = [
       "/airbnb/coco-bay/photos/photo-13.jpg",
       "/airbnb/coco-bay/photos/photo-14.jpg",
       "/airbnb/coco-bay/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 4.96,
+    "reviews": 48
   },
   {
     "id": "villa-milana",
@@ -1794,7 +1581,9 @@ export const BSC_VILLAS = [
       "/airbnb/villa-milana/photos/photo-13.jpg",
       "/airbnb/villa-milana/photos/photo-14.jpg",
       "/airbnb/villa-milana/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 4.93,
+    "reviews": 41
   },
   {
     "id": "beachside-haven-canggu",
@@ -1852,7 +1641,9 @@ export const BSC_VILLAS = [
       "/airbnb/beachside-haven-canggu/photos/photo-13.jpg",
       "/airbnb/beachside-haven-canggu/photos/photo-14.jpg",
       "/airbnb/beachside-haven-canggu/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 4.96,
+    "reviews": 48
   },
   {
     "id": "wellness-estate-canggu",
@@ -1910,7 +1701,9 @@ export const BSC_VILLAS = [
       "/airbnb/wellness-estate-canggu/photos/photo-13.jpg",
       "/airbnb/wellness-estate-canggu/photos/photo-14.jpg",
       "/airbnb/wellness-estate-canggu/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 4.98,
+    "reviews": 47
   },
   {
     "id": "villa-aless",
@@ -1968,7 +1761,9 @@ export const BSC_VILLAS = [
       "/airbnb/villa-aless/photos/photo-13.jpg",
       "/airbnb/villa-aless/photos/photo-14.jpg",
       "/airbnb/villa-aless/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 4.92,
+    "reviews": 37
   },
   {
     "id": "alua-loft",
@@ -2026,7 +1821,9 @@ export const BSC_VILLAS = [
       "/airbnb/alua-loft/photos/photo-13.jpg",
       "/airbnb/alua-loft/photos/photo-14.jpg",
       "/airbnb/alua-loft/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 4.86,
+    "reviews": 48
   },
   {
     "id": "villa-satiya",
@@ -2084,7 +1881,9 @@ export const BSC_VILLAS = [
       "/airbnb/villa-satiya/photos/photo-13.jpg",
       "/airbnb/villa-satiya/photos/photo-14.jpg",
       "/airbnb/villa-satiya/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 5,
+    "reviews": 43
   },
   {
     "id": "villa-infinity-umalas",
@@ -2142,6 +1941,8 @@ export const BSC_VILLAS = [
       "/airbnb/villa-infinity-umalas/photos/photo-13.jpg",
       "/airbnb/villa-infinity-umalas/photos/photo-14.jpg",
       "/airbnb/villa-infinity-umalas/photos/photo-15.jpg"
-    ]
+    ],
+    "rating": 4.91,
+    "reviews": 22
   }
 ];

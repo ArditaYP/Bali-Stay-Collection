@@ -272,113 +272,6 @@ const VILLA_DETAILS = {
     address: 'Ubud, Gianyar, Bali',
     shortDesc: 'Rasakan sensasi melayang di atas kanopi lembah Sungai Ayung dari infinity pool spektakuler villa 5 kamar ini. Udara pegunungan Ubud yang sejuk dan suara alam yang menenteramkan akan memulihkan energi tubuh dan jiwa Anda secara menyeluruh.',
     description: 'Angkasa is a 5-bedroom villa in Ubud built around an infinity pool that seems to float above the surrounding jungle. Generous living and dining areas, a fully equipped kitchen and panoramic views make it a perfect base for larger groups.',
-    amenities: ['Infinity pool', 'Jungle view', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Free parking', 'Daily housekeeping']
-  },
-  'villa-samudra-canggu': {
-    category: 'Deluxe',
-    price: 280,
-    cleaningFee: 35,
-    freeCancel: true,
-    cardBg: '#CBC3A8',
-    bookedDays: [5, 6, 17, 18],
-    address: 'Echo Beach, Canggu, Badung, Bali',
-    shortDesc: 'Rasakan ritme santai pesisir Canggu dalam pelukan kemewahan bohemian tropis. Kolam renang privat yang asri dan kamar tidur yang luas siap menyambut kepulangan Anda setelah menikmati sunset di pantai.',
-    description: 'Villa Samudra blends breezy Mediterranean bohemian aesthetics with traditional Balinese artisanal craftsmanship. Located just 5 minutes from Echo Beach in Canggu, this sanctuary features high-vaulted ceilings, an open-concept living pavilion, custom rattan furnishings, and a turquoise swimming pool framed by swaying palms.',
-    amenities: ['Private pool', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Daily housekeeping', 'Near the beach', 'Free parking']
-  },
-  'the-palms-villa-canggu': {
-    name: 'Villa Habitas – 4BR Pererenan Pool Villa · Walk to Cafes & Bars',
-    category: 'Premium',
-    price: 380,
-    cleaningFee: 45,
-    freeCancel: true,
-    cardBg: '#B8C5BD',
-    bookedDays: [10, 11, 22, 23],
-    address: 'Pererenan, Canggu, Badung, Bali',
-    location: 'Canggu',
-    shortDesc: 'Bayangkan bangun setiap pagi disambut pemandangan sawah hijau zamrud dan berenang di laguna pribadi yang menenangkan jiwa. Hanya beberapa langkah santai menuju kafe artisan terbaik Pererenan, surga 4 kamar ini menghadirkan ketenangan mutlak dengan sentuhan pelayanan bintang lima.',
-    description: 'Villa Habitas is a private 4-bedroom villa in Pererenan, built for slow mornings and easy evenings. Trendy cafés, restaurants and bars are within walking distance, and Canggu centre is a short ride away.',
-    fullDesc: `Villa Habitas is a private 4-bedroom villa in Pererenan, built for slow mornings and easy evenings.
-
-LIVING & DINING
-Open-plan living and dining area with comfortable lounge seating, air conditioning, and smart TV.
-
-POOL & OUTDOOR
-A private lagoon-style swimming pool surrounded by a manicured tropical garden and sun deck with loungers.
-
-KITCHEN
-Fully equipped modern kitchen with induction stove, oven, full-size refrigerator, and espresso coffee machine.
-
-BEDROOMS & BATHROOMS
-Four tranquil bedrooms, each featuring a king-size bed, premium linens, air conditioning, and private en-suite bathroom.
-
-WORK & CONNECTIVITY
-Dedicated workspace with high-speed fiber-optic WiFi (200 Mbps) suitable for remote work, video calls, and streaming.
-
-EXTRAS
-Safety deposit boxes, fresh bath towels, and pool towels provided.
-
-GUEST ACCESS
-You'll have the whole villa to yourselves, including the private pool and garden. Free parking on the property fits up to 2 cars plus scooters.
-
-YOUR LOCAL TEAM
-What guests remember most isn't just the villa, it's the people. Our local team keeps the villa fresh with daily cleaning, and is happy to help arrange a driver, a massage, or a table at the right restaurant (extra services are on request, at additional cost). You'll feel looked after, not managed. A concierge is available through WhatsApp / messaging during your stay.
-
-TRAVELLING WITH FAMILY
-Travelling with little ones? Walkable cafés and restaurants mean fewer car rides. A nanny service and a pool fence are available on request through our concierge, so just let us know before you arrive (baby cot / high chair available upon request).
-
-THE NEIGHBOURHOOD
-Pererenan is the quieter, more local-feeling neighbour of Canggu. Trendy cafés, restaurants and bars are within walking distance. Pererenan Beach and Canggu centre are a short drive away (Echo Beach, 5 min ride).
-
-OTHER THINGS TO NOTE
-• Check-in from 14:00 PM and check-out by 12:00 PM.
-• Minimum stay: 2 nights.
-• Pets friendly.
-• Pool safety: children must be supervised around the pool at all times.
-• Cancellation policy: Cut off date 21 Days (Free cancellation up to 21 days before check-in).`,
-    amenities: ['Private pool', 'Jungle view', 'River valley view', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Free parking'],
-    bedrooms: [
-      { name: 'Bedroom 1', detail: 'King bed · En-suite bathroom' },
-      { name: 'Bedroom 2', detail: 'King bed · En-suite bathroom' },
-      { name: 'Bedroom 3', detail: 'King bed · En-suite bathroom' },
-      { name: 'Bedroom 4', detail: 'King bed · En-suite bathroom' }
-    ]
-  },
-  'villa-kayu-raja-seminyak': {
-    category: 'Deluxe',
-    price: 320,
-    cleaningFee: 40,
-    freeCancel: true,
-    cardBg: '#CBB9C9',
-    bookedDays: [7, 8, 19, 20],
-    address: 'Petitenget, Seminyak, Badung, Bali',
-    shortDesc: 'Temukan oase ketenangan di tengah kawasan paling bergengsi Seminyak. Mandi berendam di bathtub batu alam outdoor di bawah langit berbintang dan nikmati kemewahan privasi di pusat denyut kuliner Bali.',
-    description: 'Tucked away in the prestigious Petitenget quarter of Seminyak, Villa Kayu Raja is a tranquil haven moments away from renowned beach clubs and culinary hotspots. The villa features lush tropical courtyard gardens, a sparkling central pool with sun loungers, and luxuriously appointed master suites with en-suite terrazzo bathtubs.',
-    amenities: ['Private pool', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Daily housekeeping', 'Near the beach', 'Free parking']
-  },
-  'villa-cendana-seminyak': {
-    category: 'Honeymoon',
-    price: 230,
-    cleaningFee: 30,
-    freeCancel: true,
-    cardBg: '#DFD3C3',
-    bookedDays: [2, 3, 14, 15],
-    address: 'Kayu Aya, Seminyak, Badung, Bali',
-    shortDesc: 'Ciptakan momen romantis paling berkesan dalam hidup Anda di sanctuary bulan madu privat ini. Dikelilingi taman tropis yang rimbun dan suasana intim, cinta Anda akan mekar lebih indah di Seminyak.',
-    description: 'Designed specifically for romantic getaways and honeymoon couples, Villa Cendana is an intimate haven nestled along Seminyak’s quiet lanes. Wake up to breakfast served by the plunge pool, unwind in the semi-open garden bathroom featuring a stone soaking tub, and enjoy serene tropical evenings in secluded privacy.',
-    amenities: ['Private pool', 'Romantic outdoor bathtub', 'Air conditioning', 'High-speed WiFi', 'Full kitchen', 'Daily housekeeping', 'Free parking']
-  },
-  'cliffside-panorama-uluwatu': {
-    category: 'Premium',
-    price: 540,
-    cleaningFee: 55,
-    freeCancel: true,
-    cardBg: '#A9B9C9',
-    bookedDays: [12, 13, 26, 27],
-    address: 'Bingin Beach, Uluwatu, Badung, Bali',
-    shortDesc: 'Biarkan pesona lautan biru lepas Uluwatu menghipnotis hari-hari Anda. Duduklah di tepi infinity pool saat matahari perlahan tenggelam, dan nikmati kemewahan hakiki yang hanya dimiliki segelintir orang di dunia.',
-    description: 'Perched commandingly on the limestone cliffs of Uluwatu, Cliffside Panorama offers front-row views of world-famous surf breaks and sunset vistas across the Indian Ocean. An infinity pool seemingly merges with the azure horizon, flanked by expansive timber sun decks and contemporary minimalist suites.',
-    amenities: ['Infinity pool', 'Ocean view', 'Private chef on request', 'Air conditioning', 'High-speed WiFi', 'Free parking', 'Daily housekeeping']
   },
   'villa-habitas': {
     name: 'Villa Habitas – 4BR Designer Villa In Pererenan',
@@ -558,18 +451,6 @@ OTHER THINGS TO NOTE
     shortDesc: 'Kemewahan tanpa batas menanti Anda di estate 6 kamar prestisius ini. Mulai hari Anda dengan sesi kebugaran di gym berdinding kaca panorama samudra, manjakan diri di ruang spa privat, dan saksikan senja keemasan dari kolam renang 80m² Anda.',
     description: 'Welcome to Villa Imala, a spectacular 6-bedroom luxury private villa in Uluwatu offering ocean views, expansive living spaces, 80m² pool, panoramic glass-walled gym, and private spa room minutes from Savaya and Melasti Beach.',
     amenities: ['Private pool', 'Ocean view', 'Gym & fitness', 'Private spa room', 'Villa manager', 'Chef on request', 'Daily housekeeping', 'High-speed WiFi', 'Free parking']
-  },
-  'mandapa-jungle-villa': {
-    category: 'Standard',
-    price: 290,
-    cleaningFee: 35,
-    freeCancel: true,
-    cardBg: '#C7CDBB',
-    bookedDays: [4, 5, 20, 21],
-    address: 'Sayan Ridge, Ubud, Gianyar, Bali',
-    shortDesc: 'Rasakan keselarasan sejati dengan alam di mahakarya arsitektur bambu ramah lingkungan yang melayang di atas lembah Sungai Ayung. Hirup kesegaran udara Ubud dan temukan kembali kedamaian batin Anda yang paling murni.',
-    description: 'Experience true harmony with nature at Mandapa Jungle Villa, an architectural wonder crafted entirely from sustainably harvested bamboo. Perched on Ubud’s famous Sayan Ridge, this open-concept sanctuary offers sweeping views of emerald jungle canopies and the murmuring Ayung River below.',
-    amenities: ['Private pool', 'Jungle view', 'River valley view', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Free parking']
   },
   'villa-mahina': {
     category: 'Luxe',
