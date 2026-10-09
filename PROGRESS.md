@@ -1433,5 +1433,32 @@ src/
    - Seluruh perubahan dikomit secara lokal.
    - **TIDAK ADA `git push`** yang dilakukan ke remote repository.
 
-
-
+### 9.12 Perbaikan Kalender Interaktif Pemilih Tanggal Check-in & Check-out ala Airbnb (`dates-popover`)
+1. **Latar Belakang & Keluhan Pengguna**:
+   - Pengguna melaporkan: *"1.check in dah check out tidak muncul tanggal nya"*.
+   - Saat segmen `Check-in` maupun `Check-out` di search bar hero (`#searchForm`) diklik, sebelumnya tidak ada kalender popover yang muncul karena segmen hanya memiliki input date transparan tanpa komponen picker antarmuka kalender.
+2. **Penyebab Masalah (Root Cause)**:
+   - State `activePopover === 'dates'` terpicu, namun di dalam file `AirbnbSearchBar.jsx` belum ada blok render UI popover untuk `'dates'` (hanya ada untuk `'where'` dan `'who'`).
+   - Browser modern (Chrome, Safari, Firefox macOS) tidak otomatis memunculkan antarmuka picker kalender pada input ber-opacity 0 tanpa event picker khusus.
+3. **Solusi & Komponen Baru yang Diterapkan**:
+   - **Pembuatan Komponen `AirbnbDatePopover.jsx` (`src/components/frontpage/AirbnbDatePopover.jsx`)**:
+     - Menampilkan kalender 2 bulan bersebelahan (*side-by-side*) di desktop dan adaptif 1 bulan di layar mobile.
+     - Navigasi bulan fleksibel (`‹` dan `›`) dengan pencegahan tanggal lampau (*past dates disabled*).
+     - Alur interaktif 2 langkah ala Airbnb: klik pertama memilih Check-in, klik kedua memilih Check-out.
+     - Visual *range highlighting* yang mulus (`in-range`, `range-start`, `range-end`) beserta *hover preview* rentang hari sebelum diklik.
+     - Pintasan cepat durasi menginap (*Quick select duration pills*): `2 nights (Weekend)`, `3 nights`, `5 nights`, dan `7 nights (1 week)`.
+     - Tombol `Clear dates` untuk reset tanggal dan tombol `Next: Guests →` / `Done` yang memindahkan alur langsung ke popover tamu (`Who`).
+     - Pengolahan tanggal lokal bebas bug pergeseran zona waktu (*timezone shift / UTC bug-free*).
+   - **Integrasi di `src/components/frontpage/AirbnbSearchBar.jsx`**:
+     - Menghubungkan segmen Check-in dan Check-out dengan state `dateTargetSegment` (`'checkIn'` | `'checkOut'`).
+     - Menghilangkan input date tersembunyi yang tidak berfungsi, digantikan popover kalender Airbnb asli yang berposisi presisi di tengah formulir kapsul.
+     - Pemilihan kawasan di segmen Where otomatis mengarahkan fokus ke kalender Check-in untuk alur reservasi berurutan (*seamless booking funnel*).
+   - **Styling CSS Elegan di `src/index.css` (`.dates-popover`)**:
+     - Desain popover melayang dengan bayangan halus 64px, pill tab indikator, tombol navigasi bundar, dan badge tanggal aktif navy `#16294D`.
+     - Responsivitas mobile `@media (max-width: 768px)` yang otomatis mengadaptasikan kalender menjadi 1 kolom yang pas di layar ponsel.
+4. **Verifikasi & Kepatuhan Aturan**:
+   - `npm run build` lulus 100% tanpa error (`dist/assets/index-*.js`, 0 error compiler).
+   - `oxlint` lulus dengan 0 error.
+   - Vite dev server berjalan normal di port 5173 dengan status HTTP 200.
+   - Seluruh fungsi baru dilengkapi komentar JSDoc Bahasa Indonesia lengkap.
+   - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **TIDAK ADA `git push`** yang dilakukan ke remote repository.

@@ -6527,9 +6527,341 @@ mark.review-highlight {
   color: #222222;
 }
 
-.dest-opt-info small {
-  font-size: 12px;
+/* Dates Calendar Popover ala Airbnb */
+.dates-popover {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 740px;
+  max-width: min(95vw, 760px);
+  padding: 24px 28px 20px;
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.22), 0 0 1px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  animation: popoverFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dates-popover-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.date-tab-btn {
+  background: #f7f7f7;
+  border: 1.5px solid transparent;
+  border-radius: 16px;
+  padding: 8px 18px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 140px;
+}
+
+.date-tab-btn:hover {
+  background: #eeeeee;
+}
+
+.date-tab-btn.active {
+  background: #ffffff;
+  border-color: #16294D;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.date-tab-btn .tab-label {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   color: #717171;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.date-tab-btn .tab-value {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #222222;
+  display: block;
+}
+
+.date-tab-btn .tab-value.placeholder {
+  color: #999999;
+  font-weight: 500;
+}
+
+.date-tab-arrow {
+  font-size: 16px;
+  color: #b0b0b0;
+  font-weight: 700;
+}
+
+.dates-quick-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.quick-pill-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #717171;
+  margin-right: 2px;
+}
+
+.quick-pill-btn {
+  background: #f7f7f7;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #333333;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.quick-pill-btn:hover {
+  background: #eeeeee;
+  border-color: #cbd5e1;
+}
+
+.quick-pill-btn.active {
+  background: #16294D;
+  color: #ffffff;
+  border-color: #16294D;
+}
+
+.dates-calendars-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.cal-nav-btn {
+  position: absolute;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  color: #222222;
+  transition: all 0.2s ease;
+  z-index: 5;
+  padding: 0 0 2px 0;
+}
+
+.cal-nav-btn:hover:not(:disabled) {
+  border-color: #222222;
+  transform: scale(1.08);
+}
+
+.cal-nav-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  border-color: #f0f0f0;
+}
+
+.cal-nav-prev {
+  left: 0;
+}
+
+.cal-nav-next {
+  right: 0;
+}
+
+.calendar-month-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.month-col-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #222222;
+  text-align: center;
+  margin-bottom: 14px;
+  min-height: 24px;
+}
+
+.month-weekdays-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.weekday-name {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #717171;
+}
+
+.month-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 3px;
+  column-gap: 0;
+}
+
+.date-cell-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+}
+
+.date-cell-wrapper.in-range {
+  background: #F4F6F8;
+}
+
+.date-cell-wrapper.range-start {
+  background: linear-gradient(to right, transparent 50%, #F4F6F8 50%);
+}
+
+.date-cell-wrapper.range-end {
+  background: linear-gradient(to left, transparent 50%, #F4F6F8 50%);
+}
+
+.date-cell-empty {
+  height: 40px;
+}
+
+.date-cell-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #222222;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-cell-btn:hover:not(:disabled):not(.is-checkin):not(.is-checkout) {
+  background: #f0f0f0;
+}
+
+.date-cell-btn.is-past {
+  color: #d1d5db;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  text-decoration-color: rgba(209, 213, 219, 0.6);
+}
+
+.date-cell-btn.is-checkin,
+.date-cell-btn.is-checkout {
+  background: #16294D !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(22, 41, 77, 0.35);
+}
+
+.dates-popover-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.dates-summary-info {
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.dates-summary-info strong {
+  color: #16294D;
+  font-weight: 700;
+}
+
+.dates-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dates-clear-btn {
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: #16294D;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+.dates-done-btn {
+  background: linear-gradient(135deg, #16294D 0%, #203a6b 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(22, 41, 77, 0.25);
+}
+
+.dates-done-btn:hover {
+  background: linear-gradient(135deg, #D2B073 0%, #b89352 100%);
+  box-shadow: 0 6px 16px rgba(210, 176, 115, 0.4);
+}
+
+/* Responsivitas Popover Tanggal untuk Tablet & Ponsel */
+@media (max-width: 768px) {
+  .dates-popover {
+    width: calc(100vw - 24px);
+    max-width: 420px;
+    padding: 16px 14px;
+  }
+
+  .dates-calendars-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .calendar-month-col.second-month {
+    display: none;
+  }
+
+  .dates-quick-pills {
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .quick-pill-btn {
+    padding: 4px 10px;
+    font-size: 11px;
+  }
 }
 
 /* Guests Stepper Popover */

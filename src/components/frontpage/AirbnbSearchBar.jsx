@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { DESTINATIONS_SUMMARY } from '../../data/bscVillasData';
+import AirbnbDatePopover from './AirbnbDatePopover';
 
 /**
  * Komponen AirbnbSearchBar
@@ -29,6 +30,9 @@ export default function AirbnbSearchBar({
 }) {
   // State panel popover aktif ('where', 'dates', 'who', atau null)
   const [activePopover, setActivePopover] = useState(null);
+
+  // State fokus target segmen tanggal ('checkIn' atau 'checkOut')
+  const [dateTargetSegment, setDateTargetSegment] = useState('checkIn');
 
   // State rincian tamu (Adults, Children, Infants)
   const initialGuests = Number(searchParams.guests) || 2;
@@ -163,6 +167,7 @@ export default function AirbnbSearchBar({
                       onClick={() => {
                         onSearchChange('location', '');
                         onSearchChange('area', '');
+                        setDateTargetSegment('checkIn');
                         setActivePopover('dates');
                       }}
                     >
@@ -185,6 +190,7 @@ export default function AirbnbSearchBar({
                             onClick={() => {
                               onSearchChange('location', dest.name);
                               onSearchChange('area', dest.name);
+                              setDateTargetSegment('checkIn');
                               setActivePopover('dates');
                             }}
                           >
@@ -206,41 +212,51 @@ export default function AirbnbSearchBar({
 
             {/* 2. SEGMEN CHECK-IN */}
             <div 
-              className={`airbnb-search-segment checkin-segment ${activePopover === 'dates' ? 'active' : ''}`}
-              onClick={() => setActivePopover(prev => prev === 'dates' ? null : 'dates')}
+              className={`airbnb-search-segment checkin-segment ${(activePopover === 'dates' && dateTargetSegment === 'checkIn') ? 'active' : ''}`}
+              onClick={() => {
+                setDateTargetSegment('checkIn');
+                setActivePopover(prev => (prev === 'dates' && dateTargetSegment === 'checkIn') ? null : 'dates');
+              }}
             >
               <span className="airbnb-seg-label">Check-in</span>
               <span className={`airbnb-seg-value ${!searchParams.checkIn ? 'placeholder' : ''}`}>
                 {formatDateDisplay(searchParams.checkIn) || 'Add dates'}
               </span>
-              <input
-                type="date"
-                className="hidden-date-input"
-                value={searchParams.checkIn || ''}
-                onChange={(e) => onSearchChange('checkIn', e.target.value)}
-                onClick={(e) => e.stopPropagation()}
-              />
             </div>
 
             <div className="airbnb-seg-divider" />
 
             {/* 3. SEGMEN CHECK-OUT */}
             <div 
-              className={`airbnb-search-segment checkout-segment ${activePopover === 'dates' ? 'active' : ''}`}
-              onClick={() => setActivePopover(prev => prev === 'dates' ? null : 'dates')}
+              className={`airbnb-search-segment checkout-segment ${(activePopover === 'dates' && dateTargetSegment === 'checkOut') ? 'active' : ''}`}
+              onClick={() => {
+                setDateTargetSegment('checkOut');
+                setActivePopover(prev => (prev === 'dates' && dateTargetSegment === 'checkOut') ? null : 'dates');
+              }}
             >
               <span className="airbnb-seg-label">Check-out</span>
               <span className={`airbnb-seg-value ${!searchParams.checkOut ? 'placeholder' : ''}`}>
                 {formatDateDisplay(searchParams.checkOut) || 'Add dates'}
               </span>
-              <input
-                type="date"
-                className="hidden-date-input"
-                value={searchParams.checkOut || ''}
-                onChange={(e) => onSearchChange('checkOut', e.target.value)}
-                onClick={(e) => e.stopPropagation()}
-              />
             </div>
+
+            {/* POPOVER KALENDER TANGGAL ALA AIRBNB */}
+            {activePopover === 'dates' && (
+              <AirbnbDatePopover
+                checkIn={searchParams.checkIn || ''}
+                checkOut={searchParams.checkOut || ''}
+                initialTarget={dateTargetSegment}
+                onDatesChange={(newCi, newCo) => {
+                  onSearchChange('checkIn', newCi);
+                  onSearchChange('checkOut', newCo);
+                  if (newCi && !newCo) {
+                    setDateTargetSegment('checkOut');
+                  }
+                }}
+                onClose={() => setActivePopover(null)}
+                onDone={() => setActivePopover('who')}
+              />
+            )}
 
             <div className="airbnb-seg-divider" />
 
