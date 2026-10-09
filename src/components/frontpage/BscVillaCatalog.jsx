@@ -10,13 +10,39 @@ const DEFAULT_TIER_SCORES = {
   Luxury: [2.4, 2.8, 2.4, 2.6, 3.0]
 };
 
+/**
+ * Memastikan nilai array aman (mengonversi string tunggal, JSON string, atau null menjadi array)
+ * @param {any} val - Nilai input yang akan dinormalisasi ke array
+ * @returns {any[]} Array hasil normalisasi aman
+ */
+const toSafeArray = (val) => {
+  if (Array.isArray(val)) return val;
+  if (typeof val === 'string' && val.trim().length > 0) {
+    if (val.trim().startsWith('[') && val.trim().endsWith(']')) {
+      try {
+        const parsed = JSON.parse(val);
+        if (Array.isArray(parsed)) return parsed;
+      } catch (e) {}
+    }
+    return [val.trim()];
+  }
+  return [];
+};
+
+/**
+ * Menentukan target segmen tamu terbaik untuk villa
+ * @param {Object} v - Objek data villa
+ * @returns {string} Label kategori tamu terbaik
+ */
 const bestFor = (v) => {
-  const w = v.am && v.am.includes('Wellness facilities');
+  const amList = toSafeArray(v.am);
+  const tripsList = toSafeArray(v.trips);
+  const w = amList.includes('Wellness facilities');
   if (v.beds <= 2) return 'Best for couples';
   if (v.tier === 'Luxury' && v.guests >= 10) return 'Best for celebrations';
   if (v.guests >= 10) return 'Best for big groups';
   if (w) return 'Best for wellness trips';
-  if (v.beds >= 3 && v.trips && v.trips.includes('Family')) return 'Best for families & friends';
+  if (v.beds >= 3 && tripsList.includes('Family')) return 'Best for families & friends';
   return 'Best for small groups';
 };
 
@@ -69,20 +95,20 @@ export default function BscVillaCatalog({
 
   const allTrips = useMemo(() => {
     const set = new Set();
-    villas.forEach(v => (v.trips || []).forEach(t => set.add(t)));
+    villas.forEach(v => toSafeArray(v.trips).forEach(t => set.add(t)));
     return Array.from(set);
   }, [villas]);
 
   const allSettings = useMemo(() => {
     const set = new Set();
-    villas.forEach(v => (v.setting || []).forEach(s => set.add(s)));
+    villas.forEach(v => toSafeArray(v.setting).forEach(s => set.add(s)));
     return Array.from(set);
   }, [villas]);
 
   const allAmenities = useMemo(() => {
     const set = new Set();
     villas.forEach(v => {
-      (v.am || []).forEach(a => {
+      toSafeArray(v.am).forEach(a => {
         if (!isExcludedAmenity(a)) {
           set.add(a);
         }
@@ -195,9 +221,9 @@ export default function BscVillaCatalog({
         const area = (v.area || v.location || '').toLowerCase();
         const why = (v.why || '').toLowerCase();
         const desc = (v.desc || v.description || '').toLowerCase();
-        const am = (v.am || []).join(' ').toLowerCase();
+        const am = toSafeArray(v.am).join(' ').toLowerCase();
         const tier = (v.tier || '').toLowerCase();
-        const setting = (v.setting || []).join(' ').toLowerCase();
+        const setting = toSafeArray(v.setting).join(' ').toLowerCase();
         if (
           !name.includes(q) &&
           !area.includes(q) &&
@@ -220,13 +246,13 @@ export default function BscVillaCatalog({
       // Filter tingkat kemewahan (tier)
       if (selectedTiers.length > 0 && !selectedTiers.includes(v.tier)) return false;
       // Filter jenis perjalanan (trip type)
-      if (selectedTrips.length > 0 && !(v.trips || []).some(t => selectedTrips.includes(t))) return false;
+      if (selectedTrips.length > 0 && !toSafeArray(v.trips).some(t => selectedTrips.includes(t))) return false;
       // Filter setting / pemandangan
-      if (selectedSettings.length > 0 && !(v.setting || []).some(s => selectedSettings.includes(s))) return false;
+      if (selectedSettings.length > 0 && !toSafeArray(v.setting).some(s => selectedSettings.includes(s))) return false;
       // Filter kamar tidur
       if (minBeds > 0 && v.beds < minBeds) return false;
       // Filter fasilitas (must have)
-      if (selectedAmenities.length > 0 && !selectedAmenities.every(a => (v.am || []).includes(a))) return false;
+      if (selectedAmenities.length > 0 && !selectedAmenities.every(a => toSafeArray(v.am).includes(a))) return false;
 
       return true;
     });
