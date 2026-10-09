@@ -49,19 +49,19 @@ export default function BscHero({
           </p>
         </div>
 
-        {/* 1. Tab Kategori Layanan ala Expedia.com */}
-        <ExpediaServiceTabs 
-          activeTab={activeTab} 
-          onTabChange={setActiveTab} 
-        />
-
-        {/* 2. Formulir Pencarian Floating Capsule ala Airbnb (id="searchForm") */}
+        {/* 1. Formulir Pencarian Floating Capsule ala Airbnb (id="searchForm") */}
         <AirbnbSearchBar 
           activeTab={activeTab}
           areas={areas}
           searchParams={searchParams}
           onSearchChange={onSearchChange}
           onSubmitSearch={onSubmitSearch}
+        />
+
+        {/* 2. Tab Kategori Layanan ala Expedia.com (Ditaruh di Bawah Search Bar) */}
+        <ExpediaServiceTabs 
+          activeTab={activeTab} 
+          onTabChange={setActiveTab} 
         />
 
         {/* 4 Pilar Kepercayaan (Trust Strip) */}

@@ -156,6 +156,227 @@ function renderDetailDescription(v) {
 }
 
 /**
+ * Merender ikon SVG minimalis dan proporsional untuk fasilitas villa (What this place offers).
+ * Menggantikan tanda centang generik dengan ikon visual kontekstual yang bersih (clean line-art, tidak lebay).
+ * 
+ * @param {string} amenity - Nama fasilitas atau amenitas villa
+ * @returns {React.JSX.Element} Elemen SVG ikon fasilitas yang sesuai
+ */
+function renderAmenityIcon(amenity) {
+  const text = (amenity || '').toLowerCase().trim();
+
+  // 1. Kolam Renang (Private Pool, Infinity Pool, Plunge Pool)
+  if (text.includes('pool') || text.includes('kolam') || text.includes('swim')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M2 12c3-1.5 5-1.5 8 0s5 1.5 8 0 3-1.5 4-1" />
+        <path d="M2 17c3-1.5 5-1.5 8 0s5 1.5 8 0 3-1.5 4-1" />
+        <circle cx="17" cy="5" r="2" />
+        <path d="M15 9l2-2 3 2" />
+      </svg>
+    );
+  }
+
+  // 2. Housekeeping / Layanan Kebersihan Harian (Daily housekeeping, Cleaning)
+  if (text.includes('housekeeping') || text.includes('clean') || text.includes('maid') || text.includes('bersih')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 3v3m0 12v3M3 12h3m12 0h3" />
+        <path d="m18.36 5.64-2.12 2.12m-8.48 8.48-2.12 2.12M18.36 18.36l-2.12-2.12M7.76 7.76 5.64 5.64" />
+      </svg>
+    );
+  }
+
+  // 3. Chef / Dapur / Masak (Chef on request, Full kitchen, Cooking)
+  if (text.includes('chef') || text.includes('kitchen') || text.includes('cook') || text.includes('dining') || text.includes('dapur')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M18 2v20" />
+        <path d="M18 7h4V2" />
+        <path d="M6 2v7a3 3 0 0 0 6 0V2" />
+        <path d="M9 12v10" />
+      </svg>
+    );
+  }
+
+  // 4. Pendingin Ruangan / AC (Air conditioning, AC)
+  if (text.includes('air conditioning') || text.includes('ac') || text.includes('cooling') || text.includes('climate')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M2 9h15a3 3 0 0 1 0 6H5" />
+        <path d="M2 13h18a2 2 0 0 1 0 4H8" />
+        <path d="M2 5h10a2 2 0 0 1 0 4H6" />
+      </svg>
+    );
+  }
+
+  // 5. WiFi / Koneksi Internet Cepat (High-speed WiFi, Internet)
+  if (text.includes('wifi') || text.includes('wi-fi') || text.includes('internet') || text.includes('speed')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M5 12.55a11 11 0 0 1 14.08 0" />
+        <path d="M8.5 16.55a6 6 0 0 1 7 0" />
+        <circle cx="12" cy="20" r="1" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  // 6. Parkir Gratis / Garasi (Free parking, Garage, Car)
+  if (text.includes('parking') || text.includes('parkir') || text.includes('garage') || text.includes('car')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="4" />
+        <path d="M9 17V7h4a3 3 0 0 1 0 6H9" />
+      </svg>
+    );
+  }
+
+  // 7. Bathtub / Bak Mandi / Jacuzzi (Outdoor bathtub, Hot tub)
+  if (text.includes('bathtub') || text.includes('bath') || text.includes('tub') || text.includes('jacuzzi')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M2 12h20v4a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5v-4z" />
+        <path d="M5 12V6a2 2 0 0 1 2-2h1" />
+        <path d="M5 21v2m14-2v2" />
+      </svg>
+    );
+  }
+
+  // 8. Pemandangan Laut / Pantai (Ocean view, Sea view, Beach access)
+  if (text.includes('ocean') || text.includes('sea') || text.includes('beach') || text.includes('pantai') || text.includes('laut')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="6" r="3" />
+        <path d="M2 14c3-1.5 5-1.5 8 0s5 1.5 8 0 3-1.5 4-1" />
+        <path d="M2 18c3-1.5 5-1.5 8 0s5 1.5 8 0 3-1.5 4-1" />
+      </svg>
+    );
+  }
+
+  // 9. Taman / Alam Tropis / Pemandangan Lembah (Garden, Jungle view, River valley)
+  if (text.includes('garden') || text.includes('jungle') || text.includes('river') || text.includes('nature') || text.includes('taman')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M11 20A7 7 0 0 1 4 13C4 7 12 3 12 3s8 4 8 10a7 7 0 0 1-7 7z" />
+        <path d="M12 3v17" />
+      </svg>
+    );
+  }
+
+  // 10. Ruang Kerja Khusus (Dedicated workspace, Desk, Office)
+  if (text.includes('workspace') || text.includes('desk') || text.includes('work') || text.includes('laptop')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="4" y="4" width="16" height="12" rx="2" />
+        <path d="M2 20h20" />
+        <path d="M12 16v4" />
+      </svg>
+    );
+  }
+
+  // 11. Ruang Tamu / Lounge / Balkon (Sunken lounge, Living area, Balcony)
+  if (text.includes('lounge') || text.includes('living') || text.includes('balcony') || text.includes('terrace') || text.includes('sofa')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M20 9V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2" />
+        <path d="M2 11a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-5z" />
+        <path d="M4 18v2m16-2v2" />
+      </svg>
+    );
+  }
+
+  // 12. Keamanan / Brankas (Security, Safe, Guard)
+  if (text.includes('security') || text.includes('safe') || text.includes('aman') || text.includes('cctv')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    );
+  }
+
+  // 13. TV / Hiburan (TV, Smart TV, Cinema)
+  if (text.includes('tv') || text.includes('cinema') || text.includes('screen')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="7" width="20" height="14" rx="2" />
+        <path d="m17 2-5 5-5-5" />
+      </svg>
+    );
+  }
+
+  // 14. BBQ / Panggangan (BBQ grill, Barbecue)
+  if (text.includes('bbq') || text.includes('grill') || text.includes('panggang')) {
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 2a5 5 0 0 0-5 5c0 2 1.5 3.5 3 4.5V14h4v-2.5c1.5-1 3-2.5 3-4.5a5 5 0 0 0-5-5z" />
+        <path d="M7 14h10v3H7zM9 17v5m6-5v5" />
+      </svg>
+    );
+  }
+
+  // 15. Default / Fasilitas Lainnya: Ikon 4-point sparkle halus & elegan (bukan tanda centang generik)
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z" />
+    </svg>
+  );
+}
+
+/**
+ * Merender ikon SVG kontekstual untuk pilar keunggulan booking langsung (villa.features)
+ * 
+ * @param {string} title - Judul keunggulan (misal: 'Free reschedule', 'Secure deposit', dll)
+ * @returns {React.JSX.Element} Elemen SVG ikon yang elegan
+ */
+function renderFeatureIcon(title) {
+  const text = (title || '').toLowerCase();
+
+  // 1. Free reschedule -> Kalender rotasi
+  if (text.includes('reschedule') || text.includes('date') || text.includes('jadwal')) {
+    return (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent, #16294D)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M8 2v4m8-4v4" />
+        <rect x="3" y="4" width="18" height="18" rx="2" />
+        <path d="M3 10h18" />
+        <path d="M14 14l2 2-2 2" />
+        <path d="M10 16h6" />
+      </svg>
+    );
+  }
+
+  // 2. Secure deposit -> Tameng keamanan
+  if (text.includes('secure') || text.includes('deposit') || text.includes('aman') || text.includes('pay')) {
+    return (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent, #16294D)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <circle cx="12" cy="11" r="2" />
+        <path d="M12 13v3" />
+      </svg>
+    );
+  }
+
+  // 3. Dedicated local team -> Tim / Persona lokal
+  if (text.includes('team') || text.includes('staff') || text.includes('local') || text.includes('support')) {
+    return (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent, #16294D)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    );
+  }
+
+  // Fallback: Lencana bintang elegan
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent, #16294D)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="m12 7 1.5 3.5L17 11l-2.5 2.5.5 3.5-3-2-3 2 .5-3.5L7 11l3.5-.5z" />
+    </svg>
+  );
+}
+
+/**
  * Komponen Halaman VillaDetailPage (Halaman Rincian & Reservasi Villa)
  * Mengimplementasikan tata letak dan interaktivitas persis sesuai desain mockup: villa-kana-retreat-detail.html.
  * Telah disempurnakan dengan responsivitas adaptif penuh:
@@ -493,10 +714,7 @@ export default function VillaDetailPage({
               {villa.features.map((feat, idx) => (
                 <div key={idx} className="feature-item">
                   <div className="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent, #16294D)" strokeWidth="1.8">
-                      <circle cx="12" cy="12" r="9" />
-                      <path d="M12 7v5l3 2" />
-                    </svg>
+                    {renderFeatureIcon(feat.title)}
                   </div>
                   <div>
                     <h4>{feat.title}</h4>
@@ -582,11 +800,10 @@ export default function VillaDetailPage({
             <div className="amenity-grid">
               {villa.amenities.map((amenity, idx) => (
                 <div key={idx} className="amenity-item">
-                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <circle cx="12" cy="12" r="9" />
-                    <path d="M8 12l2 2 6-6" />
-                  </svg>
-                  {amenity}
+                  <span className="amenity-icon-wrap" aria-hidden="true">
+                    {renderAmenityIcon(amenity)}
+                  </span>
+                  <span>{amenity}</span>
                 </div>
               ))}
             </div>

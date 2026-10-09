@@ -1462,3 +1462,39 @@ src/
    - Vite dev server berjalan normal di port 5173 dengan status HTTP 200.
    - Seluruh fungsi baru dilengkapi komentar JSDoc Bahasa Indonesia lengkap.
    - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **TIDAK ADA `git push`** yang dilakukan ke remote repository.
+
+### 9.13 Penyesuaian Posisi Expedia Tabs di Hero & Transformasi Tanda Centang Fasilitas Menjadi Ikon Kontekstual Elegan
+1. **Latar Belakang & Permintaan Pengguna**:
+   - Permintaan 1: *"yang di hero bagian class="expedia-tabs-scroll" itu taruh di bawah nya id="searchForm" aja"*
+   - Permintaan 2: *"class="section" yang ada di villa detail page itu, ubah tanda centang itu menjadi icon dong, tapi icon nya jangan terlalu lebay okaay?"*
+2. **Solusi & Implementasi**:
+   - **Reposisi Tab Layanan di Hero ([`BscHero.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscHero.jsx))**:
+     - Memindahkan komponen `<ExpediaServiceTabs />` (`.expedia-tabs-scroll`) tepat di bawah formulir pencarian `<AirbnbSearchBar />` (`id="searchForm"`).
+     - Menyesuaikan margin spacing di [`src/index.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/index.css): `.airbnb-search-wrapper` menjadi `margin: 0 auto 16px;`, dan `.expedia-tabs-container` menjadi `margin: 0 auto 36px;` sehingga layout rapat rapi dan jarak ke `trust-strip` proporsional.
+   - **Transformasi Ikon Fasilitas & Keunggulan ([`VillaDetailPage.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/pages/VillaDetailPage.jsx))**:
+     - Menghapus tanda centang generik `<circle /><path d="M8 12l2 2 6-6" />` pada seksi *What this place offers* (`class="section"`).
+     - Membuat fungsi helper `renderAmenityIcon(amenity)` yang memetakan nama fasilitas ke ikon SVG line-art tipis (stroke 1.8, monokrom `#16294D`, tidak lebay):
+       - *Pool*: Ikon gelombang air tenang minimalis.
+       - *Housekeeping*: Ikon sparkle kilau kebersihan elegan.
+       - *Chef / Kitchen*: Ikon peralatan makan & kuliner minimalis.
+       - *Air conditioning*: Ikon hembusan udara sejuk minimalis.
+       - *WiFi*: Ikon gelombang sinyal internet bersih.
+       - *Parking*: Ikon kotak parkir huruf P minimalis.
+       - *Bathtub*: Ikon bathtub mandi minimalis.
+       - *Ocean / Beach*: Ikon cakrawala laut & matahari terbit.
+       - *Garden / Nature*: Ikon daun tropis botani minimalis.
+       - *Workspace*: Ikon meja laptop minimalis.
+       - *Lounge / Balcony*: Ikon sofa berlengan santai.
+       - *Security*: Ikon tameng proteksi minimalis.
+       - *TV*: Ikon layar monitor minimalis.
+       - *BBQ*: Ikon panggangan api minimalis.
+       - *Fallback*: Ikon bintang 4-sudut mewah (bukan centang).
+     - Memperbarui pula seksi *Fitur Keunggulan* dengan `renderFeatureIcon(title)` (reschedule, secure deposit, local team).
+     - Menambahkan styling `.amenity-icon-wrap` di [`src/index.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/index.css) untuk penataan vertikal yang presisi.
+3. **Verifikasi & Kepatuhan Aturan**:
+   - `npm run build` lulus 100% (0 error).
+   - `oxlint` lulus dengan 0 error.
+   - Dev server aktif di port 5173.
+   - Seluruh fungsi baru dilengkapi komentar JSDoc Bahasa Indonesia lengkap.
+   - **TIDAK ADA `git push`** yang dilakukan ke remote repository.
+
