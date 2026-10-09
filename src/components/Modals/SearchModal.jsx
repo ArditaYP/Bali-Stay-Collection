@@ -29,57 +29,6 @@ export default function SearchModal({
   const inputRef = useRef(null);
   const listRef = useRef(null);
 
-  // Autofocus input saat modal dibuka
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => {
-        if (inputRef.current) {
-          inputRef.current.focus();
-          inputRef.current.select();
-        }
-      }, 50);
-      setSelectedIndex(0);
-    } else {
-      setQuery('');
-    }
-  }, [isOpen]);
-
-  // Listener tombol keyboard (Escape, Arrow Up, Arrow Down, Enter)
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        onClose();
-      } else if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        setSelectedIndex(prev => Math.min(prev + 1, searchResults.length - 1));
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        setSelectedIndex(prev => Math.max(prev - 1, 0));
-      } else if (e.key === 'Enter') {
-        if (searchResults.length > 0 && searchResults[selectedIndex]) {
-          e.preventDefault();
-          handleSelect(searchResults[selectedIndex].id);
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, searchResults, selectedIndex]);
-
-  // Gulir otomatis item yang dipilih ke dalam pandangan
-  useEffect(() => {
-    if (listRef.current && listRef.current.children[selectedIndex]) {
-      listRef.current.children[selectedIndex].scrollIntoView({
-        block: 'nearest',
-        behavior: 'smooth'
-      });
-    }
-  }, [selectedIndex]);
-
   // Filter pencarian cerdas
   const searchResults = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -130,6 +79,57 @@ export default function SearchModal({
       inputRef.current.focus();
     }
   };
+
+  // Autofocus input saat modal dibuka
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+          inputRef.current.select();
+        }
+      }, 50);
+      setSelectedIndex(0);
+    } else {
+      setQuery('');
+    }
+  }, [isOpen]);
+
+  // Listener tombol keyboard (Escape, Arrow Up, Arrow Down, Enter)
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        onClose();
+      } else if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        setSelectedIndex(prev => Math.min(prev + 1, searchResults.length - 1));
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        setSelectedIndex(prev => Math.max(prev - 1, 0));
+      } else if (e.key === 'Enter') {
+        if (searchResults.length > 0 && searchResults[selectedIndex]) {
+          e.preventDefault();
+          handleSelect(searchResults[selectedIndex].id);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, searchResults, selectedIndex]);
+
+  // Gulir otomatis item yang dipilih ke dalam pandangan
+  useEffect(() => {
+    if (listRef.current && listRef.current.children[selectedIndex]) {
+      listRef.current.children[selectedIndex].scrollIntoView({
+        block: 'nearest',
+        behavior: 'smooth'
+      });
+    }
+  }, [selectedIndex]);
 
   if (!isOpen) return null;
 
