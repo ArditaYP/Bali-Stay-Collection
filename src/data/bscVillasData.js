@@ -229,8 +229,8 @@ export const BSC_VILLAS = [
     "beds": 5,
     "guests": 10,
     "baths": 5.5,
-    "price": 580,
-    "priceIdr": 9280000,
+    "price": 420,
+    "priceIdr": 6720000,
     "rating": 4.74,
     "reviews": 23,
     "badge": "Guest Favorite",
@@ -252,8 +252,8 @@ export const BSC_VILLAS = [
     "beds": 5,
     "guests": 10,
     "baths": 4.5,
-    "price": 1200,
-    "priceIdr": 19200000,
+    "price": 495,
+    "priceIdr": 7920000,
     "rating": 4.42,
     "reviews": 24,
     "badge": "Guest Favorite",
@@ -275,8 +275,8 @@ export const BSC_VILLAS = [
     "beds": 3,
     "guests": 8,
     "baths": 3,
-    "price": 420,
-    "priceIdr": 6720000,
+    "price": 310,
+    "priceIdr": 4960000,
     "rating": 4.8,
     "reviews": 46,
     "badge": "Guest Favorite",
@@ -332,7 +332,8 @@ export const BSC_VILLAS = [
     ],
     "aliasId": "villa-habitas",
     "rating": 5,
-    "reviews": 2
+    "reviews": 2,
+    "priceIdr": 6080000
   },
   {
     "id": "tranquil-sanctuary-pererenan",
@@ -375,7 +376,8 @@ export const BSC_VILLAS = [
       "Walking distance to top Pererenan cafés and bakeries."
     ],
     "rating": 4.89,
-    "reviews": 38
+    "reviews": 38,
+    "priceIdr": 2640000
   },
   {
     "id": "tropical-canggu-villa",
@@ -417,7 +419,8 @@ export const BSC_VILLAS = [
       "Spacious living pavilion perfect for groups."
     ],
     "rating": 4.93,
-    "reviews": 72
+    "reviews": 72,
+    "priceIdr": 6240000
   },
   {
     "id": "luxe-beach-villa-seminyak",
@@ -460,7 +463,8 @@ export const BSC_VILLAS = [
       "Open-air tropical living area with private pool."
     ],
     "rating": 4.81,
-    "reviews": 58
+    "reviews": 58,
+    "priceIdr": 5120000
   },
   {
     "id": "tropical-elegance-seseh",
@@ -503,7 +507,8 @@ export const BSC_VILLAS = [
       "Short stroll to black-sand coastline and coastal walks."
     ],
     "rating": 4.98,
-    "reviews": 43
+    "reviews": 43,
+    "priceIdr": 3920000
   },
   {
     "id": "yellow-moon-uluwatu",
@@ -546,7 +551,8 @@ export const BSC_VILLAS = [
       "Sunken outdoor lounge beside the swimming pool."
     ],
     "rating": 4.8,
-    "reviews": 50
+    "reviews": 50,
+    "priceIdr": 5840000
   },
   {
     "id": "casa-kaya-bingin",
@@ -588,7 +594,8 @@ export const BSC_VILLAS = [
       "Minimalist Mediterranean-inspired architectural details."
     ],
     "rating": 4.88,
-    "reviews": 31
+    "reviews": 31,
+    "priceIdr": 2800000
   },
   {
     "id": "luxury-tropical-bingin",
@@ -631,7 +638,8 @@ export const BSC_VILLAS = [
       "Easy access to Bingin and Padang Padang beaches."
     ],
     "rating": 4.76,
-    "reviews": 37
+    "reviews": 37,
+    "priceIdr": 5600000
   },
   {
     "id": "chic-tropical-bingin",
@@ -673,7 +681,8 @@ export const BSC_VILLAS = [
       "Minutes from Bingin surf breaks and sunset cliff spots."
     ],
     "rating": 4.97,
-    "reviews": 30
+    "reviews": 30,
+    "priceIdr": 4240000
   },
   {
     "id": "five-bedroom-designer-umalas",
@@ -715,7 +724,8 @@ export const BSC_VILLAS = [
       "Prime location bridging quiet Umalas and vibrant Berawa."
     ],
     "rating": 4.9,
-    "reviews": 10
+    "reviews": 10,
+    "priceIdr": 9280000
   },
   {
     "id": "villa-imala",
@@ -760,7 +770,8 @@ export const BSC_VILLAS = [
       "Minutes away from Savaya Beach Club and Melasti Beach."
     ],
     "rating": 4.94,
-    "reviews": 18
+    "reviews": 18,
+    "priceIdr": 11520000
   },
   {
     "id": "villa-mahina",
@@ -807,7 +818,8 @@ export const BSC_VILLAS = [
     ],
     "why": "Ulasan tamu terbaik: 'Hanya 400 meter jalan kaki ke Pantai Berawa dan Finns Club, namun di dalam villa sangat tenang dan privat berkat jendela kedap suara.'",
     "rating": 4.9,
-    "reviews": 2
+    "reviews": 2,
+    "priceIdr": 6080000
   },
   {
     "id": "khaleela-villas",
@@ -854,7 +866,8 @@ export const BSC_VILLAS = [
     ],
     "why": "Ulasan tamu terbaik: 'Estetika gurun yang eksotis dan menenangkan di tengah Canggu. Kamar mandi terbukanya sangat luar biasa!'",
     "rating": 4.88,
-    "reviews": 72
+    "reviews": 72,
+    "priceIdr": 3120000
   },
   {
     "id": "beyond-the-palms",
@@ -900,7 +913,8 @@ export const BSC_VILLAS = [
     ],
     "why": "Ulasan tamu terbaik: 'Villa berteknologi tercanggih di Bali! Rooftop jacuzzi saat sunset dan bioskop outdoor menjadikannya liburan impian.'",
     "rating": 4.88,
-    "reviews": 68
+    "reviews": 68,
+    "priceIdr": 11520000
   },
   {
     "id": "villa-akar",
@@ -946,7 +960,8 @@ export const BSC_VILLAS = [
     ],
     "why": "Ulasan tamu terbaik: 'Predikat Guest Favorite 5.0 sempurna! Ruang keluarga fleksibel ber-AC dan layanan staf yang membuat kami merasa seperti raja.'",
     "rating": 5,
-    "reviews": 17
+    "reviews": 17,
+    "priceIdr": 7840000
   },
   {
     "id": "villa-golden",
@@ -990,7 +1005,8 @@ export const BSC_VILLAS = [
     ],
     "why": "Ulasan tamu terbaik: 'Tepat di seberang FINNS Recreation Club, desain chic yang sangat instagramable, dan pelayanan harian yang sempurna.'",
     "rating": 4.89,
-    "reviews": 65
+    "reviews": 65,
+    "priceIdr": 3680000
   },
   {
     "id": "villa-surga",
@@ -1036,7 +1052,8 @@ export const BSC_VILLAS = [
     ],
     "why": "Ulasan tamu terbaik: 'Ketenangan sejati di lembah tropis Ubud. Pemandangan hijau sejauh mata memandang dan staf yang melayani dari hati.'",
     "rating": 4.71,
-    "reviews": 72
+    "reviews": 72,
+    "priceIdr": 5120000
   },
   {
     "id": "house-terra",
@@ -1103,7 +1120,8 @@ export const BSC_VILLAS = [
       "/airbnb/house-terra/photos/photo-20.jpg"
     ],
     "rating": 5,
-    "reviews": 17
+    "reviews": 17,
+    "priceIdr": 7680000
   },
   {
     "id": "magnificent-canggu-estate",
@@ -1163,7 +1181,8 @@ export const BSC_VILLAS = [
       "/airbnb/magnificent-canggu-estate/photos/photo-15.jpg"
     ],
     "rating": 4.86,
-    "reviews": 42
+    "reviews": 42,
+    "priceIdr": 10400000
   },
   {
     "id": "designer-beachside-canggu",
@@ -1223,7 +1242,8 @@ export const BSC_VILLAS = [
       "/airbnb/designer-beachside-canggu/photos/photo-15.jpg"
     ],
     "rating": 4.96,
-    "reviews": 48
+    "reviews": 48,
+    "priceIdr": 8320000
   },
   {
     "id": "villa-daun-by-teduh",
@@ -1283,7 +1303,8 @@ export const BSC_VILLAS = [
       "/airbnb/villa-daun-by-teduh/photos/photo-15.jpg"
     ],
     "rating": 5,
-    "reviews": 16
+    "reviews": 16,
+    "priceIdr": 6080000
   },
   {
     "id": "cala-blanca",
@@ -1343,7 +1364,8 @@ export const BSC_VILLAS = [
       "/airbnb/cala-blanca/photos/photo-15.jpg"
     ],
     "rating": 4.94,
-    "reviews": 32
+    "reviews": 32,
+    "priceIdr": 6720000
   },
   {
     "id": "the-bull-house",
@@ -1403,7 +1425,8 @@ export const BSC_VILLAS = [
       "/airbnb/the-bull-house/photos/photo-15.jpg"
     ],
     "rating": 4.77,
-    "reviews": 48
+    "reviews": 48,
+    "priceIdr": 10880000
   },
   {
     "id": "berawa-breeze",
@@ -1463,7 +1486,8 @@ export const BSC_VILLAS = [
       "/airbnb/berawa-breeze/photos/photo-15.jpg"
     ],
     "rating": 4.9,
-    "reviews": 48
+    "reviews": 48,
+    "priceIdr": 8640000
   },
   {
     "id": "coco-bay",
@@ -1523,7 +1547,8 @@ export const BSC_VILLAS = [
       "/airbnb/coco-bay/photos/photo-15.jpg"
     ],
     "rating": 4.96,
-    "reviews": 48
+    "reviews": 48,
+    "priceIdr": 13600000
   },
   {
     "id": "villa-milana",
@@ -1583,7 +1608,8 @@ export const BSC_VILLAS = [
       "/airbnb/villa-milana/photos/photo-15.jpg"
     ],
     "rating": 4.93,
-    "reviews": 41
+    "reviews": 41,
+    "priceIdr": 8960000
   },
   {
     "id": "beachside-haven-canggu",
@@ -1643,7 +1669,8 @@ export const BSC_VILLAS = [
       "/airbnb/beachside-haven-canggu/photos/photo-15.jpg"
     ],
     "rating": 4.96,
-    "reviews": 48
+    "reviews": 48,
+    "priceIdr": 7680000
   },
   {
     "id": "wellness-estate-canggu",
@@ -1703,7 +1730,8 @@ export const BSC_VILLAS = [
       "/airbnb/wellness-estate-canggu/photos/photo-15.jpg"
     ],
     "rating": 4.98,
-    "reviews": 47
+    "reviews": 47,
+    "priceIdr": 9920000
   },
   {
     "id": "villa-aless",
@@ -1763,7 +1791,8 @@ export const BSC_VILLAS = [
       "/airbnb/villa-aless/photos/photo-15.jpg"
     ],
     "rating": 4.92,
-    "reviews": 37
+    "reviews": 37,
+    "priceIdr": 5280000
   },
   {
     "id": "alua-loft",
@@ -1823,7 +1852,8 @@ export const BSC_VILLAS = [
       "/airbnb/alua-loft/photos/photo-15.jpg"
     ],
     "rating": 4.86,
-    "reviews": 48
+    "reviews": 48,
+    "priceIdr": 2640000
   },
   {
     "id": "villa-satiya",
@@ -1883,7 +1913,8 @@ export const BSC_VILLAS = [
       "/airbnb/villa-satiya/photos/photo-15.jpg"
     ],
     "rating": 5,
-    "reviews": 43
+    "reviews": 43,
+    "priceIdr": 7200000
   },
   {
     "id": "villa-infinity-umalas",
@@ -1943,6 +1974,7 @@ export const BSC_VILLAS = [
       "/airbnb/villa-infinity-umalas/photos/photo-15.jpg"
     ],
     "rating": 4.91,
-    "reviews": 22
+    "reviews": 22,
+    "priceIdr": 11040000
   }
 ];

@@ -227,7 +227,7 @@ const VILLA_DETAILS = {
 
   'house-terra': {
     category: 'Luxury',
-    price: 550, // Patokan menengah (USD / malam)
+    price: 480, // Patokan menengah (USD / malam)
     cleaningFee: 50,
     freeCancel: true,
     cardBg: '#CBB9C9',
