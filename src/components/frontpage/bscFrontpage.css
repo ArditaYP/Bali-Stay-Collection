@@ -296,6 +296,10 @@
   box-shadow: 0 4px 22px rgba(20, 20, 19, 0.05) !important;
 }
 
+.bsc-frontpage header.nav.nav-scrolled.has-sticky-subbar {
+  border-bottom: none !important;
+}
+
 .bsc-frontpage header.nav.nav-scrolled .logo-img {
   filter: none;
 }

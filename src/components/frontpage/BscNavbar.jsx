@@ -93,20 +93,24 @@ export default function BscNavbar({
      * @returns {void}
      */
     const handleScroll = () => {
+      if (isDetailPage) {
+        setIsScrolledPastHero(false);
+        return;
+      }
       const heroEl = document.querySelector('.hero');
       if (heroEl) {
         const rect = heroEl.getBoundingClientRect();
         // Ketika bagian bawah hero telah mencapai navbar
         setIsScrolledPastHero(rect.bottom <= 90);
       } else {
-        setIsScrolledPastHero(window.scrollY > 200);
+        setIsScrolledPastHero(false);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isDetailPage]);
 
   // Tutup expanded search jika user scroll kembali ke atas (hero)
   useEffect(() => {
@@ -189,7 +193,7 @@ export default function BscNavbar({
   return (
     <>
       {/* Header Navigasi Resmi dengan kelas dinamis nav-hero / nav-scrolled */}
-      <header className={`nav ${isScrolledPastHero ? 'nav-scrolled has-sticky-search' : 'nav-hero'}`}>
+      <header className={`nav ${isScrolledPastHero ? 'nav-scrolled has-sticky-subbar' : 'nav-hero'}`}>
         <div className="nav-in">
           {/* Logo Brand Resmi */}
           <a
@@ -205,38 +209,14 @@ export default function BscNavbar({
             />
           </a>
 
-          {/* OPSI A: Kapsul Pencarian Melayang di Tengah Navbar Saat Di-Scroll */}
-          {isScrolledPastHero ? (
-            <div className="nav-sticky-capsule-wrapper">
-              <button
-                type="button"
-                className="nav-sticky-search-pill"
-                onClick={() => setIsExpandedSearchOpen(prev => !prev)}
-                aria-label="Search villas anywhere in Bali"
-              >
-                <span className="ns-pill-item bold">{activeLocation}</span>
-                <span className="ns-pill-divider" />
-                <span className="ns-pill-item">{activeDates}</span>
-                <span className="ns-pill-divider" />
-                <span className="ns-pill-item muted">{activeGuests}</span>
-                <span className="ns-pill-icon">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="11" cy="11" r="8" />
-                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                  </svg>
-                </span>
-              </button>
-            </div>
-          ) : (
-            /* Tautan Navigasi Desktop Saat Berada di Hero */
-            <nav className="nav-links" aria-label="Main Navigation">
-              <a href="#villas" onClick={(e) => handleScrollToSection(e, 'villas')}>Villas</a>
-              <a href="#destinations" onClick={(e) => handleScrollToSection(e, 'destinations')}>Destinations</a>
-              <a href="#experiences" onClick={(e) => handleScrollToSection(e, 'experiences')}>Experiences</a>
-              <a href="#verify" onClick={(e) => handleScrollToSection(e, 'verify')}>How we verify</a>
-              <a href="#team" onClick={(e) => handleScrollToSection(e, 'team')}>Our team</a>
-            </nav>
-          )}
+          {/* Tautan Navigasi Desktop - Selalu Tetap Ada di Navbar Baik Saat di Hero Maupun Saat Di-Scroll */}
+          <nav className="nav-links" aria-label="Main Navigation">
+            <a href="#villas" onClick={(e) => handleScrollToSection(e, 'villas')}>Villas</a>
+            <a href="#destinations" onClick={(e) => handleScrollToSection(e, 'destinations')}>Destinations</a>
+            <a href="#experiences" onClick={(e) => handleScrollToSection(e, 'experiences')}>Experiences</a>
+            <a href="#verify" onClick={(e) => handleScrollToSection(e, 'verify')}>How we verify</a>
+            <a href="#team" onClick={(e) => handleScrollToSection(e, 'team')}>Our team</a>
+          </nav>
 
           {/* Sisi Kanan: Quick Search, Wishlist, Currency Toggle, Tombol CTA & Hamburger Mobile */}
           <div className="nav-cta">
@@ -310,6 +290,30 @@ export default function BscNavbar({
             </button>
           </div>
         </div>
+
+        {/* Kapsul Pencarian di Bawah Navbar Saat Di-Scroll */}
+        {isScrolledPastHero && (
+          <div className="nav-sub-search-strip">
+            <button
+              type="button"
+              className="nav-sticky-search-pill"
+              onClick={() => setIsExpandedSearchOpen(prev => !prev)}
+              aria-label="Search villas anywhere in Bali"
+            >
+              <span className="ns-pill-item bold">{activeLocation}</span>
+              <span className="ns-pill-divider" />
+              <span className="ns-pill-item">{activeDates}</span>
+              <span className="ns-pill-divider" />
+              <span className="ns-pill-item muted">{activeGuests}</span>
+              <span className="ns-pill-icon">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </span>
+            </button>
+          </div>
+        )}
 
         {/* OPSI A: FLOATING EXPANDED SEARCH PANEL DI BAWAH NAVBAR */}
         {isScrolledPastHero && isExpandedSearchOpen && (

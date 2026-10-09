@@ -1632,6 +1632,32 @@ src/
    - Seluruh baris kartu di grid 3-kolom Top Picks kini memiliki garis dasar tombol horizontal yang lurus, presisi, dan proporsional.
    - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **DILARANG KERAS `git push`** ke remote repository.
 
+### 9.19 Relokasi Kapsul Pencarian (Search Pill) ke Sub-Bar di Bawah Navbar Saat Scroll (Navbar Tetap Utuh)
+1. **Latar Belakang & Permintaan Pengguna**:
+   - Pengguna meminta penataan ulang pill pencarian saat scroll:
+     *"pada bagian saaat di scroll kan bagian search itu dia mengecil jadi pil nah saya mau nya dia itu di bawah nya navbar bukan di navbar nya gitu jadi navbar tetap ada, apa kah kamu mengerti?"*.
+   - **Akar Masalah**:
+     - Sebelumnya, kapsul pencarian kompak (`nav-sticky-search-pill`) disisipkan di dalam kontainer utama navbar ([`.nav-in`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/bscFrontpage.css#L311-L320)), yang menggantikan dan menyembunyikan menu navigasi desktop (`<nav className="nav-links">`).
+     - Pengguna menginginkan navbar tetap utuh (logo, tautan menu Villas, Destinations, Experiences, How we verify, Our team, Currency toggle, dan CTA tetap terlihat) dan pill pencarian diletakkan di baris tersendiri **tepat di bawah navbar**.
+2. **Solusi & Implementasi**:
+   - **Navbar Tetap Utuh 100% ([`src/components/frontpage/BscNavbar.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscNavbar.jsx))**:
+     - Tautan menu `<nav className="nav-links">` kini **selalu tampil permanen** di dalam `.nav-in`, baik saat posisi hero di atas maupun saat halaman di-scroll ke bawah.
+     - Logo brand di sisi kiri dan tombol aksi (USD/IDR, Wishlist, Hamburger) di sisi kanan tetap aktif tanpa tergeser atau terkompresi.
+   - **Sub-Bar Khusus di Bawah Navbar (`.nav-sub-search-strip`)**:
+     - Ditambahkan elemen sub-bar baru `.nav-sub-search-strip` yang muncul dengan animasi halus `slideDownSubbar` saat scroll melewati hero.
+     - Kapsul pencarian (`.nav-sticky-search-pill`) dipusatkan secara elegan di dalam sub-bar ini dengan tampilan `Anywhere · Any week · 2 guests · 🔍`.
+     - Styling sub-bar menggunakan latar belakang `rgba(255, 255, 255, 0.98)` dengan efek `backdrop-filter: blur(14px)`, hairline border atas dan bawah, serta shadow lembut.
+   - **Panel Pencarian Diperluas (*Expanded Search Overlay*)**:
+     - Posisi modal pencarian detail (`.nav-expanded-search-overlay`) disesuaikan ke `top: 124px` (dan `top: 114px` pada mobile) sehingga terbuka tepat di bawah sub-bar tanpa menutupi header.
+   - **Pencegahan di Halaman Detail**:
+     - Pengecekan `isDetailPage` ditambahkan ke event listener scroll agar sub-bar pencarian hanya aktif pada halaman utama/katalog depan BSC.
+3. **Verifikasi & Kepatuhan Aturan**:
+   - `npm run lint`: Lulus dengan 0 error.
+   - `npm run build`: Lulus 100% (2.99s, 0 error).
+   - Pengujian fungsi scroll mengonfirmasi navbar tetap utuh dan pill pencarian berada rapi di baris bawah navbar.
+   - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **DILARANG KERAS `git push`** ke remote repository.
+
+
 
 
 
