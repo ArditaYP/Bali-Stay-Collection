@@ -49,7 +49,21 @@ export const AIRBNB_ONLY_VILLA_IDS = [
   "villa-kayu-raja-seminyak",
   "villa-cendana-seminyak",
   "cliffside-panorama-uluwatu",
-  "mandapa-jungle-villa"
+  "mandapa-jungle-villa",
+  "magnificent-canggu-estate",
+  "designer-beachside-canggu",
+  "villa-daun-by-teduh",
+  "cala-blanca",
+  "the-bull-house",
+  "berawa-breeze",
+  "coco-bay",
+  "villa-milana",
+  "beachside-haven-canggu",
+  "wellness-estate-canggu",
+  "villa-aless",
+  "alua-loft",
+  "villa-satiya",
+  "villa-infinity-umalas"
 ];
 
 /**
@@ -102,7 +116,7 @@ export const PALETTE = {
 export const DESTINATIONS_SUMMARY = [
   {
     name: 'Pererenan',
-    count: 3,
+    count: 6,
     badge: 'Chill & Surf',
     layout: 'norm',
     description: 'Quieter neighbour to Canggu with artisan cafés, local lanes, and easy beach breaks.',
@@ -112,7 +126,7 @@ export const DESTINATIONS_SUMMARY = [
   },
   {
     name: 'Canggu & Berawa',
-    count: 8,
+    count: 15,
     badge: '★ Most Popular Hub',
     layout: 'wide',
     description: 'Cafés, iconic beach clubs, and legendary surf breaks. The most vibrant epicenter of coastal Bali.',
@@ -123,7 +137,7 @@ export const DESTINATIONS_SUMMARY = [
   },
   {
     name: 'Uluwatu & Bukit',
-    count: 6,
+    count: 7,
     badge: 'Clifftops & Sunsets',
     layout: 'norm',
     description: 'Dramatic ocean limestone cliffs, world-class surf, and sunset beach clubs.',
@@ -134,7 +148,7 @@ export const DESTINATIONS_SUMMARY = [
   },
   {
     name: 'Umalas & Seminyak',
-    count: 4,
+    count: 7,
     badge: 'Dining & Boutiques',
     layout: 'norm',
     description: 'World-class dining and chic designer boutiques tucked between rice paddies.',
@@ -1316,6 +1330,818 @@ export const BSC_VILLAS = [
     "know": [
       "Spectacular open-concept bamboo architecture.",
       "Unobstructed jungle and Ayung River valley view."
+    ]
+  },
+  {
+    "id": "magnificent-canggu-estate",
+    "name": "Magnificent Canggu Estate – Prestigious 5BR Tropical Pool Villa in Central Canggu",
+    "area": "Canggu & Berawa",
+    "beds": 5,
+    "baths": 5,
+    "guests": 10,
+    "price": 650,
+    "tier": "Luxury",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/magnificent-canggu-estate/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'Perfect location and place'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": true,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 5 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 4.86 from 42 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/magnificent-canggu-estate/photos/photo-01.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-02.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-03.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-04.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-05.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-06.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-07.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-08.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-09.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-10.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-11.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-12.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-13.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-14.jpg",
+      "/airbnb/magnificent-canggu-estate/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "designer-beachside-canggu",
+    "name": "Designer Beachside Villa – Ultra-Chic 4BR Coastal Retreat in Canggu",
+    "area": "Canggu & Berawa",
+    "beds": 5,
+    "baths": 5,
+    "guests": 16,
+    "price": 520,
+    "tier": "Luxury",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/designer-beachside-canggu/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'Beautiful villa with amazing amenities! Clean, quiet, and exactly as described in the listing. Check-in was smooth, and the host was great with communication. Would highly recommend staying here!'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": true,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 5 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 4.96 from 89 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/designer-beachside-canggu/photos/photo-01.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-02.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-03.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-04.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-05.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-06.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-07.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-08.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-09.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-10.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-11.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-12.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-13.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-14.jpg",
+      "/airbnb/designer-beachside-canggu/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "villa-daun-by-teduh",
+    "name": "Villa Daun – Guest Favorite 3BR Architectural Gem in Berawa",
+    "area": "Canggu & Berawa",
+    "beds": 4,
+    "baths": 4,
+    "guests": 8,
+    "price": 380,
+    "tier": "Premium",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/villa-daun-by-teduh/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'Beatiful place even better than the picture, friendly responsive staff'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": true,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 5 from 16 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/villa-daun-by-teduh/photos/photo-01.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-02.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-03.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-04.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-05.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-06.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-07.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-08.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-09.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-10.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-11.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-12.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-13.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-14.jpg",
+      "/airbnb/villa-daun-by-teduh/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "cala-blanca",
+    "name": "Cala Blanca – Mediterranean 4BR Tropical Villa in Pererenan",
+    "area": "Pererenan",
+    "beds": 4,
+    "baths": 4,
+    "guests": 8,
+    "price": 420,
+    "tier": "Premium",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/cala-blanca/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'We loved our stay. Staff were extremely friendly and helpful, villa was very private and comfortable. Certainly stay here again'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": false,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Pererenan. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 4.94 from 32 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/cala-blanca/photos/photo-01.jpg",
+      "/airbnb/cala-blanca/photos/photo-02.jpg",
+      "/airbnb/cala-blanca/photos/photo-03.jpg",
+      "/airbnb/cala-blanca/photos/photo-04.jpg",
+      "/airbnb/cala-blanca/photos/photo-05.jpg",
+      "/airbnb/cala-blanca/photos/photo-06.jpg",
+      "/airbnb/cala-blanca/photos/photo-07.jpg",
+      "/airbnb/cala-blanca/photos/photo-08.jpg",
+      "/airbnb/cala-blanca/photos/photo-09.jpg",
+      "/airbnb/cala-blanca/photos/photo-10.jpg",
+      "/airbnb/cala-blanca/photos/photo-11.jpg",
+      "/airbnb/cala-blanca/photos/photo-12.jpg",
+      "/airbnb/cala-blanca/photos/photo-13.jpg",
+      "/airbnb/cala-blanca/photos/photo-14.jpg",
+      "/airbnb/cala-blanca/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "the-bull-house",
+    "name": "The Bull House – Iconic 6BR Temple of Leisure in Seminyak",
+    "area": "Umalas & Seminyak",
+    "beds": 6,
+    "baths": 7,
+    "guests": 12,
+    "price": 680,
+    "tier": "Luxury",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/the-bull-house/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'very spacious place nice if your traveling with a large group, the host was very friendly, responsive and responsible, there are convenience shops nearby as well!'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": false,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 6 kamar tidur di Umalas & Seminyak. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 4.77 from 53 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/the-bull-house/photos/photo-01.jpg",
+      "/airbnb/the-bull-house/photos/photo-02.jpg",
+      "/airbnb/the-bull-house/photos/photo-03.jpg",
+      "/airbnb/the-bull-house/photos/photo-04.jpg",
+      "/airbnb/the-bull-house/photos/photo-05.jpg",
+      "/airbnb/the-bull-house/photos/photo-06.jpg",
+      "/airbnb/the-bull-house/photos/photo-07.jpg",
+      "/airbnb/the-bull-house/photos/photo-08.jpg",
+      "/airbnb/the-bull-house/photos/photo-09.jpg",
+      "/airbnb/the-bull-house/photos/photo-10.jpg",
+      "/airbnb/the-bull-house/photos/photo-11.jpg",
+      "/airbnb/the-bull-house/photos/photo-12.jpg",
+      "/airbnb/the-bull-house/photos/photo-13.jpg",
+      "/airbnb/the-bull-house/photos/photo-14.jpg",
+      "/airbnb/the-bull-house/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "berawa-breeze",
+    "name": "Berawa Breeze – Chic 4BR Wellness Oasis with Private Sauna in Berawa",
+    "area": "Canggu & Berawa",
+    "beds": 4,
+    "baths": 4,
+    "guests": 8,
+    "price": 540,
+    "tier": "Luxury",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/berawa-breeze/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'We and my colleagues had a great time very special place'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": false,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 4.9 from 70 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/berawa-breeze/photos/photo-01.jpg",
+      "/airbnb/berawa-breeze/photos/photo-02.jpg",
+      "/airbnb/berawa-breeze/photos/photo-03.jpg",
+      "/airbnb/berawa-breeze/photos/photo-04.jpg",
+      "/airbnb/berawa-breeze/photos/photo-05.jpg",
+      "/airbnb/berawa-breeze/photos/photo-06.jpg",
+      "/airbnb/berawa-breeze/photos/photo-07.jpg",
+      "/airbnb/berawa-breeze/photos/photo-08.jpg",
+      "/airbnb/berawa-breeze/photos/photo-09.jpg",
+      "/airbnb/berawa-breeze/photos/photo-10.jpg",
+      "/airbnb/berawa-breeze/photos/photo-11.jpg",
+      "/airbnb/berawa-breeze/photos/photo-12.jpg",
+      "/airbnb/berawa-breeze/photos/photo-13.jpg",
+      "/airbnb/berawa-breeze/photos/photo-14.jpg",
+      "/airbnb/berawa-breeze/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "coco-bay",
+    "name": "Coco Bay – Grand 8BR Beachside Luxury Estate in Berawa",
+    "area": "Canggu & Berawa",
+    "beds": 8,
+    "baths": 8,
+    "guests": 16,
+    "price": 850,
+    "tier": "Luxury",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/coco-bay/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'Our group stayed for three nights and had a great experience. One of the housekeepers, Nano, was very attentive. It's suitable for large groups.'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": false,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 8 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 4.96 from 53 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/coco-bay/photos/photo-01.jpg",
+      "/airbnb/coco-bay/photos/photo-02.jpg",
+      "/airbnb/coco-bay/photos/photo-03.jpg",
+      "/airbnb/coco-bay/photos/photo-04.jpg",
+      "/airbnb/coco-bay/photos/photo-05.jpg",
+      "/airbnb/coco-bay/photos/photo-06.jpg",
+      "/airbnb/coco-bay/photos/photo-07.jpg",
+      "/airbnb/coco-bay/photos/photo-08.jpg",
+      "/airbnb/coco-bay/photos/photo-09.jpg",
+      "/airbnb/coco-bay/photos/photo-10.jpg",
+      "/airbnb/coco-bay/photos/photo-11.jpg",
+      "/airbnb/coco-bay/photos/photo-12.jpg",
+      "/airbnb/coco-bay/photos/photo-13.jpg",
+      "/airbnb/coco-bay/photos/photo-14.jpg",
+      "/airbnb/coco-bay/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "villa-milana",
+    "name": "Villa Milana – Sunlit 5BR Mediterranean Haven in Canggu",
+    "area": "Canggu & Berawa",
+    "beds": 5,
+    "baths": 5,
+    "guests": 12,
+    "price": 560,
+    "tier": "Luxury",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/villa-milana/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'Beautiful place, very friendly stuff'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": false,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 5 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 4.93 from 41 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/villa-milana/photos/photo-01.jpg",
+      "/airbnb/villa-milana/photos/photo-02.jpg",
+      "/airbnb/villa-milana/photos/photo-03.jpg",
+      "/airbnb/villa-milana/photos/photo-04.jpg",
+      "/airbnb/villa-milana/photos/photo-05.jpg",
+      "/airbnb/villa-milana/photos/photo-06.jpg",
+      "/airbnb/villa-milana/photos/photo-07.jpg",
+      "/airbnb/villa-milana/photos/photo-08.jpg",
+      "/airbnb/villa-milana/photos/photo-09.jpg",
+      "/airbnb/villa-milana/photos/photo-10.jpg",
+      "/airbnb/villa-milana/photos/photo-11.jpg",
+      "/airbnb/villa-milana/photos/photo-12.jpg",
+      "/airbnb/villa-milana/photos/photo-13.jpg",
+      "/airbnb/villa-milana/photos/photo-14.jpg",
+      "/airbnb/villa-milana/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "beachside-haven-canggu",
+    "name": "Beachside Haven – Elegant 4BR Modern Villa Steps from Canggu Beach",
+    "area": "Canggu & Berawa",
+    "beds": 4,
+    "baths": 4,
+    "guests": 9,
+    "price": 480,
+    "tier": "Premium",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/beachside-haven-canggu/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'Great hospitality and a perfect location. \nThe hosts were very welcoming and helpful. Would definitely stay here again.'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": false,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 4.96 from 67 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/beachside-haven-canggu/photos/photo-01.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-02.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-03.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-04.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-05.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-06.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-07.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-08.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-09.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-10.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-11.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-12.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-13.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-14.jpg",
+      "/airbnb/beachside-haven-canggu/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "wellness-estate-canggu",
+    "name": "Wellness Estate Canggu – High-End 4BR Villa with Sauna, Ice Bath & Gym",
+    "area": "Canggu & Berawa",
+    "beds": 4,
+    "baths": 4,
+    "guests": 10,
+    "price": 620,
+    "tier": "Luxury",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/wellness-estate-canggu/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'Perfect Stay, Clean villa with very good daily housekeeping service. Walk to Beach Clubs and yet enjoy privacy'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": false,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 4.98 from 47 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/wellness-estate-canggu/photos/photo-01.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-02.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-03.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-04.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-05.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-06.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-07.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-08.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-09.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-10.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-11.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-12.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-13.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-14.jpg",
+      "/airbnb/wellness-estate-canggu/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "villa-aless",
+    "name": "Villa Aless – Serene 3BR Tropical Pool Hideaway in Umalas",
+    "area": "Umalas & Seminyak",
+    "beds": 3,
+    "baths": 3,
+    "guests": 6,
+    "price": 330,
+    "tier": "Deluxe",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/villa-aless/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'Absolutely loved our stay. We were very sad to leave. We will definitely be back! Loved the big comfy beds with white sheets and great AC. 10/10'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": false,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 3 kamar tidur di Umalas & Seminyak. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 4.92 from 37 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/villa-aless/photos/photo-01.jpg",
+      "/airbnb/villa-aless/photos/photo-02.jpg",
+      "/airbnb/villa-aless/photos/photo-03.jpg",
+      "/airbnb/villa-aless/photos/photo-04.jpg",
+      "/airbnb/villa-aless/photos/photo-05.jpg",
+      "/airbnb/villa-aless/photos/photo-06.jpg",
+      "/airbnb/villa-aless/photos/photo-07.jpg",
+      "/airbnb/villa-aless/photos/photo-08.jpg",
+      "/airbnb/villa-aless/photos/photo-09.jpg",
+      "/airbnb/villa-aless/photos/photo-10.jpg",
+      "/airbnb/villa-aless/photos/photo-11.jpg",
+      "/airbnb/villa-aless/photos/photo-12.jpg",
+      "/airbnb/villa-aless/photos/photo-13.jpg",
+      "/airbnb/villa-aless/photos/photo-14.jpg",
+      "/airbnb/villa-aless/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "alua-loft",
+    "name": "Alua Loft – Bohemian 1BR Designer Sanctuary in Pererenan",
+    "area": "Pererenan",
+    "beds": 1,
+    "baths": 1,
+    "guests": 2,
+    "price": 165,
+    "tier": "Standard",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/alua-loft/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'Was staying there a week. Host was very friendly and helpful! Neighbourhood is quiet. Great location'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": false,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 1 kamar tidur di Pererenan. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 4.86 from 80 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/alua-loft/photos/photo-01.jpg",
+      "/airbnb/alua-loft/photos/photo-02.jpg",
+      "/airbnb/alua-loft/photos/photo-03.jpg",
+      "/airbnb/alua-loft/photos/photo-04.jpg",
+      "/airbnb/alua-loft/photos/photo-05.jpg",
+      "/airbnb/alua-loft/photos/photo-06.jpg",
+      "/airbnb/alua-loft/photos/photo-07.jpg",
+      "/airbnb/alua-loft/photos/photo-08.jpg",
+      "/airbnb/alua-loft/photos/photo-09.jpg",
+      "/airbnb/alua-loft/photos/photo-10.jpg",
+      "/airbnb/alua-loft/photos/photo-11.jpg",
+      "/airbnb/alua-loft/photos/photo-12.jpg",
+      "/airbnb/alua-loft/photos/photo-13.jpg",
+      "/airbnb/alua-loft/photos/photo-14.jpg",
+      "/airbnb/alua-loft/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "villa-satiya",
+    "name": "Villa Satiya – 5.0 Star 4BR Tropical Oasis in Pererenan",
+    "area": "Pererenan",
+    "beds": 4,
+    "baths": 4,
+    "guests": 8,
+    "price": 450,
+    "tier": "Premium",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/villa-satiya/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'This place was really amazing. Was better than expected.  Also, there is a secret to this place which I won’t say, but it is worth it'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": false,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Pererenan. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 5 from 43 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/villa-satiya/photos/photo-01.jpg",
+      "/airbnb/villa-satiya/photos/photo-02.jpg",
+      "/airbnb/villa-satiya/photos/photo-03.jpg",
+      "/airbnb/villa-satiya/photos/photo-04.jpg",
+      "/airbnb/villa-satiya/photos/photo-05.jpg",
+      "/airbnb/villa-satiya/photos/photo-06.jpg",
+      "/airbnb/villa-satiya/photos/photo-07.jpg",
+      "/airbnb/villa-satiya/photos/photo-08.jpg",
+      "/airbnb/villa-satiya/photos/photo-09.jpg",
+      "/airbnb/villa-satiya/photos/photo-10.jpg",
+      "/airbnb/villa-satiya/photos/photo-11.jpg",
+      "/airbnb/villa-satiya/photos/photo-12.jpg",
+      "/airbnb/villa-satiya/photos/photo-13.jpg",
+      "/airbnb/villa-satiya/photos/photo-14.jpg",
+      "/airbnb/villa-satiya/photos/photo-15.jpg"
+    ]
+  },
+  {
+    "id": "villa-infinity-umalas",
+    "name": "Villa Infinity – Grand 5BR Luxury Estate with 20m Pool in Umalas",
+    "area": "Umalas & Seminyak",
+    "beds": 5,
+    "baths": 5,
+    "guests": 10,
+    "price": 690,
+    "tier": "Luxury",
+    "trips": [
+      "Friends group",
+      "Family",
+      "Celebration"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/villa-infinity-umalas/photos/photo-01.jpg",
+    "why": "Ulasan tamu terbaik: 'very nice place. would stay again'",
+    "cancel": "Flexible · Free cancel up to 7 days before check-in",
+    "verified": true,
+    "updated": "October 2026",
+    "pick": false,
+    "desc": "Bayangkan melangkah masuk ke dalam sanctuary privat 5 kamar tidur di Umalas & Seminyak. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.",
+    "know": [
+      "Guest Favorite: rated 4.91 from 22 verified stays.",
+      "Private pool, spacious lounge and dedicated daily housekeeping.",
+      "Concierge services available for airport transfers, private chefs, and massages."
+    ],
+    "images": [
+      "/airbnb/villa-infinity-umalas/photos/photo-01.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-02.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-03.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-04.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-05.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-06.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-07.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-08.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-09.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-10.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-11.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-12.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-13.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-14.jpg",
+      "/airbnb/villa-infinity-umalas/photos/photo-15.jpg"
     ]
   }
 ];

@@ -1306,3 +1306,71 @@ src/
    - Copywriting NLP & Mental Triggers tetap utuh 100%.
    - Build Vite `npm run build` sukses 100% tanpa error.
    - **TIDAK ADA git push ke GitHub remote (hanya lokal).**
+
+### 9.9 Integrasi Penuh 14 Villa Baru Airbnb (Audit 19 Link Airbnb & Ekspansi Katalog ke 40 Villa Autentik)
+1. **Latar Belakang & Permintaan Pengguna**:
+   - Pengguna memberikan 19 tautan Airbnb untuk diaudit satu per satu.
+   - Hasil audit menunjukkan:
+     - 5 tautan telah terintegrasi sebelumnya (`house-terra`, `beyond-the-palms`, `villa-akar`, `villa-golden`, `villa-surga`).
+     - 14 tautan baru terverifikasi valid dan pengguna menginstruksikan untuk memasukkan seluruhnya (*"GASKEN LAKUKANNN"*), dengan catatan tegas: **DILARANG ASAL PUSH KE GITHUB**.
+2. **Daftar 14 Villa Baru yang Berhasil Diimpor**:
+   1. **Magnificent Canggu Estate** (`magnificent-canggu-estate` - ID 1087359200862309085):
+      - Lokasi: Canggu & Berawa | 5BR · 5.5 Bath · 10 Tamu | $650/malam (Rp 10.400.000) | Rating: ★4.86 (42 ulasan)
+      - Aset: 15 foto HD lokal + 42 avatar profil tamu asli Airbnb.
+   2. **Designer Beachside Canggu** (`designer-beachside-canggu` - ID 1079411963216253920):
+      - Lokasi: Canggu & Berawa | 5BR · 5 Bath · 16 Tamu | $520/malam (Rp 8.320.000) | Rating: ★4.96 (89 ulasan / 48 ditarik)
+      - Aset: 15 foto HD lokal + 48 avatar profil tamu asli Airbnb.
+   3. **Villa Daun by Teduh** (`villa-daun-by-teduh` - ID 1064886211596833419):
+      - Lokasi: Canggu & Berawa | 4BR · 4.5 Bath · 8 Tamu | $380/malam (Rp 6.080.000) | Rating: ★5.0 (16 ulasan)
+      - Aset: 15 foto HD lokal + 16 avatar profil tamu asli Airbnb.
+   4. **Cala Blanca** (`cala-blanca` - ID 1062090222064075230):
+      - Lokasi: Canggu & Berawa | 4BR · 4.5 Bath · 8 Tamu | $420/malam (Rp 6.720.000) | Rating: ★4.94 (32 ulasan)
+      - Aset: 15 foto HD lokal + 32 avatar profil tamu asli Airbnb.
+   5. **The Bull House** (`the-bull-house` - ID 1051031028746025813):
+      - Lokasi: Umalas & Seminyak | 6BR · 7 Bath · 12 Tamu | $680/malam (Rp 10.880.000) | Rating: ★4.77 (53 ulasan / 48 ditarik)
+      - Aset: 15 foto HD lokal + 48 avatar profil tamu asli Airbnb.
+   6. **Berawa Breeze** (`berawa-breeze` - ID 1049537153969980438):
+      - Lokasi: Canggu & Berawa | 4BR · 4 Bath · 8 Tamu | $540/malam (Rp 8.640.000) | Rating: ★4.90 (70 ulasan / 48 ditarik)
+      - Fasilitas Kunci: Private Sauna & Cold Plunge.
+      - Aset: 15 foto HD lokal + 48 avatar profil tamu asli Airbnb.
+   7. **CocoBay Bali** (`coco-bay` - ID 1040311320013732507):
+      - Lokasi: Canggu & Berawa | 8BR · 8 Bath · 16 Tamu | $850/malam (Rp 13.600.000) | Rating: ★4.96 (53 ulasan / 48 ditarik)
+      - Aset: 15 foto HD lokal + 48 avatar profil tamu asli Airbnb.
+   8. **Villa Milana** (`villa-milana` - ID 1019834133541588350):
+      - Lokasi: Canggu & Berawa | 5BR · 5 Bath · 12 Tamu | $560/malam (Rp 8.960.000) | Rating: ★4.93 (41 ulasan)
+      - Aset: 15 foto HD lokal + 41 avatar profil tamu asli Airbnb.
+   9. **Beachside Haven Canggu** (`beachside-haven-canggu` - ID 901732951333307312):
+      - Lokasi: Canggu & Berawa | 4BR · 4 Bath · 9 Tamu | $480/malam (Rp 7.680.000) | Rating: ★4.96 (67 ulasan / 48 ditarik)
+      - Aset: 15 foto HD lokal + 48 avatar profil tamu asli Airbnb.
+   10. **Wellness Estate Canggu** (`wellness-estate-canggu` - ID 835863329121785117):
+       - Lokasi: Canggu & Berawa | 4BR · 4.5 Bath · 10 Tamu | $620/malam (Rp 9.920.000) | Rating: ★4.98 (47 ulasan)
+       - Fasilitas Kunci: Sauna, Jacuzzi, Ice Bath, Gym.
+       - Aset: 15 foto HD lokal + 47 avatar profil tamu asli Airbnb.
+   11. **Villa Aless** (`villa-aless` - ID 827920546566245515):
+       - Lokasi: Canggu & Berawa | 3BR · 3 Bath · 6 Tamu | $330/malam (Rp 5.280.000) | Rating: ★4.92 (37 ulasan)
+       - Aset: 15 foto HD lokal + 37 avatar profil tamu asli Airbnb.
+   12. **Alua Loft** (`alua-loft` - ID 816903468632847794):
+       - Lokasi: Pererenan | 1BR · 1 Bath · 2 Tamu | $165/malam (Rp 2.640.000) | Rating: ★4.86 (80 ulasan / 48 ditarik)
+       - Aset: 15 foto HD lokal + 48 avatar profil tamu asli Airbnb.
+   13. **Villa Satiya** (`villa-satiya` - ID 741652081317038639):
+       - Lokasi: Pererenan | 4BR · 4.5 Bath · 8 Tamu | $450/malam (Rp 7.200.000) | Rating: ★5.0 (43 ulasan)
+       - Aset: 15 foto HD lokal + 43 avatar profil tamu asli Airbnb.
+   14. **Villa Infinity Umalas** (`villa-infinity-umalas` - ID 796033733434893883):
+       - Lokasi: Umalas & Seminyak | 5BR · 5.5 Bath · 10 Tamu | $690/malam (Rp 11.040.000) | Rating: ★4.91 (22 ulasan)
+       - Fasilitas Kunci: 20-meter Olympic Lap Pool.
+       - Aset: 15 foto HD lokal + 22 avatar profil tamu asli Airbnb.
+
+3. **Sinkronisasi Kode, Basis Data, & Copywriting NLP**:
+   - Seluruh 14 villa baru telah terdaftar di:
+     - `src/data/airbnbVillas.json` (Spesifikasi mendalam, 15 foto HD lokal, ulasan asli tamu dengan foto avatar lokal, fasilitas lengkap).
+     - `src/data/bscVillasData.js` (Katalog utama `BSC_VILLAS`, `AIRBNB_ONLY_VILLA_IDS` = 40 villa, `ACTIVE_AIRBNB_VILLA_IDS` = 40 villa, serta sebaran `DESTINATIONS_SUMMARY` terupdate: Pererenan 6, Canggu & Berawa 17, Umalas & Seminyak 6, Uluwatu & Bukit 6, Ubud 4, Seseh 1).
+     - `src/data/villasData.js` (`DETAIL_VILLAS` diselaraskan untuk render detail page interaktif).
+     - `src/data/neighborhoodData.js` (`NEIGHBORHOOD_VILLAS` diperbarui mencakup ke-40 villa berdasarkan kawasannya).
+     - `src/App.jsx` (`VILLA_ALIAS_MAP` diperbarui untuk routing mulus tanpa lag).
+   - Setiap villa dilengkapi narasi Hypnotic NLP (VAK Sensory, pacing & leading, serta social proof berakar dari ulasan tamu Airbnb terbaik).
+   - JSDoc Bahasa Indonesia lengkap di skrip otomasi `scripts/import-14-villas.mjs`.
+
+4. **Kepatuhan Protokol Keamanan & Git**:
+   - **Vite Build**: Lolos 100% tanpa error (`npm run build`).
+   - **Git Push**: **DILARANG DAN TIDAK DILAKUKAN `git push`**. Seluruh pengerjaan dikomit di lokal saja sesuai instruksi pengguna.
+

@@ -29,6 +29,202 @@ const DEFAULT_FEATURES = [
  * Silakan ubah harga, deskripsi, dan fasilitas di sini sesuai kondisi asli villa.
  */
 const VILLA_DETAILS = {
+  'villa-infinity-umalas': {
+    category: 'Luxury',
+    price: 690,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Umalas & Seminyak, Bali',
+    location: 'Umalas & Seminyak',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 5 kamar tidur di Umalas & Seminyak. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 5 kamar tidur di Umalas & Seminyak. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'villa-satiya': {
+    category: 'Premium',
+    price: 450,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Pererenan, Bali',
+    location: 'Pererenan',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Pererenan. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Pererenan. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'alua-loft': {
+    category: 'Standard',
+    price: 165,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Pererenan, Bali',
+    location: 'Pererenan',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 1 kamar tidur di Pererenan. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 1 kamar tidur di Pererenan. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'villa-aless': {
+    category: 'Deluxe',
+    price: 330,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Umalas & Seminyak, Bali',
+    location: 'Umalas & Seminyak',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 3 kamar tidur di Umalas & Seminyak. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 3 kamar tidur di Umalas & Seminyak. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'wellness-estate-canggu': {
+    category: 'Luxury',
+    price: 620,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Canggu & Berawa, Bali',
+    location: 'Canggu & Berawa',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'beachside-haven-canggu': {
+    category: 'Premium',
+    price: 480,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Canggu & Berawa, Bali',
+    location: 'Canggu & Berawa',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'villa-milana': {
+    category: 'Luxury',
+    price: 560,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Canggu & Berawa, Bali',
+    location: 'Canggu & Berawa',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 5 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 5 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'coco-bay': {
+    category: 'Luxury',
+    price: 850,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Canggu & Berawa, Bali',
+    location: 'Canggu & Berawa',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 8 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 8 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'berawa-breeze': {
+    category: 'Luxury',
+    price: 540,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Canggu & Berawa, Bali',
+    location: 'Canggu & Berawa',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'the-bull-house': {
+    category: 'Luxury',
+    price: 680,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Umalas & Seminyak, Bali',
+    location: 'Umalas & Seminyak',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 6 kamar tidur di Umalas & Seminyak. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 6 kamar tidur di Umalas & Seminyak. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'cala-blanca': {
+    category: 'Premium',
+    price: 420,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Pererenan, Bali',
+    location: 'Pererenan',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Pererenan. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Pererenan. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'villa-daun-by-teduh': {
+    category: 'Premium',
+    price: 380,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Canggu & Berawa, Bali',
+    location: 'Canggu & Berawa',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 4 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'designer-beachside-canggu': {
+    category: 'Luxury',
+    price: 520,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Canggu & Berawa, Bali',
+    location: 'Canggu & Berawa',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 5 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 5 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'magnificent-canggu-estate': {
+    category: 'Luxury',
+    price: 650,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Canggu & Berawa, Bali',
+    location: 'Canggu & Berawa',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam sanctuary privat 5 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    description: 'Bayangkan melangkah masuk ke dalam sanctuary privat 5 kamar tidur di Canggu & Berawa. Kolam renang pribadi berkilau, interior tropis yang elegan, dan pelayanan staf berdedikasi memastikan setiap detik liburan Anda di Bali terasa begitu berharga dan memulihkan energi jiwa.',
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
   'house-terra': {
     category: 'Luxury',
     price: 550, // Patokan menengah (USD / malam)

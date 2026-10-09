@@ -1055,6 +1055,20 @@ export const NEARBY_PLACES_BY_VILLA = {
  * Mapping alias ID villa agar ID dari airbnbVillas.json dan bscVillasData.js selalu cocok
  */
 export const VILLA_COORDINATES_ALIAS = {
+  'villa-infinity-umalas': 'five-bedroom-designer-umalas',
+  'villa-satiya': 'the-palms-villa-canggu',
+  'alua-loft': 'the-palms-villa-canggu',
+  'villa-aless': 'five-bedroom-designer-umalas',
+  'wellness-estate-canggu': 'villa-samudra-canggu',
+  'beachside-haven-canggu': 'villa-samudra-canggu',
+  'villa-milana': 'villa-samudra-canggu',
+  'coco-bay': 'villa-samudra-canggu',
+  'berawa-breeze': 'villa-samudra-canggu',
+  'the-bull-house': 'five-bedroom-designer-umalas',
+  'cala-blanca': 'the-palms-villa-canggu',
+  'villa-daun-by-teduh': 'villa-samudra-canggu',
+  'designer-beachside-canggu': 'villa-samudra-canggu',
+  'magnificent-canggu-estate': 'villa-samudra-canggu',
   // Alias 13 Villa Airbnb Utama
   'st-lau': 'st-lau-ubud',
   'balangan-cliff-villa': 'iconic-cliff-top-villa',
