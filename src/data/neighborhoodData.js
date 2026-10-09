@@ -1076,7 +1076,13 @@ export const VILLA_COORDINATES_ALIAS = {
   'tropical-elegance-seseh': 'tropical-elegance-seseh',
   'five-bedroom-designer-umalas': 'five-bedroom-designer-umalas',
   'mandapa-jungle-villa': 'mandapa-jungle-villa',
-  'villa-surga': 'mandapa-jungle-villa'
+  'villa-surga': 'mandapa-jungle-villa',
+  'house-terra': 'the-palms-villa-canggu',
+  'villa-mahina': 'villa-samudra-canggu',
+  'khaleela-villas': 'villa-samudra-canggu',
+  'beyond-the-palms': 'villa-samudra-canggu',
+  'villa-akar': 'villa-samudra-canggu',
+  'villa-golden': 'villa-samudra-canggu'
 };
 
 /**
