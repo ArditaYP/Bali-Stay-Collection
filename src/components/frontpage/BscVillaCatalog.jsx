@@ -53,18 +53,6 @@ const CANONICAL_MUST_HAVE = [
   'Wellness facilities'
 ];
 
-const EXCLUDED_AMENITIES = new Set([
-  'private pool',
-  'daily staff',
-  'high-speed wifi',
-  'kitchenette',
-  'air conditioning'
-]);
-
-const isExcludedAmenity = (name) => {
-  if (!name) return false;
-  return EXCLUDED_AMENITIES.has(name.trim().toLowerCase());
-};
 
 /**
  * Komponen BscVillaCatalog
@@ -246,7 +234,15 @@ export default function BscVillaCatalog({
       }
 
       // Filter wilayah
-      if (area && v.area !== area) return false;
+      if (area) {
+        const areaLower = area.trim().toLowerCase();
+        const vAreaLower = (v.area || v.location || '').trim().toLowerCase();
+        if (vAreaLower !== areaLower) {
+          const subAreas = areaLower.split('&').map(s => s.trim());
+          const matched = subAreas.some(sub => vAreaLower === sub || vAreaLower.includes(sub) || sub.includes(vAreaLower));
+          if (!matched) return false;
+        }
+      }
       // Filter kapasitas tamu
       if (v.guests < guests) return false;
       // Filter harga

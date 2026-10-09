@@ -1686,8 +1686,33 @@ src/
    - Animasi teruji mulus 60 FPS pada GPU, dan bilah putih ujung-ke-ujung telah bersih total.
    - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **DILARANG KERAS `git push`** ke remote repository.
 
-
-
-
-
-
+### 9.21 Penghapusan Label Harga pada Seksi Destinasi & Kalkulasi Dinamis 100% Jumlah Villa per Destinasi
+1. **Latar Belakang & Permintaan Pengguna**:
+   - Pengguna meminta penyesuaian pada seksi destinasi:
+     *"section id="destinations" itu di hilangkan harga nya, dan ingat buat dinamis itu masing masing jumlah villa"*
+   - Pengguna juga secara tegas mengingatkan:
+     *"jangan asal push?"* $\rightarrow$ **Dilarang keras melakukan `git push` ke remote repository GitHub**. Semua penyimpanan harus berupa commit lokal saja.
+2. **Solusi & Implementasi**:
+   - **Eliminasi Total Tampilan Harga di `#destinations` ([`src/components/frontpage/BscDestinations.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscDestinations.jsx))**:
+     - Seluruh logika penghitungan harga terendah (`minPrice`), array villa berharga (`pricedVillas`), serta utilitas pemformatan mata uang (`formatBscMoney`) dihapus sepenuhnya dari komponen.
+     - Kartu destinasi kini menampilkan identitas murni: nama wilayah yang tegas (`<b>{dest.name}</b>`) dan jumlah villa yang tersedia (`<small>{count} {count === 1 ? 'villa' : 'villas'}{dest.badge ? ' · ' + badge : ''}</small>`).
+   - **Kalkulasi Dinamis 100% Jumlah Villa per Destinasi**:
+     - Dihitung secara reaktif dengan `useMemo` langsung dari dataset aktif terkini (`activeVillas`).
+     - Dibuat fungsi helper [`isVillaInDestination`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscDestinations.jsx#L10-L35) yang mendukung pencocokan area langsung, nama area majemuk berkarakter `&` (*Canggu & Berawa*, *Uluwatu & Bukit*, *Umalas & Seminyak*), serta sub-wilayah (misal Bingin / Balangan / Padang).
+     - Seluruh 35 villa aktif terpetakan 100% akurat:
+       - **Pererenan**: 6 villa
+       - **Canggu & Berawa**: 14 villa
+       - **Uluwatu & Bukit**: 6 villa
+       - **Umalas & Seminyak**: 5 villa
+       - **Seseh**: 1 villa
+       - **Ubud**: 3 villa
+       - Total: 35 villa terpetakan tanpa selisih atau villa yang tertinggal.
+     - Ditambahkan format tata bahasa ramah pengguna (`1 villa` vs `N villas`).
+   - **Penyelarasan Filter Wilayah di Katalog ([`src/components/frontpage/BscVillaCatalog.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscVillaCatalog.jsx))**:
+     - Logika filter `area` di katalog diselaraskan agar mendukung pemisahan kata kunci majemuk `&` dan pencocokan sub-wilayah secara fleksibel.
+     - Pembersihan variabel tak terpakai (`EXCLUDED_AMENITIES`, `isExcludedAmenity`) untuk menjaga kerapian kode.
+3. **Verifikasi & Kepatuhan Aturan**:
+   - `npm run lint`: Lulus dengan 0 error.
+   - `npm run build`: Lulus 100% (2.98s, 0 error).
+   - Pengujian pemetaan villa per area terbukti 100% dinamis dan akurat.
+   - **ATURAN GIT DIPATUHI SECARA KETAT**: Seluruh perubahan disimpan dalam commit lokal dan **DILARANG KERAS `git push`** ke remote GitHub.

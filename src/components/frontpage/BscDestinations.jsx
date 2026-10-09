@@ -1,20 +1,53 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { DESTINATIONS_SUMMARY, PALETTE, BSC_VILLAS } from '../../data/bscVillasData';
-import { formatBscMoney } from '../../utils/bscFormat';
+
+/**
+ * Memeriksa apakah suatu villa berlokasi di dalam destinasi target
+ * @param {Object} villa - Objek data villa
+ * @param {string} destName - Nama destinasi (misal: 'Canggu & Berawa', 'Pererenan', 'Uluwatu & Bukit')
+ * @returns {boolean}
+ */
+const isVillaInDestination = (villa, destName) => {
+  if (!villa || !destName) return false;
+  const villaArea = (villa.area || villa.location || '').trim().toLowerCase();
+  const target = destName.trim().toLowerCase();
+  if (!villaArea) return false;
+
+  // 1. Pencocokan langsung (misal: "pererenan" === "pererenan", "ubud" === "ubud")
+  if (villaArea === target) return true;
+
+  // 2. Pencocokan nama gabungan dengan '&' (misal: "canggu & berawa", "uluwatu & bukit")
+  const subAreas = target.split('&').map(s => s.trim().toLowerCase());
+  for (const sub of subAreas) {
+    if (villaArea === sub || villaArea.includes(sub) || sub.includes(villaArea)) {
+      return true;
+    }
+  }
+
+  // 3. Sub-wilayah terkenal (misal: Bingin / Balangan -> Uluwatu & Bukit)
+  if (target.includes('uluwatu') || target.includes('bukit')) {
+    if (villaArea.includes('bingin') || villaArea.includes('balangan') || villaArea.includes('padang')) {
+      return true;
+    }
+  }
+
+  return false;
+};
 
 /**
  * Komponen BscDestinations
- * Menampilkan seksi 'Explore by destination' persis sesuai format kotak resmi bsc-frontpage_1.html:
+ * Menampilkan seksi 'Explore by destination' persis sesuai format kotak resmi:
  * - Struktur kotak kartu dcard seragam (3 kolom desktop, 2 kolom tablet, 1 kolom mobile)
  * - Foto autentik dimuat cepat dengan prioritas tinggi dan fallback otomatis
  * - Lapisan gradasi kontras lembut melindungi keterbacaan teks putih
- * - Teks judul area bold (b) dan ringkasan villa serta harga (small) di sudut bawah kartu
+ * - Teks judul area bold (b) dan jumlah villa dinamis tanpa harga (small)
  * 
  * @param {Object} props
- * @param {Object[]} [props.villas=[]] - Seluruh daftar master villa untuk menghitung statistik area
- * @param {string} [props.currency='USD'] - Mata uang aktif ('USD' atau 'IDR')
+ * @param {Object[]} [props.villas=[]] - Seluruh daftar master villa untuk menghitung statistik area dinamis
+ * @param {string} [props.currency='USD'] - Mata uang aktif
  * @param {Function} [props.onSelectArea] - Callback saat user mengklik salah satu kartu area
  * @param {Function} [props.onSelectDestination] - Alias callback saat user mengklik kartu area
+ * @param {Object[]} [props.destinationsData=null] - Data kustom destinasi jika ada
  * @returns {React.JSX.Element} Elemen JSX Destinasi BSC
  */
 export default function BscDestinations({
@@ -33,6 +66,16 @@ export default function BscDestinations({
         return custom ? { ...defaultDest, ...custom, image: custom.image || defaultDest.image } : defaultDest;
       })
     : DESTINATIONS_SUMMARY;
+
+  // Hitung jumlah villa secara dinamis per destinasi berdasarkan data aktif terkini
+  const destinationCounts = useMemo(() => {
+    const counts = {};
+    destinationsList.forEach(dest => {
+      const matched = activeVillas.filter(v => isVillaInDestination(v, dest.name));
+      counts[dest.name] = matched.length;
+    });
+    return counts;
+  }, [activeVillas, destinationsList]);
 
   /**
    * Menangani klik pada kartu destinasi:
@@ -63,13 +106,7 @@ export default function BscDestinations({
         {/* Grid Destinasi Sesuai Format Kotak Asli bsc-frontpage_1.html */}
         <div className="dest" id="destGrid">
           {destinationsList.map((dest) => {
-            const areaVillas = activeVillas.filter(v => v.area === dest.name);
-            const count = areaVillas.length || dest.count;
-            const pricedVillas = areaVillas.filter(v => v.price && v.price > 0);
-            const minPrice = pricedVillas.length > 0
-              ? Math.min(...pricedVillas.map(v => v.price))
-              : null;
-
+            const count = destinationCounts[dest.name] ?? (activeVillas.filter(v => isVillaInDestination(v, dest.name)).length || dest.count || 0);
             const tone = PALETTE[dest.name] || dest.tone || ['#CBB9C9', '#E9DCE6'];
             const imgSrc = dest.image || dest.fallback;
 
@@ -133,12 +170,8 @@ export default function BscDestinations({
                 <div className="dcard-body">
                   <b>{dest.name}</b>
                   <small>
-                    {count} {count === 1 ? 'villa' : 'villas'} &middot;{' '}
-                    {minPrice ? (
-                      <>from <strong>{formatBscMoney(minPrice, currency)}</strong> / night</>
-                    ) : (
-                      'Deluxe to Luxury'
-                    )}
+                    {count} {count === 1 ? 'villa' : 'villas'}
+                    {dest.badge ? ` · ${dest.badge.replace(/^[★✦]\s*/, '')}` : ''}
                   </small>
                 </div>
               </button>
