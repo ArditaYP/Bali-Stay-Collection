@@ -1771,3 +1771,27 @@ src/
    - Seluruh 35 villa teruji dapat dibuka di katalog maupun detail page tanpa anomali.
    - Tampilan terverifikasi responsif pada breakpoint Desktop (>1024px), Tablet (768px–1024px), Ponsel Standar (375px–640px), dan Ponsel Ekstra Kecil (<=360px).
    - **PROTOKOL PRE-PUSH DIPATUHI**: Seluruh perubahan disimpan dalam commit lokal dan **DILARANG KERAS `git push`** ke remote GitHub.
+
+### 9.24 Resolusi Cepat Runtime ReferenceError: useCallback is not defined & Penguatan Linter no-undef
+1. **Latar Belakang & Laporan Pengguna**:
+   - Pengguna melaporkan error saat pengujian runtime:
+     *"bohong kamu ReferenceError: useCallback is not defined ini apa?"*
+2. **Akar Masalah (Root Cause Analysis)**:
+   - Pada pembaruan hook stabilitas sebelumnya di [`src/components/Modals/SearchModal.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/Modals/SearchModal.jsx), fungsi callback `handleSelect` dibungkus dengan hook `useCallback`.
+   - Namun, identifier `useCallback` belum dimasukkan ke baris deklarasi import React pada berkas tersebut (`import React, { useState, useEffect, useRef, useMemo } from 'react'`).
+   - Karena bundling Vite mengevaluasi modul secara bertahap saat pemanggilan, proses build awal dapat lolos tanpa runtime error langsung sampai komponen `SearchModal` dimuat atau di-mount oleh browser, yang kemudian melempar `ReferenceError: useCallback is not defined`.
+3. **Solusi & Pencegahan Permanen**:
+   - **Koreksi Import ([`src/components/Modals/SearchModal.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/Modals/SearchModal.jsx))**:
+     - Menambahkan `useCallback` secara eksplisit pada import:
+       `import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';`
+   - **Pemindaian Otomatis Menyeluruh Seluruh Berkas Proyek**:
+     - Menjalankan skrip verifikasi AST Node.js pada seluruh berkas `.jsx` dan `.js` di bawah direktori `src/` untuk memeriksa setiap pemanggilan hook React (`useState`, `useEffect`, `useMemo`, `useCallback`, `useRef`, `useContext`, `useReducer`, `useId`).
+     - Hasil scan mengonfirmasi tidak ada hook lain yang tertinggal atau tidak terimpor di seluruh basis kode.
+   - **Penguatan Konfigurasi Linter Permanen ([`.oxlintrc.json`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/.oxlintrc.json))**:
+     - Mengaktifkan aturan ketat `"no-undef": "error"` dengan konfigurasi `"env": { "builtin": true, "browser": true, "node": true }`.
+     - Kini setiap variabel, identifier, atau hook yang tidak diimpor atau tidak terdefinisi akan langsung dideteksi sebagai error fatal oleh `npm run lint` sebelum sampai ke browser pengguna.
+4. **Hasil Verifikasi**:
+   - `npm run lint`: **0 Error** (dengan aturan `no-undef: error` aktif).
+   - `npm run build`: **Lulus 100% (2.45s, 0 Error)**.
+   - Tidak ada lagi `ReferenceError: useCallback is not defined` saat aplikasi dibuka atau saat fitur pencarian diakses.
+   - **ATURAN GIT DIPATUHI SECARA KETAT**: Seluruh perbaikan hanya disimpan dalam commit lokal dan **DILARANG KERAS `git push`** ke remote GitHub.
