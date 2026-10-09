@@ -1182,8 +1182,17 @@ src/
    - **Explore Destinations Photos**: Mengedit foto 6 kartu kawasan (Pererenan, Canggu & Berawa, Uluwatu & Bukit, Ubud & Gianyar, Umalas & Seminyak, Sanur & East Bali), upload gambar dari komputer (kompresi server GD WebP via `/api/upload.php`), input URL, ubah badge, dan deskripsi kawasan.
    - **Beyond the Stay (Experiences)**: Mengedit foto 4 layanan tambahan (Airport Transfer, Private Chef, Wellness, Explore Bali).
    - **Hero Section Media**: Mengatur foto latar belakang hero, headline, dan sub-heading.
-3. **Penyimpanan Dual-Layer & Endpoint REST API**:
-   - Endpoint: `GET /api/homepage.php` dan `POST /api/homepage.php`.
-   - Tabel MySQL: `balistay_db.homepage_media`.
-   - Fallback otomatis: `localStorage.getItem('bsc_homepage_media')` untuk preview/deployment tanpa MySQL offline.
-
+### 9.4 Perbaikan White Screen of Death & Implementasi Pelindung ErrorBoundary
+1. **Akar Masalah White Screen**:
+   - Di `src/pages/ExplorePage.jsx`, pemanggilan hook `useEffect` saat inisialisasi sync media halaman depan belum diimpor pada baris deklarasi React (`import React, { useState, useMemo } from 'react';`).
+   - Hal tersebut memicu unhandled runtime `ReferenceError: useEffect is not defined` yang menyebabkan React unmount total dan browser menampilkan layar putih kosong (*blank screen*).
+2. **Solusi Perbaikan**:
+   - Menambahkan impor `useEffect` pada `src/pages/ExplorePage.jsx`.
+   - Menguji dan memverifikasi seluruh komponen JSX bebas dari missing hook/unhandled reference.
+3. **Pencegahan Permanen (Error Safety Net)**:
+   - Dibuat komponen pelindung [`src/components/ErrorBoundary.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/ErrorBoundary.jsx).
+   - Membungkus root aplikasi `<App />` di [`src/main.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/main.jsx).
+   - Jika di masa depan terjadi error runtime tak terduga, website tidak akan pernah menampilkan layar putih kosong, melainkan antarmuka ramah pengguna bergaya mewah dengan tombol:
+     - `🔄 Muat Ulang Halaman`
+     - `🧹 Bersihkan Cache & Pulihkan` (menghapus cache localStorage yang corrupt)
+     - Panel rincian teknis error untuk memudahkan debugging.

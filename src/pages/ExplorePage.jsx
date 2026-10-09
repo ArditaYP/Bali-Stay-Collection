@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import '../components/frontpage/bscFrontpage.css';
 import { BSC_VILLAS, DESTINATIONS_SUMMARY } from '../data/bscVillasData';
 import { calculateNights } from '../utils/bscFormat';
