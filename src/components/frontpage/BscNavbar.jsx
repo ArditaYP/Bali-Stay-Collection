@@ -19,7 +19,9 @@ export default function BscNavbar({
   currency = 'USD',
   onCurrencyChange,
   wishlistCount = 0,
-  onOpenWishlist
+  onOpenWishlist,
+  onGoHome,
+  isDetailPage = false
 }) {
   // State untuk membuka / menutup menu navigasi mobile drawer
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -39,7 +41,7 @@ export default function BscNavbar({
         // Ketika bagian atas section destinations telah mencapai area dekat navbar (tinggi navbar ~72px)
         setIsScrolledPastHero(rect.top <= 85);
       } else {
-        setIsScrolledPastHero(window.scrollY > 300);
+        setIsScrolledPastHero(window.scrollY > 80);
       }
     };
 
@@ -58,10 +60,35 @@ export default function BscNavbar({
   const handleScrollToSection = (e, sectionId) => {
     e.preventDefault();
     setIsMobileMenuOpen(false);
+    if (onGoHome) {
+      onGoHome();
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+      return;
+    }
     const el = document.getElementById(sectionId);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  /**
+   * Menangani klik pada logo brand resmi
+   * @param {React.MouseEvent} e - Event klik
+   * @returns {void}
+   */
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    if (onGoHome) {
+      onGoHome();
+      return;
+    }
+    handleScrollToSection(e, 'top');
   };
 
   /**
@@ -84,7 +111,7 @@ export default function BscNavbar({
           <a
             className="logo"
             href="#top"
-            onClick={(e) => handleScrollToSection(e, 'top')}
+            onClick={handleLogoClick}
             aria-label="Bali Stay Collection home"
           >
             <img
@@ -113,7 +140,7 @@ export default function BscNavbar({
                 className="nav-wishlist-btn"
                 aria-label="View saved wishlist"
               >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="#E05638" stroke="#E05638" strokeWidth="2">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" strokeWidth="2">
                   <path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z" />
                 </svg>
                 <span>Saved ({wishlistCount})</span>
@@ -179,7 +206,7 @@ export default function BscNavbar({
             <nav className="nav-mobile-links" aria-label="Mobile Navigation">
               <a href="#villas" onClick={(e) => handleScrollToSection(e, 'villas')}>Villas</a>
               <a href="#destinations" onClick={(e) => handleScrollToSection(e, 'destinations')}>Destinations</a>
-              <a href="#" onClick={(e) => handleScrollToSection(e, 'team')}>Experiences</a>
+              <a href="#experiences" onClick={(e) => handleScrollToSection(e, 'experiences')}>Experiences</a>
               <a href="#verify" onClick={(e) => handleScrollToSection(e, 'verify')}>How we verify</a>
               <a href="#team" onClick={(e) => handleScrollToSection(e, 'team')}>Our team</a>
               {wishlistCount > 0 && onOpenWishlist && (

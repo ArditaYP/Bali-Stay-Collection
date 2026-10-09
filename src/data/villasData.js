@@ -31,7 +31,7 @@ const DEFAULT_FEATURES = [
 const VILLA_DETAILS = {
   'st-lau-ubud': {
     category: 'Honeymoon',
-    price: 220, // TODO: sesuaikan harga asli per malam (USD)
+    price: 310, // Patokan menengah (USD / malam)
     cleaningFee: 35,
     freeCancel: true,
     cardBg: '#CBB9C9',
@@ -43,7 +43,7 @@ const VILLA_DETAILS = {
   },
   'iconic-cliff-top-villa': {
     category: 'Premium',
-    price: 450, // TODO: sesuaikan harga asli per malam (USD)
+    price: 495, // Patokan menengah (USD / malam)
     cleaningFee: 50,
     freeCancel: true,
     cardBg: '#B9CBC9',
@@ -55,7 +55,7 @@ const VILLA_DETAILS = {
   },
   'angkasa-ubud': {
     category: 'Premium',
-    price: 380, // TODO: sesuaikan harga asli per malam (USD)
+    price: 420, // Patokan menengah (USD / malam)
     cleaningFee: 45,
     freeCancel: true,
     cardBg: '#C7CDBB',
@@ -80,7 +80,7 @@ const VILLA_DETAILS = {
   'the-palms-villa-canggu': {
     name: 'Villa Habitas – 4BR Pererenan Pool Villa · Walk to Cafes & Bars',
     category: 'Premium',
-    price: 290,
+    price: 380,
     cleaningFee: 45,
     freeCancel: true,
     cardBg: '#B8C5BD',
@@ -174,7 +174,7 @@ OTHER THINGS TO NOTE
   'villa-habitas': {
     name: 'Villa Habitas – 4BR Designer Villa In Pererenan',
     category: 'Premium',
-    price: 290,
+    price: 380,
     cleaningFee: 45,
     freeCancel: true,
     cardBg: '#B8C5BD',
@@ -194,7 +194,7 @@ OTHER THINGS TO NOTE
   'tranquil-sanctuary-pererenan': {
     name: 'Tranquil 1BR Sanctuary in Prime Pererenan!',
     category: 'Standard',
-    price: 160,
+    price: 165,
     cleaningFee: 25,
     freeCancel: true,
     cardBg: '#CBB9C9',
@@ -208,7 +208,7 @@ OTHER THINGS TO NOTE
   'tropical-canggu-villa': {
     name: 'Modern Tropical 4BR Villa in Central Canggu',
     category: 'Deluxe',
-    price: 340,
+    price: 390,
     cleaningFee: 45,
     freeCancel: true,
     cardBg: '#D8C9A8',
@@ -222,7 +222,7 @@ OTHER THINGS TO NOTE
   'luxe-beach-villa-seminyak': {
     name: 'Luxe & Stylish 3BR Villa Just Steps from the Beach',
     category: 'Deluxe',
-    price: 310,
+    price: 320,
     cleaningFee: 40,
     freeCancel: true,
     cardBg: '#D5B8A8',
@@ -236,7 +236,7 @@ OTHER THINGS TO NOTE
   'tropical-elegance-seseh': {
     name: 'Tropical Elegance 2BR Villa – Steps from the Beach',
     category: 'Deluxe',
-    price: 240,
+    price: 245,
     cleaningFee: 35,
     freeCancel: true,
     cardBg: '#B8C9B2',
@@ -250,7 +250,7 @@ OTHER THINGS TO NOTE
   'yellow-moon-uluwatu': {
     name: 'Yellow Moon, A Tropical 3BR Sanctuary in Uluwatu',
     category: 'Premium',
-    price: 390,
+    price: 365,
     cleaningFee: 50,
     freeCancel: true,
     cardBg: '#9FB7C7',
@@ -278,7 +278,7 @@ OTHER THINGS TO NOTE
   'luxury-tropical-bingin': {
     name: 'Luxury 3BR Tropical Villa in Uluwatu • Near Beach',
     category: 'Premium',
-    price: 370,
+    price: 350,
     cleaningFee: 45,
     freeCancel: true,
     cardBg: '#A9B9C9',
@@ -292,7 +292,7 @@ OTHER THINGS TO NOTE
   'chic-tropical-bingin': {
     name: '2BR Chic Tropical Villa • Minutes to Bingin Beaches',
     category: 'Deluxe',
-    price: 260,
+    price: 265,
     cleaningFee: 35,
     freeCancel: true,
     cardBg: '#C5D3DC',

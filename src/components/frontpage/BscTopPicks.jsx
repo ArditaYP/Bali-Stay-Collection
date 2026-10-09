@@ -39,10 +39,10 @@ export default function BscTopPicks({
     <section className="sec" id="picks">
       <div className="wrap">
         <div className="sec-head">
-          <div className="eyebrow">Our top picks</div>
-          <h2>Villas our team would book for their own family</h2>
+          <div className="eyebrow">Hand-picked by our team</div>
+          <h2>Villas we would book for our own family</h2>
           <p>
-            Chosen by us, with the reason why. New to BSC, so we show our inspection notes instead of star ratings.
+            Every pick comes with the reason we chose it, based on our own notes. No borrowed ratings, just a straight answer on what to expect.
           </p>
         </div>
 
@@ -79,7 +79,7 @@ export default function BscTopPicks({
                       }
                     }}
                   >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill={isSaved ? '#E4572E' : 'none'} stroke={isSaved ? '#E4572E' : '#141413'} strokeWidth="2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill={isSaved ? '#16294D' : 'none'} stroke={isSaved ? '#16294D' : '#141413'} strokeWidth="2">
                       <path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z" />
                     </svg>
                   </button>

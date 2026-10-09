@@ -96,7 +96,7 @@ export default function BscTrustInfo({ onSeeVillasClick }) {
           <div className="grid3">
             <div className="card">
               <div className="ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" strokeWidth="2">
                   <rect x="3" y="6" width="18" height="12" rx="2" />
                   <path d="M3 10h18" />
                 </svg>
@@ -113,7 +113,7 @@ export default function BscTrustInfo({ onSeeVillasClick }) {
 
             <div className="card">
               <div className="ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" strokeWidth="2">
                   <path d="M12 2v20M17 6H9.5a3 3 0 000 6h5a3 3 0 010 6H6" />
                 </svg>
               </div>
@@ -123,7 +123,7 @@ export default function BscTrustInfo({ onSeeVillasClick }) {
 
             <div className="card">
               <div className="ico">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16294D" strokeWidth="2">
                   <path d="M20 6L9 17l-5-5" />
                 </svg>
               </div>

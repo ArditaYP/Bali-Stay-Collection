@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import './components/frontpage/bscFrontpage.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import BscNavbar from './components/frontpage/BscNavbar';
+import BscFooter from './components/frontpage/BscFooter';
 import ExplorePage from './pages/ExplorePage';
 import VillaDetailPage from './pages/VillaDetailPage';
 import VillaContentEditor from './pages/VillaContentEditor';
@@ -72,13 +75,38 @@ export default function App() {
   // (termasuk 4 villa awal: Habitas, Balangan, St. Lau, Angkasa + 9 villa baru)
   const isAirbnbOnlyMode = true;
 
-  // Daftar villa aktif untuk katalog Explore (13 villa murni Airbnb)
+  // Daftar villa aktif untuk katalog Explore (13 villa murni Airbnb, disinkronkan dengan data database)
   const activeCatalogVillas = useMemo(() => {
-    if (!isAirbnbOnlyMode) return BSC_VILLAS;
-    return AIRBNB_ONLY_VILLA_IDS
-      .map(id => BSC_VILLAS.find(bv => bv.id === id))
-      .filter(Boolean);
-  }, [isAirbnbOnlyMode]);
+    const sourceList = !isAirbnbOnlyMode
+      ? BSC_VILLAS
+      : AIRBNB_ONLY_VILLA_IDS
+          .map(id => BSC_VILLAS.find(bv => bv.id === id))
+          .filter(Boolean);
+
+    return sourceList.map(base => {
+      const live = villas.find(v => v.id === base.id || v.id === VILLA_ALIAS_MAP[base.id]);
+      if (!live) return base;
+      return {
+        ...base,
+        name: live.name || base.name,
+        price: live.price !== undefined && live.price !== null ? live.price : base.price,
+        tier: live.tier || live.category || base.tier,
+        category: live.category || live.tier || base.category,
+        area: live.location || live.area || base.area,
+        beds: live.beds || base.beds,
+        baths: live.baths || live.bathrooms || base.baths,
+        guests: live.guests || base.guests,
+        shortDesc: live.shortDesc || base.shortDesc || base.desc,
+        desc: live.shortDesc || live.description || base.desc,
+        description: live.description || base.description,
+        am: (live.amenities && live.amenities.length) ? live.amenities : base.am,
+        amenities: live.amenities || base.amenities || base.am,
+        img: live.img || base.img,
+        images: (live.images && live.images.length) ? live.images : base.images,
+        verified: live.verified !== undefined ? live.verified : base.verified
+      };
+    });
+  }, [isAirbnbOnlyMode, villas]);
 
   // State navigasi halaman ('explore' | 'detail' | 'editor')
   const [currentPage, setCurrentPage] = useState(() => {
@@ -137,6 +165,38 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem('bsc_wishlist', JSON.stringify(savedVillaIds));
   }, [savedVillaIds]);
+
+  // Sinkronisasi data master villa terbaru dari Database MySQL (XAMPP / Hostinger)
+  useEffect(() => {
+    let isMounted = true;
+    fetch('/api/villas.php')
+      .then(res => res.json())
+      .then(data => {
+        if (isMounted && data && data.success && Array.isArray(data.villas) && data.villas.length > 0) {
+          const dbMap = new Map();
+          data.villas.forEach(v => dbMap.set(v.id, v));
+
+          setVillas(prev => {
+            return prev.map(pv => {
+              const fromDb = dbMap.get(pv.id) || dbMap.get(VILLA_ALIAS_MAP[pv.id]);
+              if (!fromDb) return pv;
+              return {
+                ...pv,
+                ...fromDb,
+                images: (fromDb.images && fromDb.images.length) ? fromDb.images : pv.images,
+                img: fromDb.img || pv.img
+              };
+            });
+          });
+        }
+      })
+      .catch(err => {
+        // Fallback anggun jika server PHP belum aktif
+        console.info('Koneksi API database: fallback ke local cache/static data (', err.message, ')');
+      });
+
+    return () => { isMounted = false; };
+  }, []);
 
   // Sinkronisasi rute URL (#editor atau /editor) agar bos/pengguna bisa membuka link langsung
   useEffect(() => {
@@ -358,8 +418,8 @@ export default function App() {
 
   return (
     <div className="app-container">
-      {/* Navbar Atas - Tampil khusus pada halaman Detail dan Editor */}
-      {currentPage !== 'explore' && (
+      {/* Navbar Atas - Khusus halaman Editor */}
+      {currentPage === 'editor' && (
         <Navbar 
           onGoHome={handleGoHome}
           wishlistCount={savedVillaIds.length}
@@ -399,22 +459,37 @@ export default function App() {
           onOpenEditor={handleOpenEditor}
         />
       ) : (
-        <VillaDetailPage 
-          villa={currentVilla}
-          allVillas={activeCatalogVillas.map(bv => resolveVilla(bv.id))}
-          onBackToCatalog={handleGoHome}
-          onSelectSimilarVilla={handleOpenVillaDetail}
-          isSaved={savedVillaIds.includes(currentVilla.id)}
-          onToggleSave={handleToggleSaveVilla}
-          searchParams={searchParams}
-          currency={currency}
-          onCurrencyChange={handleCurrencyChange}
-        />
+        <div className="bsc-frontpage">
+          {/* Navbar resmi BSC selaras dengan Halaman Utama */}
+          <BscNavbar 
+            currency={currency}
+            onCurrencyChange={handleCurrencyChange}
+            wishlistCount={savedVillaIds.length}
+            onOpenWishlist={() => setIsWishlistOpen(true)}
+            onGoHome={handleGoHome}
+            isDetailPage={true}
+          />
+          <VillaDetailPage 
+            villa={currentVilla}
+            allVillas={activeCatalogVillas.map(bv => resolveVilla(bv.id))}
+            onBackToCatalog={handleGoHome}
+            onSelectSimilarVilla={handleOpenVillaDetail}
+            isSaved={savedVillaIds.includes(currentVilla.id)}
+            onToggleSave={handleToggleSaveVilla}
+            searchParams={searchParams}
+            currency={currency}
+            onCurrencyChange={handleCurrencyChange}
+          />
+          {/* Footer resmi BSC selaras dengan Halaman Utama */}
+          <BscFooter 
+            onOpenListVilla={() => setIsListVillaOpen(true)}
+            onOpenEditor={handleOpenEditor}
+          />
+        </div>
       )}
-      
 
-      {/* Footer Bawah - Tampil khusus pada halaman Detail dan Editor */}
-      {currentPage !== 'explore' && (
+      {/* Footer Bawah - Khusus halaman Editor */}
+      {currentPage === 'editor' && (
         <Footer 
           onGoHome={handleGoHome}
           onOpenListVilla={() => setIsListVillaOpen(true)}

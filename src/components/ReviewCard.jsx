@@ -12,7 +12,7 @@ export function StarRow({ rating = 5, size = 11 }) {
     <span className="star-row" aria-label={`Rating ${rating} dari 5 bintang`}>
       {[1, 2, 3, 4, 5].map((n) => (
         // Bintang penuh jika n <= rating, selain itu bintang abu-abu
-        <svg key={n} width={size} height={size} viewBox="0 0 24 24" fill={n <= rating ? '#141413' : '#DDDAD2'}>
+        <svg key={n} width={size} height={size} viewBox="0 0 24 24" fill={n <= rating ? '#D4AF37' : '#DDDAD2'}>
           <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
         </svg>
       ))}

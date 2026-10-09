@@ -1038,8 +1038,55 @@ src/
   - `npm.cmd run build` lulus 100% (0 error).
   - Server Vite aktif di `http://localhost:5173`.
 
+### 5.32 Harmonisasi Warna Halaman Detail & Navbar BSC (Navy & Gold)
+- **Instruksi Pengguna**: *"pada halaman detail page, itu belum senada warna nya masih warna yang sebelum nya tolong itu di perbaiki sekalian sama navbar nya itu di samain yaa"*
+- **Implementasi**:
+  1. Mengganti navbar dan footer lama pada [`src/pages/VillaDetailPage.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/pages/VillaDetailPage.jsx) dengan komponen identitas resmi `BscNavbar` (dengan prop `isDetailPage={true}`) dan `BscFooter`.
+  2. Menghilangkan seluruh warna terracotta usang (`#C96F4A`, `#E4572E`, `rgb(201, 111, 74)`) di seluruh aplikasi frontend, digantikan oleh palet tema resmi BSC: Deep Luxury Navy (`#16294D`) dan Warm Metallic Gold (`#D4AF37`).
+  3. Memperbaiki tombol booking sticky, badge rating, ikon pin lokasi, dan elemen navigasi agar serasi 100% dengan katalog depan.
 
+### 5.33 Fitur Hybrid Photo Editor & Photo Tour Airbnb di Halaman `#editor`
+- **Instruksi Pengguna**: *"di editor itu juga bisa mengedit foto bagaimana menurut mu? diskusikan dengan saya"*, *"1. opsi hybrid itu keren, 2. iyaaa"*
+- **Implementasi**:
+  1. **Upload File Fisik Komputer**: Dibuat endpoint upload [`api/upload.php`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/api/upload.php) yang menerima file foto multipart dari laptop admin, memvalidasi format gambar, dan melakukan kompresi otomatis via GD PHP (max 2000px, 88% WebP/JPG) ke folder [`uploads/villas/`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/uploads/villas/).
+  2. **Input URL Eksternal**: Menambahkan bar penambahan foto instan via URL eksternal (Unsplash, CDN).
+  3. **Manajemen Interaktif Galeri**:
+     - Mini Preview Airbnb Showcase 5 foto terdepan.
+     - Tombol *"Jadikan Foto Utama"* (`★ Cover #1`) yang otomatis menyinkronkan thumbnail katalog `img` dan posisi `images[0]`.
+     - Tombol geser urutan foto ke kiri/kanan (`←` / `→`) dan tombol hapus aman.
+     - Input caption kustom dan tombol preset ruangan cepat (*Living Area*, *Master Bedroom*, *Private Pool*, *Full Kitchen*, dll.) yang otomatis dikelompokkan oleh modal galeri Airbnb di halaman detail.
+  4. **Penyimpanan Ganda**: Tersimpan permanen ke MySQL `balistay_db` via `api/villas.php` dan offline fallback di `localStorage`.
+  5. **Proxy Vite**: Menambahkan routing proxy `/uploads` pada `vite.config.js` mengarah ke Apache XAMPP agar gambar langsung tayang instan.
 
+### 5.34 Penyelarasan Patokan Harga Menengah Pasar Bali (Mid-Range Benchmarks) untuk 13 Villa
+- **Instruksi Pengguna**: *"saya mau harga nya dong di samain semua sama per masing masing link"*, *"kamu pilih aja harga nya yang menegah untuk di jadikan patokan"*
+- **Implementasi**:
+  1. Menetapkan patokan harga menengah standar industri villa mewah & Airbnb di Bali berdasarkan kamar dan lokasi:
+     - **1 BR:** Villa Solani / Tranquil 1BR ($165 / ~Rp 2,64 jt), CASA KĀYA Bingin ($175 / ~Rp 2,80 jt).
+     - **2 BR:** Tropical Elegance Seseh ($245 / ~Rp 3,92 jt), 2BR Chic Tropical Bingin ($265 / ~Rp 4,24 jt).
+     - **3 BR:** St. Lau Ubud ($310 / ~Rp 4,96 jt), Luxe 3BR Seminyak ($320 / ~Rp 5,12 jt), Luxury 3BR Bingin ($350 / ~Rp 5,60 jt), Yellow Moon Uluwatu ($365 / ~Rp 5,84 jt).
+     - **4 BR:** Villa Habitas Pererenan ($380 / ~Rp 6,08 jt), Modern Tropical Canggu ($390 / ~Rp 6,24 jt).
+     - **5 BR:** Villa Angkasa Ubud ($420 / ~Rp 6,72 jt), Balangan Cliff Villa ($495 / ~Rp 7,92 jt), Five Bedroom Designer Umalas ($580 / ~Rp 9,28 jt).
+  2. Menyinkronkan seluruh harga baru ke MySQL `balistay_db` (kolom `price` dan JSON `raw_data`), `api/villas.php`, `src/data/villasData.js`, `src/data/bscVillasData.js`, dan `api/seed_villas.json`.
+  3. Memasang mekanisme **Dual-Sync Alias** (`st-lau` <-> `st-lau-ubud`, `balangan-cliff-villa` <-> `iconic-cliff-top-villa`, `villa-angkasa` <-> `angkasa-ubud`, `villa-habitas` <-> `the-palms-villa-canggu`) agar kedua row selalu terbarui bersamaan.
+
+### 5.35 Perancangan Sistem Harga Musiman Dinamis (Seasonal & Dynamic Pricing Engine) & Peran Revenue Manager
+- **Instruksi Pengguna**: *"kan harga itu harus nya setiap beda season dia akan berubah, contoh misal lagi high season dia akan berubah itu gimana? kalo sepengatuhan saya ada user namanya marketing hotel tersebut yang mengedit harga tersebut setiap hari nya apakah itu benar/"*, *"oke masukan ke progress dan blueprint ya"*
+- **Konsep & Arsitektur yang Disepakati**:
+  1. **3 Level Pricing Architecture**:
+     - *Level 1 (Base Price):* Harga normal harian (*Low Season*) yang sudah tersimpan di sistem.
+     - *Level 2 (Seasonal Rules Otomatis):* Sistem membaca rentang tanggal menginap tamu di kalender dan menerapkan penyesuaian tarif otomatis:
+       - Low Season (Feb – Mei, Okt – Nov): Tarif dasar normal, min. stay 2 malam.
+       - High Season (Jul – Agu, Lebaran, Paskah): Kenaikan otomatis +20% s.d. +30%, min. stay 3 malam.
+       - Peak Season (20 Des – 5 Jan / Natal & Tahun Baru): Kenaikan otomatis +50% s.d. +80%, min. stay 5 malam.
+       - Weekend Surcharge (Malam Jumat & Sabtu): Tambahan tarif opsional (+10% atau flat fee).
+     - *Level 3 (Custom Date Override):* Kalender editor interaktif bagi staf marketing untuk memasang tarif khusus pada tanggal libur/event tertentu (*flash sale*, event festival, dll).
+  2. **Peran Pengguna Khusus: Marketing / Revenue Manager**:
+     - Akun staf pemasaran hotel/villa yang memiliki hak akses mengelola kalender harga, diskon, seasonal rules, dan minimum stay tanpa akses ke data nomor rekening pemilik maupun hak menghapus properti.
+  3. **Skema Database & API Baru**:
+     - Tabel `seasonal_rates` dan `custom_date_rates` ditambahkan ke cetak biru [`blueprint.md`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/blueprint.md) dan checklist [`SYSTEM_AUDIT_AND_ROADMAP.md`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/SYSTEM_AUDIT_AND_ROADMAP.md).
+- **Hasil & Verifikasi**:
+  - `npm run build` lulus 100% tanpa error.
 
 ---
 

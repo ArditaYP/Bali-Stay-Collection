@@ -62,7 +62,7 @@ export default function BscLiveTour({ villas = [] }) {
               onClick={handlePlayVideo}
             >
               <span className="play">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="#C96F4A">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="#16294D">
                   <path d="M8 5v14l11-7z" />
                 </svg>
               </span>

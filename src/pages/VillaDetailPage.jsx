@@ -53,7 +53,7 @@ function renderFormattedDescription(text) {
             fontSize: '15px',
             fontWeight: 700,
             letterSpacing: '0.5px',
-            color: 'var(--ink, #141413)',
+            color: 'var(--ink, #0C1B38)',
             marginTop: '20px',
             marginBottom: '8px',
             textTransform: 'uppercase'
@@ -76,7 +76,7 @@ function renderFormattedDescription(text) {
               fontSize: '15px',
               fontWeight: 700,
               letterSpacing: '0.5px',
-              color: 'var(--ink, #141413)',
+              color: 'var(--ink, #0C1B38)',
               marginBottom: '6px',
               textTransform: 'uppercase'
             }}
@@ -87,7 +87,7 @@ function renderFormattedDescription(text) {
             style={{
               fontSize: '14.5px',
               lineHeight: 1.7,
-              color: 'var(--ink-soft, #484841)',
+              color: 'var(--ink-soft, #3E4C58)',
               margin: 0,
               whiteSpace: 'pre-line'
             }}
@@ -104,7 +104,7 @@ function renderFormattedDescription(text) {
         style={{
           fontSize: '14.5px',
           lineHeight: 1.7,
-          color: 'var(--ink-soft, #484841)',
+          color: 'var(--ink-soft, #3E4C58)',
           marginTop: 0,
           marginBottom: '14px',
           whiteSpace: 'pre-line'
@@ -133,12 +133,12 @@ function renderDetailDescription(v) {
       {renderFormattedDescription(primaryText)}
 
       {!hasCustomFullDesc && (
-        <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px dashed var(--line, #E8E6DF)' }}>
+        <div style={{ marginTop: '16px', paddingTop: '16px', borderTop: '1px dashed var(--line, #E0E5E8)' }}>
           <h4 
             style={{ 
               fontSize: '14px', 
               fontWeight: 700, 
-              color: 'var(--ink, #141413)', 
+              color: 'var(--ink, #0C1B38)', 
               marginBottom: '6px',
               textTransform: 'uppercase',
               letterSpacing: '0.5px'
@@ -146,7 +146,7 @@ function renderDetailDescription(v) {
           >
             Guest Access & Dedicated Support
           </h4>
-          <p style={{ fontSize: '14px', lineHeight: 1.65, color: 'var(--ink-soft, #484841)', margin: 0 }}>
+          <p style={{ fontSize: '14px', lineHeight: 1.65, color: 'var(--ink-soft, #3E4C58)', margin: 0 }}>
             Enjoy private and exclusive access to the entire villa and its private pool. Daily housekeeping and our on-the-ground Bali Stay Collection concierge are available throughout your stay.
           </p>
         </div>
@@ -342,7 +342,7 @@ export default function VillaDetailPage({
             <h1 className="villa-title">{villa.name}</h1>
             <div className="title-meta">
               <span className="rating">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#141413">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#D4AF37">
                   <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
                 </svg>
                 {villa.rating} &middot; {villa.reviewsCount} reviews
@@ -361,7 +361,7 @@ export default function VillaDetailPage({
           {/* Tombol Aksi: Share & Save */}
           <div className="title-actions">
             <button type="button" className="icon-btn btn-outline" onClick={handleShareClick}>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#141413" strokeWidth="2">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="18" cy="5" r="3" />
                 <circle cx="6" cy="12" r="3" />
                 <circle cx="18" cy="19" r="3" />
@@ -378,8 +378,8 @@ export default function VillaDetailPage({
                 width="15" 
                 height="15" 
                 viewBox="0 0 24 24" 
-                fill={isSaved ? "#E4572E" : "none"} 
-                stroke={isSaved ? "#E4572E" : "#141413"} 
+                fill={isSaved ? "#16294D" : "none"} 
+                stroke={isSaved ? "#16294D" : "currentColor"} 
                 strokeWidth="2"
               >
                 <path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z" />
@@ -493,7 +493,7 @@ export default function VillaDetailPage({
               {villa.features.map((feat, idx) => (
                 <div key={idx} className="feature-item">
                   <div className="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="1.8">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent, #16294D)" strokeWidth="1.8">
                       <circle cx="12" cy="12" r="9" />
                       <path d="M12 7v5l3 2" />
                     </svg>
@@ -563,7 +563,7 @@ export default function VillaDetailPage({
               {villa.bedrooms.map((bed, idx) => (
                 <div key={idx} className="sleep-card">
                   <div className="icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#141413" strokeWidth="1.8">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                       <path d="M3 18v-7a2 2 0 012-2h14a2 2 0 012 2v7" />
                       <path d="M3 11V8a2 2 0 012-2h4a2 2 0 012 2v3" />
                       <path d="M3 18h18" />
@@ -582,7 +582,7 @@ export default function VillaDetailPage({
             <div className="amenity-grid">
               {villa.amenities.map((amenity, idx) => (
                 <div key={idx} className="amenity-item">
-                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#141413" strokeWidth="1.8">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
                     <circle cx="12" cy="12" r="9" />
                     <path d="M8 12l2 2 6-6" />
                   </svg>
@@ -616,7 +616,7 @@ export default function VillaDetailPage({
               <span className="amt">{formatBscMoney(villa.price, currency)}</span>
               <span className="unit">/ night</span>
               <span className="booking-rating">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="#141413">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#D4AF37">
                   <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
                 </svg>
                 {villa.rating} ({villa.reviewsCount})
@@ -718,7 +718,7 @@ export default function VillaDetailPage({
         <div className="review-summary review-summary-full">
           <div className="review-score">
             <div className="num">{villa.rating}</div>
-            <div className="label">★★★★★<br />{villa.reviewsCount} reviews</div>
+            <div className="label"><span style={{ color: '#D4AF37', letterSpacing: '2px' }}>★★★★★</span><br />{villa.reviewsCount} reviews</div>
           </div>
           <div className="review-bars">
             <div className="bar-row">

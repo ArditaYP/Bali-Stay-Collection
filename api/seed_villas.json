@@ -1,212 +1,4 @@
-/**
- * bscVillasData.js
- * Basis data resmi 51 villa dan konfigurasi halaman utama Bali Stay Collection
- * diambil langsung dari berkas desain resmi bsc-frontpage_1.html.
- * 
- * Dilengkapi dengan 4 villa utama yang memiliki foto asli Airbnb, harga per malam,
- * ulasan tamu terverifikasi, dan integrasi halaman detail interaktif:
- * 1. Villa Habitas (Pererenan)
- * 2. St. Lau (Ubud)
- * 3. Balangan Cliff Villa / Iconic Cliff Top (Uluwatu & Bukit)
- * 4. Villa Angkasa (Ubud)
- */
-
-export const CONFIG = {
-  idrRate: 16000,
-  whatsapp: '628123456789',
-  defaultNights: 6,
-  startInDays: 14,
-  videoEmbed: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
-};
-
-/**
- * Daftar 13 ID villa yang berasal langsung dari tautan listing Airbnb
- * (termasuk 4 villa awal: Habitas, Balangan, St. Lau, Angkasa + 9 villa baru)
- */
-export const AIRBNB_ONLY_VILLA_IDS = [
-  'villa-habitas',
-  'tranquil-sanctuary-pererenan',
-  'tropical-canggu-villa',
-  'luxe-beach-villa-seminyak',
-  'tropical-elegance-seseh',
-  'balangan-cliff-villa',
-  'yellow-moon-uluwatu',
-  'st-lau',
-  'casa-kaya-bingin',
-  'luxury-tropical-bingin',
-  'chic-tropical-bingin',
-  'five-bedroom-designer-umalas',
-  'villa-angkasa'
-];
-
-/**
- * Daftar ID villa aktif dengan data autentik Airbnb
- * (13 villa baru hasil import link Airbnb + 5 villa kurasi dari website sebelumnya).
- * Disusun berurutan sehingga 13 villa baru berada di urutan awal untuk kemudahan pengecekan.
- */
-export const ACTIVE_AIRBNB_VILLA_IDS = [
-  ...AIRBNB_ONLY_VILLA_IDS,
-  'villa-samudra-canggu',
-  'villa-kayu-raja-seminyak',
-  'villa-cendana-seminyak',
-  'cliffside-panorama-uluwatu',
-  'mandapa-jungle-villa'
-];
-
-export const TIERS_INFO = {
-  Standard: {
-    name: 'Standard',
-    badge: 'Standard',
-    desc: 'Clean, comfortable, good value. Simple design, essentials covered.',
-    forTrip: 'Good for couples and small groups',
-    features: ['Private pool in every villa', 'Daily housekeeping', 'On-call local host', 'Clean & well-kept']
-  },
-  Deluxe: {
-    name: 'Deluxe',
-    badge: 'Deluxe',
-    desc: 'Stylish and well equipped, in a good location, with some service.',
-    forTrip: 'Good for friends and families',
-    features: ['Architectural design touches', 'Quality bed linens & pool towels', 'High-speed WiFi', 'Prime neighbourhood']
-  },
-  Premium: {
-    name: 'Premium',
-    badge: 'Premium',
-    desc: 'Designer villas, larger pools, stronger service and notable extras.',
-    forTrip: 'Good for groups who want more',
-    features: ['High-end finish & spacious layout', 'Staff on site', 'Chef service on request', 'Dedicated villa concierge']
-  },
-  Luxury: {
-    name: 'Luxury',
-    badge: 'Luxury',
-    desc: 'Architect-level design, signature pools, dedicated staff, standout setting.',
-    forTrip: 'Good for celebrations and special trips',
-    features: ['Signature clifftop or jungle settings', 'Full dedicated private staff', 'Personal villa manager', 'Complete privacy']
-  }
-};
-
-export const PALETTE = {
-  'Pererenan': ['#CBB9C9', '#E9DCE6'],
-  'Canggu & Berawa': ['#D8C9A8', '#EFE6CF'],
-  'Ubud': ['#C7CDBB', '#E2E7D6'],
-  'Uluwatu & Bukit': ['#9FB7C7', '#D5E2EA'],
-  'Umalas & Seminyak': ['#D5B8A8', '#EFDCD2'],
-  'Seseh': ['#B8C9B2', '#DCE8D6']
-};
-
-export const DESTINATIONS_SUMMARY = [
-  {
-    name: 'Pererenan',
-    count: 8,
-    badge: 'Chill & Surf',
-    layout: 'norm',
-    description: 'Quieter neighbour to Canggu with artisan cafés, local lanes, and easy beach breaks.',
-    tone: ['#CBB9C9', '#E9DCE6'],
-    image: '/destinations/pererenan.jpg',
-    fallback: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=85'
-  },
-  {
-    name: 'Canggu & Berawa',
-    count: 19,
-    badge: '★ Most Popular Hub',
-    layout: 'wide',
-    description: 'Cafés, iconic beach clubs, and legendary surf breaks. The most vibrant epicenter of coastal Bali.',
-    tone: ['#D8C9A8', '#EFE6CF'],
-    image: '/destinations/canggu.jpg?v=20261008',
-    objectPosition: 'center 72%',
-    fallback: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1200&q=85'
-  },
-  {
-    name: 'Uluwatu & Bukit',
-    count: 8,
-    badge: 'Clifftops & Sunsets',
-    layout: 'norm',
-    description: 'Dramatic ocean limestone cliffs, world-class surf, and sunset beach clubs.',
-    tone: ['#9FB7C7', '#D5E2EA'],
-    image: '/destinations/uluwatu.jpg?v=20261008',
-    objectPosition: 'center 50%',
-    fallback: 'https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?auto=format&fit=crop&w=1200&q=85'
-  },
-  {
-    name: 'Umalas & Seminyak',
-    count: 12,
-    badge: 'Dining & Boutiques',
-    layout: 'norm',
-    description: 'World-class dining and chic designer boutiques tucked between rice paddies.',
-    tone: ['#D5B8A8', '#EFDCD2'],
-    image: '/destinations/seminyak.jpg',
-    fallback: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?auto=format&fit=crop&w=1200&q=85'
-  },
-  {
-    name: 'Seseh',
-    count: 1,
-    badge: '✦ Hidden Gem',
-    layout: 'norm',
-    description: 'Untouched black-sand coastal village, peaceful lanes, and authentic Balinese tranquility just minutes from Canggu.',
-    tone: ['#B8C9B2', '#DCE8D6'],
-    image: '/destinations/seseh.jpg?v=20261008',
-    objectPosition: 'center 50%',
-    fallback: 'https://images.unsplash.com/photo-1559628233-eb1b1a45564b?auto=format&fit=crop&w=1200&q=85'
-  },
-  {
-    name: 'Ubud',
-    count: 4,
-    badge: 'Cultural Sanctuary',
-    layout: 'full',
-    description: 'Lush rainforest valleys, emerald rice terraces, and tranquil highland mornings.',
-    tone: ['#C7CDBB', '#E2E7D6'],
-    image: '/destinations/ubud.jpg?v=20261008c',
-    objectPosition: 'center 50%',
-    fallback: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=1200&q=85'
-  }
-];
-
-export const FAQS_DATA = [
-  {
-    q: 'Why are there no star ratings yet?',
-    a: 'We are a new brand and only show reviews from verified BSC guests. Until they come in, every villa shows our inspection notes and the date it was last checked.'
-  },
-  {
-    q: 'Is the price shown the final price?',
-    a: 'The total shown includes taxes, daily cleaning, and local service. Anything extra, like airport transfers or a private chef dinner, is quoted separately before you pay.'
-  },
-  {
-    q: 'What is your cancellation policy?',
-    a: 'Each villa shows its policy on the card and on the villa page. We offer free reschedule up to 7 days before check-in on selected verified villas.'
-  },
-  {
-    q: 'How do I pay, and is it secure?',
-    a: 'We accept credit card and direct bank transfer with safe escrow processing. You receive a written booking confirmation immediately after payment.'
-  },
-  {
-    q: 'Who do I contact during my stay?',
-    a: 'Our on-call local team in Bali. You receive their direct contact details and WhatsApp concierge access upon booking confirmation.'
-  }
-];
-
-export const TEAM_MEMBERS = [
-  {
-    name: 'Ketut Wiratama',
-    role: 'Founder & Villa Manager',
-    initials: 'KW'
-  },
-  {
-    name: 'Wayan Ardi',
-    role: 'Guest Relations',
-    initials: 'WA'
-  },
-  {
-    name: 'Ni Luh Made',
-    role: 'Operations & Housekeeping',
-    initials: 'NL'
-  },
-  {
-    name: 'Gede Suartana',
-    role: 'Villa Inspector',
-    initials: 'GS'
-  }
-];
-
-export const BSC_VILLAS = [
+[
   {
     "id": "coco-bay",
     "name": "Coco Bay",
@@ -239,10 +31,34 @@ export const BSC_VILLAS = [
     "why": "Right by the beach with cafés around the corner, eight bedrooms and a full staff for a big group.",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": true,
     "desc": "8-bedroom private pool villa in Canggu & Berawa, for up to 16 guests. Features architect-designed, a dedicated villa manager and a short walk to the beach.",
-    "know": []
+    "know": [],
+    "category": "Luxury",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 8,
+    "shortDesc": "Right by the beach with cafés around the corner, eight bedrooms and a full staff for a big group.",
+    "description": "8-bedroom private pool villa in Canggu & Berawa, for up to 16 guests. Features architect-designed, a dedicated villa manager and a short walk to the beach.",
+    "fullDesc": "8-bedroom private pool villa in Canggu & Berawa, for up to 16 guests. Features architect-designed, a dedicated villa manager and a short walk to the beach.",
+    "images": [
+      "/airbnb/villa-samudra-canggu/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Wellness facilities",
+      "Villa manager"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "the-bull-house",
@@ -276,10 +92,34 @@ export const BSC_VILLAS = [
     "why": "Six bedrooms, a personal butler, a 15 m pool and a media room, close to Batu Belig beach.",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": true,
     "desc": "6-bedroom private pool villa in Umalas & Seminyak, for up to 12 guests. Features a dedicated villa manager and a short walk to the beach.",
-    "know": []
+    "know": [],
+    "category": "Luxury",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 7,
+    "shortDesc": "Six bedrooms, a personal butler, a 15 m pool and a media room, close to Batu Belig beach.",
+    "description": "6-bedroom private pool villa in Umalas & Seminyak, for up to 12 guests. Features a dedicated villa manager and a short walk to the beach.",
+    "fullDesc": "6-bedroom private pool villa in Umalas & Seminyak, for up to 12 guests. Features a dedicated villa manager and a short walk to the beach.",
+    "images": [
+      "/airbnb/villa-kayu-raja-seminyak/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "Villa manager"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-imala",
@@ -314,10 +154,34 @@ export const BSC_VILLAS = [
     "why": "Ocean and hillside views, six bedrooms, and a dedicated villa manager. Built for celebrations in Uluwatu.",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": true,
     "desc": "6-bedroom private pool villa in Uluwatu & Bukit, for up to 12 guests. Features ocean views, a dedicated villa manager and wellness facilities.",
-    "know": []
+    "know": [],
+    "category": "Luxury",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 5,
+    "shortDesc": "Ocean and hillside views, six bedrooms, and a dedicated villa manager. Built for celebrations in Uluwatu.",
+    "description": "6-bedroom private pool villa in Uluwatu & Bukit, for up to 12 guests. Features ocean views, a dedicated villa manager and wellness facilities.",
+    "fullDesc": "6-bedroom private pool villa in Uluwatu & Bukit, for up to 12 guests. Features ocean views, a dedicated villa manager and wellness facilities.",
+    "images": [
+      "/airbnb/cliffside-panorama-uluwatu/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Wellness facilities",
+      "Villa manager"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "house-terra",
@@ -349,10 +213,33 @@ export const BSC_VILLAS = [
     "why": "Designed by Biombo Architects, with a private hot tub and a pool made for long afternoons in Pererenan.",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": true,
     "desc": "5-bedroom private pool villa in Pererenan, for up to 12 guests. Features architect-designed and wellness facilities.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Pererenan",
+    "address": "Pererenan",
+    "bathrooms": 6,
+    "shortDesc": "Designed by Biombo Architects, with a private hot tub and a pool made for long afternoons in Pererenan.",
+    "description": "5-bedroom private pool villa in Pererenan, for up to 12 guests. Features architect-designed and wellness facilities.",
+    "fullDesc": "5-bedroom private pool villa in Pererenan, for up to 12 guests. Features architect-designed and wellness facilities.",
+    "images": [
+      "/airbnb/the-palms-villa-canggu/photos/photo-02.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Air conditioning",
+      "Wellness facilities"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-kanopi",
@@ -385,10 +272,34 @@ export const BSC_VILLAS = [
     "why": "A brand-new three-bedroom villa on a quiet lane, a short stroll from Umalas restaurants and cafés.",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": true,
     "desc": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests. Features cafés within walking distance.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 3,
+    "shortDesc": "A brand-new three-bedroom villa on a quiet lane, a short stroll from Umalas restaurants and cafés.",
+    "description": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests. Features cafés within walking distance.",
+    "fullDesc": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests. Features cafés within walking distance.",
+    "images": [
+      "/airbnb/villa-cendana-seminyak/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "Walk to cafés"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-tala",
@@ -418,10 +329,31 @@ export const BSC_VILLAS = [
     "why": "A designer one-bedroom for two, near Pererenan restaurants. Simple, quiet and well priced for couples.",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": true,
     "desc": "1-bedroom private pool villa in Pererenan, for up to 2 guests.",
-    "know": []
+    "know": [],
+    "category": "Deluxe",
+    "location": "Pererenan",
+    "address": "Pererenan",
+    "bathrooms": 1,
+    "shortDesc": "A designer one-bedroom for two, near Pererenan restaurants. Simple, quiet and well priced for couples.",
+    "description": "1-bedroom private pool villa in Pererenan, for up to 2 guests.",
+    "fullDesc": "1-bedroom private pool villa in Pererenan, for up to 2 guests.",
+    "images": [
+      "/airbnb/st-lau-ubud/photos/photo-02.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Daily staff"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "berawa-breeze",
@@ -457,10 +389,32 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features a short walk to the beach, cafés within walking distance and wellness facilities.",
-    "know": []
+    "know": [],
+    "category": "Luxury",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 4,
+    "shortDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features a short walk to the beach, cafés within walking distance and wellness facilities.",
+    "description": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features a short walk to the beach, cafés within walking distance and wellness facilities.",
+    "fullDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features a short walk to the beach, cafés within walking distance and wellness facilities.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Wellness facilities",
+      "Walk to cafés"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-aless",
@@ -492,10 +446,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 10 guests. Features wellness facilities.",
-    "know": []
+    "know": [],
+    "category": "Luxury",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 5,
+    "shortDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 10 guests. Features wellness facilities.",
+    "description": "4-bedroom private pool villa in Canggu & Berawa, for up to 10 guests. Features wellness facilities.",
+    "fullDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 10 guests. Features wellness facilities.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Wellness facilities"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-vida",
@@ -531,11 +506,33 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "5-bedroom private pool villa in Canggu & Berawa, for up to 20 guests. Features rice-field views, a short walk to the beach and cafés within walking distance.",
     "know": [
       "Maximum guest number to be confirmed (16 to 20)."
+    ],
+    "category": "Premium",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 5,
+    "shortDesc": "5-bedroom private pool villa in Canggu & Berawa, for up to 20 guests. Features rice-field views, a short walk to the beach and cafés within walking distance.",
+    "description": "5-bedroom private pool villa in Canggu & Berawa, for up to 20 guests. Features rice-field views, a short walk to the beach and cafés within walking distance.",
+    "fullDesc": "5-bedroom private pool villa in Canggu & Berawa, for up to 20 guests. Features rice-field views, a short walk to the beach and cafés within walking distance.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "Walk to cafés"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -568,11 +565,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features wellness facilities.",
     "know": [
       "Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."
+    ],
+    "category": "Premium",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 4,
+    "shortDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features wellness facilities.",
+    "description": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features wellness facilities.",
+    "fullDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features wellness facilities.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Chef on request",
+      "Wellness facilities"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -604,10 +621,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features architect-designed.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Pererenan",
+    "address": "Pererenan",
+    "bathrooms": 5,
+    "shortDesc": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features architect-designed.",
+    "description": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features architect-designed.",
+    "fullDesc": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features architect-designed.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-ithaki",
@@ -638,11 +675,32 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "5-bedroom private pool villa in Umalas & Seminyak, for up to 9 guests. Features architect-designed and wellness facilities.",
     "know": [
       "Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."
+    ],
+    "category": "Premium",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 5,
+    "shortDesc": "5-bedroom private pool villa in Umalas & Seminyak, for up to 9 guests. Features architect-designed and wellness facilities.",
+    "description": "5-bedroom private pool villa in Umalas & Seminyak, for up to 9 guests. Features architect-designed and wellness facilities.",
+    "fullDesc": "5-bedroom private pool villa in Umalas & Seminyak, for up to 9 guests. Features architect-designed and wellness facilities.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Wellness facilities"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -674,10 +732,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features rice-field views.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Pererenan",
+    "address": "Pererenan",
+    "bathrooms": 5,
+    "shortDesc": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features rice-field views.",
+    "description": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features rice-field views.",
+    "fullDesc": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features rice-field views.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-loedi",
@@ -708,10 +786,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Uluwatu & Bukit, for up to 8 guests. Features architect-designed and ocean views.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 5,
+    "shortDesc": "4-bedroom private pool villa in Uluwatu & Bukit, for up to 8 guests. Features architect-designed and ocean views.",
+    "description": "4-bedroom private pool villa in Uluwatu & Bukit, for up to 8 guests. Features architect-designed and ocean views.",
+    "fullDesc": "4-bedroom private pool villa in Uluwatu & Bukit, for up to 8 guests. Features architect-designed and ocean views.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "bedouin-house",
@@ -744,10 +842,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "2-bedroom private pool villa in Pererenan, for up to 4 guests. Features architect-designed and wellness facilities.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Pererenan",
+    "address": "Pererenan",
+    "bathrooms": 2,
+    "shortDesc": "2-bedroom private pool villa in Pererenan, for up to 4 guests. Features architect-designed and wellness facilities.",
+    "description": "2-bedroom private pool villa in Pererenan, for up to 4 guests. Features architect-designed and wellness facilities.",
+    "fullDesc": "2-bedroom private pool villa in Pererenan, for up to 4 guests. Features architect-designed and wellness facilities.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Wellness facilities"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "balangan-cliff-villa",
@@ -788,7 +907,29 @@ export const BSC_VILLAS = [
       "Cliff-edge infinity swimming pool facing the Indian Ocean horizon.",
       "Short walking access down to Balangan surf beach."
     ],
-    "aliasId": "iconic-cliff-top-villa"
+    "aliasId": "iconic-cliff-top-villa",
+    "category": "Premium",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 5,
+    "shortDesc": "Perched commandingly on the limestone cliffs above Balangan Beach with uninterrupted 180° ocean panorama and sunset views.",
+    "description": "5-bedroom private pool villa in Uluwatu & Bukit, for up to 10 guests. Features ocean views and a short walk to the beach.",
+    "fullDesc": "5-bedroom private pool villa in Uluwatu & Bukit, for up to 10 guests. Features ocean views and a short walk to the beach.",
+    "images": [
+      "/airbnb/iconic-cliff-top-villa/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-amanora",
@@ -822,10 +963,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "5-bedroom private pool villa in Canggu & Berawa, for up to 10 guests. Features a short walk to the beach and cafés within walking distance.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 6,
+    "shortDesc": "5-bedroom private pool villa in Canggu & Berawa, for up to 10 guests. Features a short walk to the beach and cafés within walking distance.",
+    "description": "5-bedroom private pool villa in Canggu & Berawa, for up to 10 guests. Features a short walk to the beach and cafés within walking distance.",
+    "fullDesc": "5-bedroom private pool villa in Canggu & Berawa, for up to 10 guests. Features a short walk to the beach and cafés within walking distance.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Walk to cafés"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-milana",
@@ -857,10 +1019,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "5-bedroom private pool villa in Canggu & Berawa, for up to 12 guests. Features architect-designed.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 5,
+    "shortDesc": "5-bedroom private pool villa in Canggu & Berawa, for up to 12 guests. Features architect-designed.",
+    "description": "5-bedroom private pool villa in Canggu & Berawa, for up to 12 guests. Features architect-designed.",
+    "fullDesc": "5-bedroom private pool villa in Canggu & Berawa, for up to 12 guests. Features architect-designed.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-taijasa",
@@ -895,10 +1077,32 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "5-bedroom private pool villa in Umalas & Seminyak, for up to 10 guests. Features rice-field views and cafés within walking distance.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 6,
+    "shortDesc": "5-bedroom private pool villa in Umalas & Seminyak, for up to 10 guests. Features rice-field views and cafés within walking distance.",
+    "description": "5-bedroom private pool villa in Umalas & Seminyak, for up to 10 guests. Features rice-field views and cafés within walking distance.",
+    "fullDesc": "5-bedroom private pool villa in Umalas & Seminyak, for up to 10 guests. Features rice-field views and cafés within walking distance.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "Walk to cafés"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "casa-kameelya",
@@ -929,10 +1133,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 4,
+    "shortDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
+    "description": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
+    "fullDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-habitas",
@@ -971,7 +1195,29 @@ export const BSC_VILLAS = [
       "A nanny service and pool fence are available on request through our concierge.",
       "Free parking fits up to 2 cars plus scooters."
     ],
-    "aliasId": "villa-habitas"
+    "aliasId": "villa-habitas",
+    "category": "Premium",
+    "location": "Pererenan",
+    "address": "Pererenan",
+    "bathrooms": 5,
+    "shortDesc": "Built for slow mornings and easy evenings with private lagoon pool, king beds in every room, and walkable cafes in Pererenan.",
+    "description": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features architect-designed and rice-field views.",
+    "fullDesc": "4-bedroom private pool villa in Pererenan, for up to 8 guests. Features architect-designed and rice-field views.",
+    "images": [
+      "/airbnb/villa-habitas/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-surga",
@@ -1003,10 +1249,33 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Ubud, for up to 8 guests. Features valley views.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Ubud",
+    "address": "Ubud",
+    "bathrooms": 4,
+    "shortDesc": "4-bedroom private pool villa in Ubud, for up to 8 guests. Features valley views.",
+    "description": "4-bedroom private pool villa in Ubud, for up to 8 guests. Features valley views.",
+    "fullDesc": "4-bedroom private pool villa in Ubud, for up to 8 guests. Features valley views.",
+    "images": [
+      "/airbnb/mandapa-jungle-villa/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-mango-2",
@@ -1039,10 +1308,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features a short walk to the beach and cafés within walking distance.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 5,
+    "shortDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features a short walk to the beach and cafés within walking distance.",
+    "description": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features a short walk to the beach and cafés within walking distance.",
+    "fullDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features a short walk to the beach and cafés within walking distance.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Walk to cafés"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "padang-senang",
@@ -1076,10 +1366,32 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "3-bedroom private pool villa in Uluwatu & Bukit, for up to 6 guests. Features a short walk to the beach and cafés within walking distance.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 4,
+    "shortDesc": "3-bedroom private pool villa in Uluwatu & Bukit, for up to 6 guests. Features a short walk to the beach and cafés within walking distance.",
+    "description": "3-bedroom private pool villa in Uluwatu & Bukit, for up to 6 guests. Features a short walk to the beach and cafés within walking distance.",
+    "fullDesc": "3-bedroom private pool villa in Uluwatu & Bukit, for up to 6 guests. Features a short walk to the beach and cafés within walking distance.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "Walk to cafés"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-alva",
@@ -1112,10 +1424,32 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests. Features architect-designed and cafés within walking distance.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 4,
+    "shortDesc": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests. Features architect-designed and cafés within walking distance.",
+    "description": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests. Features architect-designed and cafés within walking distance.",
+    "fullDesc": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests. Features architect-designed and cafés within walking distance.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "Walk to cafés"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-le-papillon",
@@ -1147,10 +1481,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features architect-designed and cafés within walking distance.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 3,
+    "shortDesc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features architect-designed and cafés within walking distance.",
+    "description": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features architect-designed and cafés within walking distance.",
+    "fullDesc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features architect-designed and cafés within walking distance.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Walk to cafés"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "casa-noema",
@@ -1181,10 +1536,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features a dedicated villa manager.",
-    "know": []
+    "know": [],
+    "category": "Premium",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 3,
+    "shortDesc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features a dedicated villa manager.",
+    "description": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features a dedicated villa manager.",
+    "fullDesc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features a dedicated villa manager.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Villa manager"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-angkasa",
@@ -1223,7 +1598,29 @@ export const BSC_VILLAS = [
       "Spectacular unhindered jungle and river valley vistas.",
       "Generous indoor-outdoor dining areas ideal for family retreats."
     ],
-    "aliasId": "angkasa-ubud"
+    "aliasId": "angkasa-ubud",
+    "category": "Deluxe",
+    "location": "Ubud",
+    "address": "Ubud",
+    "bathrooms": 6,
+    "shortDesc": "Built around a dramatic infinity pool that hovers above the Ayung River valley rainforest canopy with generous living pavilions.",
+    "description": "5-bedroom private pool villa in Ubud, for up to 10 guests. Features rice-field views.",
+    "fullDesc": "5-bedroom private pool villa in Ubud, for up to 10 guests. Features rice-field views.",
+    "images": [
+      "/airbnb/angkasa-ubud/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-akar",
@@ -1252,11 +1649,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
     "know": [
       "Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."
+    ],
+    "category": "Deluxe",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 5,
+    "shortDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
+    "description": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
+    "fullDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -1286,11 +1703,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
     "know": [
       "Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."
+    ],
+    "category": "Deluxe",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 5,
+    "shortDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
+    "description": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
+    "fullDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -1323,10 +1760,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 9 guests. Features a short walk to the beach.",
-    "know": []
+    "know": [],
+    "category": "Deluxe",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 4,
+    "shortDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 9 guests. Features a short walk to the beach.",
+    "description": "4-bedroom private pool villa in Canggu & Berawa, for up to 9 guests. Features a short walk to the beach.",
+    "fullDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 9 guests. Features a short walk to the beach.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "st-lau",
@@ -1364,7 +1822,29 @@ export const BSC_VILLAS = [
       "Open-plan living spaces flow onto private pool deck surrounded by tropical greenery.",
       "Conveniently close to Ubud centre and Monkey Forest sanctuary."
     ],
-    "aliasId": "st-lau-ubud"
+    "aliasId": "st-lau-ubud",
+    "category": "Deluxe",
+    "location": "Ubud",
+    "address": "Ubud",
+    "bathrooms": 3,
+    "shortDesc": "A signature private sanctuary in Ubud tucked away in serene surroundings with private pool deck and calming retreat spaces.",
+    "description": "3-bedroom private pool villa in Ubud, for up to 8 guests.",
+    "fullDesc": "3-bedroom private pool villa in Ubud, for up to 8 guests.",
+    "images": [
+      "/airbnb/st-lau-ubud/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-mahina",
@@ -1396,10 +1876,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "3-bedroom private pool villa in Canggu & Berawa, for up to 6 guests. Features a short walk to the beach.",
-    "know": []
+    "know": [],
+    "category": "Deluxe",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 3,
+    "shortDesc": "3-bedroom private pool villa in Canggu & Berawa, for up to 6 guests. Features a short walk to the beach.",
+    "description": "3-bedroom private pool villa in Canggu & Berawa, for up to 6 guests. Features a short walk to the beach.",
+    "fullDesc": "3-bedroom private pool villa in Canggu & Berawa, for up to 6 guests. Features a short walk to the beach.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-serenity",
@@ -1431,10 +1932,32 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "3-bedroom private pool villa in Canggu & Berawa, for up to 6 guests. Features wellness facilities.",
-    "know": []
+    "know": [],
+    "category": "Deluxe",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 3,
+    "shortDesc": "3-bedroom private pool villa in Canggu & Berawa, for up to 6 guests. Features wellness facilities.",
+    "description": "3-bedroom private pool villa in Canggu & Berawa, for up to 6 guests. Features wellness facilities.",
+    "fullDesc": "3-bedroom private pool villa in Canggu & Berawa, for up to 6 guests. Features wellness facilities.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "Wellness facilities"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "t-ra-bingin-villa",
@@ -1463,10 +1986,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "2-bedroom private pool villa in Uluwatu & Bukit, for up to 4 guests.",
-    "know": []
+    "know": [],
+    "category": "Deluxe",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 2,
+    "shortDesc": "2-bedroom private pool villa in Uluwatu & Bukit, for up to 4 guests.",
+    "description": "2-bedroom private pool villa in Uluwatu & Bukit, for up to 4 guests.",
+    "fullDesc": "2-bedroom private pool villa in Uluwatu & Bukit, for up to 4 guests.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-halle",
@@ -1498,11 +2041,32 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "2-bedroom private pool villa in Seseh, for up to 4 guests. Features a short walk to the beach.",
     "know": [
       "Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."
+    ],
+    "category": "Deluxe",
+    "location": "Seseh",
+    "address": "Seseh",
+    "bathrooms": 3,
+    "shortDesc": "2-bedroom private pool villa in Seseh, for up to 4 guests. Features a short walk to the beach.",
+    "description": "2-bedroom private pool villa in Seseh, for up to 4 guests. Features a short walk to the beach.",
+    "fullDesc": "2-bedroom private pool villa in Seseh, for up to 4 guests. Features a short walk to the beach.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -1535,10 +2099,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features cafés within walking distance.",
-    "know": []
+    "know": [],
+    "category": "Deluxe",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 2,
+    "shortDesc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features cafés within walking distance.",
+    "description": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features cafés within walking distance.",
+    "fullDesc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features cafés within walking distance.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Walk to cafés"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "alua-taupe",
@@ -1568,10 +2153,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "1-bedroom private pool villa in Umalas & Seminyak, for up to 2 guests. Features a dedicated villa manager.",
-    "know": []
+    "know": [],
+    "category": "Deluxe",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 1,
+    "shortDesc": "1-bedroom private pool villa in Umalas & Seminyak, for up to 2 guests. Features a dedicated villa manager.",
+    "description": "1-bedroom private pool villa in Umalas & Seminyak, for up to 2 guests. Features a dedicated villa manager.",
+    "fullDesc": "1-bedroom private pool villa in Umalas & Seminyak, for up to 2 guests. Features a dedicated villa manager.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Air conditioning",
+      "Villa manager"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "lady-swan-villa",
@@ -1603,10 +2209,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
-    "know": []
+    "know": [],
+    "category": "Deluxe",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 3,
+    "shortDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
+    "description": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
+    "fullDesc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "yellow-moon",
@@ -1637,10 +2264,31 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "3-bedroom private pool villa in Uluwatu & Bukit, for up to 6 guests. Features wellness facilities.",
-    "know": []
+    "know": [],
+    "category": "Deluxe",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 4,
+    "shortDesc": "3-bedroom private pool villa in Uluwatu & Bukit, for up to 6 guests. Features wellness facilities.",
+    "description": "3-bedroom private pool villa in Uluwatu & Bukit, for up to 6 guests. Features wellness facilities.",
+    "fullDesc": "3-bedroom private pool villa in Uluwatu & Bukit, for up to 6 guests. Features wellness facilities.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Wellness facilities"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "casa-nala",
@@ -1675,10 +2323,32 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features ocean views, cafés within walking distance and wellness facilities.",
-    "know": []
+    "know": [],
+    "category": "Deluxe",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 2,
+    "shortDesc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features ocean views, cafés within walking distance and wellness facilities.",
+    "description": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features ocean views, cafés within walking distance and wellness facilities.",
+    "fullDesc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features ocean views, cafés within walking distance and wellness facilities.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Wellness facilities",
+      "Walk to cafés"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "chateau-retreat",
@@ -1708,10 +2378,29 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features architect-designed.",
-    "know": []
+    "know": [],
+    "category": "Deluxe",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 2,
+    "shortDesc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features architect-designed.",
+    "description": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features architect-designed.",
+    "fullDesc": "2-bedroom private pool villa in Umalas & Seminyak, for up to 4 guests. Features architect-designed.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "casa-k-ya",
@@ -1742,10 +2431,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "1-bedroom private pool villa in Uluwatu & Bukit, for up to 2 guests.",
-    "know": []
+    "know": [],
+    "category": "Deluxe",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 2,
+    "shortDesc": "1-bedroom private pool villa in Uluwatu & Bukit, for up to 2 guests.",
+    "description": "1-bedroom private pool villa in Uluwatu & Bukit, for up to 2 guests.",
+    "fullDesc": "1-bedroom private pool villa in Uluwatu & Bukit, for up to 2 guests.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "pererenan-four-bedroom-villa",
@@ -1774,10 +2483,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "4-bedroom private pool villa in Pererenan, for up to 8 guests.",
-    "know": []
+    "know": [],
+    "category": "Standard",
+    "location": "Pererenan",
+    "address": "Pererenan",
+    "bathrooms": 4,
+    "shortDesc": "4-bedroom private pool villa in Pererenan, for up to 8 guests.",
+    "description": "4-bedroom private pool villa in Pererenan, for up to 8 guests.",
+    "fullDesc": "4-bedroom private pool villa in Pererenan, for up to 8 guests.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-vaya",
@@ -1805,10 +2534,29 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests.",
-    "know": []
+    "know": [],
+    "category": "Standard",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 4,
+    "shortDesc": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests.",
+    "description": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests.",
+    "fullDesc": "3-bedroom private pool villa in Umalas & Seminyak, for up to 6 guests.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-infinity",
@@ -1839,10 +2587,32 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features wellness facilities.",
-    "know": []
+    "know": [],
+    "category": "Standard",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 2,
+    "shortDesc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features wellness facilities.",
+    "description": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features wellness facilities.",
+    "fullDesc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features wellness facilities.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request",
+      "Air conditioning",
+      "Wellness facilities"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "terea",
@@ -1872,10 +2642,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features architect-designed.",
-    "know": []
+    "know": [],
+    "category": "Standard",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 3,
+    "shortDesc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features architect-designed.",
+    "description": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features architect-designed.",
+    "fullDesc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features architect-designed.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Chef on request",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "villa-solani",
@@ -1905,10 +2695,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "1-bedroom private pool villa in Pererenan, for up to 2 guests.",
-    "know": []
+    "know": [],
+    "category": "Standard",
+    "location": "Pererenan",
+    "address": "Pererenan",
+    "bathrooms": 2,
+    "shortDesc": "1-bedroom private pool villa in Pererenan, for up to 2 guests.",
+    "description": "1-bedroom private pool villa in Pererenan, for up to 2 guests.",
+    "fullDesc": "1-bedroom private pool villa in Pererenan, for up to 2 guests.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Chef on request"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "aozora-villas",
@@ -1936,10 +2746,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "1-bedroom private pool villa in Uluwatu & Bukit, for up to 2 guests.",
-    "know": []
+    "know": [],
+    "category": "Standard",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 1,
+    "shortDesc": "1-bedroom private pool villa in Uluwatu & Bukit, for up to 2 guests.",
+    "description": "1-bedroom private pool villa in Uluwatu & Bukit, for up to 2 guests.",
+    "fullDesc": "1-bedroom private pool villa in Uluwatu & Bukit, for up to 2 guests.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
+    ]
   },
   {
     "id": "khaleela-villas",
@@ -1966,11 +2796,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests.",
     "know": [
       "Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."
+    ],
+    "category": "Standard",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 2,
+    "shortDesc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests.",
+    "description": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests.",
+    "fullDesc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -1998,11 +2847,30 @@ export const BSC_VILLAS = [
     "why": "",
     "cancel": "",
     "verified": false,
-    "updated": "",
+    "updated": "Recent",
     "pick": false,
     "desc": "1-bedroom private pool villa in Umalas & Seminyak, for up to 2 guests.",
     "know": [
       "The beach is about 2.3 km away, so a scooter or driver is useful."
+    ],
+    "category": "Standard",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 1,
+    "shortDesc": "1-bedroom private pool villa in Umalas & Seminyak, for up to 2 guests.",
+    "description": "1-bedroom private pool villa in Umalas & Seminyak, for up to 2 guests.",
+    "fullDesc": "1-bedroom private pool villa in Umalas & Seminyak, for up to 2 guests.",
+    "images": [],
+    "amenities": [
+      "Private pool",
+      "Daily staff"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2044,6 +2912,31 @@ export const BSC_VILLAS = [
     "know": [
       "5-minute stroll to Echo Beach surf break.",
       "Private pool with sun deck framed by tropical palms."
+    ],
+    "category": "Deluxe",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 3,
+    "shortDesc": "Boho-chic 3-bedroom sanctuary steps from Echo Beach with private turquoise pool and sun deck.",
+    "description": "3-bedroom private pool villa in Canggu & Berawa, steps from Echo Beach with custom rattan furnishings and lush garden.",
+    "fullDesc": "3-bedroom private pool villa in Canggu & Berawa, steps from Echo Beach with custom rattan furnishings and lush garden.",
+    "images": [
+      "/airbnb/villa-samudra-canggu/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "High-speed WiFi",
+      "Full kitchen",
+      "Air conditioning",
+      "Daily housekeeping",
+      "Near the beach"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2085,6 +2978,31 @@ export const BSC_VILLAS = [
     "know": [
       "Located in prime Petitenget dining strip.",
       "Private pool with timber sun deck."
+    ],
+    "category": "Deluxe",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 3,
+    "shortDesc": "Refined 3-bedroom pool villa in Petitenget within walking distance to Seminyak's world-class dining.",
+    "description": "3-bedroom private pool villa in Petitenget, Seminyak. Features central pool courtyard and master en-suite terrazzo bathtubs.",
+    "fullDesc": "3-bedroom private pool villa in Petitenget, Seminyak. Features central pool courtyard and master en-suite terrazzo bathtubs.",
+    "images": [
+      "/airbnb/villa-kayu-raja-seminyak/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Full kitchen",
+      "Air conditioning",
+      "High-speed WiFi",
+      "Daily housekeeping",
+      "Near the beach"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2125,6 +3043,30 @@ export const BSC_VILLAS = [
     "know": [
       "Perfect for couples and honeymooners.",
       "Private plunge pool with garden stone tub."
+    ],
+    "category": "Deluxe",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 2,
+    "shortDesc": "Intimate 2-bedroom romantic retreat with private plunge pool and open-air garden stone bathtub.",
+    "description": "2-bedroom intimate romantic pool villa in Kayu Aya, Seminyak with private plunge pool and garden bathroom.",
+    "fullDesc": "2-bedroom intimate romantic pool villa in Kayu Aya, Seminyak with private plunge pool and garden bathroom.",
+    "images": [
+      "/airbnb/villa-cendana-seminyak/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Romantic outdoor bathtub",
+      "Air conditioning",
+      "High-speed WiFi",
+      "Daily housekeeping"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2167,6 +3109,31 @@ export const BSC_VILLAS = [
     "know": [
       "Uninterrupted 180° Indian Ocean sunset view.",
       "Horizon infinity swimming pool."
+    ],
+    "category": "Luxury",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 4,
+    "shortDesc": "Ultra-luxurious 4-bedroom cliff villa overlooking Bingin Beach and the Indian Ocean with horizon infinity pool.",
+    "description": "4-bedroom luxury cliff-edge villa in Uluwatu, perched above Bingin Beach with infinity pool and sunset panorama.",
+    "fullDesc": "4-bedroom luxury cliff-edge villa in Uluwatu, perched above Bingin Beach with infinity pool and sunset panorama.",
+    "images": [
+      "/airbnb/cliffside-panorama-uluwatu/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Infinity pool",
+      "Ocean view",
+      "Private chef on request",
+      "Air conditioning",
+      "High-speed WiFi",
+      "Daily housekeeping"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2209,6 +3176,31 @@ export const BSC_VILLAS = [
     "know": [
       "Spectacular open-concept bamboo architecture.",
       "Unobstructed jungle and Ayung River valley view."
+    ],
+    "category": "Premium",
+    "location": "Ubud",
+    "address": "Ubud",
+    "bathrooms": 2,
+    "shortDesc": "Architectural bamboo sanctuary suspended over the Ayung River valley and lush emerald jungle canopies.",
+    "description": "2-bedroom sustainable bamboo architectural villa on Sayan Ridge, Ubud with private pool and river views.",
+    "fullDesc": "2-bedroom sustainable bamboo architectural villa on Sayan Ridge, Ubud with private pool and river views.",
+    "images": [
+      "/airbnb/mandapa-jungle-villa/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Jungle view",
+      "River valley view",
+      "High-speed WiFi",
+      "Full kitchen",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2248,6 +3240,29 @@ export const BSC_VILLAS = [
     "know": [
       "Located in a tranquil lane with minimal traffic.",
       "Walking distance to top Pererenan cafés and bakeries."
+    ],
+    "category": "Standard",
+    "location": "Pererenan",
+    "address": "Pererenan",
+    "bathrooms": 2,
+    "shortDesc": "A serene 1-bedroom oasis in prime Pererenan with private pool and effortless walk to artisan cafes.",
+    "description": "1-bedroom intimate sanctuary in prime Pererenan for up to 2 guests with private pool.",
+    "fullDesc": "1-bedroom intimate sanctuary in prime Pererenan for up to 2 guests with private pool.",
+    "images": [
+      "/airbnb/tranquil-sanctuary-pererenan/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "High-speed WiFi",
+      "Kitchenette",
+      "Daily housekeeping"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2286,6 +3301,29 @@ export const BSC_VILLAS = [
     "know": [
       "Moments from Canggu's best dining and beach clubs.",
       "Spacious living pavilion perfect for groups."
+    ],
+    "category": "Deluxe",
+    "location": "Canggu & Berawa",
+    "address": "Canggu & Berawa",
+    "bathrooms": 4,
+    "shortDesc": "Heart-of-Canggu location, private sparkling pool, and high guest satisfaction rating of 4.93 with 135+ reviews.",
+    "description": "4-bedroom modern tropical villa in central Canggu for up to 8 guests with private pool.",
+    "fullDesc": "4-bedroom modern tropical villa in central Canggu for up to 8 guests with private pool.",
+    "images": [
+      "/airbnb/tropical-canggu-villa/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Full kitchen",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2324,6 +3362,29 @@ export const BSC_VILLAS = [
     "know": [
       "Steps from Seminyak Beach and famous beach clubs.",
       "Open-air tropical living area with private pool."
+    ],
+    "category": "Deluxe",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 4,
+    "shortDesc": "Prime Seminyak location just steps from the sand, sunset beach clubs, and boutique shopping.",
+    "description": "3-bedroom stylish villa in Seminyak steps from the beach for up to 6 guests with pool.",
+    "fullDesc": "3-bedroom stylish villa in Seminyak steps from the beach for up to 6 guests with pool.",
+    "images": [
+      "/airbnb/luxe-beach-villa-seminyak/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Near the beach",
+      "Full kitchen",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2363,6 +3424,29 @@ export const BSC_VILLAS = [
     "know": [
       "Nestled in peaceful Seseh, free from heavy traffic.",
       "Short stroll to black-sand coastline and coastal walks."
+    ],
+    "category": "Deluxe",
+    "location": "Seseh",
+    "address": "Seseh",
+    "bathrooms": 3,
+    "shortDesc": "Spectacular 4.98 rating in peaceful Seseh Beach, combining calm village living with immediate beach access.",
+    "description": "2-bedroom elegant villa in Seseh for up to 4 guests with private pool and ocean breezes.",
+    "fullDesc": "2-bedroom elegant villa in Seseh for up to 4 guests with private pool and ocean breezes.",
+    "images": [
+      "/airbnb/tropical-elegance-seseh/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Ocean breeze",
+      "High-speed WiFi",
+      "Full kitchen"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2401,6 +3485,29 @@ export const BSC_VILLAS = [
     "know": [
       "Convenient access to top surf breaks in Uluwatu and Padang Padang.",
       "Sunken outdoor lounge beside the swimming pool."
+    ],
+    "category": "Premium",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 4,
+    "shortDesc": "Sunken lounge, generous timber pool deck, and warm island architecture nestled in Uluwatu.",
+    "description": "3-bedroom tropical sanctuary in Uluwatu for up to 6 guests with pool.",
+    "fullDesc": "3-bedroom tropical sanctuary in Uluwatu for up to 6 guests with pool.",
+    "images": [
+      "/airbnb/yellow-moon-uluwatu/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Ocean breeze",
+      "Full kitchen",
+      "High-speed WiFi"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2439,6 +3546,29 @@ export const BSC_VILLAS = [
     "know": [
       "Minutes from Bingin Beach stairs and cafés.",
       "Minimalist Mediterranean-inspired architectural details."
+    ],
+    "category": "Standard",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 2,
+    "shortDesc": "Boutique 1-bedroom tropical aesthetic sanctuary minutes from Bingin's famous turquoise beaches.",
+    "description": "1-bedroom boutique villa near Bingin Beach for up to 2 guests with private pool.",
+    "fullDesc": "1-bedroom boutique villa near Bingin Beach for up to 2 guests with private pool.",
+    "images": [
+      "/airbnb/casa-kaya-bingin/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "High-speed WiFi",
+      "Kitchenette",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2477,6 +3607,29 @@ export const BSC_VILLAS = [
     "know": [
       "Surrounded by tropical frangipani and palm trees.",
       "Easy access to Bingin and Padang Padang beaches."
+    ],
+    "category": "Premium",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 4,
+    "shortDesc": "Lush garden pool, premium finishes, and breezy open-plan living right in Bingin.",
+    "description": "3-bedroom luxury villa in Bingin for up to 6 guests with private pool.",
+    "fullDesc": "3-bedroom luxury villa in Bingin for up to 6 guests with private pool.",
+    "images": [
+      "/airbnb/luxury-tropical-bingin/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Full kitchen",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2515,6 +3668,29 @@ export const BSC_VILLAS = [
     "know": [
       "Exceptional 4.97 rating across 30+ verified guest reviews.",
       "Minutes from Bingin surf breaks and sunset cliff spots."
+    ],
+    "category": "Deluxe",
+    "location": "Uluwatu & Bukit",
+    "address": "Uluwatu & Bukit",
+    "bathrooms": 2,
+    "shortDesc": "Polished concrete, warm timber, and 4.97 guest rating minutes from Bingin Beach.",
+    "description": "2-bedroom chic villa in Bingin for up to 4 guests with private pool.",
+    "fullDesc": "2-bedroom chic villa in Bingin for up to 4 guests with private pool.",
+    "images": [
+      "/airbnb/chic-tropical-bingin/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "High-speed WiFi",
+      "Full kitchen",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   },
   {
@@ -2554,6 +3730,29 @@ export const BSC_VILLAS = [
     "know": [
       "Features large 18-meter swimming pool and manicured estate grounds.",
       "Prime location bridging quiet Umalas and vibrant Berawa."
+    ],
+    "category": "Luxury",
+    "location": "Umalas & Seminyak",
+    "address": "Umalas & Seminyak",
+    "bathrooms": 5,
+    "shortDesc": "Grand 5-bedroom architectural estate with massive pool and dedicated staff right next to Berawa.",
+    "description": "5-bedroom designer estate in Umalas for up to 9 guests with huge pool and staff.",
+    "fullDesc": "5-bedroom designer estate in Umalas for up to 9 guests with huge pool and staff.",
+    "images": [
+      "/airbnb/five-bedroom-designer-umalas/photos/photo-01.jpg"
+    ],
+    "amenities": [
+      "Private pool",
+      "Dedicated staff",
+      "Full kitchen",
+      "Air conditioning"
+    ],
+    "sc": [
+      2,
+      2,
+      2,
+      2,
+      2
     ]
   }
-];
+]

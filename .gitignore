@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 scratch/
 
+# User uploads
+uploads/*
+!uploads/villas/
+!uploads/villas/.gitkeep
+

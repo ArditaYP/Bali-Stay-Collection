@@ -18,7 +18,7 @@ export default function WhyBookDirect() {
           {/* Nilai 1: Tanpa Biaya Layanan Tersembunyi */}
           <div className="why-card">
             <div className="why-icon">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#16294D" strokeWidth="2">
                 <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
               </svg>
             </div>
@@ -29,7 +29,7 @@ export default function WhyBookDirect() {
           {/* Nilai 2: Dikelola Tim Lokal Satu Pintu */}
           <div className="why-card">
             <div className="why-icon">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#16294D" strokeWidth="2">
                 <circle cx="12" cy="8" r="4" />
                 <path d="M4 21c0-4 4-6 8-6s8 2 8 6" />
               </svg>
@@ -41,7 +41,7 @@ export default function WhyBookDirect() {
           {/* Nilai 3: Respon Cepat 24/7 di Bali */}
           <div className="why-card">
             <div className="why-icon">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#16294D" strokeWidth="2">
                 <circle cx="12" cy="12" r="9" />
                 <path d="M12 7v5l3 2" />
               </svg>
@@ -53,7 +53,7 @@ export default function WhyBookDirect() {
           {/* Nilai 4: Keamanan Pembayaran & Kebijakan Reschedule */}
           <div className="why-card">
             <div className="why-icon">
-              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#C96F4A" strokeWidth="2">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#16294D" strokeWidth="2">
                 <rect x="4" y="11" width="16" height="9" rx="2" />
                 <path d="M8 11V7a4 4 0 018 0v4" />
               </svg>

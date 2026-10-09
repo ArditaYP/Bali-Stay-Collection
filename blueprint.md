@@ -115,7 +115,15 @@ Sesuai hasil diskusi, arsitektur sinkronisasi yang digunakan adalah **Solusi 1: 
 * **Tabel Pesanan:** Daftar seluruh pesanan masuk dengan filter status, tanggal, dan nama villa.
 * **Master Calendar:** Tampilan kalender gabungan seluruh villa (melihat villa yang terisi vs kosong).
 * **Kontrol Blokir Manual:** Tombol bagi tim BSC untuk memblokir tanggal secara manual (misal: villa sedang renovasi atau dipakai pemilik).
-* **Manajemen Harga & Musim (*Seasonal Pricing*):** Kemampuan mengatur harga *Peak Season* (Natal/Tahun Baru) dan *Low Season*.
+* **Manajemen Harga & Musim (*Seasonal & Dynamic Pricing Engine*):**
+  - **Level 1 (Base Price):** Tarif dasar per malam (Low Season) sebagai patokan awal.
+  - **Level 2 (Seasonal Rules Otomatis):**
+    - *Low Season* (Februari – Mei, Oktober – November): Tarif dasar normal, min. stay 2 malam.
+    - *High Season* (Juli – Agustus, Libur Idul Fitri / Easter): Kenaikan otomatis +20% s.d. +30%, min. stay 3 malam.
+    - *Peak Season* (20 Desember – 5 Januari / Libur Natal & Tahun Baru): Kenaikan otomatis +50% s.d. +80%, min. stay 5 malam.
+    - *Weekend Surcharge (Opsional):* Kenaikan tarif menginap malam Jumat & Sabtu (+10% atau flat fee).
+  - **Level 3 (Custom Date Override):** Kemampuan tim Marketing/Revenue Manager untuk mengubah harga tanggal-tanggal tertentu secara spesifik di kalender (misal: ada festival/konser musik internasional atau promo diskon *Flash Sale / Last Minute*).
+  - **Minimum Stay Enforcement:** Sistem otomatis memblokir transaksi jika durasi menginap tamu di bawah syarat minimum musim tersebut.
 
 ### 6. Layanan Tambahan Concierge (Add-ons)
 * Opsi penambahan layanan saat checkout:
@@ -132,7 +140,7 @@ Sesuai hasil diskusi, arsitektur sinkronisasi yang digunakan adalah **Solusi 1: 
 
 ## 4. STRUKTUR PERAN PENGGUNA (USER ROLES & PERMISSIONS)
 
-Sistem dirancang dengan 3 peran utama dan 1 peran pendukung operasional lapangan:
+Sistem dirancang dengan 3 peran utama dan 2 peran spesifik operasional & pemasaran:
 
 ### 4.1. Super Admin (Tim Manajemen Inti BSC)
 * **Definisi:** Pemilik platform atau tim operasional pusat Bali Stay Collection.
@@ -142,9 +150,19 @@ Sistem dirancang dengan 3 peran utama dan 1 peran pendukung operasional lapangan
   2. Mengontrol Master Calendar dan mengelola link iCal Airbnb/Tiket.com untuk seluruh villa.
   3. Mengelola seluruh transaksi reservasi (konfirmasi, pengembalian dana/refund, perubahan jadwal).
   4. Mengakses laporan keuangan global, omzet keseluruhan, dan performa okupansi per area.
-  5. Membuat dan mengelola akun Pemilik Villa (*Owners*) dan akun Staf Lapangan.
+  5. Membuat dan mengelola akun Pemilik Villa (*Owners*), akun Marketing, dan akun Staf Lapangan.
 
-### 4.2. User / Tamu (Guest / Traveler)
+### 4.2. Marketing / Revenue Manager (Pengelola Tarif & Okupansi)
+* **Definisi:** Tim pemasaran atau *Revenue Specialist* hotel/villa yang bertugas memantau okupansi pasar dan memaksimalkan pendapatan (*Yield Management*).
+* **Hak Akses:** Khusus kalender tarif, aturan musim, promo, dan laporan performa okupansi.
+* **Fitur Utama di Marketing Portal:**
+  1. Mengatur aturan rentang tanggal *High Season* dan *Peak Season* serta persentase kenaikan harga per villa.
+  2. Memasang *Custom Date Override* (harga khusus) pada tanggal-tanggal liburan atau event tertentu.
+  3. Mengatur aturan *Minimum Stay* per musim (misal: Peak Season wajib minimal 5 malam).
+  4. Menerbitkan kode promo / voucher diskon (*Early Bird* atau *Last-Minute Booking*).
+  5. **Batasan Keamanan:** Tidak memiliki hak menghapus data villa dari database, tidak dapat mengubah nomor rekening pemilik, dan tidak dapat mengubah hak akses pengguna lain.
+
+### 4.3. User / Tamu (Guest / Traveler)
 * **Definisi:** Wisatawan lokal maupun internasional yang menyewa villa.
 * **Pendekatan Akses:**
   - **Guest Checkout (Direkomendasikan):** Tamu dapat langsung reservasi tanpa wajib mendaftar akun baru (mengurangi hambatan transaksi/meningkatkan konversi). Cukup mengisi nama, email, dan nomor WhatsApp.
@@ -155,7 +173,7 @@ Sistem dirancang dengan 3 peran utama dan 1 peran pendukung operasional lapangan
   3. Menyelesaikan pembayaran melalui gerbang pembayaran resmi (*Payment Gateway*).
   4. Menyimpan villa favorit ke dalam fitur Wishlist browser.
 
-### 4.3. Pemilik Villa (Villa Owner / Host Partner)
+### 4.4. Pemilik Villa (Villa Owner / Host Partner)
 * **Definisi:** Pemilik properti fisik yang menitipkan vilanya untuk dikelola oleh BSC.
 * **Hak Akses:** Terbatas khusus pada unit villa miliknya sendiri (*Isolated Owner View*). Tidak dapat melihat data villa milik partner lain.
 * **Fitur Utama di Owner Portal:**
@@ -164,7 +182,7 @@ Sistem dirancang dengan 3 peran utama dan 1 peran pendukung operasional lapangan
   3. **Laporan Keuangan & Bagi Hasil (*Owner Statement*):** Melihat rincian pendapatan kotor, potongan biaya operasional atau komisi manajemen BSC, serta nominal bagi hasil bersih yang dapat dicairkan.
   4. **Ulasan Tamu:** Membaca testimoni dan tingkat kepuasan tamu yang menginap di vilanya.
 
-### 4.4. Staf Operasional Lapangan (Villa Butler / Housekeeping)
+### 4.5. Staf Operasional Lapangan (Villa Butler / Housekeeping)
 * **Definisi:** Tim operasional di lokasi villa (*villa manager*, *butler*, tim kebersihan).
 * **Hak Akses:** Tampilan ramah ponsel (*mobile-first view*) khusus jadwal tugas harian.
 * **Fitur Utama:**
@@ -179,7 +197,7 @@ Sistem dirancang dengan 3 peran utama dan 1 peran pendukung operasional lapangan
 Berikut rancangan struktur tabel utama (menggunakan standar relasional SQL):
 
 ### 1. Tabel `users`
-Menyimpan seluruh data pengguna (Admin, Owner, Guest, Staff).
+Menyimpan seluruh data pengguna (Admin, Marketing, Owner, Guest, Staff).
 ```sql
 CREATE TABLE users (
     id VARCHAR(50) PRIMARY KEY,              -- 'USR-001'
@@ -187,7 +205,7 @@ CREATE TABLE users (
     email VARCHAR(150) UNIQUE NOT NULL,
     phone VARCHAR(50),
     password_hash VARCHAR(255) NOT NULL,
-    role ENUM('super_admin', 'villa_owner', 'guest', 'staff') NOT NULL,
+    role ENUM('super_admin', 'marketing', 'villa_owner', 'guest', 'staff') NOT NULL,
     email_otp_code VARCHAR(10) NULL,         -- Kode 6 angka OTP via Gmail untuk login 2FA
     email_otp_expires_at TIMESTAMP NULL,     -- Batas waktu kedaluwarsa kode OTP (5 menit)
     is_active BOOLEAN DEFAULT TRUE,
@@ -290,6 +308,40 @@ CREATE TABLE extra_services (
     amount DECIMAL(10, 2) NOT NULL,
     notes TEXT,
     FOREIGN KEY (booking_id) REFERENCES bookings(id) ON DELETE CASCADE
+);
+```
+
+### 7. Tabel `seasonal_rates`
+Menyimpan aturan tarif musiman (*Low/High/Peak Season*) dan syarat *minimum stay*.
+```sql
+CREATE TABLE seasonal_rates (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    villa_id VARCHAR(50) NOT NULL,
+    season_name VARCHAR(100) NOT NULL,       -- 'High Season July-August', 'Peak Season Festive'
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    price_multiplier DECIMAL(4, 2) DEFAULT 1.00, -- Kenaikan otomatis (misal 1.25 untuk +25%, 1.60 untuk +60%)
+    fixed_price_usd DECIMAL(10, 2) NULL,     -- Atau tarif flat khusus USD per malam
+    min_stay_nights INT DEFAULT 1,           -- Syarat minimal menginap (misal 3 malam di High, 5 malam di Peak)
+    weekend_surcharge DECIMAL(10, 2) DEFAULT 0.00,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (villa_id) REFERENCES villas(id) ON DELETE CASCADE
+);
+```
+
+### 8. Tabel `custom_date_rates`
+Menyimpan penyesuaian harga khusus pada tanggal tertentu oleh tim Marketing / Revenue Manager (*Custom Date Override*).
+```sql
+CREATE TABLE custom_date_rates (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    villa_id VARCHAR(50) NOT NULL,
+    target_date DATE NOT NULL,
+    custom_price_usd DECIMAL(10, 2) NOT NULL, -- Harga khusus pada tanggal tersebut
+    min_stay_nights INT DEFAULT 1,
+    note VARCHAR(255) NULL,                  -- 'Event Savaya NYE', 'Promo Flash Sale'
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY (villa_id, target_date),
+    FOREIGN KEY (villa_id) REFERENCES villas(id) ON DELETE CASCADE
 );
 ```
 

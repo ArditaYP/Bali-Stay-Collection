@@ -65,8 +65,8 @@ export default function VillaCard({ villa, onSelectVilla, isSaved, onToggleSave 
             width="15" 
             height="15" 
             viewBox="0 0 24 24" 
-            fill={isSaved ? "#E4572E" : "none"} 
-            stroke={isSaved ? "#E4572E" : "#141413"} 
+            fill={isSaved ? "#16294D" : "none"} 
+            stroke={isSaved ? "#16294D" : "#141413"} 
             strokeWidth="2"
           >
             <path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z" />
@@ -88,7 +88,7 @@ export default function VillaCard({ villa, onSelectVilla, isSaved, onToggleSave 
           </div>
           {/* Skor Rating dan Jumlah Ulasan */}
           <div className="result-rating">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#141413">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#D4AF37">
               <path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z" />
             </svg>
             {villa.rating} <span>({villa.reviewsCount})</span>

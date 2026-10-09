@@ -24,6 +24,23 @@ const COMMON_AMENITIES = [
 ];
 
 /**
+ * Daftar label / kategori ruangan standar untuk foto tour Airbnb
+ */
+const ROOM_LABEL_PRESETS = [
+  'Living Area',
+  'Master Bedroom',
+  'Bedroom 2',
+  'Bedroom 3',
+  'Private Pool',
+  'Full Kitchen',
+  'Bathroom',
+  'Outdoor Dining',
+  'Garden & Exterior',
+  'Balcony & Terrace',
+  'Aerial View'
+];
+
+/**
  * ID dari 3 villa utama yang diposisikan di urutan paling atas untuk kemudahan akses
  */
 const TOP_PRIORITY_IDS = ['st-lau-ubud', 'iconic-cliff-top-villa', 'angkasa-ubud'];
@@ -59,6 +76,13 @@ export default function VillaContentEditor({
   const [toastMessage, setToastMessage] = useState('');
   // Input teks untuk menambahkan fasilitas kustom baru
   const [newAmenityInput, setNewAmenityInput] = useState('');
+  // State status proses penyimpanan ke server database
+  const [isSaving, setIsSaving] = useState(false);
+
+  // State untuk manajemen foto villa
+  const [isUploadingPhoto, setIsUploadingPhoto] = useState(false);
+  const [newImageUrl, setNewImageUrl] = useState('');
+  const [newImageCaption, setNewImageCaption] = useState('Living Area');
 
   // Sinkronisasi data saat props villas berubah dari luar
   useEffect(() => {
@@ -122,16 +146,207 @@ export default function VillaContentEditor({
   };
 
   /**
-   * Menyimpan seluruh perubahan data villa ke localStorage browser dan memanggil onUpdateVillas
+   * Menangani pengunggahan file foto fisik dari komputer/laptop ke server via /api/upload.php
+   * @param {React.ChangeEvent<HTMLInputElement>} e
+   * @returns {Promise<void>}
+   */
+  const handlePhotoUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file || !selectedVilla) return;
+
+    setIsUploadingPhoto(true);
+    try {
+      const formData = new FormData();
+      formData.append('photo', file);
+      formData.append('villa_id', selectedVilla.id);
+
+      const res = await fetch('/api/upload.php', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+
+      if (data && data.success && data.url) {
+        const currentImages = Array.isArray(selectedVilla.images) ? [...selectedVilla.images] : [];
+        const currentCaptions = Array.isArray(selectedVilla.photoCaptions) ? [...selectedVilla.photoCaptions] : [];
+
+        const updatedImages = [...currentImages, data.url];
+        const updatedCaptions = [...currentCaptions, newImageCaption.trim() || 'General'];
+
+        handleFieldChange('images', updatedImages);
+        handleFieldChange('photoCaptions', updatedCaptions);
+        if (!selectedVilla.img || currentImages.length === 0) {
+          handleFieldChange('img', data.url);
+        }
+
+        showToast('✓ Foto berhasil diunggah ke server!');
+      } else {
+        showToast('⚠️ ' + (data?.error || 'Gagal mengunggah foto.'));
+      }
+    } catch (err) {
+      showToast('⚠️ Gagal terhubung ke upload server: ' + err.message);
+    } finally {
+      setIsUploadingPhoto(false);
+      if (e.target) e.target.value = '';
+    }
+  };
+
+  /**
+   * Menambahkan foto baru ke galeri villa berdasarkan link / URL eksternal
    * @returns {void}
    */
-  const handleSaveToBrowser = () => {
-    localStorage.setItem('bsc_villas', JSON.stringify(editableVillas));
-    if (typeof onUpdateVillas === 'function') {
-      onUpdateVillas(editableVillas);
+  const handleAddPhotoUrl = () => {
+    const trimmedUrl = newImageUrl.trim();
+    if (!trimmedUrl || !selectedVilla) return;
+
+    const currentImages = Array.isArray(selectedVilla.images) ? [...selectedVilla.images] : [];
+    const currentCaptions = Array.isArray(selectedVilla.photoCaptions) ? [...selectedVilla.photoCaptions] : [];
+
+    const updatedImages = [...currentImages, trimmedUrl];
+    const updatedCaptions = [...currentCaptions, newImageCaption.trim() || 'General'];
+
+    handleFieldChange('images', updatedImages);
+    handleFieldChange('photoCaptions', updatedCaptions);
+    if (!selectedVilla.img || currentImages.length === 0) {
+      handleFieldChange('img', trimmedUrl);
     }
-    showToast('✓ Seluruh perubahan deskripsi villa berhasil disimpan di browser!');
+
+    setNewImageUrl('');
+    showToast('✓ Link foto berhasil ditambahkan ke galeri!');
   };
+
+  /**
+   * Memasang foto tertentu sebagai cover utama (posisi #1 / thumbnail katalog)
+   * @param {number} index - Index foto yang ingin dijadikan cover
+   * @returns {void}
+   */
+  const handleSetAsCover = (index) => {
+    if (!selectedVilla || index <= 0) return;
+    const currentImages = Array.isArray(selectedVilla.images) ? [...selectedVilla.images] : [];
+    const currentCaptions = Array.isArray(selectedVilla.photoCaptions) ? [...selectedVilla.photoCaptions] : [];
+
+    const [selectedImg] = currentImages.splice(index, 1);
+    const [selectedCap] = currentCaptions.splice(index, 1);
+
+    const updatedImages = [selectedImg, ...currentImages];
+    const updatedCaptions = [selectedCap, ...currentCaptions];
+
+    handleFieldChange('images', updatedImages);
+    handleFieldChange('photoCaptions', updatedCaptions);
+    handleFieldChange('img', selectedImg);
+    showToast('⭐ Foto berhasil dipasang sebagai Cover Utama (#1)!');
+  };
+
+  /**
+   * Menggeser urutan posisi foto ke kiri (-1) atau ke kanan (+1)
+   * @param {number} index - Index foto saat ini
+   * @param {number} direction - Arah geser (-1 atau +1)
+   * @returns {void}
+   */
+  const handleMovePhoto = (index, direction) => {
+    if (!selectedVilla) return;
+    const targetIndex = index + direction;
+    const currentImages = Array.isArray(selectedVilla.images) ? [...selectedVilla.images] : [];
+    const currentCaptions = Array.isArray(selectedVilla.photoCaptions) ? [...selectedVilla.photoCaptions] : [];
+
+    if (targetIndex < 0 || targetIndex >= currentImages.length) return;
+
+    // Swap images
+    const tempImg = currentImages[index];
+    currentImages[index] = currentImages[targetIndex];
+    currentImages[targetIndex] = tempImg;
+
+    // Swap captions
+    const tempCap = currentCaptions[index];
+    currentCaptions[index] = currentCaptions[targetIndex];
+    currentCaptions[targetIndex] = tempCap;
+
+    handleFieldChange('images', currentImages);
+    handleFieldChange('photoCaptions', currentCaptions);
+    handleFieldChange('img', currentImages[0]);
+  };
+
+  /**
+   * Menghapus foto dari galeri villa
+   * @param {number} index - Index foto yang akan dihapus
+   * @returns {void}
+   */
+  const handleDeletePhoto = (index) => {
+    if (!selectedVilla) return;
+    if (!window.confirm('Yakin ingin menghapus foto ini dari galeri villa?')) return;
+
+    const currentImages = Array.isArray(selectedVilla.images) ? [...selectedVilla.images] : [];
+    const currentCaptions = Array.isArray(selectedVilla.photoCaptions) ? [...selectedVilla.photoCaptions] : [];
+
+    currentImages.splice(index, 1);
+    currentCaptions.splice(index, 1);
+
+    handleFieldChange('images', currentImages);
+    handleFieldChange('photoCaptions', currentCaptions);
+    handleFieldChange('img', currentImages[0] || '');
+    showToast('✓ Foto berhasil dihapus');
+  };
+
+  /**
+   * Mengubah label atau kategori ruangan pada foto tertentu
+   * @param {number} index - Index foto
+   * @param {string} newCaption - Label teks baru
+   * @returns {void}
+   */
+  const handleUpdatePhotoCaption = (index, newCaption) => {
+    if (!selectedVilla) return;
+    const currentCaptions = Array.isArray(selectedVilla.photoCaptions) ? [...selectedVilla.photoCaptions] : [];
+    while (currentCaptions.length <= index) {
+      currentCaptions.push('General');
+    }
+    currentCaptions[index] = newCaption;
+    handleFieldChange('photoCaptions', currentCaptions);
+  };
+
+  /**
+   * Menyimpan seluruh perubahan data villa ke database MySQL via REST API dan localStorage
+   * @returns {Promise<void>}
+   */
+  const handleSaveToDatabase = async () => {
+    setIsSaving(true);
+    // 1. Simpan ke LocalStorage sebagai offline cache cadangan
+    try {
+      localStorage.setItem('bsc_villas', JSON.stringify(editableVillas));
+    } catch {
+      // Abaikan jika quota localStorage penuh
+    }
+
+    // 2. Simpan villa yang sedang diedit ke Database MySQL via API
+    try {
+      const response = await fetch('/api/villas.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(selectedVilla)
+      });
+
+      const result = await response.json();
+      if (result && result.success) {
+        if (typeof onUpdateVillas === 'function') {
+          onUpdateVillas(editableVillas);
+        }
+        showToast(`✓ Berhasil disimpan permanen ke Database MySQL ("${selectedVilla.name}")!`);
+      } else {
+        throw new Error(result?.error || 'Gagal menyimpan ke server');
+      }
+    } catch (err) {
+      console.warn('API save fallback:', err);
+      if (typeof onUpdateVillas === 'function') {
+        onUpdateVillas(editableVillas);
+      }
+      showToast(`✓ Disimpan lokal di browser (Server: ${err.message})`);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  const handleSaveToBrowser = handleSaveToDatabase;
 
   /**
    * Menyalin ringkasan teks deskripsi villa yang sedang dipilih ke clipboard
@@ -260,10 +475,11 @@ ${(selectedVilla.amenities || []).join(', ')}
           <button 
             type="button" 
             className="btn-primary editor-save-btn"
-            onClick={handleSaveToBrowser}
-            title="Simpan seluruh perubahan ke browser"
+            onClick={handleSaveToDatabase}
+            disabled={isSaving}
+            title="Simpan perubahan ke database MySQL"
           >
-            💾 Simpan Semua Perubahan
+            {isSaving ? '⏳ Menyimpan...' : '💾 Simpan ke Database'}
           </button>
         </div>
       </div>
@@ -559,6 +775,235 @@ ${(selectedVilla.amenities || []).join(', ')}
                     </button>
                   </div>
                 </div>
+
+                {/* 9. Galeri Foto Villa (Photo Management & Tour) */}
+                <div className="editor-field full-width">
+                  <div className="editor-photos-section">
+                    <div className="editor-photos-header">
+                      <div>
+                        <div className="editor-photos-title">
+                          📸 Galeri Foto Villa &amp; Photo Tour
+                          <span className="editor-photos-badge">
+                            {(selectedVilla.images || []).length} Foto
+                          </span>
+                        </div>
+                        <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '2px' }}>
+                          Foto urutan #1 otomatis menjadi Cover Utama &amp; Thumbnail Katalog.
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Pratinjau Grid 5 Foto Airbnb (Tampilan yang akan dilihat tamu di Halaman Detail) */}
+                    {(selectedVilla.images || []).length > 0 && (
+                      <div className="editor-mini-preview-showcase">
+                        <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--ink)', marginBottom: '4px' }}>
+                          👁️ Pratinjau Grid 5 Foto Airbnb di Halaman Detail:
+                        </div>
+                        <div className="editor-mini-showcase-grid">
+                          <div 
+                            className="editor-mini-showcase-item hero"
+                            style={{ backgroundImage: `url('${selectedVilla.images[0]}')` }}
+                            title="Foto Utama (Hero Besar Kiri)"
+                          >
+                            <span className="editor-photo-order-badge" style={{ top: '6px', left: '6px' }}>
+                              ★ Cover Utama
+                            </span>
+                          </div>
+                          {selectedVilla.images.slice(1, 4).map((img, idx) => (
+                            <div 
+                              key={idx} 
+                              className="editor-mini-showcase-item"
+                              style={{ backgroundImage: `url('${img}')` }}
+                              title={`Foto #${idx + 2}`}
+                            />
+                          ))}
+                          {selectedVilla.images[4] && (
+                            <div 
+                              className="editor-mini-showcase-item"
+                              style={{ backgroundImage: `url('${selectedVilla.images[4]}')` }}
+                              title="Foto #5"
+                            >
+                              {(selectedVilla.images.length > 5) && (
+                                <div className="editor-mini-showcase-overlay">
+                                  +{selectedVilla.images.length - 5} photos
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Uploader Hybrid: 1. Drag & Drop / File Picker, 2. Add via URL */}
+                    <div className="editor-photos-uploader-grid">
+                      {/* Opsi 1: Upload File Langsung dari Komputer */}
+                      <label className={`editor-dropzone ${isUploadingPhoto ? 'uploading' : ''}`}>
+                        <input 
+                          type="file" 
+                          accept="image/jpeg,image/png,image/webp,image/avif"
+                          onChange={handlePhotoUpload}
+                          style={{ display: 'none' }}
+                          disabled={isUploadingPhoto}
+                        />
+                        <div className="editor-dropzone-icon">
+                          {isUploadingPhoto ? '⏳' : '📁'}
+                        </div>
+                        <div className="editor-dropzone-text">
+                          {isUploadingPhoto ? 'Mengunggah & Mengoptimasi Foto...' : 'Klik untuk Unggah Foto dari Laptop/HP'}
+                        </div>
+                        <div className="editor-dropzone-sub">
+                          Mendukung JPG, PNG, WebP (Maks. 20 MB, otomatis dioptimasi)
+                        </div>
+                      </label>
+
+                      {/* Opsi 2: Tambah via Link / URL Eksternal */}
+                      <div className="editor-url-adder">
+                        <div className="editor-url-adder-title">
+                          🔗 Atau Tambah via Link / URL Foto
+                        </div>
+                        <div className="editor-url-adder-row">
+                          <input 
+                            type="url"
+                            placeholder="https://images.unsplash.com/photo-..."
+                            value={newImageUrl}
+                            onChange={(e) => setNewImageUrl(e.target.value)}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter') {
+                                e.preventDefault();
+                                handleAddPhotoUrl();
+                              }
+                            }}
+                            className="editor-input"
+                            style={{ flex: 1, fontSize: '13px' }}
+                          />
+                          <button 
+                            type="button" 
+                            className="btn-primary"
+                            onClick={handleAddPhotoUrl}
+                            style={{ padding: '8px 16px', fontSize: '13px' }}
+                          >
+                            + Tambah
+                          </button>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                          <span style={{ fontSize: '11px', color: 'var(--muted)', fontWeight: 600 }}>
+                            Label Ruangan awal:
+                          </span>
+                          <input 
+                            type="text"
+                            placeholder="Contoh: Living Area"
+                            value={newImageCaption}
+                            onChange={(e) => setNewImageCaption(e.target.value)}
+                            className="editor-input"
+                            style={{ width: '150px', padding: '4px 8px', fontSize: '11.5px' }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Grid Daftar Seluruh Kartu Foto */}
+                    <div className="editor-photos-grid">
+                      {(selectedVilla.images || []).map((imgUrl, idx) => {
+                        const isCover = idx === 0;
+                        const caption = (selectedVilla.photoCaptions && selectedVilla.photoCaptions[idx]) || 'General';
+
+                        return (
+                          <div 
+                            key={`${imgUrl}-${idx}`} 
+                            className={`editor-photo-card ${isCover ? 'is-cover' : ''}`}
+                          >
+                            <div className="editor-photo-thumb-wrap">
+                              <img 
+                                src={imgUrl} 
+                                alt={caption || `Foto ${idx + 1}`} 
+                                className="editor-photo-thumb"
+                                loading="lazy"
+                              />
+
+                              {/* Lencana Urutan */}
+                              <span className="editor-photo-order-badge">
+                                {isCover ? '★ #1 COVER' : `#${idx + 1}`}
+                              </span>
+
+                              {/* Bar Tombol Aksi */}
+                              <div className="editor-photo-actions-bar">
+                                <div style={{ display: 'flex', gap: '2px' }}>
+                                  {!isCover && (
+                                    <button 
+                                      type="button" 
+                                      className="editor-photo-act-btn make-cover"
+                                      onClick={() => handleSetAsCover(idx)}
+                                      title="Jadikan Foto Utama / Cover (#1)"
+                                    >
+                                      ⭐ Cover
+                                    </button>
+                                  )}
+                                  {idx > 0 && (
+                                    <button 
+                                      type="button" 
+                                      className="editor-photo-act-btn"
+                                      onClick={() => handleMovePhoto(idx, -1)}
+                                      title="Geser Mundur / Kiri (◀)"
+                                    >
+                                      ◀
+                                    </button>
+                                  )}
+                                  {idx < (selectedVilla.images || []).length - 1 && (
+                                    <button 
+                                      type="button" 
+                                      className="editor-photo-act-btn"
+                                      onClick={() => handleMovePhoto(idx, 1)}
+                                      title="Geser Maju / Kanan (▶)"
+                                    >
+                                      ▶
+                                    </button>
+                                  )}
+                                </div>
+
+                                <button 
+                                  type="button" 
+                                  className="editor-photo-act-btn delete"
+                                  onClick={() => handleDeletePhoto(idx)}
+                                  title="Hapus foto dari galeri"
+                                >
+                                  ✕ Hapus
+                                </button>
+                              </div>
+                            </div>
+
+                            {/* Bagian Input Label / Keterangan Ruangan */}
+                            <div className="editor-photo-body">
+                              <label className="editor-photo-caption-label">
+                                Label Ruangan:
+                              </label>
+                              <input 
+                                type="text"
+                                className="editor-photo-caption-input"
+                                value={caption}
+                                onChange={(e) => handleUpdatePhotoCaption(idx, e.target.value)}
+                                placeholder="Contoh: Master Bedroom"
+                              />
+
+                              {/* Preset Chips Cepat */}
+                              <div className="editor-quick-room-chips">
+                                {ROOM_LABEL_PRESETS.slice(0, 5).map((preset) => (
+                                  <button
+                                    key={preset}
+                                    type="button"
+                                    className={`editor-room-chip-btn ${caption === preset ? 'active' : ''}`}
+                                    onClick={() => handleUpdatePhotoCaption(idx, preset)}
+                                  >
+                                    {preset}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Bar Tombol Simpan Bawah */}
@@ -566,9 +1011,10 @@ ${(selectedVilla.amenities || []).join(', ')}
                 <button 
                   type="button" 
                   className="btn-primary editor-save-btn-large"
-                  onClick={handleSaveToBrowser}
+                  onClick={handleSaveToDatabase}
+                  disabled={isSaving}
                 >
-                  💾 Simpan Perubahan Sekarang
+                  {isSaving ? '⏳ Menyimpan ke Database...' : '💾 Simpan Perubahan ke Database'}
                 </button>
                 <button 
                   type="button" 

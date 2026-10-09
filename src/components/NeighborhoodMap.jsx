@@ -162,8 +162,8 @@ export default function NeighborhoodMap({ villa }) {
 
     // Lingkaran radius privasi villa (approximate location) khas Airbnb mewah
     L.circle([villaCoords.lat, villaCoords.lng], {
-      color: '#C96F4A',
-      fillColor: '#C96F4A',
+      color: '#16294D',
+      fillColor: '#16294D',
       fillOpacity: 0.12,
       weight: 1.5,
       radius: 350

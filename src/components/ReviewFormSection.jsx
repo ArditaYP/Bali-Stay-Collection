@@ -168,7 +168,7 @@ export default function ReviewFormSection({ villaName, onAddReview }) {
                         border: 'none',
                         fontSize: '24px',
                         cursor: 'pointer',
-                        color: star <= (hoverRating || rating) ? '#E4572E' : '#D1CFC7',
+                        color: star <= (hoverRating || rating) ? '#D4AF37' : '#D1CFC7',
                         padding: '0 2px',
                         transition: 'transform 0.1s ease'
                       }}
