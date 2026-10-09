@@ -342,6 +342,78 @@ OTHER THINGS TO NOTE
     shortDesc: 'A breathtaking 2-bedroom bamboo architectural villa suspended over the Ayung River valley.',
     description: 'Experience true harmony with nature at Mandapa Jungle Villa, an architectural wonder crafted entirely from sustainably harvested bamboo. Perched on Ubud’s famous Sayan Ridge, this open-concept sanctuary offers sweeping views of emerald jungle canopies and the murmuring Ayung River below.',
     amenities: ['Private pool', 'Jungle view', 'River valley view', 'High-speed WiFi', 'Full kitchen', 'Air conditioning', 'Free parking']
+  },
+  'villa-mahina': {
+    category: 'Luxe',
+    price: 380,
+    cleaningFee: 40,
+    freeCancel: true,
+    cardBg: '#2C3539',
+    bookedDays: [8, 9, 15, 16],
+    address: 'Berawa Beach, Canggu, Badung, Bali',
+    shortDesc: 'Villa kontemporer 3 kamar mewah di jantung Berawa, hanya 400 meter dari Pantai Berawa dan Finns Beach Club. Dilengkapi kolam renang pribadi, sunken lounge, dan jendela kedap suara total.',
+    description: 'Escape to Villa Mahina, in one of Canggu’s most sought-after locations. Just 400m from Berawa Beach and minutes from Finns Beach Club, this stylish 3-bedroom villa sits in a private residence, offering peace and privacy while being close to Canggu’s best restaurants, cafés, and nightlife.',
+    amenities: ['Private pool', 'Sunken lounge', 'Walk to beach (400m)', 'Double-glazed soundproof windows', 'Air conditioning', 'High-speed WiFi', 'Full kitchen', 'Daily housekeeping']
+  },
+  'khaleela-villas': {
+    category: 'Standard',
+    price: 195,
+    cleaningFee: 25,
+    freeCancel: true,
+    cardBg: '#C4A482',
+    bookedDays: [3, 4, 18, 19],
+    address: 'Canggu, Badung, Bali',
+    shortDesc: 'Oase eksotis bertema gurun di pusat Canggu yang semarak. Menghadirkan 2 kamar tidur nyaman, kolam renang pribadi, kamar mandi terbuka tropis, dan dapur lengkap.',
+    description: 'Discover Khaleela Villas, a desert-inspired oasis in vibrant Canggu. Its unique charm captivates with immersive desert vibes. This single-story haven boasts two cozy bedrooms for a serene retreat. Lounge by the refreshing pool, basked in sunlight.',
+    amenities: ['Private pool', 'Desert-inspired architecture', 'Outdoor tropical shower', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Daily housekeeping', 'Dedicated team']
+  },
+  'beyond-the-palms': {
+    category: 'Luxe',
+    price: 720,
+    cleaningFee: 50,
+    freeCancel: true,
+    cardBg: '#1F2937',
+    bookedDays: [10, 11, 24, 25],
+    address: 'Canggu, Badung, Bali',
+    shortDesc: 'Villa berteknologi tinggi 4 kamar baru di Canggu dengan kolam renang 45m², rooftop jacuzzi, sound system Sonos, TV 4K 86 inci, dan area barbekyu pribadi.',
+    description: 'Welcome to Beyond the Palms! This luxurious, high-tech 4-bedroom villa is perfect for anyone who wants a truly unforgettable Bali experience. Features 45sqm pool, massive garden, rooftop jacuzzi, Sonos sound system, and SMEG kitchen.',
+    amenities: ['Private pool (45m²)', 'Rooftop jacuzzi', 'Yoga deck', 'Sonos sound system', '86" 4K Smart TV', 'SMEG kitchen', 'Outdoor cinema projector', 'Private BBQ grill']
+  },
+  'villa-akar': {
+    category: 'Luxe',
+    price: 490,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#3A352F',
+    bookedDays: [5, 6, 21, 22],
+    address: 'Berawa, Canggu, Badung, Bali',
+    shortDesc: 'Villa 4 kamar tidur elegan kontemporer berpredikat Guest Favorite (5.0 bintang) di jantung Berawa. Memiliki ruang keluarga fleksibel ber-AC, kolam renang asri, dan staf berdedikasi.',
+    description: 'Discover Villa Akar, a contemporary four-bedroom villa set in one of Berawa’s most desirable pockets. Features unbeatable location near the beach, modern living spaces filled with natural light, and a dedicated hospitality team.',
+    amenities: ['Private pool', 'Guest Favorite 5.0 rating', 'Flexible enclosed/open living', 'Designer architecture by Teduh', 'En-suite master suites', 'High-speed WiFi', 'Daily housekeeping']
+  },
+  'villa-golden': {
+    category: 'Deluxe',
+    price: 230,
+    cleaningFee: 25,
+    freeCancel: true,
+    cardBg: '#8C704B',
+    bookedDays: [12, 13, 27, 28],
+    address: 'Berawa, Canggu, Badung, Bali',
+    shortDesc: 'Villa 2 kamar bergaya modern chic tepat di seberang Finns Recreation Club di Berawa. Dilengkapi kolam renang pribadi, interior mewah, dan staf pelayanan harian.',
+    description: 'Nestled in the vibrant Berawa neighborhood, Villa Golden offers a luxurious retreat for discerning travelers. Beautiful design and architecture, located directly opposite FINNS recreation club, few meters from top cafes.',
+    amenities: ['Private pool', 'Opposite FINNS Recreation Club', 'Modern chic interior', 'Both en-suite bedrooms', 'Fully equipped kitchen', 'Air conditioning', 'Daily housekeeping']
+  },
+  'villa-surga': {
+    category: 'Retreat',
+    price: 320,
+    cleaningFee: 35,
+    freeCancel: true,
+    cardBg: '#2F4F4F',
+    bookedDays: [7, 8, 22, 23],
+    address: 'Ubud, Gianyar, Bali',
+    shortDesc: 'Sanctuary tropis privat 4 kamar di kawasan asri Ubud. Menyuguhkan kolam renang infinity pribadi, suasana hijau yang tenang, staf lengkap, dan akses mudah ke jantung budaya Ubud.',
+    description: 'Welcome to Villa Surga, a private 4-bedroom villa tucked into the lush surroundings of Ubud — ideal for families and groups seeking space, comfort, and a peaceful tropical setting close to Bali’s cultural heart.',
+    amenities: ['Private infinity pool', 'Traditional Balinese entrance', 'Lush tropical valley view', 'Full villa staffing', 'All en-suite bathrooms', 'Spacious open living', 'Daily housekeeping']
   }
 };
 

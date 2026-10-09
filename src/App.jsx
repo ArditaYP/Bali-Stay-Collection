@@ -24,7 +24,12 @@ const VILLA_ALIAS_MAP = {
   'the-bull-house': 'villa-kayu-raja-seminyak',
   'villa-imala': 'villa-imala',
   'villa-kanopi': 'villa-cendana-seminyak',
-  'villa-surga': 'mandapa-jungle-villa'
+  'villa-mahina': 'villa-mahina',
+  'khaleela-villas': 'khaleela-villas',
+  'beyond-the-palms': 'beyond-the-palms',
+  'villa-akar': 'villa-akar',
+  'villa-golden': 'villa-golden',
+  'villa-surga': 'villa-surga'
 };
 
 /**

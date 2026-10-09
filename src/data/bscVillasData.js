@@ -23,8 +23,7 @@ export const CONFIG = {
  * Daftar 13 ID villa yang berasal langsung dari tautan listing Airbnb
  * (termasuk 4 villa awal: Habitas, Balangan, St. Lau, Angkasa + 9 villa baru)
  */
-export const AIRBNB_ONLY_VILLA_IDS = [
-  'villa-habitas',
+export const AIRBNB_ONLY_VILLA_IDS = ['villa-habitas',
   'tranquil-sanctuary-pererenan',
   'tropical-canggu-villa',
   'luxe-beach-villa-seminyak',
@@ -37,8 +36,13 @@ export const AIRBNB_ONLY_VILLA_IDS = [
   'chic-tropical-bingin',
   'five-bedroom-designer-umalas',
   'villa-angkasa',
-  'villa-imala'
-];
+  'villa-imala',
+  'villa-mahina',
+  'khaleela-villas',
+  'beyond-the-palms',
+  'villa-akar',
+  'villa-golden',
+  'villa-surga'];
 
 /**
  * Daftar ID villa aktif dengan data autentik Airbnb
@@ -2560,6 +2564,168 @@ export const BSC_VILLAS = [
     "know": [
       "Features large 18-meter swimming pool and manicured estate grounds.",
       "Prime location bridging quiet Umalas and vibrant Berawa."
+    ]
+  },
+  {
+    id: 'villa-mahina',
+    name: 'Villa Mahina – Luxury 3BR 400m Walk to Berawa Beach & Finns',
+    tier: 'Luxury',
+    price: 380,
+    cancel: 'Moderate · Free cancel up to 14 days before check-in',
+    area: 'Canggu & Berawa',
+    beds: 3,
+    baths: 2.5,
+    guests: 6,
+    trips: ['Design & style', 'Couples & honeymoons', 'Family'],
+    setting: 'Walk to beach',
+    am: ["Private pool","Sunken lounge","Walk to beach (400m)","Double-glazed soundproof windows","Air conditioning","High-speed WiFi","Full kitchen","Daily housekeeping"],
+    pick: true,
+    tone: ["#2C3539","#4A5D4E"],
+    audit: 12,
+    updated: 'October 2026',
+    desc: 'Villa kontemporer 3 kamar mewah di jantung Berawa, hanya 400 meter dari Pantai Berawa dan Finns Beach Club. Dilengkapi kolam renang pribadi, sunken lounge, dan jendela kedap suara total.',
+    img: '/airbnb/villa-mahina/photos/photo-01.jpg',
+    images: [
+      '/airbnb/villa-mahina/photos/photo-01.jpg',
+      '/airbnb/villa-mahina/photos/photo-02.jpg',
+      '/airbnb/villa-mahina/photos/photo-03.jpg',
+      '/airbnb/villa-mahina/photos/photo-04.jpg',
+      '/airbnb/villa-mahina/photos/photo-05.jpg'
+    ]
+  },
+  {
+    id: 'khaleela-villas',
+    name: 'Khaleela Villas – Desert-Inspired 2BR Oasis in Canggu',
+    tier: 'Deluxe',
+    price: 195,
+    cancel: 'Moderate · Free cancel up to 14 days before check-in',
+    area: 'Canggu & Berawa',
+    beds: 2,
+    baths: 2,
+    guests: 4,
+    trips: ['Design & style', 'Couples & honeymoons', 'Family'],
+    setting: 'Tropical oasis',
+    am: ["Private pool","Desert-inspired architecture","Outdoor tropical shower","Full kitchen","Air conditioning","High-speed WiFi","Daily housekeeping","Dedicated team"],
+    pick: true,
+    tone: ["#C4A482","#EED9C4"],
+    audit: 12,
+    updated: 'October 2026',
+    desc: 'Oase eksotis bertema gurun di pusat Canggu yang semarak. Menghadirkan 2 kamar tidur nyaman, kolam renang pribadi, kamar mandi terbuka tropis, dan dapur lengkap.',
+    img: '/airbnb/khaleela-villas/photos/photo-01.jpg',
+    images: [
+      '/airbnb/khaleela-villas/photos/photo-01.jpg',
+      '/airbnb/khaleela-villas/photos/photo-02.jpg',
+      '/airbnb/khaleela-villas/photos/photo-03.jpg',
+      '/airbnb/khaleela-villas/photos/photo-04.jpg',
+      '/airbnb/khaleela-villas/photos/photo-05.jpg'
+    ]
+  },
+  {
+    id: 'beyond-the-palms',
+    name: 'Beyond the Palms – High-Tech 4BR Luxury Villa with Rooftop',
+    tier: 'Luxury',
+    price: 720,
+    cancel: 'Moderate · Free cancel up to 14 days before check-in',
+    area: 'Canggu & Berawa',
+    beds: 4,
+    baths: 4,
+    guests: 8,
+    trips: ['Design & style', 'Couples & honeymoons', 'Family'],
+    setting: 'Private retreat',
+    am: ["Private pool (45m²)","Rooftop jacuzzi","Yoga deck","Sonos sound system","86\" 4K Smart TV","SMEG kitchen","Outdoor cinema projector","Private BBQ grill"],
+    pick: true,
+    tone: ["#1F2937","#111827"],
+    audit: 12,
+    updated: 'October 2026',
+    desc: 'Villa berteknologi tinggi 4 kamar baru di Canggu dengan kolam renang 45m², rooftop jacuzzi, sound system Sonos, TV 4K 86 inci, dan area barbekyu pribadi.',
+    img: '/airbnb/beyond-the-palms/photos/photo-01.jpg',
+    images: [
+      '/airbnb/beyond-the-palms/photos/photo-01.jpg',
+      '/airbnb/beyond-the-palms/photos/photo-02.jpg',
+      '/airbnb/beyond-the-palms/photos/photo-03.jpg',
+      '/airbnb/beyond-the-palms/photos/photo-04.jpg',
+      '/airbnb/beyond-the-palms/photos/photo-05.jpg'
+    ]
+  },
+  {
+    id: 'villa-akar',
+    name: 'Villa Akar – Elegant 4BR Contemporary Hideaway in Berawa',
+    tier: 'Luxury',
+    price: 490,
+    cancel: 'Moderate · Free cancel up to 14 days before check-in',
+    area: 'Canggu & Berawa',
+    beds: 4,
+    baths: 4.5,
+    guests: 8,
+    trips: ['Design & style', 'Couples & honeymoons', 'Family'],
+    setting: 'Central Berawa',
+    am: ["Private pool","Guest Favorite 5.0 rating","Flexible enclosed/open living","Designer architecture by Teduh","En-suite master suites","High-speed WiFi","Daily housekeeping"],
+    pick: true,
+    tone: ["#3A352F","#5A5249"],
+    audit: 12,
+    updated: 'October 2026',
+    desc: 'Villa 4 kamar tidur elegan kontemporer berpredikat Guest Favorite (5.0 bintang) di jantung Berawa. Memiliki ruang keluarga fleksibel ber-AC, kolam renang asri, dan staf berdedikasi.',
+    img: '/airbnb/villa-akar/photos/photo-01.jpg',
+    images: [
+      '/airbnb/villa-akar/photos/photo-01.jpg',
+      '/airbnb/villa-akar/photos/photo-02.jpg',
+      '/airbnb/villa-akar/photos/photo-03.jpg',
+      '/airbnb/villa-akar/photos/photo-04.jpg',
+      '/airbnb/villa-akar/photos/photo-05.jpg'
+    ]
+  },
+  {
+    id: 'villa-golden',
+    name: 'Villa Golden – Modern Chic 2BR Villa Opposite FINNS Club',
+    tier: 'Premium',
+    price: 230,
+    cancel: 'Moderate · Free cancel up to 14 days before check-in',
+    area: 'Canggu & Berawa',
+    beds: 2,
+    baths: 2,
+    guests: 4,
+    trips: ['Design & style', 'Couples & honeymoons', 'Family'],
+    setting: 'Walk to cafes',
+    am: ["Private pool","Opposite FINNS Recreation Club","Modern chic interior","Both en-suite bedrooms","Fully equipped kitchen","Air conditioning","Daily housekeeping"],
+    pick: true,
+    tone: ["#8C704B","#B89B72"],
+    audit: 12,
+    updated: 'October 2026',
+    desc: 'Villa 2 kamar bergaya modern chic tepat di seberang Finns Recreation Club di Berawa. Dilengkapi kolam renang pribadi, interior mewah, dan staf pelayanan harian.',
+    img: '/airbnb/villa-golden/photos/photo-01.jpg',
+    images: [
+      '/airbnb/villa-golden/photos/photo-01.jpg',
+      '/airbnb/villa-golden/photos/photo-02.jpg',
+      '/airbnb/villa-golden/photos/photo-03.jpg',
+      '/airbnb/villa-golden/photos/photo-04.jpg',
+      '/airbnb/villa-golden/photos/photo-05.jpg'
+    ]
+  },
+  {
+    id: 'villa-surga',
+    name: 'Villa Surga – Serene 4BR Sanctuary with Private Pool in Ubud',
+    tier: 'Premium',
+    price: 320,
+    cancel: 'Moderate · Free cancel up to 14 days before check-in',
+    area: 'Ubud',
+    beds: 4,
+    baths: 4,
+    guests: 8,
+    trips: ['Design & style', 'Couples & honeymoons', 'Family'],
+    setting: 'Jungle & nature',
+    am: ["Private infinity pool","Traditional Balinese entrance","Lush tropical valley view","Full villa staffing","All en-suite bathrooms","Spacious open living","Daily housekeeping"],
+    pick: true,
+    tone: ["#2F4F4F","#3B6E59"],
+    audit: 12,
+    updated: 'October 2026',
+    desc: 'Sanctuary tropis privat 4 kamar di kawasan asri Ubud. Menyuguhkan kolam renang infinity pribadi, suasana hijau yang tenang, staf lengkap, dan akses mudah ke jantung budaya Ubud.',
+    img: '/airbnb/villa-surga/photos/photo-01.jpg',
+    images: [
+      '/airbnb/villa-surga/photos/photo-01.jpg',
+      '/airbnb/villa-surga/photos/photo-02.jpg',
+      '/airbnb/villa-surga/photos/photo-03.jpg',
+      '/airbnb/villa-surga/photos/photo-04.jpg',
+      '/airbnb/villa-surga/photos/photo-05.jpg'
     ]
   }
 ];

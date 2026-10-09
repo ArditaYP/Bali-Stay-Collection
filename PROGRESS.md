@@ -1190,9 +1190,27 @@ src/
    - Menambahkan impor `useEffect` pada `src/pages/ExplorePage.jsx`.
    - Menguji dan memverifikasi seluruh komponen JSX bebas dari missing hook/unhandled reference.
 3. **Pencegahan Permanen (Error Safety Net)**:
-   - Dibuat komponen pelindung [`src/components/ErrorBoundary.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/ErrorBoundary.jsx).
-   - Membungkus root aplikasi `<App />` di [`src/main.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/main.jsx).
-   - Jika di masa depan terjadi error runtime tak terduga, website tidak akan pernah menampilkan layar putih kosong, melainkan antarmuka ramah pengguna bergaya mewah dengan tombol:
-     - `🔄 Muat Ulang Halaman`
-     - `🧹 Bersihkan Cache & Pulihkan` (menghapus cache localStorage yang corrupt)
-     - Panel rincian teknis error untuk memudahkan debugging.
+### 9.5 Perbaikan Temporal Dead Zone (TDZ) pada SearchModal
+1. **Identifikasi Error**:
+   - `ReferenceError: can't access lexical declaration 'searchResults' before initialization` di `src/components/Modals/SearchModal.jsx`.
+2. **Penyebab**:
+   - Hook `useEffect` untuk navigasi keyboard diletakkan sebelum deklarasi variabel `searchResults` (dibuat via `useMemo`) dan fungsi `handleSelect`.
+3. **Solusi**:
+   - Menata ulang urutan deklarasi agar `searchResults`, `handleSelect`, dan `handleChipClick` diinisialisasi terlebih dahulu sebelum seluruh hook `useEffect`.
+
+### 9.6 Integrasi Penuh 6 Villa Baru Airbnb ke Seluruh Sistem & Database
+1. **Daftar 6 Villa Baru yang Diintegrasikan**:
+   - **Villa Mahina** (`villa-mahina`, Room ID: 1774378701877333551): 3BR Berawa, 400m ke pantai, kolam renang pribadi, $380/malam.
+   - **Khaleela Villas** (`khaleela-villas`, Room ID: 943039238876312168): 2BR Canggu tema gurun, outdoor bath, rating 4.88, $195/malam.
+   - **Beyond the Palms** (`beyond-the-palms`, Room ID: 1138105700588823608): 4BR Canggu smart villa, rooftop jacuzzi, TV 86", pool 45m², $720/malam.
+   - **Villa Akar** (`villa-akar`, Room ID: 1119970392950872597): 4BR Berawa kontemporer, rating 5.0 (Guest Favorite), $490/malam.
+   - **Villa Golden** (`villa-golden`, Room ID: 1119868803686917540): 2BR Berawa seberang Finns Club, rating 4.89, $230/malam.
+   - **Villa Surga** (`villa-surga`, Room ID: 1106787074513318766): 4BR Ubud sanctuary, infinity pool & staf lengkap, rating 4.71, $320/malam.
+2. **Aset Foto Autentik**:
+   - Berhasil mengunduh total ~90 foto resolusi tinggi ke masing-masing folder lokal: `public/airbnb/<id>/photos/` (`photo-01.jpg` s/d `photo-15.jpg`).
+3. **Penyinkronan Menyeluruh**:
+   - Terintegrasi di `src/data/airbnbVillas.json` (total menjadi 26 entri lengkap).
+   - Dimasukkan ke `AIRBNB_ONLY_VILLA_IDS` dan `BSC_VILLAS` di `src/data/bscVillasData.js` (total 20 villa murni Airbnb di katalog utama).
+   - Diperbarui di `VILLA_DETAILS` pada `src/data/villasData.js`.
+   - Diperbarui di tabel MySQL `balistay_db.villas` via `api/sync_mysql_6.php`.
+   - Routing alias di `src/App.jsx` disinkronkan langsung ke ID masing-masing.
