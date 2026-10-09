@@ -1088,7 +1088,11 @@ export const BSC_VILLAS = [
     "updated": "",
     "pick": true,
     "desc": "Bayangkan melangkah masuk ke dalam mahakarya arsitektur tropis Biombo di mana kemewahan modern melebur sempurna dengan alam Pererenan. Dilengkapi 5 kamar tidur mewah, piano klasik, kolam renang luas, dan lounge outdoor, nikmati privasi eksklusif tanpa cela.",
-    "know": [],
+    "know": [
+      "Airbnb Guest Favorite: 5.0 from 17 reviews, with perfect scores for cleanliness, accuracy and check-in.",
+      "Long tropical pool, sunken living lounge, BBQ lounge and a media room with piano.",
+      "In-villa chef, massage, airport transfer and tours on request through the concierge."
+    ],
     "images": [
       "/airbnb/house-terra/photos/photo-01.jpg",
       "/airbnb/house-terra/photos/photo-02.jpg",
@@ -1097,7 +1101,19 @@ export const BSC_VILLAS = [
       "/airbnb/house-terra/photos/photo-05.jpg",
       "/airbnb/house-terra/photos/photo-06.jpg",
       "/airbnb/house-terra/photos/photo-07.jpg",
-      "/airbnb/house-terra/photos/photo-08.jpg"
+      "/airbnb/house-terra/photos/photo-08.jpg",
+      "/airbnb/house-terra/photos/photo-09.jpg",
+      "/airbnb/house-terra/photos/photo-10.jpg",
+      "/airbnb/house-terra/photos/photo-11.jpg",
+      "/airbnb/house-terra/photos/photo-12.jpg",
+      "/airbnb/house-terra/photos/photo-13.jpg",
+      "/airbnb/house-terra/photos/photo-14.jpg",
+      "/airbnb/house-terra/photos/photo-15.jpg",
+      "/airbnb/house-terra/photos/photo-16.jpg",
+      "/airbnb/house-terra/photos/photo-17.jpg",
+      "/airbnb/house-terra/photos/photo-18.jpg",
+      "/airbnb/house-terra/photos/photo-19.jpg",
+      "/airbnb/house-terra/photos/photo-20.jpg"
     ]
   },
   {

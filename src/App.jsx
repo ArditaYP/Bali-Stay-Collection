@@ -30,7 +30,8 @@ const VILLA_ALIAS_MAP = {
   'beyond-the-palms': 'beyond-the-palms',
   'villa-akar': 'villa-akar',
   'villa-golden': 'villa-golden',
-  'villa-surga': 'villa-surga'
+  'villa-surga': 'villa-surga',
+  'house-terra': 'house-terra'
 };
 
 /**

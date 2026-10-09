@@ -330,6 +330,25 @@ OTHER THINGS TO NOTE
     description: 'A masterpiece of contemporary architecture on the border of Umalas and Berawa. Features five opulent master suites, private 18-meter swimming pool, sunken lounge, manicured lawn, and dedicated villa concierge.',
     amenities: ['Private pool', 'Dedicated staff', 'Chef on request', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Free parking']
   },
+  'house-terra': {
+    category: 'Luxury',
+    price: 480,
+    freeCancel: true,
+    cardBg: '#CBB9C9',
+    bookedDays: [],
+    address: 'Pererenan, Badung, Bali',
+    location: 'Pererenan',
+    shortDesc: 'Bayangkan melangkah masuk ke dalam mahakarya arsitektur tropis Biombo di mana kemewahan modern melebur sempurna dengan alam Pererenan. Dilengkapi 5 kamar tidur mewah, piano klasik, kolam renang luas, dan lounge outdoor, nikmati privasi eksklusif tanpa cela.',
+    description: 'Bayangkan Anda melangkah masuk ke dalam mahakarya arsitektur tropis di mana batas antara alam dan kemewahan modern melebur sempurna. Dirancang oleh Biombo Architects yang tersohor, House Terra bukan sekadar villa—ini adalah tempat perlindungan pribadi Anda di Pererenan yang dirancang untuk mengembalikan ketenangan batin Anda.',
+    bedrooms: [
+      { name: 'Bedroom 1', detail: 'King bed · en-suite bathroom' },
+      { name: 'Bedroom 2', detail: 'King bed · en-suite bathroom' },
+      { name: 'Bedroom 3', detail: 'King bed · en-suite bathroom' },
+      { name: 'Bedroom 4', detail: '2 single beds + bunk beds · en-suite bathroom' },
+      { name: 'Bedroom 5', detail: 'King bed · en-suite bathroom' }
+    ],
+    amenities: ['Private pool', 'BBQ area', 'Media room with piano', 'Chef on request', 'Daily housekeeping', 'Concierge service', 'Full kitchen', 'Air conditioning', 'High-speed WiFi']
+  },
   'villa-imala': {
     name: 'Exclusive 6BR Uluwatu Villa with Gym & Ocean View',
     category: 'Luxury',
