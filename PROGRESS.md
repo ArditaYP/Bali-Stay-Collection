@@ -1552,3 +1552,29 @@ src/
    - Pengecekan data acak pada villa awal, tengah, dan akhir (indeks 0–34) mengonfirmasi 100% copywriting baru terpasang sempurna tanpa template duplikat.
    - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **TIDAK ADA `git push`** yang dilakukan ke remote repository.
 
+### 9.16 Transformasi Penuh ke Bahasa Inggris Kelas Dunia (Refined Luxury English) & Eliminasi Format Kutipan Canggung di Deskripsi
+1. **Latar Belakang & Permintaan Pengguna**:
+   - Pengguna memberikan koreksi kritis:
+     *"bahasa inggris pake, ngapain pake bahasa indonesia dan jangan isi Benn (5.0★) mengungkapkan: 'Villa ramah keluarga yang indah dengan desain memukau...' ini aneh banget soal nya coba perbaiki lebih baik lagi saya gamau di deskripsi saya ada mengungkapkan seperti itu"*.
+2. **Perbaikan & Standarisasi Copywriting Internasional**:
+   - **Full English (Bahasa Inggris Kelas Dunia)**:
+     - Mengubah seluruh narasi, headline, short description, dan full description ke dalam Bahasa Inggris mewah (*Refined Luxury English*) yang sangat cocok untuk tamu mancanegara Bali Stay Collection.
+   - **Eliminasi Format Kutipan Canggung**:
+     - Menghapus format artifisial seperti `"Benn (5.0★) mengungkapkan: ..."` dari seluruh teks deskripsi utama.
+     - Deskripsi utama diformulasikan murni sebagai narasi pengalaman tinggal mewah (*experiential luxury storytelling*) yang memikat alam bawah sadar calon tamu dengan pola hipnotik NLP (Visual, Auditory, Kinesthetic + Pacing & Leading).
+   - **Penyajian Elegan Social Proof (`why`)**:
+     - Format `why` disajikan secara bersih, profesional, dan meyakinkan dalam Bahasa Inggris:
+       `Guest Highlight: "[Kutipan ulasan riil tamu terbaik bintang 5]" — [Jaminan verifikasi fisik 100% oleh Bali Stay Collection]`.
+3. **Penyelarasan Seluruh 35 Villa Tanpa Duplikasi**:
+   - Memperbarui secara seragam:
+     1. [`src/data/airbnbVillas.json`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/data/airbnbVillas.json): 35 villa 100% berbahasa Inggris dengan headline persuasif, sensory shortDesc, immersive fullDesc, dan clean why highlight.
+     2. [`src/data/bscVillasData.js`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/data/bscVillasData.js): 35 objek `BSC_VILLAS` diselaraskan ke English `name`, `desc`, dan `why`.
+     3. [`src/data/villasData.js`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/data/villasData.js): Rekonstruksi bersih 35 entri `VILLA_DETAILS` bebas dari artefak string trailing, duplikasi key `house-terra` dieliminasi, dan pemetaan `INITIAL_VILLAS` selaras 100%.
+4. **Verifikasi & Kepatuhan Aturan**:
+   - Pemindaian regex mengonfirmasi 0 kemunculan kata Indonesia di seluruh database 35 villa.
+   - `node -c` pada kedua file JS valid 100%.
+   - `npm run lint` lulus dengan 0 error.
+   - `npm run build` lulus 100% (2.92s, 0 error).
+   - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **TIDAK ADA `git push`** yang dilakukan ke remote repository.
+
+

@@ -236,8 +236,8 @@ export const BSC_VILLAS = [
     "badge": "Guest Favorite",
     "matchScore": 98,
     "img": "/airbnb/angkasa-ubud/photos/photo-01.jpg",
-    "desc": "Rasakan sensasi melayang anggun di atas kanopi lembah Sungai Ayung. Dari air infinity pool yang berkilau jernih hingga sejuknya udara pegunungan Ubud, setiap tarikan napas di villa 5 kamar ini mengalirkan energi kesegaran baru yang memulihkan raga dan menyejukkan batin.",
-    "why": "Ulasan Tamu Terbaik (Anthony, 5.0★): 'Villa di Ubud ini luar biasa memukau dan sempurna untuk rombongan kami. Dikelilingi atmosfer alami yang begitu damai, bersih tanpa cela, dan ruang kolam renang yang tak terlupakan.' — Terverifikasi fisik 100% oleh tim BSC untuk liburan kelompok prestisius.",
+    "desc": "Experience the exhilarating sensation of floating above the Ayung River valley. From the crystalline infinity pool to the crisp highland air of Ubud, every breath here restores your body and calms your soul.",
+    "why": "Guest Highlight: \"Absolutely stunning and surrounded by the peaceful atmosphere that makes Ubud so special. The pool and outdoor spaces made our stay unforgettable.\" — Verified by Bali Stay Collection for premier group escapes.",
     "amenities": [
       "Private pool",
       "High-speed WiFi",
@@ -259,8 +259,8 @@ export const BSC_VILLAS = [
     "badge": "Guest Favorite",
     "matchScore": 98,
     "img": "/airbnb/iconic-cliff-top-villa/photos/photo-01.jpg",
-    "desc": "Tataplah cakrawala Samudra Hindia yang membentang tanpa batas tepat di depan mata Anda. Bertengger megah di atas tebing kapur Balangan, rasakan desau angin laut yang menyegarkan dan saksikan langit senja berubah menjadi lukisan emas lembayung dari tepi infinity pool privat Anda.",
-    "why": "Ulasan Tamu Terbaik (Masuda, 5.0★): 'Tempat ini jauh lebih indah daripada yang tampak di foto—bertengger persis di tepi tebing laksana resor paling privat. Desainnya sangat elegan dan stafnya luar biasa membantu.' — Pilihan utama BSC untuk panorama laut lepas dan sunset Samudra Hindia tanpa tanding.",
+    "desc": "Gaze across the boundless horizon of the Indian Ocean stretching endlessly before you. Perched majestically on Balangan’s limestone cliffs, feel the revitalizing sea breeze and watch the sunset ignite the sky in gold and crimson from your private infinity pool.",
+    "why": "Guest Highlight: \"Perched right on the cliff edge like an exclusive resort, it was even more breathtaking than in the photos.\" — Hand-picked by Bali Stay Collection for iconic clifftop panoramas and unmatched ocean sunsets.",
     "amenities": [
       "Private pool",
       "High-speed WiFi",
@@ -282,8 +282,8 @@ export const BSC_VILLAS = [
     "badge": "Guest Favorite",
     "matchScore": 98,
     "img": "/airbnb/st-lau-ubud/photos/photo-01.jpg",
-    "desc": "Tutup mata Anda sejenak dan dengarkan bisikan lembut angin hutan Ubud yang menenteramkan. Begitu Anda melangkah ke dek kayu privat, sejuknya air kolam renang dan rimbunnya dedaunan tropis seketika melunturkan segala beban pikiran, membawa jiwa Anda pulang ke ketenangan sejati.",
-    "why": "Ulasan Tamu Terbaik (Andreea, 5.0★): 'Villa ini persis seperti di foto—sangat bersih, indah, dan sempurna dalam segala hal. St. Lau adalah pelarian sempurna dari hiruk-pikuk dunia nyata dengan ketenangan yang luar biasa.' — Terverifikasi fisik 100% oleh Bali Stay Collection untuk privasi hutan tropis sejati.",
+    "desc": "Close your eyes for a moment and listen to the gentle rustle of Ubud's tropical forest. As you step onto your private pool deck, cool emerald waters and lush jungle foliage effortlessly wash away the noise of the world, welcoming you into profound stillness.",
+    "why": "Guest Highlight: \"The villa looked exactly like the photos—clean, beautifully presented, and a perfect escape from reality with its quiet atmosphere.\" — Verified by Bali Stay Collection for authentic rainforest seclusion.",
     "amenities": [
       "Private pool",
       "High-speed WiFi",
@@ -319,12 +319,12 @@ export const BSC_VILLAS = [
       "#E9DCE6"
     ],
     "img": "/airbnb/villa-habitas/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Charlotte, 5.0★): 'Villa ini luar biasa—lokasinya sempurna, dekat dengan restoran dan spa, sangat nyaman bahkan untuk berjalan kaki bersama balita, dan stafnya sangat menyenangkan.' — Rekomendasi BSC untuk kenyamanan keluarga di pusat Pererenan.",
+    "why": "Guest Highlight: \"Incredible location close to restaurants and spas, walkable with a toddler, and staffed with warm, helpful hospitality.\" — Selected by Bali Stay Collection for family-friendly coastal tranquility.",
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
     "pick": true,
-    "desc": "Langkahkan kaki Anda ke dalam oase laguna privat yang damai di Pererenan. Dikelilingi taman tropis rimbun dan gemercik air kolam yang bening, nikmati keheningan desa pesisir yang menenangkan hanya beberapa langkah santai dari deretan kafe artisan terbaik.",
+    "desc": "Step into a private lagoon oasis tucked away in peaceful Pererenan. Framed by lush tropical gardens and glistening turquoise waters, immerse yourself in coastal calm just a gentle stroll from artisan cafés.",
     "know": [
       "Walkable to trendy cafes and restaurants in Pererenan.",
       "A nanny service and pool fence are available on request through our concierge.",
@@ -365,12 +365,12 @@ export const BSC_VILLAS = [
       "#E9DCE6"
     ],
     "img": "/airbnb/tranquil-sanctuary-pererenan/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Alyshia, 5.0★): 'Kami benar-benar jatuh cinta pada tempat ini! Sangat privat, bersih setiap hari, dan lokasinya dekat kafe menawan. Ukuran yang sempurna untuk pasangan.' — Pilihan terfavorit BSC untuk liburan romantis dan bulan madu intim.",
+    "why": "Guest Highlight: \"Private yet convenient, beautifully maintained, and the perfect romantic size for two.\" — Bali Stay Collection’s top recommendation for honeymoons and intimate romantic escapes.",
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
     "pick": false,
-    "desc": "Bayangkan bangun di pagi hari disambut cahaya lembut yang menerobos tirai tipis, melangkah langsung ke tepian kolam renang privat berdua bersama orang tercinta. Sanctuary 1 kamar tidur ini adalah tempat di mana romansa mekar indah dalam privasi mutlak.",
+    "desc": "Wake to soft sunlight filtering through sheer drapes and step directly into your private sunlit pool. A chic one-bedroom mezzanine retreat where romance, privacy, and serene coastal charm intertwine.",
     "know": [
       "Located in a tranquil lane with minimal traffic.",
       "Walking distance to top Pererenan cafés and bakeries."
@@ -381,7 +381,7 @@ export const BSC_VILLAS = [
   },
   {
     "id": "tropical-canggu-villa",
-    "name": "Casa Kameeyla – Sun-Drenched 4BR Family Paradise in the Vibrant Heart of Canggu",
+    "name": "Casa Kameeyla – Sun-Drenched 4BR Tropical Villa in Central Canggu",
     "area": "Canggu & Berawa",
     "beds": 4,
     "baths": 4,
@@ -408,12 +408,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/tropical-canggu-villa/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Benn, 5.0★): 'Villa ramah keluarga yang indah dengan desain luar biasa terang dan lapang. Kolam renangnya sangat istimewa dan tim staf membuat segalanya begitu mudah.' — Pilihan unggulan BSC untuk liburan keluarga berkelas di Canggu.",
+    "why": "Guest Highlight: \"Light, airy, and beautifully designed with great indoor-outdoor flow and a private pool our family loved.\" — Curated by Bali Stay Collection for premier family living in central Canggu.",
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
     "pick": true,
-    "desc": "Rasakan kehangatan mentari Canggu menyinari ruang tamu terbuka yang lapang dan kolam renang biru kristal. Tempat di mana canda tawa keluarga berpadu sempurna dengan desain tropis modern, hanya hitungan menit dari kafe hits dan pantai selancar ternama.",
+    "desc": "Bask in the golden sunlight of Canggu across breezy open-concept living spaces and a crystalline private pool. A vibrant family sanctuary where modern tropical design meets prime beachside lifestyle.",
     "know": [
       "Moments from Canggu's best dining and beach clubs.",
       "Spacious living pavilion perfect for groups."
@@ -424,7 +424,7 @@ export const BSC_VILLAS = [
   },
   {
     "id": "luxe-beach-villa-seminyak",
-    "name": "Luxe Beach Villa – Architectural 3BR Coastal Hideaway Steps from Seminyak Waves",
+    "name": "Luxe Beach Villa – Architectural 3BR Coastal Hideaway Steps from Seminyak Beach",
     "area": "Umalas & Seminyak",
     "beds": 3,
     "baths": 4,
@@ -452,12 +452,12 @@ export const BSC_VILLAS = [
       "#EFDCD2"
     ],
     "img": "/airbnb/luxe-beach-villa-seminyak/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Pingping, 5.0★): 'Estetika villa ini luar biasa memukau sejak pandangan pertama. Suasana liburannya begitu kental, kolamnya jernih, dan privasinya mutlak terjaga.' — Rekomendasi BSC untuk pencinta desain arsitektur dan gaya hidup Seminyak.",
+    "why": "Guest Highlight: \"Stunning aesthetics with high sloping roofs, clear pool water, and a cozy sunken sofa perfect for slow-paced holiday living.\" — Verified by Bali Stay Collection for design lovers and beach lovers alike.",
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
     "pick": true,
-    "desc": "Dengarkan bisikan deburan ombak Seminyak yang berpadu dengan kemewahan desain atap menjulang dan sunken sofa eksklusif. Langkah kaki Anda hanya beberapa detik dari butik kelas dunia dan restoran legendaris, namun di dalam terasa begitu hening dan privat.",
+    "desc": "Experience the luxury of soaring architectural ceilings and sunken poolside lounging just moments from Seminyak Beach. An oasis of calm where chic boutique shopping meets pure private seclusion.",
     "know": [
       "Steps from Seminyak Beach and famous beach clubs.",
       "Open-air tropical living area with private pool."
@@ -496,12 +496,12 @@ export const BSC_VILLAS = [
       "#DCE8D6"
     ],
     "img": "/airbnb/tropical-elegance-seseh/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Lovella, 5.0★): 'Dari saat kami melangkah masuk, kami langsung merasakan kenyamanan dan kemewahan sejati. Suara gemericik air kolamnya sangat menenangkan dan suasananya begitu damai.' — Pilihan tersembunyi BSC di pesisir autentik Seseh.",
+    "why": "Guest Highlight: \"We loved the cozy, luxurious feel from the moment we walked in. The soothing sound of running water in the pool created an unforgettable ambiance.\" — Hand-picked by Bali Stay Collection for authentic coastal serenity.",
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
     "pick": true,
-    "desc": "Hirup segarnya angin laut yang berhembus lembut dari Pantai Seseh. Nikmati gemericik riak air kolam renang privat yang menenangkan pikiran dan pencahayaan malam yang hangat memikat di perkampungan pesisir Bali yang masih alami dan damai.",
+    "desc": "Inhale the invigorating ocean air of Seseh Beach. Featuring a soothing pool water feature, warm evening ambient illumination, and authentic village calm, this two-bedroom haven is pure balm for the soul.",
     "know": [
       "Nestled in peaceful Seseh, free from heavy traffic.",
       "Short stroll to black-sand coastline and coastal walks."
@@ -540,12 +540,12 @@ export const BSC_VILLAS = [
       "#D5E2EA"
     ],
     "img": "/airbnb/yellow-moon-uluwatu/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Nik, 5.0★): 'Villa ini SANGAT CANTIK untuk keluarga kami! Kolam renang luas dengan zona anak yang aman, kamar tidur nyaman, dan keramahan staf yang brilian.' — Pilihan keluarga nomor satu BSC di kawasan Uluwatu & Bukit.",
+    "why": "Guest Highlight: \"Absolutely gorgeous for a family getaway! Spacious, spotless, with a large child-friendly pool, great workout gear, and luxurious master suites.\" — The top family recommendation in Uluwatu by Bali Stay Collection.",
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
     "pick": true,
-    "desc": "Tenggelamkan diri Anda di dalam kemewahan sunken lounge berlimpah cahaya matahari Uluwatu. Kolam renang ekstra luas dengan area dangkal yang aman bagi si kecil, peralatan gym privat, dan kamar mandi utama berstandar spa menghadirkan liburan impian tanpa cela.",
+    "desc": "Relax in a sunken lounge bathed in Uluwatu’s golden sunshine. Featuring an expansive swimming pool with a child-friendly shallow area, private fitness gear, and a gourmet kitchen, every holiday wish is catered for.",
     "know": [
       "Convenient access to top surf breaks in Uluwatu and Padang Padang.",
       "Sunken outdoor lounge beside the swimming pool."
@@ -583,12 +583,12 @@ export const BSC_VILLAS = [
       "#9FB7C7"
     ],
     "img": "/airbnb/casa-kaya-bingin/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Holly, 5.0★): 'Villa indah yang bahkan tampak jauh lebih menawan secara langsung! Sangat nyaman, menangkap sinar matahari sepanjang hari, dan staf menyambut dengan penuh kehangatan.' — Suaka bohemian terbaik BSC di Bingin.",
+    "why": "Guest Highlight: \"Even more beautiful in person! The layout catches all-day sunlight, perfect for tanning, and the villa was lit up so warmly on arrival.\" — Curated by Bali Stay Collection for romantic escapes in Bingin.",
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
     "pick": false,
-    "desc": "Temukan pelarian romantis berdesain Mediterania-Bohemian di tepi tebing Bingin. Pintu kaca geser yang terbuka lebar menyatukan ruang tidur dengan private pool yang bermandikan sinar matahari sepanjang hari—tempat sempurna untuk meremajakan jiwa.",
+    "desc": "Find your romantic coastal sanctuary in Bingin. Expansive glass doors slide wide open to invite all-day sunlight into your private pool deck, creating an effortless haven for sunbathing and unwinding.",
     "know": [
       "Minutes from Bingin Beach stairs and cafés.",
       "Minimalist Mediterranean-inspired architectural details."
@@ -627,12 +627,12 @@ export const BSC_VILLAS = [
       "#D5E2EA"
     ],
     "img": "/airbnb/luxury-tropical-bingin/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Rohit, 5.0★): 'Villa persis seperti di foto—bersih, luas, penuh gaya, dan sangat terawat. Suasana tropisnya sangat damai dan stafnya luar biasa responsif.' — Destinasi favorit BSC untuk grup teman dan keluarga di Bingin.",
+    "why": "Guest Highlight: \"Clean, spacious, stylish, and very well maintained. The tropical vibe combined with the peaceful atmosphere made our stay truly relaxing.\" — Recommended by Bali Stay Collection for friends and families in Bingin.",
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
     "pick": true,
-    "desc": "Bayangkan bersantai di sunken lounge tepi kolam yang teduh dinaungi lambaian pohon palem tropis. Kemewahan 3 kamar tidur yang bersih, bergaya, dan berjarak hanya hitungan menit dari deburan ombak pantai Bingin yang legendaris.",
+    "desc": "Unwind in a sunken poolside lounge shaded by swaying tropical palms. Three stylish bedrooms, pristine minimalist interiors, and blissful serenity just moments from Bingin’s iconic surf coast.",
     "know": [
       "Surrounded by tropical frangipani and palm trees.",
       "Easy access to Bingin and Padang Padang beaches."
@@ -670,12 +670,12 @@ export const BSC_VILLAS = [
       "#9FB7C7"
     ],
     "img": "/airbnb/chic-tropical-bingin/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Paul, 5.0★): 'Properti sangat baru, modern, bersih, dan dilengkapi dengan semua fasilitas kelas atas. Komunikasi tuan rumah sangat ramah dan responsif.' — Kurasi desain modern kontemporer terbaik BSC di Bingin.",
+    "why": "Guest Highlight: \"Very new, modern, clean, and well-appointed with thoughtful hosts and top-tier amenities.\" — Chosen by Bali Stay Collection for discerning design travelers in Bingin.",
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
     "pick": false,
-    "desc": "Rasakan harmoni antara semen ekspos modern yang sejuk dengan kehangatan elemen kayu alami. Oase 2 kamar tidur yang baru dan fotogenik di Bingin, dirancang khusus bagi mereka yang menghargai ketenangan estetika dan kenyamanan kontemporer.",
+    "desc": "Experience the tactile beauty of cool polished concrete softened by warm natural timber. A contemporary two-bedroom haven in Bingin created for lovers of sleek architectural design and calm privacy.",
     "know": [
       "Exceptional 4.97 rating across 30+ verified guest reviews.",
       "Minutes from Bingin surf breaks and sunset cliff spots."
@@ -713,12 +713,12 @@ export const BSC_VILLAS = [
       "#D5B8A8"
     ],
     "img": "/airbnb/five-bedroom-designer-umalas/photos/photo-01.jpg",
-    "why": "Pilihan Eksklusif BSC (5.0★): 'Kemewahan skala resor pribadi dengan kolam renang 18 meter, arsitektur megah di perbatasan sawah Umalas, dan layanan staf berdedikasi tinggi tanpa kompromi.' — Properti baru paling prestisius dalam portofolio BSC.",
+    "why": "BSC Signature Choice: \"Private resort scale featuring an 18-meter lap pool, soaring architectural pavilions, and complete privacy on the Umalas border.\" — The premier large-group estate in Bali Stay Collection's portfolio.",
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
     "pick": true,
-    "desc": "Ketika ruang dan privasi menjadi prioritas tertinggi Anda. Mahakarya desainer 5 kamar tidur di Umalas ini menyuguhkan kolam renang sepanjang 18 meter, ruang keluarga beratap megah, dan ketenangan tepi persawahan hanya 5 menit dari pusat gaya hidup Berawa.",
+    "desc": "When space, elegance, and absolute privacy matter most. This five-bedroom designer estate in Umalas features an 18-meter lap pool, soaring living pavilions, and serene rice paddy borders just five minutes from Berawa.",
     "know": [
       "Features large 18-meter swimming pool and manicured estate grounds.",
       "Prime location bridging quiet Umalas and vibrant Berawa."
@@ -758,12 +758,12 @@ export const BSC_VILLAS = [
       "#D5E2EA"
     ],
     "img": "/airbnb/villa-imala/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Martina, 5.0★): 'Duduk di teras menikmati pemandangan laut saat matahari terbenam adalah momen magis yang tak terlupakan! Kolamnya fantastis dan layanannya luar biasa.' — Puncak kemewahan tebing Uluwatu dengan verifikasi fisik 100% BSC.",
+    "why": "Guest Highlight: \"Sitting on the terrace enjoying the ocean sunset view was simply magical! The manager organized massages and special dinners seamlessly.\" — The ultimate clifftop luxury estate in Bali Stay Collection's Uluwatu collection.",
     "cancel": "Free reschedule",
     "verified": true,
     "updated": "Oct 2026",
     "pick": true,
-    "desc": "Kemewahan tanpa batas menanti Anda di estate 6 kamar tidur spektakuler Uluwatu ini. Kolam renang 80m², gym berkaca panorama samudra, ruang spa pribadi, dan dek matahari terbenam magis menyuguhkan standar hidup para sultan.",
+    "desc": "Uncompromising luxury awaits at this six-bedroom Uluwatu clifftop estate. Featuring an 80m² pool, panoramic ocean-facing glass gym, private spa room, and magical sunset terrace vistas over the Indian Ocean.",
     "know": [
       "80m² private swimming pool with sundeck and rooftop ocean-view daybeds.",
       "Dedicated private spa room and panoramic glass-wall fitness gym.",
@@ -807,7 +807,7 @@ export const BSC_VILLAS = [
     ],
     "audit": 12,
     "updated": "October 2026",
-    "desc": "Nikmati kemewahan berada di pusat gaya hidup premium Berawa tanpa mengorbankan ketenangan. Hanya 400 meter jalan santai ke Pantai Berawa dan Finns Beach Club, villa 3 kamar modern ini dilengkapi jendela kedap suara dan kolam renang privat yang jernih.",
+    "desc": "Enjoy the ultimate privilege: prime central Berawa living without the noise. Just 400 meters from Berawa Beach and Finns Beach Club, this modern three-bedroom villa features double-glazed acoustics and a sparkling pool.",
     "img": "/airbnb/villa-mahina/photos/photo-01.jpg",
     "images": [
       "/airbnb/villa-mahina/photos/photo-01.jpg",
@@ -816,7 +816,7 @@ export const BSC_VILLAS = [
       "/airbnb/villa-mahina/photos/photo-04.jpg",
       "/airbnb/villa-mahina/photos/photo-05.jpg"
     ],
-    "why": "Ulasan Tamu Terbaik (Alexander M., 5.0★): 'Pengalaman luar biasa di Villa Mahina! Lokasinya tak terkalahkan, hanya 400m ke pantai, kolam renangnya sangat jernih, dan di dalam sangat tenang serta privat.' — Pilihan strategis nomor satu BSC di Berawa.",
+    "why": "Guest Highlight: \"Unbeatable location in Canggu & Berawa, pristine private pool and living space, and surprisingly quiet and private inside.\" — Top-rated walk-to-beach villa by Bali Stay Collection.",
     "rating": 4.9,
     "reviews": 2,
     "priceIdr": 6080000
@@ -855,7 +855,7 @@ export const BSC_VILLAS = [
     ],
     "audit": 12,
     "updated": "October 2026",
-    "desc": "Biarkan diri Anda terhanyut dalam pesona estetika gurun eksotis berpadu lengkungan Mediterania di pusat Canggu. Villa 2 kamar tidur yang bermandikan cahaya, kolam renang privat sedalam 1,5 meter, dan kamar mandi semi-terbuka yang menawan hati.",
+    "desc": "Immerse yourself in desert-modernist aesthetics and sweeping curved architecture in central Canggu. Two sun-filled bedrooms, a deep private pool, and photogenic indoor-outdoor bathrooms crafted to enchant.",
     "img": "/airbnb/khaleela-villas/photos/photo-01.jpg",
     "images": [
       "/airbnb/khaleela-villas/photos/photo-01.jpg",
@@ -864,7 +864,7 @@ export const BSC_VILLAS = [
       "/airbnb/khaleela-villas/photos/photo-04.jpg",
       "/airbnb/khaleela-villas/photos/photo-05.jpg"
     ],
-    "why": "Ulasan Tamu Terbaik (Jie / 婕, 5.0★): 'Tempat aslinya bahkan jauh lebih menakjubkan dibanding fotonya! Semua orang terpukau sejak langkah pertama, kolamnya bersih berkilau, dan staf Dando sangat penuh perhatian.' — Rekomendasi BSC untuk estetika Instagramable tercantik di Canggu.",
+    "why": "Guest Highlight: \"Even more stunning in real life than the photos! The architecture took our breath away, and the house manager was exceptionally kind and attentive.\" — Bali Stay Collection's most photogenic architectural oasis in Canggu.",
     "rating": 4.88,
     "reviews": 72,
     "priceIdr": 3120000
@@ -902,7 +902,7 @@ export const BSC_VILLAS = [
     ],
     "audit": 12,
     "updated": "October 2026",
-    "desc": "Rasakan masa depan liburan mewah di mana teknologi pintar menyatu dengan kemegahan tropis. Dari rooftop jacuzzi berpemandangan matahari terbenam, sound system Sonos multi-ruang, hingga bioskop pribadi di bawah langit malam Canggu.",
+    "desc": "Step into the future of luxury holiday living where smart home tech meets tropical elegance. Featuring a rooftop sunset jacuzzi, whole-home Sonos sound system, and outdoor cinema under the Canggu stars.",
     "img": "/airbnb/beyond-the-palms/photos/photo-01.jpg",
     "images": [
       "/airbnb/beyond-the-palms/photos/photo-01.jpg",
@@ -911,7 +911,7 @@ export const BSC_VILLAS = [
       "/airbnb/beyond-the-palms/photos/photo-04.jpg",
       "/airbnb/beyond-the-palms/photos/photo-05.jpg"
     ],
-    "why": "Ulasan Tamu Terbaik (Samantha, 5.0★): 'Villa yang sangat modern, didesain dengan begitu indah, dan terawat tanpa cela. Kamar mandinya menawan dan fitur pintarnya luar biasa canggih.' — Pilihan teratas BSC untuk penggemar kemewahan teknologi tinggi di Canggu.",
+    "why": "Guest Highlight: \"Extremely modern and beautifully designed. The indoor-outdoor bathrooms, smart technology, and rooftop jacuzzi made it feel like pure luxury.\" — Curated by Bali Stay Collection for high-tech luxury living in Canggu.",
     "rating": 4.88,
     "reviews": 68,
     "priceIdr": 11520000
@@ -949,7 +949,7 @@ export const BSC_VILLAS = [
     ],
     "audit": 12,
     "updated": "October 2026",
-    "desc": "Masuki mahakarya desain kontemporer berpredikat Guest Favorite bintang 5.0 di Berawa. Menghadirkan ruang keluarga ber-AC yang fleksibel, kolam renang asri bernuansa zen, dan kehangatan interior kayu jati yang membuat Anda seketika merasa di rumah sendiri.",
+    "desc": "Enter a 5.0-star Guest Favorite retreat in Berawa. Boasting flexible enclosed air-conditioned living, a tranquil zen pool, and warm teak wood finishes that make you feel instantly at home.",
     "img": "/airbnb/villa-akar/photos/photo-01.jpg",
     "images": [
       "/airbnb/villa-akar/photos/photo-01.jpg",
@@ -958,7 +958,7 @@ export const BSC_VILLAS = [
       "/airbnb/villa-akar/photos/photo-04.jpg",
       "/airbnb/villa-akar/photos/photo-05.jpg"
     ],
-    "why": "Ulasan Tamu Terbaik (Akshay, 5.0★): 'Benar-benar melebihi segala ekspektasi kami! Interiornya memberi rasa hangat, sangat nyaman, dan berkelas tinggi. Tuan rumah luar biasa ramah dan perhatian.' — Predikat Guest Favorite 5.0 BSC untuk kenyamanan tanpa kompromi.",
+    "why": "Guest Highlight: \"Exceeded our expectations in every way. The interiors felt warm, comfortable, and distinctly premium—we felt at home the second we arrived.\" — Perfect 5.0 Guest Favorite rating in Berawa by Bali Stay Collection.",
     "rating": 5,
     "reviews": 17,
     "priceIdr": 7840000
@@ -994,7 +994,7 @@ export const BSC_VILLAS = [
     ],
     "audit": 12,
     "updated": "October 2026",
-    "desc": "Kemudahan akses gaya hidup premium Berawa berada tepat di depan pintu Anda. Berada persis di seberang FINNS Recreation Club, villa 2 kamar modern chic ini menyuguhkan interior menawan, privasi rimbun pohon palem, dan kolam renang privat yang memanjakan liburan Anda.",
+    "desc": "Unbeatable convenience meets secluded privacy in Berawa. Located directly opposite FINNS Recreation Club, this chic two-bedroom villa offers a sparkling pool, lush perimeter palms, and quiet comfort.",
     "img": "/airbnb/villa-golden/photos/photo-01.jpg",
     "images": [
       "/airbnb/villa-golden/photos/photo-01.jpg",
@@ -1003,7 +1003,7 @@ export const BSC_VILLAS = [
       "/airbnb/villa-golden/photos/photo-04.jpg",
       "/airbnb/villa-golden/photos/photo-05.jpg"
     ],
-    "why": "Ulasan Tamu Terbaik (Lexi, 5.0★): 'Persis seperti di foto, bahkan lebih cantik lagi! Kami sangat menyukai privasinya yang terjaga berkat pohon palem yang asri, kebersihan sempurna, dan lokasi luar biasa.' — Oase privat BSC di seberang FINNS Berawa.",
+    "why": "Guest Highlight: \"Exactly as pictured, if not more beautiful! We loved the privacy from the lush palms, spotless cleanliness, and being steps from great cafes.\" — Prime Berawa location verified by Bali Stay Collection.",
     "rating": 4.89,
     "reviews": 65,
     "priceIdr": 3680000
@@ -1041,7 +1041,7 @@ export const BSC_VILLAS = [
     ],
     "audit": 12,
     "updated": "October 2026",
-    "desc": "Sesuai namanya, temukan serpihan surga tersembunyi di kawasan asri Ubud. Infinity pool pribadi yang menghadap lembah tropis rimbun dan keramahan staf lokal kami akan mengantarkan Anda pada dimensi relaksasi yang belum pernah Anda rasakan sebelumnya.",
+    "desc": "True to its name meaning 'Paradise', uncover a hidden sanctuary in serene Ubud. A private infinity pool overlooking lush tropical valley jungle brings deep, restorative relaxation.",
     "img": "/airbnb/villa-surga/photos/photo-01.jpg",
     "images": [
       "/airbnb/villa-surga/photos/photo-01.jpg",
@@ -1050,7 +1050,7 @@ export const BSC_VILLAS = [
       "/airbnb/villa-surga/photos/photo-04.jpg",
       "/airbnb/villa-surga/photos/photo-05.jpg"
     ],
-    "why": "Ulasan Tamu Terbaik (Natalie B., 5.0★): 'Rumah yang sangat indah dan kolam renang yang sempurna untuk berenang, berjemur, dan bersantai di tengah keindahan lembah Ubud. Tim staf mendedikasikan layanan luar biasa.' — Suaka alam terverifikasi BSC untuk ketenangan jiwa di Ubud.",
+    "why": "Guest Highlight: \"A wonderful stay surrounded by Ubud's tranquil valley. The house and pool were perfect for swimming, sunbathing, and recharging.\" — Selected by Bali Stay Collection for genuine rainforest tranquility.",
     "rating": 4.71,
     "reviews": 72,
     "priceIdr": 5120000
@@ -1086,12 +1086,12 @@ export const BSC_VILLAS = [
       "#E9DCE6"
     ],
     "img": "/airbnb/house-terra/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Yan, 5.0★): 'Rumah ini benar-benar persis seperti di foto—dibangun dengan sangat indah, sangat luas, dan super nyaman. Layanan private chef untuk makan malam di villa adalah yang terbaik di Bali!' — Mahakarya arsitektur Biombo pilihan utama BSC di Pererenan.",
+    "why": "Guest Highlight: \"Nicely built, very spacious, and super comfy for large groups. Having private chefs cook dinner in the villa was one of our best Bali memories.\" — Premier Biombo architectural estate in Pererenan by Bali Stay Collection.",
     "cancel": "",
     "verified": false,
     "updated": "",
     "pick": true,
-    "desc": "Bayangkan melangkah masuk ke dalam mahakarya arsitektur tropis Biombo di mana kemewahan modern melebur sempurna dengan alam Pererenan. Dilengkapi 5 kamar tidur mewah, piano klasik, kolam renang luas, dan layanan chef pribadi, nikmati privasi eksklusif tanpa cela.",
+    "desc": "Step inside a striking architectural masterpiece by Biombo where modern design merges with tropical Pererenan. Featuring five grand bedrooms, a classic piano, an expansive pool, and in-house chef dining.",
     "know": [
       "Airbnb Guest Favorite: 5.0 from 17 reviews, with perfect scores for cleanliness, accuracy and check-in.",
       "Long tropical pool, sunken living lounge, BBQ lounge and a media room with piano.",
@@ -1152,12 +1152,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/magnificent-canggu-estate/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Chloesi, 5.0★): 'Villa ini sempurna, bersih, dan sangat nyaman. Setelah hari yang sibuk di Canggu, kami sangat lega bisa pulang ke rumah yang begitu damai dan stafnya luar biasa membantu!' — Pilihan prestisius BSC untuk grup besar di jantung Canggu.",
+    "why": "Guest Highlight: \"Impeccable, clean, and comfortable. After a busy day in Canggu, we were so relieved to come home to this peaceful haven. The staff was incredible!\" — Verified by Bali Stay Collection for prestigious group holidays.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": true,
-    "desc": "Temukan kemewahan langka: sebuah estate 5 kamar tidur yang tenang dan megah tepat di pusat keramaian Canggu. Kolam renang biru kristal, ruang keluarga terbuka yang sangat lapang, dan layanan staf harian penuh dedikasi yang membuat Anda merasa seperti raja.",
+    "desc": "Discover a rare luxury: a grand five-bedroom estate providing peaceful seclusion right in the heart of Canggu. A crystal-blue pool, expansive open living areas, and attentive staff who cater to every detail.",
     "know": [
       "Guest Favorite: rated 4.86 from 42 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1213,12 +1213,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/designer-beachside-canggu/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Sian, 5.0★): 'Pengalaman terbaik kami di Bali! Villa sangat memukau, luas, dan dijaga bersih setiap hari sehingga liburan terasa begitu santai tanpa beban. Stafnya sangat luar biasa!' — Rekomendasi BSC untuk liburan pantai mewah bersama sahabat di Canggu.",
+    "why": "Guest Highlight: \"Stunning, spacious, and kept spotless daily. The team made our stay feel super relaxing and effortless—couldn't recommend it enough!\" — Bali Stay Collection's top coastal pick in Canggu.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": true,
-    "desc": "Rasakan sejuknya angin pantai pesisir Canggu melintasi interior ultra-chic villa 4 kamar tidur ini. Alur indoor-outdoor yang mulus, kolam renang kristal yang memikat, dan pelayanan penuh kejutan hangat dari staf yang siap membuat liburan Anda tak terlupakan.",
+    "desc": "Feel the refreshing coastal breeze through the ultra-chic interiors of this four-bedroom Canggu villa. Seamless indoor-outdoor flow, a crystal swimming pool, and thoughtful daily hospitality.",
     "know": [
       "Guest Favorite: rated 4.96 from 89 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1274,12 +1274,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/villa-daun-by-teduh/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Abdullateef, 5.0★): 'Menginap di Villa Daun benar-benar terasa seperti di hotel bintang 5. Sangat indah, luar biasa bersih, di area yang tenang tanpa kebisingan, dan keramahan stafnya kelas dunia.' — Guest Favorite BSC dengan standar kebersihan hotel bintang 5.",
+    "why": "Guest Highlight: \"Staying at Villa Daun genuinely felt like staying at a 5-star hotel. Beautiful, extremely clean, in a peaceful area with zero noise, and wonderful staff.\" — 5-star hotel standards verified by Bali Stay Collection.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": true,
-    "desc": "Ketika kenyamanan villa privat berpadu dengan standar kebersihan dan pelayanan hotel bintang lima. Oase arsitektural 3 kamar tidur di Berawa yang tenang tanpa kebisingan, dirancang untuk menghadirkan relaksasi jiwa yang menyeluruh.",
+    "desc": "Experience the comfort of a private villa paired with five-star hotel housekeeping standards. A tranquil three-bedroom architectural haven in Berawa with zero street noise and pristine attention to detail.",
     "know": [
       "Guest Favorite: rated 5 from 16 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1335,12 +1335,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/cala-blanca/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Maureen & David, 5.0★): 'Interior Mediterania yang sangat menawan, kolam renang bermandikan sinar matahari, staf yang hangat, dan keamanan 24 jam yang memberikan ketenangan pikiran sempurna.' — Oase Mediterania pilihan BSC di Pererenan.",
+    "why": "Guest Highlight: \"Beautiful Mediterranean interior with a sunlit private pool, warm and friendly staff, and 24-hour security peace of mind.\" — Curated by Bali Stay Collection for Mediterranean living in Pererenan.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": false,
-    "desc": "Nikmati kemurnian estetika Mediterania tropis yang bermandikan cahaya mentari di Pererenan. Dinding putih bersih, kolam renang biru jernih, keamanan 24 jam, dan keramahan staf lokal menghadirkan rasa tenang dan damai sepanjang liburan Anda.",
+    "desc": "Enjoy the pristine charm of sunlit tropical Mediterranean design in Pererenan. Whitewashed walls, a clear private pool, 24-hour gated security, and friendly staff for absolute peace of mind.",
     "know": [
       "Guest Favorite: rated 4.94 from 32 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1396,12 +1396,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/the-bull-house/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Suhail, 5.0★): 'Masa tinggal kami benar-benar luar biasa dari awal hingga akhir. Sangat bersih, terawat, dan kehadiran chef in-house membuat makanan kami luar biasa lezat. Pelayanan seperti di rumah sendiri!' — Mahakarya hiburan dan liburan kelompok nomor satu BSC di Seminyak.",
+    "why": "Guest Highlight: \"Incredibly clean, well-maintained, and having an in-house chef made the food simply incredible. Our true home away from home in Bali!\" — Premier large-group celebration estate in Seminyak by Bali Stay Collection.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": false,
-    "desc": "Selamat datang di 'Temple of Leisure' legendaris Seminyak. Hunian megah 6 kamar tidur dengan kolam renang spektakuler, fasilitas chef in-house kelas kuliner tinggi, dan ruang berkumpul royal yang menciptakan pengalaman pesta liburan paling berkesan.",
+    "desc": "Welcome to Seminyak's legendary 'Temple of Leisure'. A grand six-bedroom estate with a spectacular pool, in-house private chef service, and palatial social spaces made for celebration.",
     "know": [
       "Guest Favorite: rated 4.77 from 53 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1457,12 +1457,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/berawa-breeze/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Shanthini, 5.0★): 'Sama sekali tidak menyesal memilih villa ini untuk keluarga kami! Salah satu villa terbaik di Bali dengan taman luas, kolam bersih, sauna privat, dan staf yang luar biasa hangat.' — Pilihan wellness & keluarga terbaik BSC di Berawa.",
+    "why": "Guest Highlight: \"Easily one of the best villas in Bali! Private sauna, expansive garden, clean pool, and warm daily care made our family stay an easy 5 stars.\" — The top private wellness and family estate in Berawa by Bali Stay Collection.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": false,
-    "desc": "Segarkan kembali raga dan pikiran Anda di oase kebugaran 4 kamar tidur Berawa. Dilengkapi fasilitas sauna privat, taman hijau yang luas membentang, kolam renang jernih, dan layanan harian penuh kasih yang memanjakan seluruh keluarga.",
+    "desc": "Recharge body and mind in this four-bedroom wellness sanctuary in Berawa. Boasting a private Finnish sauna, expansive grassy garden, clear pool, and caring daily staff for the ultimate family holiday.",
     "know": [
       "Guest Favorite: rated 4.9 from 70 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1518,12 +1518,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/coco-bay/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Amber, 5.0★): 'Benar-benar terasa seperti hotel mewah pribadi kami sendiri untuk 15 orang! Layanan buggy, chef in-house lezat, dan staf yang luar biasa membuat pengalaman ini mendapat nilai 1000/10!' — Estate kelompok terbesar dan termegah BSC di Berawa.",
+    "why": "Guest Highlight: \"Truly felt like our own private luxury hotel for 15 guests! The buggy service, daily chef, and incredible staff made it an unforgettable 1000/10 stay.\" — Bali Stay Collection's premier 8-bedroom estate in Berawa.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": false,
-    "desc": "Kemewahan resor bintang lima milik Anda sendiri. Estate megah 8 kamar tidur di Berawa yang menampung hingga 16 tamu, lengkap dengan layanan buggy car privat, sarapan chef in-house harian, dan keamanan 24 jam untuk liburan kelompok termegah di Bali.",
+    "desc": "Five-star resort luxury reserved exclusively for you. A grand eight-bedroom estate in Berawa hosting up to 16 guests, complete with private buggy service, daily in-house chef, and 24/7 security.",
     "know": [
       "Guest Favorite: rated 4.96 from 53 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1579,12 +1579,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/villa-milana/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Danil, 5.0★): 'Melebihi segala ekspektasi kami! Kolam dan tamannya menciptakan oase damai privat kami sendiri di Canggu. Sangat bersih, kasur nyaman, dan staf luar biasa ramah.' — Oase Mediterania ramah keluarga pilihan BSC di Canggu.",
+    "why": "Guest Highlight: \"The pool and garden were a true highlight—creating a peaceful oasis of our own. Spotless, cozy beds, and genuine hospitality in a quiet central location.\" — Hand-picked by Bali Stay Collection for family gatherings in Canggu.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": false,
-    "desc": "Biarkan diri Anda terpesona oleh kehangatan oase Mediterania 5 kamar tidur di Canggu. Taman tropis yang damai, kolam renang berkilau di bawah mentari, kasur ekstra nyaman, dan perhatian detail tanpa cela dari staf yang menyambut Anda dengan senyuman tulus.",
+    "desc": "Fall in love with this sunlit five-bedroom Mediterranean haven in Canggu. A peaceful tropical garden, sparkling swimming pool, cloud-soft beds, and genuine heartfelt hospitality.",
     "know": [
       "Guest Favorite: rated 4.93 from 41 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1640,12 +1640,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/beachside-haven-canggu/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Francine, 5.0★): 'Jauh lebih indah di dunia nyata daripada fotonya! Terasa seperti di resor mewah pribadi, kolam renangnya spektakuler, dan stafnya luar biasa manis. Nilai 10/10 sempurna!' — Peringkat tertinggi BSC untuk villa pesisir di Canggu.",
+    "why": "Guest Highlight: \"Better in real life than photos! Felt like a private luxury resort with a huge pool and surround sound. PERFECT and better than 10/10!\" — Top-rated coastal villa by Bali Stay Collection in Canggu.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": false,
-    "desc": "Dinobatkan sebagai properti sempurna 'Better than 10/10' oleh tamu kami. Villa pesisir 4 kamar tidur dengan kamar mandi walk-in robe, kolam renang resor megah dinaungi kanopi hijau, surround sound system, dan akses pantai hanya hitungan langkah.",
+    "desc": "Rated 'Better than 10/10' by guests. A four-bedroom coastal sanctuary featuring walk-in robe en-suites, a large resort pool wrapped in lush greenery, surround sound, and beach access just steps away.",
     "know": [
       "Guest Favorite: rated 4.96 from 67 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1701,12 +1701,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/wellness-estate-canggu/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Destiny, 5.0★): 'Tempat sempurna untuk grup! Fasilitas sauna dan ice bath sangat mudah digunakan, hanya 1 menit jalan kaki ke beach club, dan staf melayani dengan cinta yang luar biasa.' — Suaka kesehatan & kebugaran nomor satu BSC di Canggu.",
+    "why": "Guest Highlight: \"Private sauna, ice bath, clean pool, and one minute walk to beach clubs. The staff took amazing care of us—the ultimate wellness escape!\" — The premier private health and recovery villa in Canggu by Bali Stay Collection.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": false,
-    "desc": "Puncak liburan sehat dan pemulihan tubuh di Canggu. Villa 4 kamar tidur mutakhir yang dilengkapi sauna pribadi, ice bath pemulihan atlet, gym privat, dan keamanan 24 jam hanya 1 menit jalan kaki dari klub pantai paling bergengsi.",
+    "desc": "The pinnacle of private wellness and vitality in Canggu. A four-bedroom residence equipped with a private sauna, ice bath, personal gym, and 24/7 security just one minute from premier beach clubs.",
     "know": [
       "Guest Favorite: rated 4.98 from 47 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1762,12 +1762,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/villa-aless/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Saoirse, 5.0★): 'Tempatnya bahkan jauh lebih indah dari yang kami harapkan! Sangat bersih, luas, tenang, dan stafnya luar biasa ramah. Tempat damai terbaik di Umalas!' — Suaka kedamaian privat pilihan BSC di Umalas.",
+    "why": "Guest Highlight: \"Even better than we expected! Beautiful, clean, spacious, and the staff were incredibly friendly and welcoming—a tranquil paradise in Umalas.\" — Chosen by Bali Stay Collection for restful residential calm.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": false,
-    "desc": "Rasakan keheningan sejati yang menenangkan di Umalas. Oase 3 kamar tidur yang luas, bersih berkilau, dan didesain penuh perhatian terhadap kenyamanan, menawarkan tempat beristirahat yang damai setelah seharian menjelajahi keindahan Bali.",
+    "desc": "Discover the peaceful charm of Umalas. A spacious, sparkling-clean three-bedroom hideaway thoughtfully designed for calm comfort, offering a quiet retreat after exploring Bali.",
     "know": [
       "Guest Favorite: rated 4.92 from 37 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1823,12 +1823,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/alua-loft/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Anna, 5.0★): 'Kenyataannya benar-benar sesuai dengan foto! Kolam plunge pribadi bermandikan sinar matahari, suasana sangat tenang, dan staf sangat responsif. Tempat sempurna untuk mengisi energi kembali.' — Pilihan desainer loft romantis BSC di Pererenan.",
+    "why": "Guest Highlight: \"The reality truly matches the pictures! Sun-drenched private plunge pool, bohemian vibes, and very responsive hospitality.\" — Bali Stay Collection's top designer loft for couples in Pererenan.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": false,
-    "desc": "Suaka mezanin bohemian 1 kamar tidur yang artistik dan privat di Pererenan. Kolam renang plunge yang bermandikan cahaya mentari, langit-langit menjulang tinggi, dan ketenangan desa pesisir yang sempurna untuk mengisi kembali energi kreatif Anda.",
+    "desc": "An artistic one-bedroom bohemian mezzanine loft in quiet Pererenan. A sun-drenched private plunge pool, soaring ceilings, and coastal village peace perfect for creative rejuvenation.",
     "know": [
       "Guest Favorite: rated 4.86 from 80 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1884,12 +1884,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/villa-satiya/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (DigiNeko, 5.0★): 'Masa tinggal di sini adalah mimpi yang menjadi kenyataan. Bangun setiap pagi dengan suara alam yang menenangkan, taman rimbun, dan kolam renang jernih. Lima bintang mutlak tanpa keraguan!' — Peringkat sempurna 5.0 bintang pilihan BSC di Pererenan.",
+    "why": "Guest Highlight: \"A dream come true. Waking up to stunning views and soothing nature sounds. Lush gardens, pristine pool, and dedicated staff—five stars without a doubt!\" — Flawless 5.0 star rated tropical oasis in Pererenan by Bali Stay Collection.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": false,
-    "desc": "Bangunlah setiap pagi disambut suara alam yang menenteramkan dan pemandangan taman tropis zamrud di Pererenan. Dinilai sempurna 5.0 bintang, villa 4 kamar tidur ini memadukan kemewahan fasilitas modern dengan pesona magis Bali yang memikat kalbu.",
+    "desc": "Wake each morning to tranquil nature sounds and lush emerald garden views. Rated a perfect 5.0 stars, this four-bedroom oasis blends modern luxury with authentic Balinese warmth.",
     "know": [
       "Guest Favorite: rated 5 from 43 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
@@ -1945,12 +1945,12 @@ export const BSC_VILLAS = [
       "#EFE6CF"
     ],
     "img": "/airbnb/villa-infinity-umalas/photos/photo-01.jpg",
-    "why": "Ulasan Tamu Terbaik (Dawn, 5.0★): 'Kolam renangnya adalah sorotan utama—sepanjang 20 meter dan sangat luas untuk berenang santai! Sangat luas, privat, dan staf villa luar biasa membantu. Pengaturan sempurna untuk perayaan berkesan.' — Estate kolam renang 20 meter paling eksklusif BSC di Umalas.",
+    "why": "Guest Highlight: \"The 20-meter pool was a real highlight—large enough to properly swim! Spacious, comfortable, and private with wonderful staff assistance.\" — The premier 20-meter pool estate in Umalas by Bali Stay Collection.",
     "cancel": "Flexible · Free cancel up to 7 days before check-in",
     "verified": true,
     "updated": "October 2026",
     "pick": false,
-    "desc": "Bayangkan berenang bebas di kolam renang privat sepanjang 20 meter di tengah rimbunnya taman tropis Umalas. Estate megah 5 kamar tidur yang lapang dan terisolasi sempurna, dirancang untuk perayaan momen paling berharga dalam hidup Anda.",
+    "desc": "Swim freely in an extraordinary 20-meter private swimming pool framed by lush tropical gardens. A grand five-bedroom Umalas estate designed for milestone celebrations and ultimate privacy.",
     "know": [
       "Guest Favorite: rated 4.91 from 22 verified stays.",
       "Private pool, spacious lounge and dedicated daily housekeeping.",
