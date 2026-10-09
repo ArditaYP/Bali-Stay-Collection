@@ -1716,3 +1716,31 @@ src/
    - `npm run build`: Lulus 100% (2.98s, 0 error).
    - Pengujian pemetaan villa per area terbukti 100% dinamis dan akurat.
    - **ATURAN GIT DIPATUHI SECARA KETAT**: Seluruh perubahan disimpan dalam commit lokal dan **DILARANG KERAS `git push`** ke remote GitHub.
+
+### 9.22 Investigasi & Perbaikan Sinkronisasi Villa Ubud (Dari 0 Villa Menjadi 3 Villa Riil)
+1. **Latar Belakang & Pertanyaan Pengguna**:
+   - Pengguna menanyakan:
+     *"ubud: 3 villas?? kenapa di web keliatan 0??? apakah ga ada villa dari ubud?? bukan nya ada ya"*
+2. **Akar Masalah (Root Cause Analysis)**:
+   - Di [`src/data/villasData.js`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/data/villasData.js) pada objek `VILLA_DETAILS`, villa-villa Ubud (`st-lau-ubud`, `angkasa-ubud`, `villa-surga`) memiliki properti alamat `address: 'Ubud, Gianyar, Bali'`, namun properti `location` tertulis umum `'Bali'`.
+   - Di [`src/App.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/App.jsx), kalkulasi `activeCatalogVillas` menimpa properti `area` dengan ekspresi `live.location || live.area || base.area`. Karena `live.location` berisi `'Bali'` (truthy), maka `area` villa-villa Ubud tersebut tertimpa menjadi `'Bali'` alih-alih `'Ubud'`.
+   - Akibatnya, saat fungsi filter destinasi membandingkan `dest.name === 'Ubud'`, villa tersebut gagal cocok sehingga di browser terhitung dan tampil sebagai **0 villas**.
+3. **Solusi & Implementasi**:
+   - **Koreksi Data Master ([`src/data/villasData.js`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/data/villasData.js))**:
+     - Mengubah nilai `location` untuk `st-lau-ubud`, `angkasa-ubud`, dan `villa-surga` menjadi `'Ubud'`.
+     - Mengoreksi pula data villa lain yang sebelumnya tertulis generik `'Bali'` (`house-terra` $\rightarrow$ `'Pererenan'`, `iconic-cliff-top-villa` $\rightarrow$ `'Uluwatu & Bukit'`, `villa-mahina`, `khaleela-villas`, `beyond-the-palms`, `villa-akar`, `villa-golden` $\rightarrow$ `'Canggu & Berawa'`).
+   - **Sanitasi Mapping di App.jsx ([`src/App.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/App.jsx))**:
+     - Memastikan nilai generik `'Bali'` tidak akan pernah menimpa kawasan spesifik:
+       `area: (live.location && live.location !== 'Bali') ? live.location : (live.area && live.area !== 'Bali') ? live.area : base.area`.
+     - Menyinkronkan pembaruan data `location` dan `area` segar saat aplikasi membaca cache dari `localStorage`.
+   - **Multi-Level Safety Fallback ([`src/components/frontpage/BscDestinations.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscDestinations.jsx) & [`src/components/frontpage/BscVillaCatalog.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscVillaCatalog.jsx))**:
+     - Helper [`isVillaInDestination`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscDestinations.jsx#L10-L58) dan filter katalog diperkuat dengan fallback pencocokan terhadap `address`, `id`, dan `name`.
+     - Jika sebuah villa memiliki nama/alamat/ID bertuliskan Ubud atau Surga, sistem secara tangguh tetap mengelompokkannya ke Ubud bahkan bila ada anomali properti di masa mendatang.
+4. **Hasil Verifikasi**:
+   - Destinasi **Ubud** kini tampil dengan pasti: **3 villas**:
+     1. **Villa Angkasa** (`angkasa-ubud`): 5 Kamar Tidur, Ayung River Valley Rainforest Infinity Villa.
+     2. **St. Lau** (`st-lau-ubud`): 3 Kamar Tidur, Rainforest Jungle Sanctuary.
+     3. **Villa Surga** (`villa-surga`): 4 Kamar Tidur, Serene Valley-View Hideaway.
+   - `npm run lint`: Lulus dengan 0 error.
+   - `npm run build`: Lulus 100% (2.96s, 0 error).
+   - **ATURAN GIT DIPATUHI**: Komit lokal tersimpan rapi dan **TIDAK ADA `git push`**.

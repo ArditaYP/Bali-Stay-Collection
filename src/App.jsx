@@ -45,6 +45,8 @@ export default function App() {
           return {
             ...v,
             ...fresh,
+            location: fresh.location,
+            area: fresh.location || fresh.area || v.area,
             images: (fresh.images && fresh.images.length) ? fresh.images : (v.images || []),
             img: fresh.img || v.img || '',
             reviews: (fresh.reviews && fresh.reviews.length) ? fresh.reviews : (v.reviews || []),
@@ -88,7 +90,11 @@ export default function App() {
         price: live.price !== undefined && live.price !== null ? live.price : base.price,
         tier: live.tier || live.category || base.tier,
         category: live.category || live.tier || base.category,
-        area: live.location || live.area || base.area,
+        area: (live.location && live.location !== 'Bali')
+          ? live.location
+          : (live.area && live.area !== 'Bali')
+            ? live.area
+            : base.area,
         beds: live.beds || base.beds,
         baths: live.baths || live.bathrooms || base.baths,
         guests: live.guests || base.guests,

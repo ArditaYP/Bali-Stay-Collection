@@ -237,11 +237,23 @@ export default function BscVillaCatalog({
       if (area) {
         const areaLower = area.trim().toLowerCase();
         const vAreaLower = (v.area || v.location || '').trim().toLowerCase();
-        if (vAreaLower !== areaLower) {
+        let matched = vAreaLower === areaLower;
+        if (!matched && vAreaLower && vAreaLower !== 'bali') {
           const subAreas = areaLower.split('&').map(s => s.trim());
-          const matched = subAreas.some(sub => vAreaLower === sub || vAreaLower.includes(sub) || sub.includes(vAreaLower));
-          if (!matched) return false;
+          matched = subAreas.some(sub => vAreaLower === sub || vAreaLower.includes(sub) || sub.includes(vAreaLower));
         }
+        if (!matched) {
+          const vAddr = (v.address || '').toLowerCase();
+          const vId = (v.id || '').toLowerCase();
+          const vName = (v.name || '').toLowerCase();
+          if (areaLower === 'ubud') {
+            matched = vAddr.includes('ubud') || vId.includes('ubud') || vName.includes('ubud') || vId.includes('surga');
+          } else {
+            const subAreas = areaLower.split('&').map(s => s.trim());
+            matched = subAreas.some(sub => vAddr.includes(sub) || vId.includes(sub) || vName.includes(sub));
+          }
+        }
+        if (!matched) return false;
       }
       // Filter kapasitas tamu
       if (v.guests < guests) return false;

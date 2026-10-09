@@ -9,26 +9,50 @@ import { DESTINATIONS_SUMMARY, PALETTE, BSC_VILLAS } from '../../data/bscVillasD
  */
 const isVillaInDestination = (villa, destName) => {
   if (!villa || !destName) return false;
-  const villaArea = (villa.area || villa.location || '').trim().toLowerCase();
   const target = destName.trim().toLowerCase();
-  if (!villaArea) return false;
+  const villaArea = (villa.area || villa.location || '').trim().toLowerCase();
+  const villaAddr = (villa.address || '').trim().toLowerCase();
+  const villaId = (villa.id || '').trim().toLowerCase();
+  const villaName = (villa.name || '').trim().toLowerCase();
 
-  // 1. Pencocokan langsung (misal: "pererenan" === "pererenan", "ubud" === "ubud")
-  if (villaArea === target) return true;
+  // 1. Pencocokan langsung melalui area (abaikan kata generik 'bali')
+  if (villaArea && villaArea !== 'bali') {
+    if (villaArea === target) return true;
 
-  // 2. Pencocokan nama gabungan dengan '&' (misal: "canggu & berawa", "uluwatu & bukit")
-  const subAreas = target.split('&').map(s => s.trim().toLowerCase());
-  for (const sub of subAreas) {
-    if (villaArea === sub || villaArea.includes(sub) || sub.includes(villaArea)) {
-      return true;
+    // Pencocokan nama gabungan dengan '&' (misal: "canggu & berawa", "uluwatu & bukit")
+    const subAreas = target.split('&').map(s => s.trim().toLowerCase());
+    for (const sub of subAreas) {
+      if (villaArea === sub || villaArea.includes(sub) || sub.includes(villaArea)) {
+        return true;
+      }
+    }
+
+    // Sub-wilayah terkenal (misal: Bingin / Balangan -> Uluwatu & Bukit)
+    if (target.includes('uluwatu') || target.includes('bukit')) {
+      if (villaArea.includes('bingin') || villaArea.includes('balangan') || villaArea.includes('padang')) {
+        return true;
+      }
     }
   }
 
-  // 3. Sub-wilayah terkenal (misal: Bingin / Balangan -> Uluwatu & Bukit)
+  // 2. Pencocokan pengaman melalui alamat lengkap, ID villa, atau nama
+  if (target === 'ubud') {
+    return villaAddr.includes('ubud') || villaId.includes('ubud') || villaName.includes('ubud') || villaId.includes('surga');
+  }
+  if (target.includes('pererenan')) {
+    return villaAddr.includes('pererenan') || villaId.includes('pererenan') || villaName.includes('pererenan') || villaId.includes('terra') || villaId.includes('habitas');
+  }
+  if (target.includes('canggu') || target.includes('berawa')) {
+    return villaAddr.includes('canggu') || villaAddr.includes('berawa') || villaId.includes('canggu') || villaId.includes('berawa') || villaName.includes('canggu') || villaName.includes('berawa');
+  }
   if (target.includes('uluwatu') || target.includes('bukit')) {
-    if (villaArea.includes('bingin') || villaArea.includes('balangan') || villaArea.includes('padang')) {
-      return true;
-    }
+    return villaAddr.includes('uluwatu') || villaAddr.includes('bukit') || villaAddr.includes('balangan') || villaAddr.includes('bingin') || villaId.includes('cliff') || villaId.includes('bingin') || villaId.includes('uluwatu');
+  }
+  if (target.includes('umalas') || target.includes('seminyak')) {
+    return villaAddr.includes('umalas') || villaAddr.includes('seminyak') || villaId.includes('umalas') || villaId.includes('seminyak') || villaName.includes('umalas') || villaName.includes('seminyak');
+  }
+  if (target.includes('seseh')) {
+    return villaAddr.includes('seseh') || villaId.includes('seseh') || villaName.includes('seseh');
   }
 
   return false;
