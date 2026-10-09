@@ -46,6 +46,13 @@ const bestFor = (v) => {
   return 'Best for small groups';
 };
 
+const CANONICAL_MUST_HAVE = [
+  'Chef on request',
+  'Villa manager',
+  'Walk to cafés',
+  'Wellness facilities'
+];
+
 const EXCLUDED_AMENITIES = new Set([
   'private pool',
   'daily staff',
@@ -106,15 +113,16 @@ export default function BscVillaCatalog({
   }, [villas]);
 
   const allAmenities = useMemo(() => {
-    const set = new Set();
-    villas.forEach(v => {
-      toSafeArray(v.am).forEach(a => {
-        if (!isExcludedAmenity(a)) {
-          set.add(a);
-        }
+    // Memastikan hanya 4 opsi fasilitas 'Must have' resmi & autentik BSC yang tampil di sidebar
+    return CANONICAL_MUST_HAVE.filter(opt => {
+      const optLower = opt.toLowerCase();
+      return villas.some(v => {
+        return toSafeArray(v.am).some(a => {
+          const aLower = (a || '').toLowerCase();
+          return aLower === optLower || (optLower.includes('caf') && aLower.includes('caf'));
+        });
       });
     });
-    return Array.from(set).sort();
   }, [villas]);
 
   // State filter interaktif
@@ -252,7 +260,13 @@ export default function BscVillaCatalog({
       // Filter kamar tidur
       if (minBeds > 0 && v.beds < minBeds) return false;
       // Filter fasilitas (must have)
-      if (selectedAmenities.length > 0 && !selectedAmenities.every(a => toSafeArray(v.am).includes(a))) return false;
+      if (selectedAmenities.length > 0 && !selectedAmenities.every(a => {
+        const aLower = (a || '').toLowerCase();
+        return toSafeArray(v.am).some(item => {
+          const itemLower = (item || '').toLowerCase();
+          return itemLower === aLower || (aLower.includes('caf') && itemLower.includes('caf'));
+        });
+      })) return false;
 
       return true;
     });

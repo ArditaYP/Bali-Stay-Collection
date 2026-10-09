@@ -106,7 +106,7 @@ export default function App() {
         shortDesc: live.shortDesc || base.shortDesc || base.desc,
         desc: live.shortDesc || live.description || base.desc,
         description: live.description || base.description,
-        am: (live.amenities && live.amenities.length) ? live.amenities : base.am,
+        am: (base.am && base.am.length) ? base.am : (live.amenities || []),
         amenities: live.amenities || base.amenities || base.am,
         img: live.img || base.img,
         images: (live.images && live.images.length) ? live.images : base.images,

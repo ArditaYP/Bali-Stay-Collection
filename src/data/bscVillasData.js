@@ -744,7 +744,9 @@ export const BSC_VILLAS = [
     "am": [
       "Private pool",
       "Daily staff",
-      "Chef on request"
+      "Chef on request",
+      "Villa manager",
+      "Wellness facilities"
     ],
     "tone": [
       "#9FB7C7",
@@ -921,12 +923,14 @@ export const BSC_VILLAS = [
       "Family"
     ],
     "setting": [
-      "Rice-field view"
+      "Rice-field view",
+      "Walkable to cafés"
     ],
     "am": [
       "Private pool",
       "Daily staff",
-      "Chef on request"
+      "Chef on request",
+      "Walk to cafés"
     ],
     "tone": [
       "#CBB9C9",
@@ -1144,7 +1148,8 @@ export const BSC_VILLAS = [
     "am": [
       "Private pool",
       "Daily staff",
-      "Chef on request"
+      "Chef on request",
+      "Wellness facilities"
     ],
     "tone": [
       "#C7CDBB",
@@ -1251,7 +1256,9 @@ export const BSC_VILLAS = [
     "am": [
       "Private pool",
       "Daily staff",
-      "Chef on request"
+      "Chef on request",
+      "Villa manager",
+      "Wellness facilities"
     ],
     "tone": [
       "#C7CDBB",
@@ -2066,10 +2073,12 @@ export const BSC_VILLAS = [
       "Family"
     ],
     "setting": [
-      "Village setting"
+      "Village setting",
+      "Walkable to cafés"
     ],
     "am": [
       "Private pool",
+      "Walk to cafés",
       "Full kitchen",
       "Air conditioning",
       "High-speed WiFi"
@@ -2104,10 +2113,12 @@ export const BSC_VILLAS = [
       "Beach lovers"
     ],
     "setting": [
-      "Short walk to beach"
+      "Walk to the beach",
+      "Walkable to cafés"
     ],
     "am": [
       "Private pool",
+      "Walk to cafés",
       "Near the beach",
       "Full kitchen",
       "Air conditioning"
@@ -2185,6 +2196,7 @@ export const BSC_VILLAS = [
     ],
     "am": [
       "Private pool",
+      "Walk to cafés",
       "Ocean breeze",
       "Full kitchen",
       "High-speed WiFi"
@@ -2219,10 +2231,12 @@ export const BSC_VILLAS = [
       "Honeymoon"
     ],
     "setting": [
-      "Cliffside village"
+      "Cliffside village",
+      "Walkable to cafés"
     ],
     "am": [
       "Private pool",
+      "Walk to cafés",
       "High-speed WiFi",
       "Kitchenette",
       "Air conditioning"
@@ -2257,10 +2271,13 @@ export const BSC_VILLAS = [
       "Friends group"
     ],
     "setting": [
-      "Near beach"
+      "Walk to the beach",
+      "Walkable to cafés"
     ],
     "am": [
       "Private pool",
+      "Walk to cafés",
+      "Villa manager",
       "Full kitchen",
       "Air conditioning",
       "High-speed WiFi"
@@ -2295,13 +2312,15 @@ export const BSC_VILLAS = [
       "Couples"
     ],
     "setting": [
-      "Near beach"
+      "Walk to the beach",
+      "Walkable to cafés"
     ],
     "am": [
       "Private pool",
-      "High-speed WiFi",
+      "Walk to cafés",
       "Full kitchen",
-      "Air conditioning"
+      "Air conditioning",
+      "High-speed WiFi"
     ],
     "tone": [
       "#C5D3DC",
@@ -2339,7 +2358,8 @@ export const BSC_VILLAS = [
     "am": [
       "Private pool",
       "Dedicated staff",
-      "Full kitchen",
+      "Chef on request",
+      "Villa manager",
       "Air conditioning"
     ],
     "tone": [
@@ -2368,9 +2388,9 @@ export const BSC_VILLAS = [
     beds: 3,
     baths: 2.5,
     guests: 6,
-    trips: ['Design & style', 'Couples & honeymoons', 'Family'],
-    setting: ['Walk to beach'],
-    am: ["Private pool","Sunken lounge","Walk to beach (400m)","Double-glazed soundproof windows","Air conditioning","High-speed WiFi","Full kitchen","Daily housekeeping"],
+    trips: ['Friends group', 'Family', 'Celebration'],
+    setting: ['Walk to the beach', 'Walkable to cafés'],
+    am: ["Private pool", "Walk to cafés", "Near the beach", "Air conditioning", "High-speed WiFi", "Daily housekeeping"],
     pick: true,
     tone: ["#2C3539","#4A5D4E"],
     audit: 12,
@@ -2395,9 +2415,9 @@ export const BSC_VILLAS = [
     beds: 2,
     baths: 2,
     guests: 4,
-    trips: ['Design & style', 'Couples & honeymoons', 'Family'],
-    setting: ['Tropical oasis'],
-    am: ["Private pool","Desert-inspired architecture","Outdoor tropical shower","Full kitchen","Air conditioning","High-speed WiFi","Daily housekeeping","Dedicated team"],
+    trips: ['Couples', 'Honeymoon', 'Friends group'],
+    setting: ['Garden setting', 'Walkable to cafés'],
+    am: ["Private pool", "Walk to cafés", "Daily staff", "Air conditioning", "High-speed WiFi", "Daily housekeeping"],
     pick: true,
     tone: ["#C4A482","#EED9C4"],
     audit: 12,
@@ -2422,9 +2442,9 @@ export const BSC_VILLAS = [
     beds: 4,
     baths: 4,
     guests: 8,
-    trips: ['Design & style', 'Couples & honeymoons', 'Family'],
-    setting: ['Private retreat'],
-    am: ["Private pool (45m²)","Rooftop jacuzzi","Yoga deck","Sonos sound system","86\" 4K Smart TV","SMEG kitchen","Outdoor cinema projector","Private BBQ grill"],
+    trips: ['Friends group', 'Celebration', 'Family'],
+    setting: ['Garden setting'],
+    am: ["Private pool", "Wellness facilities", "Villa manager", "Daily staff", "Air conditioning", "High-speed WiFi"],
     pick: true,
     tone: ["#1F2937","#111827"],
     audit: 12,
@@ -2449,9 +2469,9 @@ export const BSC_VILLAS = [
     beds: 4,
     baths: 4.5,
     guests: 8,
-    trips: ['Design & style', 'Couples & honeymoons', 'Family'],
-    setting: ['Central Berawa'],
-    am: ["Private pool","Guest Favorite 5.0 rating","Flexible enclosed/open living","Designer architecture by Teduh","En-suite master suites","High-speed WiFi","Daily housekeeping"],
+    trips: ['Friends group', 'Family'],
+    setting: ['Walk to the beach', 'Walkable to cafés'],
+    am: ["Private pool", "Walk to cafés", "Villa manager", "Daily staff", "Air conditioning", "High-speed WiFi"],
     pick: true,
     tone: ["#3A352F","#5A5249"],
     audit: 12,
@@ -2476,9 +2496,9 @@ export const BSC_VILLAS = [
     beds: 2,
     baths: 2,
     guests: 4,
-    trips: ['Design & style', 'Couples & honeymoons', 'Family'],
-    setting: ['Walk to cafes'],
-    am: ["Private pool","Opposite FINNS Recreation Club","Modern chic interior","Both en-suite bedrooms","Fully equipped kitchen","Air conditioning","Daily housekeeping"],
+    trips: ['Couples', 'Friends group'],
+    setting: ['Walkable to cafés'],
+    am: ["Private pool", "Walk to cafés", "Air conditioning", "High-speed WiFi", "Daily housekeeping"],
     pick: true,
     tone: ["#8C704B","#B89B72"],
     audit: 12,
@@ -2503,9 +2523,9 @@ export const BSC_VILLAS = [
     beds: 4,
     baths: 4,
     guests: 8,
-    trips: ['Design & style', 'Couples & honeymoons', 'Family'],
-    setting: ['Jungle & nature'],
-    am: ["Private infinity pool","Traditional Balinese entrance","Lush tropical valley view","Full villa staffing","All en-suite bathrooms","Spacious open living","Daily housekeeping"],
+    trips: ['Family', 'Wellness retreat', 'Friends group'],
+    setting: ['Rice-field view'],
+    am: ["Private pool", "Chef on request", "Wellness facilities", "Daily staff", "Air conditioning", "High-speed WiFi"],
     pick: true,
     tone: ["#2F4F4F","#3B6E59"],
     audit: 12,
