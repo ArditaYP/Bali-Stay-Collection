@@ -1498,3 +1498,30 @@ src/
    - Seluruh fungsi baru dilengkapi komentar JSDoc Bahasa Indonesia lengkap.
    - **TIDAK ADA `git push`** yang dilakukan ke remote repository.
 
+### 9.14 Implementasi Galeri Foto Konsep 1: The Luxury Pavilion (Split-Screen Architectural Canvas)
+1. **Latar Belakang & Diskusi Pengguna**:
+   - Pengguna meminta agar tampilan saat membuka foto di halaman detail dipercantik dengan referensi Airbnb namun memiliki identitas visual yang khas, mewah, dan **TIDAK full-screen**:
+     *"coba anda buatkan prefernesi visual yang mirip airbnb tapi tidak mirip airbnb, prefernesi anda yang tidak full screenn, coba berikan saya ide anda"*.
+   - Dari 3 konsep yang diajukan, pengguna secara eksplisit memilih **Konsep 1 ("The Luxury Pavilion")**:
+     *"konsep 1 boleh tu, coba aplikasikan"*.
+2. **Karakteristik & Fitur Konsep 1 yang Diterapkan**:
+   - **Floating Architectural Canvas (Non-Fullscreen)**:
+     - Berukuran proporsional mengambang di tengah layar (`94vw x 88vh`, max 1220px x 840px), dengan sudut membulat mewah 28px dan backdrop blur arsitektural (`rgba(8, 17, 36, 0.78)` + `backdrop-filter: blur(20px)`).
+     - Menjaga konteks halaman villa tetap terasa di latar belakang tanpa menutupi seluruh browser secara agresif.
+   - **Panel Kiri (~68% lebar - Cinema Stage & Thumbs Strip)**:
+     - Area foto utama beresolusi tinggi dengan `object-fit: contain`, bayangan lembut, dan micro-animasi transisi.
+     - Tombol navigasi melayang bulat minimalis (`‹` dan `›`) serta badge nomor foto `[ 1 / 77 ]` berlatar kaca gelap dengan dot aksen emas `#D2B073`.
+     - Strip thumbnail mini horizontal di bawah foto utama dengan sorotan aktif ring border emas `#D2B073` dan tombol geser kiri-kanan.
+   - **Panel Kanan (~32% lebar - Curator Index `#FAF8F5`)**:
+     - Judul seksi *"Spaces & Rooms"* dengan ikon kurasi resort.
+     - Daftar tombol ruangan vertikal (All Spaces, Master Bedroom, Private Pool, Full Kitchen, Living Lounge, Garden, dll.) dilengkapi ikon kontekstual dan badge jumlah foto.
+     - Klik pada salah satu ruangan langsung melompatkan panggung foto kiri ke foto pertama ruangan tersebut secara instan.
+     - Card info *"NOW VIEWING"* di bagian bawah menampilkan nama ruangan aktif, caption asli dari listing Airbnb, serta badge jaminan verifikasi resmi Bali Stay Collection.
+   - **Toggle Mode Fleksibel (Pavilion vs All Grid)**:
+     - Pengguna dapat beralih antara mode Split Pavilion (default) dan mode masonry grid menyeluruh (*All Grid*) melalui tombol switcher pill di header atas.
+3. **Verifikasi & Kepatuhan Aturan**:
+   - `npm run build` berhasil 100% (0 error).
+   - `oxlint` 0 error.
+   - Dev server berjalan normal di port 5173.
+   - Seluruh fungsi baru dilengkapi komentar JSDoc Bahasa Indonesia lengkap.
+   - **ATURAN GIT DIPATUHI**: Perubahan disimpan hanya di repositori lokal dan **TIDAK ADA `git push`** yang dilakukan ke remote repository.

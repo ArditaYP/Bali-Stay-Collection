@@ -3359,364 +3359,606 @@ mark.review-highlight {
   background: #e2dfd5;
 }
 
-/* Gallery Lightbox Modal - Categorized Room Tour */
-.gallery-modal-content {
-  max-width: 1040px;
-  width: 95%;
-  background: #141413;
-  color: #fff;
-  padding: 24px;
-  border-radius: 18px;
-  max-height: 88vh;
+/* ==========================================================================
+   THE LUXURY PAVILION: SPLIT-SCREEN ARCHITECTURAL PHOTO TOUR (KONSEP 1)
+   ========================================================================== */
+.pavilion-gallery-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 17, 36, 0.78);
+  backdrop-filter: blur(20px);
+  z-index: 1200;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.22s ease-out;
 }
 
-.gallery-modal-header {
+.pavilion-gallery-canvas {
+  width: 94vw;
+  max-width: 1220px;
+  height: 88vh;
+  max-height: 840px;
+  background: #0b1730;
+  border-radius: 28px;
+  box-shadow: 0 36px 90px rgba(0, 0, 0, 0.6), 0 0 1px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  animation: popoverFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 1. Header Pavilion */
+.pavilion-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 16px 26px;
+  background: #0f2042;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   flex-shrink: 0;
 }
 
-.gallery-modal-header-left {
+.pavilion-header-left {
   display: flex;
   flex-direction: column;
 }
 
-.gallery-modal-title {
-  font-size: 20px;
+.pavilion-eyebrow {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #D2B073;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.pavilion-title {
+  font-size: 18.5px;
   font-weight: 700;
+  color: #ffffff;
   margin: 0;
-  color: #fff;
+  letter-spacing: -0.01em;
 }
 
-.gallery-modal-sub {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 4px 0 0;
+.pavilion-meta {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 2px 0 0;
 }
 
-.gallery-modal-header-actions {
+.pavilion-header-actions {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.gallery-grid-toggle-btn {
+.pavilion-view-switcher {
+  display: inline-flex;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 3px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 4px;
+}
+
+.switcher-btn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  padding: 7px 14px;
-  border-radius: 8px;
-  font-size: 13px;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.gallery-grid-toggle-btn:hover {
-  background: rgba(255, 255, 255, 0.22);
+.switcher-btn:hover {
+  color: #ffffff;
 }
 
-/* Horizontal Scrollable Room Pills Bar with Drag & Arrows */
-.gallery-pills-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  width: 100%;
+.switcher-btn.active {
+  background: #D2B073;
+  color: #16294D;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(210, 176, 115, 0.35);
 }
 
-.gallery-pills-bar {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 12px 6px;
-  flex-shrink: 0;
-  width: 100%;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  scroll-behavior: smooth;
-  cursor: grab;
-  user-select: none;
-  -webkit-overflow-scrolling: touch;
-}
-
-.gallery-pills-bar.grabbing {
-  cursor: grabbing;
-  scroll-behavior: auto;
-}
-
-.gallery-pills-bar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Tombol Panah Geser Kiri / Kanan untuk Pill */
-.pills-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 32px;
-  height: 32px;
+.pavilion-close-btn {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: rgba(36, 36, 34, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 8;
-  font-size: 20px;
-  line-height: 1;
+  font-size: 15px;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
 
-.pills-nav-btn:hover {
-  background: #fff;
-  color: #141413;
-  transform: translateY(-50%) scale(1.1);
-}
-
-.pills-nav-prev {
-  left: 0;
-  box-shadow: 8px 0 16px rgba(20, 20, 19, 0.9);
-}
-
-.pills-nav-next {
-  right: 0;
-  box-shadow: -8px 0 16px rgba(20, 20, 19, 0.9);
-}
-
-.gallery-pill {
-  background: rgba(255, 255, 255, 0.08);
-  color: #c9c6bd;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 100px;
-  padding: 6px 14px;
-  font-size: 12.5px;
-  font-weight: 500;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s ease;
-}
-
-.gallery-pill:hover {
-  background: rgba(255, 255, 255, 0.16);
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.25);
-}
-
-.gallery-pill.active {
-  background: #fff;
-  color: #141413;
-  font-weight: 700;
-  border-color: #fff;
-}
-
-/* Scroll Area for Categorized Rooms */
-.gallery-scroll-area {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px 4px 10px 0;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
-}
-
-.gallery-scroll-area::-webkit-scrollbar {
-  width: 6px;
-}
-
-.gallery-scroll-area::-webkit-scrollbar-thumb {
+.pavilion-close-btn:hover {
   background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  transform: scale(1.08);
 }
 
-.gallery-room-section {
-  margin-bottom: 34px;
-}
-
-.gallery-room-title {
+/* 2. Split Body Layout */
+.pavilion-split-body {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.gallery-room-title h3 {
-  font-size: 17px;
-  font-weight: 700;
-  color: #fff;
-  margin: 0;
-}
-
-.gallery-room-title span {
-  font-size: 12.5px;
-  color: var(--muted);
-}
-
-.gallery-room-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-}
-
-.gallery-photo-card {
-  position: relative;
-  border-radius: 12px;
+  flex: 1;
+  min-height: 0;
   overflow: hidden;
-  background: #242422;
-  cursor: pointer;
-  aspect-ratio: 16 / 10;
-  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.gallery-photo-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.25s ease;
-  display: block;
-}
-
-.gallery-photo-card:hover img {
-  transform: scale(1.03);
-}
-
-.gallery-photo-badge {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  right: 8px;
-  background: rgba(15, 15, 14, 0.78);
-  backdrop-filter: blur(6px);
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 500;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  pointer-events: none;
-}
-
-.gallery-badge-caption {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding-right: 8px;
-}
-
-.gallery-badge-index {
-  color: var(--muted);
-  font-size: 11px;
-  flex-shrink: 0;
-}
-
-/* Single Photo Focus Mode (Lightbox View) */
-.gallery-single-view {
+/* Panel Kiri: Panggung Foto Utama & Strip Thumbnail (~68%) */
+.pavilion-stage-panel {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  min-height: 60vh;
-  padding: 10px 0;
+  background: #070e1c;
+  min-width: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-.gallery-single-img-wrap {
+.pavilion-main-stage {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  padding: 16px 20px 8px;
+  min-height: 0;
+}
+
+.pavilion-img-container {
   width: 100%;
-  overflow: hidden;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
-.gallery-single-img {
-  max-height: 65vh;
-  max-width: 90%;
+.pavilion-active-img {
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
-  border-radius: 10px;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.2s ease-out;
 }
 
-.gallery-single-nav {
+.pavilion-counter-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  background: rgba(7, 14, 28, 0.78);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.dot-live {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #D2B073;
+}
+
+.pavilion-nav-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(15, 32, 66, 0.8);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 5;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+}
+
+.pavilion-nav-btn:hover {
+  background: #D2B073;
+  color: #16294D;
+  border-color: #D2B073;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.pavilion-nav-prev {
+  left: 16px;
+}
+
+.pavilion-nav-next {
+  right: 16px;
+}
+
+/* Strip Thumbnail Mini di Bawah Foto */
+.pavilion-thumbs-strip-wrapper {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 8px 14px;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.pavilion-thumbs-track {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex: 1;
+  height: 100%;
+  align-items: center;
+  scroll-behavior: smooth;
+}
+
+.pavilion-thumbs-track::-webkit-scrollbar {
+  display: none;
+}
+
+.pavilion-thumb {
+  width: 72px;
+  height: 52px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  opacity: 0.55;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  background: #11213f;
+  padding: 0;
+}
+
+.pavilion-thumb:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.pavilion-thumb.active {
+  border-color: #D2B073;
+  opacity: 1;
+  transform: scale(1.06);
+  box-shadow: 0 4px 12px rgba(210, 176, 115, 0.45);
+}
+
+.pavilion-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.thumb-scroll-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-size: 26px;
+  font-size: 17px;
   line-height: 1;
-  z-index: 5;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
 }
 
-.gallery-single-nav:hover {
-  background: rgba(255, 255, 255, 0.32);
-  transform: translateY(-50%) scale(1.08);
+.thumb-scroll-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.gallery-single-prev {
-  left: 12px;
-}
-
-.gallery-single-next {
-  right: 12px;
-}
-
-.gallery-single-footer {
+/* Panel Kanan: Kurator Ruangan (~32%) */
+.pavilion-curator-panel {
+  width: 340px;
+  background: #FAF8F5;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-top: 14px;
-  padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  flex-direction: column;
+  flex-shrink: 0;
+  color: #1e293b;
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.curator-panel-header {
+  padding: 18px 20px 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   flex-shrink: 0;
 }
 
-.gallery-single-caption-wrap {
+.curator-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.curator-title-row h3 {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #16294D;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.curator-sub {
+  font-size: 11.5px;
+  color: #64748b;
+  margin-top: 2px;
+  display: block;
+}
+
+.curator-rooms-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 6px;
+  scrollbar-width: thin;
 }
 
-.gallery-single-room {
-  font-size: 14px;
-  font-weight: 700;
-  color: #fff;
+.curator-room-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  text-align: left;
+  width: 100%;
 }
 
-.gallery-single-desc {
-  font-size: 12.5px;
-  color: var(--muted);
+.curator-room-btn:hover {
+  background: rgba(22, 41, 77, 0.04);
 }
 
-.gallery-single-counter {
+.curator-room-btn.active {
+  background: #16294D;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(22, 41, 77, 0.18);
+}
+
+.room-btn-left {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.room-icon-svg {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.room-name {
   font-size: 13px;
   font-weight: 600;
-  color: #c9c6bd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.room-count-badge {
+  font-size: 11.5px;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.06);
+  color: #475569;
+  padding: 2px 8px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.curator-room-btn.active .room-count-badge {
+  background: #D2B073;
+  color: #16294D;
+}
+
+/* Card Detail Ruangan Aktif */
+.curator-active-card {
+  padding: 16px 18px;
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  flex-shrink: 0;
+}
+
+.card-tag {
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #D2B073;
+  margin-bottom: 3px;
+}
+
+.card-room-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #16294D;
+  margin: 0 0 4px;
+}
+
+.card-caption-desc {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #475569;
+  margin: 0 0 10px;
+  max-height: 52px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.card-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #2F6B3A;
+  background: #EBF7EE;
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+/* 3. Mode Alternatif: All Grid (Masonry Rooms) */
+.pavilion-grid-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px 32px;
+  background: #FAF8F5;
+  scrollbar-width: thin;
+}
+
+.pavilion-grid-section {
+  margin-bottom: 32px;
+}
+
+.grid-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.grid-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #16294D;
+}
+
+.grid-section-title h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.grid-section-header span {
+  font-size: 12.5px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.pavilion-masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.masonry-card {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #11213f;
+}
+
+.masonry-card:hover {
+  transform: scale(1.025);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+.masonry-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.masonry-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, transparent 60%);
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 12px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.masonry-card:hover .masonry-card-overlay {
+  opacity: 1;
+}
+
+.masonry-card-overlay span {
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsivitas Pavilion untuk Tablet & Mobile */
+@media (max-width: 860px) {
+  .pavilion-gallery-canvas {
+    width: 96vw;
+    height: 92vh;
+    border-radius: 20px;
+  }
+
+  .pavilion-split-body {
+    flex-direction: column;
+  }
+
+  .pavilion-stage-panel {
+    flex: 1;
+    min-height: 52vh;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .pavilion-curator-panel {
+    width: 100%;
+    height: 38vh;
+    border-left: none;
+  }
+
+  .pavilion-masonry-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* =========================================================
