@@ -54,15 +54,16 @@ export default function App() {
         const fresh = INITIAL_VILLAS.find(iv => iv.id === v.id);
         if (fresh) {
           return {
-            ...fresh,
             ...v,
-            images: fresh.images?.length ? fresh.images : v.images,
-            img: fresh.img || v.img,
-            reviews: fresh.reviews?.length ? fresh.reviews : v.reviews,
+            ...fresh,
+            images: (fresh.images && fresh.images.length) ? fresh.images : (v.images || []),
+            img: fresh.img || v.img || '',
+            reviews: (fresh.reviews && fresh.reviews.length) ? fresh.reviews : (v.reviews || []),
             rating: fresh.rating ?? v.rating,
             reviewsCount: fresh.reviewsCount ?? v.reviewsCount,
-            amenities: fresh.amenities?.length ? fresh.amenities : v.amenities,
+            amenities: (fresh.amenities && fresh.amenities.length) ? fresh.amenities : (v.amenities || []),
             price: fresh.price || v.price,
+            name: fresh.name || v.name,
             description: fresh.description || v.description,
             shortDesc: fresh.shortDesc || v.shortDesc,
             fullDesc: fresh.fullDesc || v.fullDesc,

@@ -549,43 +549,6 @@ export const BSC_VILLAS = [
     ]
   },
   {
-    "id": "beyond-the-palms",
-    "name": "Beyond the Palms",
-    "area": "Canggu & Berawa",
-    "beds": 4,
-    "baths": 4,
-    "guests": 8,
-    "price": 380,
-    "tier": "Premium",
-    "trips": [
-      "Friends group",
-      "Family",
-      "Wellness retreat"
-    ],
-    "setting": [
-      "Garden setting"
-    ],
-    "am": [
-      "Private pool",
-      "Chef on request",
-      "Wellness facilities"
-    ],
-    "tone": [
-      "#D8C9A8",
-      "#EFE6CF"
-    ],
-    "img": "",
-    "why": "",
-    "cancel": "",
-    "verified": false,
-    "updated": "",
-    "pick": false,
-    "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests. Features wellness facilities.",
-    "know": [
-      "Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."
-    ]
-  },
-  {
     "id": "cala-blanca",
     "name": "Cala Blanca",
     "area": "Pererenan",
@@ -984,41 +947,6 @@ export const BSC_VILLAS = [
     "aliasId": "villa-habitas"
   },
   {
-    "id": "villa-surga",
-    "name": "Villa Surga",
-    "area": "Ubud",
-    "beds": 4,
-    "baths": 4,
-    "guests": 8,
-    "price": 370,
-    "tier": "Premium",
-    "trips": [
-      "Friends group",
-      "Family"
-    ],
-    "setting": [
-      "Valley view"
-    ],
-    "am": [
-      "Private pool",
-      "Daily staff",
-      "Chef on request",
-      "Air conditioning"
-    ],
-    "tone": [
-      "#C7CDBB",
-      "#E2E7D6"
-    ],
-    "img": "/airbnb/mandapa-jungle-villa/photos/photo-01.jpg",
-    "why": "",
-    "cancel": "",
-    "verified": false,
-    "updated": "",
-    "pick": false,
-    "desc": "4-bedroom private pool villa in Ubud, for up to 8 guests. Features valley views.",
-    "know": []
-  },
-  {
     "id": "villa-mango-2",
     "name": "Villa Mango 2",
     "area": "Canggu & Berawa",
@@ -1236,40 +1164,6 @@ export const BSC_VILLAS = [
     "aliasId": "angkasa-ubud"
   },
   {
-    "id": "villa-akar",
-    "name": "Villa Akar",
-    "area": "Canggu & Berawa",
-    "beds": 4,
-    "baths": 5,
-    "guests": 8,
-    "price": 270,
-    "tier": "Deluxe",
-    "trips": [
-      "Friends group",
-      "Family"
-    ],
-    "setting": [],
-    "am": [
-      "Private pool",
-      "Daily staff",
-      "Chef on request"
-    ],
-    "tone": [
-      "#D8C9A8",
-      "#EFE6CF"
-    ],
-    "img": "",
-    "why": "",
-    "cancel": "",
-    "verified": false,
-    "updated": "",
-    "pick": false,
-    "desc": "4-bedroom private pool villa in Canggu & Berawa, for up to 8 guests.",
-    "know": [
-      "Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."
-    ]
-  },
-  {
     "id": "villa-daun-by-teduh",
     "name": "Villa Daun (by Teduh)",
     "area": "Canggu & Berawa",
@@ -1377,41 +1271,6 @@ export const BSC_VILLAS = [
     "aliasId": "st-lau-ubud"
   },
   {
-    "id": "villa-mahina",
-    "name": "Villa Mahina",
-    "area": "Canggu & Berawa",
-    "beds": 3,
-    "baths": 3,
-    "guests": 6,
-    "price": 320,
-    "tier": "Deluxe",
-    "trips": [
-      "Friends group",
-      "Family"
-    ],
-    "setting": [
-      "Walk to the beach"
-    ],
-    "am": [
-      "Private pool",
-      "Daily staff",
-      "Chef on request",
-      "Air conditioning"
-    ],
-    "tone": [
-      "#D8C9A8",
-      "#EFE6CF"
-    ],
-    "img": "",
-    "why": "",
-    "cancel": "",
-    "verified": false,
-    "updated": "",
-    "pick": false,
-    "desc": "3-bedroom private pool villa in Canggu & Berawa, for up to 6 guests. Features a short walk to the beach.",
-    "know": []
-  },
-  {
     "id": "villa-serenity",
     "name": "Villa Serenity",
     "area": "Canggu & Berawa",
@@ -1514,41 +1373,6 @@ export const BSC_VILLAS = [
     "know": [
       "Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."
     ]
-  },
-  {
-    "id": "villa-golden",
-    "name": "Villa Golden",
-    "area": "Canggu & Berawa",
-    "beds": 2,
-    "baths": 2,
-    "guests": 4,
-    "price": 260,
-    "tier": "Deluxe",
-    "trips": [
-      "Couples",
-      "Honeymoon"
-    ],
-    "setting": [
-      "Walkable to cafés"
-    ],
-    "am": [
-      "Private pool",
-      "Daily staff",
-      "Chef on request",
-      "Walk to cafés"
-    ],
-    "tone": [
-      "#D8C9A8",
-      "#EFE6CF"
-    ],
-    "img": "",
-    "why": "",
-    "cancel": "",
-    "verified": false,
-    "updated": "",
-    "pick": false,
-    "desc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests. Features cafés within walking distance.",
-    "know": []
   },
   {
     "id": "alua-taupe",
@@ -1950,38 +1774,6 @@ export const BSC_VILLAS = [
     "pick": false,
     "desc": "1-bedroom private pool villa in Uluwatu & Bukit, for up to 2 guests.",
     "know": []
-  },
-  {
-    "id": "khaleela-villas",
-    "name": "Khaleela Villas",
-    "area": "Canggu & Berawa",
-    "beds": 2,
-    "baths": 2,
-    "guests": 4,
-    "price": 160,
-    "tier": "Standard",
-    "trips": [
-      "Couples"
-    ],
-    "setting": [],
-    "am": [
-      "Private pool",
-      "Daily staff"
-    ],
-    "tone": [
-      "#D8C9A8",
-      "#EFE6CF"
-    ],
-    "img": "",
-    "why": "",
-    "cancel": "",
-    "verified": false,
-    "updated": "",
-    "pick": false,
-    "desc": "2-bedroom private pool villa in Canggu & Berawa, for up to 4 guests.",
-    "know": [
-      "Construction work was reported near this villa. We will check the current situation on inspection and tell you before you book."
-    ]
   },
   {
     "id": "alua-loft",
