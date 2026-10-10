@@ -7470,11 +7470,10 @@ mark.review-highlight {
 /* TOP PICKS SHOW PRICE & DATE PICKER MODAL                       */
 /* ============================================================== */
 .picks-price-action {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 8px !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
   width: 100% !important;
-  align-items: stretch !important;
 }
 
 .btn-show-price {
@@ -7483,20 +7482,20 @@ mark.review-highlight {
   border: 1.5px solid var(--ink, #16294D) !important;
   border-radius: 12px !important;
   height: 42px !important;
-  padding: 0 10px !important;
-  font-size: 13px !important;
+  padding: 0 18px !important;
+  font-size: 13.5px !important;
   font-weight: 600 !important;
   letter-spacing: 0.01em !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 6px !important;
+  gap: 7px !important;
   cursor: pointer !important;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
   white-space: nowrap !important;
   box-shadow: 0 2px 6px rgba(22, 41, 77, 0.14) !important;
   box-sizing: border-box !important;
-  width: 100% !important;
+  width: auto !important;
 }
 
 .btn-show-price:hover {
@@ -7802,11 +7801,12 @@ mark.review-highlight {
 
 @media (max-width: 640px) {
   .picks-price-action {
-    grid-template-columns: 1fr !important;
-    gap: 8px !important;
-  }
-  .btn-show-price, .btn-view-villa-alt {
+    display: flex !important;
+    justify-content: flex-end !important;
     width: 100% !important;
+  }
+  .btn-show-price {
+    width: auto !important;
     justify-content: center !important;
   }
   .price-row.is-unlocked {

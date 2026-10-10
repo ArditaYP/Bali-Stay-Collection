@@ -1835,6 +1835,30 @@ src/
    - `npm run build`: **Lulus 100% (3.01s, 0 Error)**.
    - Seluruh interaksi filter di sisi kiri teruji menggulirkan viewport ke atas katalog dengan transisi yang lembut, tenang, dan ultra-smooth.
 
+### 9.27 Eliminasi Tombol "View Villa" di Seksi Picks & Penyempurnaan Scroll Pelan-Pelan dari Titik Klik
+1. **Instruksi Pengguna**:
+   - *"itu terlalu kencang dia, coba dari tempat dia ngeclick yang di kiri, dari sana pelan pelan ke scroll ke atas animasi nya"*
+   - *"sekalian kerjakan ini, di section id="picks" itu hilangin aja view villa taruh dah show price di sebelah kanan"*
+2. **Kebutuhan & Implementasi**:
+   - **Penyempurnaan Seksi Picks (`#picks`) ([`src/components/frontpage/BscTopPicks.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscTopPicks.jsx) & [`src/index.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/index.css))**:
+     - Tombol sekunder *"View villa"* (`btn-view-villa-alt`) pada status default (sebelum tanggal dipilih) telah dihapus sepenuhnya.
+     - Kontainer tombol `.picks-price-action` diubah menjadi `display: flex; justify-content: flex-end; width: 100%;` sehingga tombol tunggal **"Show price"** (`btn-show-price`) tertata elegan di sisi kanan bawah kartu.
+     - Responsivitas mobile (`@media (max-width: 640px)`) diselaraskan agar tombol tetap berada rapi di sisi kanan kartu.
+   - **Penyempurnaan Scroll Pelan-Pelan dari Titik Klik di Katalog (`#villas`) ([`src/components/frontpage/BscVillaCatalog.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscVillaCatalog.jsx))**:
+     - **Akar Masalah "Terlalu Kencang / Loncat"**:
+       - Ketika pengguna mengklik filter kamar (misal: 5+ atau 6+), jumlah kartu villa menyusut drastis dari 24/35 menjadi 3 kartu. Penurunan tinggi DOM yang tiba-tiba membuat browser secara otomatis menjepit (*clamp/snap*) posisi `window.scrollY` ke batas tinggi dokumen yang baru sebelum animasi selesai berjalan, sehingga terasa "terlalu kencang" atau melompat.
+     - **Solusi Pencegahan Anjlok Tinggi Kontainer (`lockCatalogHeight`)**:
+       - Sebelum state filter diperbarui, fungsi `lockCatalogHeight` mengunci sementara `minHeight` kontainer `.results` ke tinggi penuh saat itu.
+       - Dengan demikian, dokumen tidak menyusut mendadak, dan browser tetap mempertahankan `window.scrollY` persis di koordinat saat pengguna mengeklik di sisi kiri.
+       - Ketika animasi scroll telah selesai dan viewport tiba dengan lembut di bagian atas katalog, `unlockCatalogHeight` melepaskan kembali `minHeight` tanpa ada pergeseran visual apa pun.
+     - **Pacing yang Santai & Sangat Pelan**:
+       - Durasi scroll diperpanjang menjadi **1250ms hingga 1700ms** (~1,3 detik s.d. 1,7 detik).
+       - Menghasilkan sensasi meluncur dari titik klik di sidebar kiri perlahan-lahan ke atas katalog secara anggun dan menenangkan.
+3. **Hasil Verifikasi**:
+   - `npm run lint`: **0 Error**.
+   - `npm run build`: **Lulus 100% (3.00s, 0 Error)**.
+   - **PROTOKOL PRE-PUSH DIPATUHI KETAT**: Seluruh perubahan hanya disimpan dalam commit lokal dan **TIDAK ADA `git push`**.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

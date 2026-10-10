@@ -131,12 +131,41 @@ export default function BscVillaCatalog({
   const scrollAnimRef = useRef(null);
 
   /**
+   * Mengunci tinggi kontainer hasil katalog saat filter diklik
+   * Mencegah scrollY melompat/anjlok mendadak akibat berkurangnya jumlah kartu villa
+   * sehingga scroll animasi bisa dimulai tepat dari posisi saat pengguna mengeklik di sisi kiri.
+   * @returns {void}
+   */
+  const lockCatalogHeight = useCallback(() => {
+    if (typeof document === 'undefined') return;
+    const resultsEl = catalogSectionRef.current?.querySelector('.results') || document.querySelector('.bsc-frontpage .results');
+    if (resultsEl) {
+      resultsEl.style.minHeight = `${resultsEl.offsetHeight}px`;
+    }
+  }, []);
+
+  /**
+   * Melepas kunci tinggi kontainer setelah animasi scroll pelan-pelan mencapai bagian atas
+   * @returns {void}
+   */
+  const unlockCatalogHeight = useCallback(() => {
+    if (typeof document === 'undefined') return;
+    const resultsEl = catalogSectionRef.current?.querySelector('.results') || document.querySelector('.bsc-frontpage .results');
+    if (resultsEl) {
+      resultsEl.style.minHeight = '';
+    }
+  }, []);
+
+  /**
    * Menggulir halaman secara perlahan dan ultra-smooth ke bagian atas katalog (#villas)
-   * Berjalan saat pengguna memilih filter di sisi kiri (Bedrooms 5+, 6+, Must have, Tier, dsb.)
+   * Dimulai persis dari titik scroll saat pengguna mengeklik opsi di sisi kiri
    * @returns {void}
    */
   const scrollToCatalogTop = useCallback(() => {
     if (typeof window === 'undefined') return;
+
+    // Kunci tinggi kontainer terlebih dahulu agar scrollY tidak meloncat
+    lockCatalogHeight();
 
     // Batalkan animasi gulir yang sedang berjalan jika pengguna mengeklik beruntun
     if (scrollAnimRef.current) {
@@ -145,27 +174,34 @@ export default function BscVillaCatalog({
     }
 
     const sectionEl = catalogSectionRef.current || document.getElementById('villas');
-    if (!sectionEl) return;
+    if (!sectionEl) {
+      unlockCatalogHeight();
+      return;
+    }
 
     // Target posisi di atas katalog dengan buffer offset navbar 88px (navbar 72px + margin 16px)
     const rect = sectionEl.getBoundingClientRect();
     const targetY = Math.max(0, rect.top + window.scrollY - 88);
+    // startY adalah posisi scroll TEPAT saat pengguna mengeklik filter
     const startY = window.scrollY;
     const distance = startY - targetY;
 
-    // Hanya lakukan scroll jika posisi saat ini berada lebih ke bawah dari target (ke atas)
-    if (distance <= 20) return;
+    // Jika posisi scroll sudah berada di atas atau tepat di puncak katalog, tidak perlu gulir
+    if (distance <= 15) {
+      unlockCatalogHeight();
+      return;
+    }
 
-    // Durasi dinamis 700ms - 950ms agar animasi mengalir pelan dan santai
-    const duration = Math.min(950, Math.max(700, Math.sqrt(Math.abs(distance)) * 26));
+    // Durasi pelan-pelan (1250ms - 1700ms) agar terasa tenang, berkelas, dan santai
+    const duration = Math.min(1700, Math.max(1250, Math.sqrt(Math.abs(distance)) * 46));
     const startTime = performance.now();
 
-    // Matikan sementara scroll-behavior CSS agar requestAnimationFrame berjalan presisi 60 FPS
+    // Matikan sementara scroll-behavior CSS agar requestAnimationFrame berjalan tanpa gangguan
     const docEl = document.documentElement;
     const prevScrollBehavior = docEl.style.scrollBehavior;
     docEl.style.scrollBehavior = 'auto';
 
-    // Kurva kurvatur easeInOutCubic yang halus dan mewah
+    // Kurva kurvatur easeInOutCubic yang sangat halus dan mewah
     const easeInOutCubic = (t) => {
       return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
     };
@@ -185,6 +221,7 @@ export default function BscVillaCatalog({
         scrollAnimRef.current = null;
       }
       cleanupAndRestore();
+      unlockCatalogHeight();
     };
 
     window.addEventListener('wheel', handleInterrupt, { passive: true });
@@ -201,13 +238,15 @@ export default function BscVillaCatalog({
       if (progress < 1) {
         scrollAnimRef.current = requestAnimationFrame(step);
       } else {
+        window.scrollTo(0, targetY);
         scrollAnimRef.current = null;
         cleanupAndRestore();
+        unlockCatalogHeight();
       }
     };
 
     scrollAnimRef.current = requestAnimationFrame(step);
-  }, []);
+  }, [lockCatalogHeight, unlockCatalogHeight]);
 
   // Bersihkan referensi animasi saat komponen dilepas (unmount)
   useEffect(() => {
@@ -232,6 +271,7 @@ export default function BscVillaCatalog({
    * @returns {void}
    */
   const handleResetFilters = () => {
+    lockCatalogHeight();
     setCatalogSearchKeyword('');
     setMaxPrice(600);
     setSelectedTiers([]);
@@ -253,6 +293,7 @@ export default function BscVillaCatalog({
    * @returns {void}
    */
   const handleToggleTier = (tier) => {
+    lockCatalogHeight();
     setSelectedTiers(prev => 
       prev.includes(tier) ? prev.filter(t => t !== tier) : [...prev, tier]
     );
@@ -266,6 +307,7 @@ export default function BscVillaCatalog({
    * @returns {void}
    */
   const handleToggleTrip = (trip) => {
+    lockCatalogHeight();
     setSelectedTrips(prev => 
       prev.includes(trip) ? prev.filter(t => t !== trip) : [...prev, trip]
     );
@@ -279,6 +321,7 @@ export default function BscVillaCatalog({
    * @returns {void}
    */
   const handleToggleSetting = (setting) => {
+    lockCatalogHeight();
     setSelectedSettings(prev => 
       prev.includes(setting) ? prev.filter(s => s !== setting) : [...prev, setting]
     );
@@ -292,6 +335,7 @@ export default function BscVillaCatalog({
    * @returns {void}
    */
   const handleToggleAmenity = (amenity) => {
+    lockCatalogHeight();
     setSelectedAmenities(prev => 
       prev.includes(amenity) ? prev.filter(a => a !== amenity) : [...prev, amenity]
     );
@@ -439,11 +483,18 @@ export default function BscVillaCatalog({
                 step="10"
                 value={maxPrice}
                 onChange={(e) => {
+                  lockCatalogHeight();
                   setMaxPrice(parseInt(e.target.value, 10));
                   setShownCount(PAGE_SIZE);
                 }}
-                onMouseUp={scrollToCatalogTop}
-                onTouchEnd={scrollToCatalogTop}
+                onMouseUp={() => {
+                  lockCatalogHeight();
+                  scrollToCatalogTop();
+                }}
+                onTouchEnd={() => {
+                  lockCatalogHeight();
+                  scrollToCatalogTop();
+                }}
                 aria-label="Maximum price per night"
               />
               <div className="rng">
@@ -526,6 +577,7 @@ export default function BscVillaCatalog({
                   key={opt.value} 
                   className="ck"
                   onClick={() => {
+                    lockCatalogHeight();
                     if (minBeds === opt.value) {
                       scrollToCatalogTop();
                     }
@@ -537,6 +589,7 @@ export default function BscVillaCatalog({
                     value={opt.value}
                     checked={minBeds === opt.value}
                     onChange={() => {
+                      lockCatalogHeight();
                       setMinBeds(opt.value);
                       setShownCount(PAGE_SIZE);
                       scrollToCatalogTop();
