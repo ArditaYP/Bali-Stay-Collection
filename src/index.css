@@ -8497,7 +8497,41 @@ mark.review-highlight {
 }
 
 .picks-badges-row .badges-group .bdg {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 28px !important;
+  padding: 0 11px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  border-radius: 100px !important;
+  box-sizing: border-box !important;
   white-space: nowrap !important;
+}
+
+.picks-badges-row .badges-group .bdg.new {
+  background: var(--ink, #16294D) !important;
+  color: #ffffff !important;
+  border: 1px solid transparent !important;
+  height: 28px !important;
+  padding: 0 11px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
+}
+
+.picks-badges-row .badges-group .bdg.ok {
+  background: var(--ok-bg, #EAF4EC) !important;
+  color: var(--ok, #2F6B3A) !important;
+  border: 1px solid transparent !important;
+  height: 28px !important;
+  padding: 0 11px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  box-sizing: border-box !important;
 }
 
 .picks-badges-row .btn-show-price {

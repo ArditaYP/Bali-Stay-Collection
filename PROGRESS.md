@@ -2019,6 +2019,24 @@ src/
    - `npm run build`: **Lulus 100% (2.81s, 0 Error)**.
    - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
+### 9.35 Penyelarasan Presisi Dimensi Lencana New on BSC dan Inspected Oct 2026
+1. **Instruksi Pengguna**:
+   - *"mungkin New on BSC bisa di sama kan ukuran nya dengan Inspected Oct 2026"*
+2. **Kebutuhan & Implementasi**:
+   - **Penyelarasan Dimensi & Metrik Font**:
+     - Sebelumnya, lencana `New on BSC` dan `Inspected Oct 2026` menggunakan `display: inline` tanpa tinggi tetap (`height`). Perbedaan karakter descender (huruf `p` pada kata `Inspected`) menyebabkan kalkulasi line-box browser menghasilkan tinggi dan baseline yang sedikit berbeda antar kedua lencana.
+     - Ditetapkan dimensi tetap yang presisi untuk semua badge di `.badges-group .bdg`:
+       - `display: inline-flex !important; align-items: center !important; justify-content: center !important;`
+       - `height: 28px !important;` (tinggi seragam 28px)
+       - `padding: 0 11px !important;` (padding horizontal konsisten)
+       - `font-size: 12px !important; font-weight: 600 !important; line-height: 1 !important;`
+       - `border-radius: 100px !important; box-sizing: border-box !important; border: 1px solid transparent !important;`
+     - Baik `New on BSC` (latar navy) maupun `Inspected Oct 2026` (latar hijau pastel) kini memiliki tinggi dan keliling yang **100% identik dan sejajar simetris**.
+3. **Hasil Verifikasi**:
+   - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+   - `npm run build`: **Lulus 100% (2.84s, 0 Error)**.
+   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

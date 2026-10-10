@@ -926,15 +926,35 @@
 }
 
 .bsc-frontpage .bdg {
-  font-size:12px;padding:4px 10px;border-radius:100px;border:1px solid var(--line);color:var(--ink-soft);background:#fff
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  font-size: 12px;
+  padding: 0 11px;
+  border-radius: 100px;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  background: #fff;
+  line-height: 1;
+  box-sizing: border-box;
+  white-space: nowrap;
 }
 
 .bsc-frontpage .bdg.ok {
-  background:var(--ok-bg);color:var(--ok);border-color:transparent;font-weight:600
+  background: var(--ok-bg);
+  color: var(--ok);
+  border-color: transparent;
+  font-weight: 600;
+  height: 28px;
 }
 
 .bsc-frontpage .bdg.new {
-  background:var(--ink);color:#fff;border-color:transparent;font-weight:600
+  background: var(--ink);
+  color: #fff;
+  border-color: transparent;
+  font-weight: 600;
+  height: 28px;
 }
 
 .bsc-frontpage .price-row {
