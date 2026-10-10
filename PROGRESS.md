@@ -1834,3 +1834,14 @@ src/
    - `npm run lint`: **0 Error**.
    - `npm run build`: **Lulus 100% (3.01s, 0 Error)**.
    - Seluruh interaksi filter di sisi kiri teruji menggulirkan viewport ke atas katalog dengan transisi yang lembut, tenang, dan ultra-smooth.
+
+---
+
+## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)
+1. **DILARANG KERAS MENJALANKAN `git push` SECARA OTOMATIS!**
+2. Perintah `git push` yang pernah diberikan di pesan sebelumnya **HANYA BERLAKU SATU KALI** untuk commit yang diminta saat itu.
+3. Untuk setiap fitur baru, perbaikan bug, atau penyesuaian apa pun berikutnya:
+   - **HANYA simpan di commit lokal (`git commit`)**.
+   - **JANGAN PERNAH `git push`**.
+   - Berikan kesempatan kepada pengguna untuk memeriksa, mencoba, dan memverifikasi hasilnya secara langsung di server lokal terlebih dahulu (`http://localhost:5173`).
+   - Eksekusi `git push` baru boleh dilakukan jika dan HANYA JIKA pengguna secara eksplisit dan terpisah menuliskan kata *"push ke github"* untuk perubahan tersebut.
