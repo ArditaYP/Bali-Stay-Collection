@@ -8592,19 +8592,29 @@ mark.review-highlight {
   color: var(--ok, #2F6B3A) !important;
   border: 1px solid rgba(47, 107, 58, 0.16) !important;
   height: 38px !important;
+  min-height: 38px !important;
+  width: 132px !important;
+  min-width: 132px !important;
+  max-width: 132px !important;
   padding: 0 16px !important;
-  font-size: 13px !important;
+  font-size: 13.5px !important;
   font-weight: 700 !important;
   line-height: 1 !important;
+  letter-spacing: 0.01em !important;
   border-radius: 100px !important;
   box-sizing: border-box !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: auto !important;
-  min-width: 0 !important;
-  max-width: none !important;
+  gap: 7px !important;
   white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.picks-badges-row .bdg.ok svg {
+  width: 14.5px !important;
+  height: 14.5px !important;
+  flex-shrink: 0 !important;
 }
 
 .picks-badges-row .btn-show-price {
@@ -8613,9 +8623,14 @@ mark.review-highlight {
   border: 1.5px solid var(--ink, #16294D) !important;
   border-radius: 100px !important;
   height: 38px !important;
-  padding: 0 18px !important;
+  min-height: 38px !important;
+  width: 132px !important;
+  min-width: 132px !important;
+  max-width: 132px !important;
+  padding: 0 16px !important;
   font-size: 13.5px !important;
   font-weight: 700 !important;
+  line-height: 1 !important;
   letter-spacing: 0.01em !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -8654,19 +8669,29 @@ mark.review-highlight {
   color: var(--ok, #2F6B3A) !important;
   border: 1px solid rgba(47, 107, 58, 0.16) !important;
   height: 38px !important;
+  min-height: 38px !important;
+  width: 132px !important;
+  min-width: 132px !important;
+  max-width: 132px !important;
   padding: 0 16px !important;
-  font-size: 13px !important;
+  font-size: 13.5px !important;
   font-weight: 700 !important;
   line-height: 1 !important;
+  letter-spacing: 0.01em !important;
   border-radius: 100px !important;
   box-sizing: border-box !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: auto !important;
-  min-width: 0 !important;
-  max-width: none !important;
+  gap: 7px !important;
   white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.rb .bottom .bdg.ok svg {
+  width: 14.5px !important;
+  height: 14.5px !important;
+  flex-shrink: 0 !important;
 }
 
 .btn-show-price-row {
@@ -8676,9 +8701,13 @@ mark.review-highlight {
   border-radius: 100px !important;
   height: 38px !important;
   min-height: 38px !important;
-  padding: 0 18px !important;
+  width: 132px !important;
+  min-width: 132px !important;
+  max-width: 132px !important;
+  padding: 0 16px !important;
   font-size: 13.5px !important;
   font-weight: 700 !important;
+  line-height: 1 !important;
   letter-spacing: 0.01em !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -8689,6 +8718,7 @@ mark.review-highlight {
   box-sizing: border-box !important;
   flex-shrink: 0 !important;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  white-space: nowrap !important;
 }
 
 .btn-show-price-row:hover {

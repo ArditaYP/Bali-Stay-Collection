@@ -1193,19 +1193,29 @@
   color: var(--ok, #2F6B3A) !important;
   border: 1px solid rgba(47, 107, 58, 0.16) !important;
   height: 38px !important;
+  min-height: 38px !important;
+  width: 132px !important;
+  min-width: 132px !important;
+  max-width: 132px !important;
   padding: 0 16px !important;
-  font-size: 13px !important;
+  font-size: 13.5px !important;
   font-weight: 700 !important;
   line-height: 1 !important;
+  letter-spacing: 0.01em !important;
   border-radius: 100px !important;
   box-sizing: border-box !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  width: auto !important;
-  min-width: 0 !important;
-  max-width: none !important;
+  gap: 7px !important;
   white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.bsc-frontpage .rb .bottom .bdg.ok svg {
+  width: 14.5px !important;
+  height: 14.5px !important;
+  flex-shrink: 0 !important;
 }
 
 .bsc-frontpage .rb .bottom .btn.btn-show-price-row {
@@ -1215,7 +1225,10 @@
   border-radius: 100px !important;
   height: 38px !important;
   min-height: 38px !important;
-  padding: 0 18px !important;
+  width: 132px !important;
+  min-width: 132px !important;
+  max-width: 132px !important;
+  padding: 0 16px !important;
   font-size: 13.5px !important;
   font-weight: 700 !important;
   letter-spacing: 0.01em !important;
@@ -1630,20 +1643,352 @@
   display:block;color:var(--ink);margin-bottom:2px
 }
 
-.bsc-frontpage footer {
-  background:var(--ink);color:#BDB9AE;padding:36px 0;margin-top:16px;font-size:14px
+/* ==========================================================================
+   OFFICIAL FOOTER REDESIGN (Sesuai footer.jpeg)
+   ========================================================================== */
+.bsc-frontpage footer.bsc-site-footer {
+  background: #0B1930;
+  color: #94A3B8;
+  padding: 0;
+  margin-top: 48px;
+  font-family: inherit;
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.bsc-frontpage .foot {
-  display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap
+/* 1. Pre-Footer Callout Banner */
+.bsc-frontpage .foot-banner {
+  padding: 56px 0 48px;
 }
 
-.bsc-frontpage .foot a:hover {
-  color:#fff
+.bsc-frontpage .foot-banner-in {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 36px;
 }
 
+.bsc-frontpage .foot-banner-text h2 {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0 0 10px 0;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+
+.bsc-frontpage .foot-banner-text p {
+  font-size: 15px;
+  color: #94A3B8;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.bsc-frontpage .foot-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.bsc-frontpage .btn-foot-find {
+  background: #D8B370;
+  color: #0B1930;
+  font-size: 14.5px;
+  font-weight: 700;
+  padding: 13px 26px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.bsc-frontpage .btn-foot-find:hover {
+  background: #E3C48B;
+  transform: translateY(-1px);
+}
+
+.bsc-frontpage .btn-foot-chat {
+  background: transparent;
+  color: #FFFFFF;
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.bsc-frontpage .btn-foot-chat:hover {
+  border-color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+/* Thin Divider */
+.bsc-frontpage .foot-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0;
+}
+
+/* 2. Main 4-Column Grid */
+.bsc-frontpage .foot-main {
+  padding: 52px 0 46px;
+}
+
+.bsc-frontpage .foot-grid {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 2.3fr 1.2fr 1.4fr 1.2fr;
+  gap: 40px;
+}
+
+/* Col 1: Brand */
+.bsc-frontpage .foot-brand-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.bsc-frontpage .foot-brand-sub {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #D8B370;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+.bsc-frontpage .foot-brand-desc {
+  font-size: 14px;
+  color: #94A3B8;
+  line-height: 1.6;
+  margin: 16px 0 20px 0;
+  max-width: 320px;
+}
+
+.bsc-frontpage .foot-contact-block {
+  font-size: 13.5px;
+  color: #94A3B8;
+  line-height: 1.65;
+}
+
+.bsc-frontpage .foot-contact-block strong {
+  color: #FFFFFF;
+  font-weight: 700;
+}
+
+.bsc-frontpage .foot-contact-block a {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.bsc-frontpage .foot-contact-block a:hover {
+  color: #FFFFFF;
+}
+
+.bsc-frontpage .foot-contact-sub {
+  color: #64748B;
+  font-size: 13px;
+}
+
+/* Common Column Headers */
+.bsc-frontpage .foot-col-title {
+  color: #D8B370;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin: 0 0 20px 0;
+}
+
+.bsc-frontpage .foot-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bsc-frontpage .foot-links li a {
+  color: #CBD5E1;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.15s ease;
+  display: inline-block;
+}
+
+.bsc-frontpage .foot-links li a:hover {
+  color: #FFFFFF;
+}
+
+/* Col 4: A Brand of ANAKOSA */
+.bsc-frontpage .foot-anakosa-logo {
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  color: #FFFFFF;
+  margin: 0 0 24px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.bsc-frontpage .foot-anakosa-sub {
+  font-size: 14px;
+  color: #CBD5E1;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.bsc-frontpage .foot-anakosa-cta {
+  color: #FFFFFF;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.bsc-frontpage .foot-anakosa-cta:hover {
+  opacity: 0.85;
+}
+
+/* 3. Bottom Bar */
+.bsc-frontpage .foot-bottom {
+  padding: 22px 0 26px;
+}
+
+.bsc-frontpage .foot-bottom-in {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.bsc-frontpage .foot-copy {
+  font-size: 13px;
+  color: #64748B;
+}
+
+.bsc-frontpage .foot-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-right: 140px;
+}
+
+.bsc-frontpage .foot-bottom-links a {
+  color: #CBD5E1;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.bsc-frontpage .foot-bottom-links a:hover {
+  color: #FFFFFF;
+}
+
+/* Floating WhatsApp (Chat with us) */
 .bsc-frontpage .wa {
-  position:fixed;right:20px;bottom:20px;z-index:50;background:#1E8E4E;color:#fff;border-radius:100px;padding:14px 20px;font-weight:600;box-shadow:0 10px 24px rgba(0,0,0,.2);display:flex;gap:8px;align-items:center
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 100;
+  background: #1E9E49;
+  color: #FFFFFF;
+  border-radius: 100px;
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.bsc-frontpage .wa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.32);
+}
+
+@media (max-width: 900px) {
+  .bsc-frontpage .foot-banner-in {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .bsc-frontpage .foot-banner-text h2 {
+    font-size: 26px;
+  }
+  .bsc-frontpage .foot-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .bsc-frontpage .foot-banner-in {
+    padding: 0 20px;
+  }
+  .bsc-frontpage .foot-banner-text h2 {
+    font-size: 22px;
+  }
+  .bsc-frontpage .foot-banner-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .bsc-frontpage .foot-banner-actions button,
+  .bsc-frontpage .foot-banner-actions a {
+    width: 100%;
+  }
+  .bsc-frontpage .foot-grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+    gap: 32px;
+  }
+  .bsc-frontpage .foot-bottom-in {
+    padding: 0 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .bsc-frontpage .foot-bottom-links {
+    gap: 16px;
+  }
 }
 
 /* trust additions */
@@ -1940,7 +2285,7 @@
     white-space: nowrap;
   }
   .bsc-frontpage .nav-cta .cur {
-    display: none;
+    display: inline-flex;
   }
   .bsc-frontpage .nav-cta .nav-wishlist-btn span {
     display: none;

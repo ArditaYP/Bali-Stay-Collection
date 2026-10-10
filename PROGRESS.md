@@ -2414,6 +2414,39 @@ src/
   - Verifikasi visual desktop (`picks_verified_show_price.png`, `catalog_aside_filters_updated.png`) & mobile (`catalog_row_buttons_mobile_centered.png`): **100% Sesuai Desain yang Diminta**.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
 
+### 9.54. Penyelarasan Ukuran Tombol (Verified & Show Price), Pembersihan Navbar Menu Atas, dan Redesain Footer Resmi Sesuai footer.jpeg
+- **Permintaan Pengguna**:
+  1. Ukuran tombol `Verified` di semua section (baik di `section id="picks"` maupun pada baris katalog `article.row`) disamakan ukurannya dengan tombol `Show Price`.
+  2. Desain footer dibuat mengikuti file referensi desain `footer.jpeg`.
+  3. Navbar atas diperbaiki: menghapus teks link `Villas`, `Destinations`, `Video tour`, dan `Experiences` di menu atas karena sudah dipindahkan ke footer.
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/BscNavbar.jsx`:
+     - Menghapus 4 link navigasi (`Villas`, `Destinations`, `Video tour`, `Experiences`) dari header atas.
+     - Merampingkan header: logo brand resmi di sisi kiri dan pengalih mata uang (USD/IDR) serta wishlist di sisi kanan.
+     - Menghapus hamburger mobile drawer yang redundan sehingga tampilan header di smartphone sangat bersih, modern, dan proporsional.
+  2. `src/components/frontpage/BscTopPicks.jsx` & `src/components/frontpage/BscVillaCatalog.jsx`:
+     - Menambahkan ikon centang SVG resmi di dalam badge pill `Verified` agar simetris dengan ikon kalender pada `Show Price`.
+  3. `src/components/frontpage/bscFrontpage.css` & `src/index.css`:
+     - Menyamakan dimensi fisik `Verified` dan `Show Price` secara presisi: lebar seragam `132px`, tinggi `38px`, font size `13.5px`, font weight `700`, border-radius `100px`, dan flex gap `7px`.
+     - Pada viewport mobile (`max-width: 640px`), kedua tombol menggunakan `flex: 1 1 0` dengan `max-width: 150px` sehingga selalu berukuran identik 1:1.
+     - Menambahkan CSS lengkap untuk redesain footer sesuai `footer.jpeg` (Pre-footer CTA banner, 4 kolom grid: Brand Info, STAY, BOOK WITH CONFIDENCE, A BRAND OF ANAKOSA, garis pemisah tipis, copyright 2026 ANAKOSA, link media sosial, dan floating WhatsApp badge).
+  4. `src/components/frontpage/BscFooter.jsx`:
+     - Membangun ulang komponen footer secara komprehensif mengikuti `footer.jpeg`:
+       - **Pre-footer Banner**: *"Not sure which villa fits? Tell us how you want Bali to feel."* lengkap dengan tombol emas *"Find my villa"* (smooth scroll ke katalog) dan *"Chat with our team"* (terhubung ke WhatsApp).
+       - **Kolom 1 (Brand)**: `BALI STAY COLLECTION · BY ANAKOSA`, copy deskripsi, alamat kantor Bali, kontak WhatsApp, email, dan jam respon WITA.
+       - **Kolom 2 (STAY)**: Link navigasi `All villas`, `Destinations`, `Experiences`, `Find by mood`, `Villa levels`, dan `Video tour`.
+       - **Kolom 3 (BOOK WITH CONFIDENCE)**: Link `How we verify`, `FAQ`, `Our local team`, `Cancellation terms`, dan `Terms & Privacy`.
+       - **Kolom 4 (A BRAND OF)**: Wordmark mewah `A N A K Ō S A` dan tautan interaktif *"Own a villa in Bali? Talk to ANAKOSA"* (memicu modal host registration).
+       - **Bottom Bar**: `© 2026 ANAKOSA` dan tautan sosial (*Instagram*, *YouTube*, *Google Maps*, *Terms*).
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.07s, 0 Error)**.
+  - Verifikasi visual desktop & mobile via Google Chrome headless:
+    - `navbar_clean_desktop.png` & `navbar_clean_mobile.png`: Navbar minimalis mewah dengan logo & currency toggle tanpa 4 link yang dipindahkan.
+    - `picks_equal_buttons_desktop.png`, `catalog_equal_buttons_desktop.png`, `catalog_equal_buttons_mobile.png`: Tombol `Verified` dan `Show Price` identik 100% dalam dimensi, padding, dan tinggi.
+    - `footer_redesign_desktop.png` & `footer_redesign_mobile.png`: Footer selaras sempurna dengan gambar referensi `footer.jpeg`.
+  - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu instruksi eksplisit "push".
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

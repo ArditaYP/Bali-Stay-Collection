@@ -58,9 +58,6 @@ export default function BscNavbar({
   onSubmitSearch,
   areas = []
 }) {
-  // State untuk membuka / menutup menu navigasi mobile drawer
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   // State apakah posisi scroll browser telah melewati hero
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
 
@@ -118,53 +115,30 @@ export default function BscNavbar({
   }, [isDetailPage]);
 
   /**
-   * Menggulir halaman secara halus ke bagian section yang dituju
-   * @param {React.MouseEvent} e - Event klik
-   * @param {string} sectionId - ID elemen target tujuan
-   * @returns {void}
-   */
-  const handleScrollToSection = (e, sectionId) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
-    setIsExpandedSearchOpen(false);
-    if (onGoHome) {
-      onGoHome();
-      setTimeout(() => {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 150);
-      return;
-    }
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  /**
    * Menangani klik pada logo brand resmi
    * @param {React.MouseEvent} e - Event klik
    * @returns {void}
    */
   const handleLogoClick = (e) => {
     e.preventDefault();
-    setIsMobileMenuOpen(false);
     setIsExpandedSearchOpen(false);
     if (onGoHome) {
       onGoHome();
       return;
     }
-    handleScrollToSection(e, 'top');
+    const el = document.getElementById('top');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   /**
-   * Menangani klik tombol wishlist dan menutup menu mobile
+   * Menangani klik tombol wishlist
    * @returns {void}
    */
   const handleWishlistClick = () => {
-    setIsMobileMenuOpen(false);
     setIsExpandedSearchOpen(false);
     if (typeof onOpenWishlist === 'function') {
       onOpenWishlist();
@@ -207,15 +181,7 @@ export default function BscNavbar({
             />
           </a>
 
-          {/* Tautan Navigasi Desktop - Selalu Tetap Ada di Navbar Baik Saat di Hero Maupun Saat Di-Scroll */}
-          <nav className="nav-links" aria-label="Main Navigation">
-            <a href="#villas" onClick={(e) => handleScrollToSection(e, 'villas')}>Villas</a>
-            <a href="#destinations" onClick={(e) => handleScrollToSection(e, 'destinations')}>Destinations</a>
-            <a href="#tour" onClick={(e) => handleScrollToSection(e, 'tour')}>Video tour</a>
-            <a href="#experiences" onClick={(e) => handleScrollToSection(e, 'experiences')}>Experiences</a>
-          </nav>
-
-          {/* Sisi Kanan: Wishlist, Currency Toggle, Tombol CTA & Hamburger Mobile */}
+          {/* Sisi Kanan: Wishlist, Currency Toggle */}
           <div className="nav-cta">
 
             {/* Tombol Wishlist jika ada yang disimpan */}
@@ -252,22 +218,6 @@ export default function BscNavbar({
                 IDR
               </button>
             </div>
-
-            {/* Tombol Hamburger Menu Mobile */}
-            <button
-              type="button"
-              className="nav-mobile-toggle nav-hamburger-btn"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="Toggle mobile menu"
-            >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                {isMobileMenuOpen ? (
-                  <path d="M18 6L6 18M6 6l12 12" />
-                ) : (
-                  <path d="M3 12h18M3 6h18M3 18h18" />
-                )}
-              </svg>
-            </button>
           </div>
         </div>
 
@@ -327,60 +277,7 @@ export default function BscNavbar({
             </div>
           </div>
         )}
-        {/* Mobile Drawer Menu Resmi BSC di Dalam Navbar Header */}
-        <div className={`nav-mobile-drawer ${isMobileMenuOpen ? 'open' : ''}`}>
-          <div className="nav-mobile-links">
-            <a href="#villas" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'villas'); }}>Villas</a>
-            <a href="#destinations" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'destinations'); }}>Destinations</a>
-            <a href="#tour" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'tour'); }}>Video tour</a>
-            <a href="#experiences" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'experiences'); }}>Experiences</a>
-          </div>
-
-          <div className="nav-mobile-footer">
-            <div className="cur" role="group" aria-label="Currency">
-              <button
-                type="button"
-                className={currency === 'USD' ? 'active' : ''}
-                aria-pressed={currency === 'USD'}
-                onClick={() => { setIsMobileMenuOpen(false); onCurrencyChange('USD'); }}
-              >
-                USD
-              </button>
-              <button
-                type="button"
-                className={currency === 'IDR' ? 'active' : ''}
-                aria-pressed={currency === 'IDR'}
-                onClick={() => { setIsMobileMenuOpen(false); onCurrencyChange('IDR'); }}
-              >
-                IDR
-              </button>
-            </div>
-
-            {wishlistCount > 0 && onOpenWishlist && (
-              <button
-                type="button"
-                onClick={() => { setIsMobileMenuOpen(false); handleWishlistClick(); }}
-                className="nav-wishlist-btn"
-                aria-label="View saved wishlist"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" strokeWidth="2">
-                  <path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.6l-1-1a5.5 5.5 0 00-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 000-7.8z" />
-                </svg>
-                <span>Saved ({wishlistCount})</span>
-              </button>
-            )}
-          </div>
-        </div>
       </header>
-
-      {/* Backdrop penutup jika mobile drawer terbuka */}
-      {isMobileMenuOpen && (
-        <div 
-          className="nav-mobile-backdrop"
-          onClick={() => setIsMobileMenuOpen(false)}
-          aria-hidden="true"
-        />
-      )}
     </>
   );
 }
