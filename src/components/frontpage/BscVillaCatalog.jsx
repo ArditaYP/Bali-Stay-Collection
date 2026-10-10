@@ -60,6 +60,38 @@ const CANONICAL_TIERS = [
   'Luxury'
 ];
 
+const CANONICAL_SETTINGS = [
+  'Ocean view',
+  'Rice-field view',
+  'Walk to the beach',
+  'Walkable to cafés',
+  'Garden setting'
+];
+
+const SETTING_MAPPING = {
+  'Ocean view': ['Ocean view', 'Cliff top', 'Cliffside village'],
+  'Rice-field view': ['Rice-field view'],
+  'Walk to the beach': ['Walk to the beach', 'Coastal village'],
+  'Walkable to cafés': ['Walkable to cafés'],
+  'Garden setting': ['Garden setting', 'Garden estate', 'Village setting', 'Hillside breezes']
+};
+
+const CANONICAL_TRIPS = [
+  'Couples & honeymoon',
+  'Family',
+  'Friends group',
+  'Celebration',
+  'Wellness retreat'
+];
+
+const TRIP_MAPPING = {
+  'Couples & honeymoon': ['Couples', 'Honeymoon'],
+  'Family': ['Family'],
+  'Friends group': ['Friends group', 'Large group'],
+  'Celebration': ['Celebration'],
+  'Wellness retreat': ['Wellness retreat', 'Quiet retreat', 'Solo retreat']
+};
+
 /**
  * Normalisasi badge tier villa agar selalu terpetakan ke 4 level resmi
  * @param {string} t - Nilai tier mentah
@@ -113,16 +145,12 @@ export default function BscVillaCatalog({
   }, []);
 
   const allTrips = useMemo(() => {
-    const set = new Set();
-    villas.forEach(v => toSafeArray(v.trips).forEach(t => set.add(t)));
-    return Array.from(set);
-  }, [villas]);
+    return CANONICAL_TRIPS;
+  }, []);
 
   const allSettings = useMemo(() => {
-    const set = new Set();
-    villas.forEach(v => toSafeArray(v.setting).forEach(s => set.add(s)));
-    return Array.from(set);
-  }, [villas]);
+    return CANONICAL_SETTINGS;
+  }, []);
 
   const allAmenities = useMemo(() => {
     // Memastikan hanya 4 opsi fasilitas 'Must have' resmi & autentik BSC yang tampil di sidebar
@@ -428,9 +456,23 @@ export default function BscVillaCatalog({
       // Filter tingkat kemewahan (tier)
       if (selectedTiers.length > 0 && !selectedTiers.includes(v.tier)) return false;
       // Filter jenis perjalanan (trip type)
-      if (selectedTrips.length > 0 && !toSafeArray(v.trips).some(t => selectedTrips.includes(t))) return false;
+      if (selectedTrips.length > 0) {
+        const vTrips = toSafeArray(v.trips);
+        const hasMatchingTrip = selectedTrips.some(st => {
+          const mapped = TRIP_MAPPING[st] || [st];
+          return vTrips.some(t => mapped.includes(t));
+        });
+        if (!hasMatchingTrip) return false;
+      }
       // Filter setting / pemandangan
-      if (selectedSettings.length > 0 && !toSafeArray(v.setting).some(s => selectedSettings.includes(s))) return false;
+      if (selectedSettings.length > 0) {
+        const vSettings = toSafeArray(v.setting);
+        const hasMatchingSetting = selectedSettings.some(ss => {
+          const mapped = SETTING_MAPPING[ss] || [ss];
+          return vSettings.some(s => mapped.includes(s));
+        });
+        if (!hasMatchingSetting) return false;
+      }
       // Filter kamar tidur
       if (minBeds > 0 && v.beds < minBeds) return false;
       // Filter fasilitas (must have)
@@ -476,7 +518,7 @@ export default function BscVillaCatalog({
   const chipItems = useMemo(() => {
     const chips = [];
     allTiers.forEach(t => chips.push({ type: 'tier', value: t }));
-    ['Couples', 'Honeymoon', 'Family', 'Friends group'].forEach(t => {
+    ['Couples & honeymoon', 'Family', 'Friends group'].forEach(t => {
       if (allTrips.includes(t)) chips.push({ type: 'trip', value: t });
     });
     return chips;
@@ -886,23 +928,12 @@ export default function BscVillaCatalog({
                           ))}
                         </div>
 
-                        {/* Inspection Status Badges */}
-                        <div className="badges" style={{ marginTop: '6px' }}>
-                          <span className="bdg new">New on BSC</span>
-                          {villa.verified ? (
-                            <span className="seal ok">
-                              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2F6B3A" strokeWidth="3">
-                                <path d="M20 6L9 17l-5-5" />
-                              </svg>
-                              Inspected by BSC &middot; {villa.updated || 'Recent'}
-                            </span>
-                          ) : (
-                            <span className="seal wait">Inspection scheduled</span>
-                          )}
-                          {villa.cancel && (
+                        {/* Cancellation Policy Badge */}
+                        {villa.cancel && (
+                          <div className="badges" style={{ marginTop: '6px' }}>
                             <span className="bdg">{villa.cancel}</span>
-                          )}
-                        </div>
+                          </div>
+                        )}
 
                         {/* Good to know details */}
                         {villa.know && villa.know.length > 0 && (
@@ -916,14 +947,21 @@ export default function BscVillaCatalog({
                           </details>
                         )}
 
-                        {/* Tombol Aksi */}
-                        <div className="bottom" style={{ justifyContent: 'flex-end' }}>
+                        {/* Tombol Aksi: (Verified) di kiri & (Show Price) di kanan */}
+                        <div className="bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span className="bdg ok">Verified</span>
                           <button
                             type="button"
-                            className="btn btn-primary"
+                            className="btn btn-primary btn-show-price-row"
                             onClick={() => onSelectVilla(villa.id)}
                           >
-                            Show Price
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                              <line x1="16" y1="2" x2="16" y2="6" />
+                              <line x1="8" y1="2" x2="8" y2="6" />
+                              <line x1="3" y1="10" x2="21" y2="10" />
+                            </svg>
+                            <span>Show Price</span>
                           </button>
                         </div>
                       </div>

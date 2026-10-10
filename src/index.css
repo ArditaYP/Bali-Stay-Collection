@@ -8587,63 +8587,24 @@ mark.review-highlight {
   width: 100% !important;
 }
 
-.picks-badges-row .badges-group {
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  flex-wrap: wrap !important;
-}
-
-.picks-badges-row .badges-group .bdg {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 28px !important;
-  width: 140px !important;
-  min-width: 140px !important;
-  max-width: 140px !important;
-  padding: 0 11px !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
+.picks-badges-row .bdg.ok {
+  background: var(--ok-bg, #EAF4EC) !important;
+  color: var(--ok, #2F6B3A) !important;
+  border: 1px solid rgba(47, 107, 58, 0.16) !important;
+  height: 38px !important;
+  padding: 0 16px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
   line-height: 1 !important;
   border-radius: 100px !important;
   box-sizing: border-box !important;
-  text-align: center !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
   white-space: nowrap !important;
-}
-
-.picks-badges-row .badges-group .bdg.new {
-  background: var(--ink, #16294D) !important;
-  color: #ffffff !important;
-  border: 1px solid transparent !important;
-  height: 28px !important;
-  width: 140px !important;
-  min-width: 140px !important;
-  max-width: 140px !important;
-  padding: 0 11px !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  box-sizing: border-box !important;
-  justify-content: center !important;
-  text-align: center !important;
-}
-
-.picks-badges-row .badges-group .bdg.ok {
-  background: var(--ok-bg, #EAF4EC) !important;
-  color: var(--ok, #2F6B3A) !important;
-  border: 1px solid transparent !important;
-  height: 28px !important;
-  width: 140px !important;
-  min-width: 140px !important;
-  max-width: 140px !important;
-  padding: 0 11px !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-  box-sizing: border-box !important;
-  justify-content: center !important;
-  text-align: center !important;
 }
 
 .picks-badges-row .btn-show-price {
@@ -8682,9 +8643,59 @@ mark.review-highlight {
   box-shadow: 0 6px 14px rgba(22, 41, 77, 0.24) !important;
 }
 
-.picks-badges-row .btn-show-price:active {
+.picks-badges-row .btn-show-price:active,
+.btn-show-price-row:active {
   transform: translateY(0) !important;
   box-shadow: 0 2px 6px rgba(22, 41, 77, 0.16) !important;
+}
+
+.rb .bottom .bdg.ok {
+  background: var(--ok-bg, #EAF4EC) !important;
+  color: var(--ok, #2F6B3A) !important;
+  border: 1px solid rgba(47, 107, 58, 0.16) !important;
+  height: 38px !important;
+  padding: 0 16px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  border-radius: 100px !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  white-space: nowrap !important;
+}
+
+.btn-show-price-row {
+  background: var(--ink, #16294D) !important;
+  color: #ffffff !important;
+  border: 1.5px solid var(--ink, #16294D) !important;
+  border-radius: 100px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  padding: 0 18px !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  cursor: pointer !important;
+  box-shadow: 0 3px 10px rgba(22, 41, 77, 0.16) !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-show-price-row:hover {
+  background: #0C1B38 !important;
+  border-color: #0C1B38 !important;
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 6px 14px rgba(22, 41, 77, 0.24) !important;
 }
 
 .btn-view-villa-alt {

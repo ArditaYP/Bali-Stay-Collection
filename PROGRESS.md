@@ -2381,6 +2381,37 @@ src/
   - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
   - `npm run build`: **Lulus 100% (3.03s, 0 Error)**.
   - Verifikasi visual desktop (`hero_tab_wellness.png`, `hero_tab_immersion.png`, `hero_tab_car.png`, `hero_tab_motorbike.png`) & mobile (`hero_mobile_wellness.png`, `hero_mobile_car.png`): **100% Sesuai Instruksi**.
+### 9.53. Penyelarasan Tombol CTA (Verified & Show Price) dan Penyederhanaan Filter Sidebar (Setting & Trip Type)
+- **Permintaan Pengguna**:
+  1. Pada kartu villa di `section id="picks"` dan pada baris katalog `article.row`:
+     - Tombol/CTA disederhanakan hanya 2 elemen yang berdampingan: `(Verified)` di kiri dan `(Show Price)` di kanan.
+  2. Pada panel filter sisi kiri (`aside id="filters"`):
+     - **Setting & view**: Dirampingkan dari 11 menjadi 5 opsi:
+       - `Ocean view` (menggabungkan *Cliff top* dan *Cliffside village*)
+       - `Rice-field view`
+       - `Walk to the beach` (menggabungkan *Coastal village*)
+       - `Walkable to cafés`
+       - `Garden setting` (menggabungkan *Garden estate*, *Village setting*, dan *Hillside breezes*)
+     - **Trip type**: Dirampingkan dari 11 menjadi 5 opsi:
+       - `Couples & honeymoon` (menggabungkan *Couples* dan *Honeymoon*)
+       - `Family`
+       - `Friends group` (menggabungkan *Large group*)
+       - `Celebration`
+       - `Wellness retreat` (menggabungkan *Quiet retreat* dan *Solo retreat*)
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/BscTopPicks.jsx`:
+     - Menghapus badge `New on BSC` dan merapikan row CTA menjadi `Verified` badge pill (hijau) berdampingan dengan tombol `Show Price`.
+  2. `src/components/frontpage/BscVillaCatalog.jsx`:
+     - Mendefinisikan konstanta `CANONICAL_SETTINGS`, `SETTING_MAPPING`, `CANONICAL_TRIPS`, dan `TRIP_MAPPING`.
+     - Memperbarui fungsi `filteredVillas` agar mencocokkan pemilihan checkbox pengguna dengan mapping kategori turunan.
+     - Memperbarui quick filter chips menjadi `['Couples & honeymoon', 'Family', 'Friends group']`.
+     - Pada setiap kartu `article.row`, baris bawah (`.bottom`) kini menampilkan 2 elemen: `(Verified)` di sisi kiri dan tombol `Show Price` (lengkap dengan ikon kalender) di sisi kanan.
+  3. `src/components/frontpage/bscFrontpage.css` & `src/index.css`:
+     - Menambahkan styling seragam pill 38px untuk `.bdg.ok` ("Verified") dan tombol `.btn-show-price-row` ("Show Price") dengan tata letak `justify-content: space-between`.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.24s, 0 Error)**.
+  - Verifikasi visual desktop (`picks_verified_show_price.png`, `catalog_aside_filters_updated.png`) & mobile (`catalog_row_buttons_mobile_centered.png`): **100% Sesuai Desain yang Diminta**.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
 
 ---

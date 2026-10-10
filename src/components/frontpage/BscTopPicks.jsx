@@ -252,16 +252,9 @@ export default function BscTopPicks({
                     </p>
                   )}
 
-                  {/* Baris Lencana Inspeksi & Tombol Show Price Sejajar ke Kanan */}
+                  {/* Baris CTA: (Verified) di kiri dan (Show Price) di kanan */}
                   <div className="picks-badges-row">
-                    <div className="badges-group">
-                      <span className="bdg new">New on BSC</span>
-                      {villa.verified ? (
-                        <span className="bdg ok">Inspected {villa.updated || 'Oct 2026'}</span>
-                      ) : (
-                        <span className="bdg">Inspection pending</span>
-                      )}
-                    </div>
+                    <span className="bdg ok">Verified</span>
 
                     {!unlockedInfo && (
                       <button
@@ -276,7 +269,7 @@ export default function BscTopPicks({
                           <line x1="8" y1="2" x2="8" y2="6" />
                           <line x1="3" y1="10" x2="21" y2="10" />
                         </svg>
-                        <span>Show price</span>
+                        <span>Show Price</span>
                       </button>
                     )}
                   </div>

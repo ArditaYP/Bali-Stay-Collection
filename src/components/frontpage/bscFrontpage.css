@@ -1067,10 +1067,14 @@
   height: 28px;
 }
 
-.bsc-frontpage .picks-badges-row .badges-group .bdg {
-  width: 140px;
-  min-width: 140px;
-  max-width: 140px;
+.bsc-frontpage .picks-badges-row .bdg.ok {
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  height: 38px;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 700;
   justify-content: center;
   text-align: center;
 }
@@ -1181,7 +1185,56 @@
 }
 
 .bsc-frontpage .rb .bottom {
-  margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding-top:14px
+  margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:14px;border-top:1px solid rgba(22, 41, 77, 0.08)
+}
+
+.bsc-frontpage .rb .bottom .bdg.ok {
+  background: var(--ok-bg, #EAF4EC) !important;
+  color: var(--ok, #2F6B3A) !important;
+  border: 1px solid rgba(47, 107, 58, 0.16) !important;
+  height: 38px !important;
+  padding: 0 16px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  border-radius: 100px !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  white-space: nowrap !important;
+}
+
+.bsc-frontpage .rb .bottom .btn.btn-show-price-row {
+  background: var(--ink, #16294D) !important;
+  color: #ffffff !important;
+  border: 1.5px solid var(--ink, #16294D) !important;
+  border-radius: 100px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  padding: 0 18px !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  cursor: pointer !important;
+  box-shadow: 0 3px 10px rgba(22, 41, 77, 0.16) !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.bsc-frontpage .rb .bottom .btn.btn-show-price-row:hover {
+  background: #0C1B38 !important;
+  border-color: #0C1B38 !important;
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 6px 14px rgba(22, 41, 77, 0.24) !important;
 }
 
 .bsc-frontpage .empty {
