@@ -2256,6 +2256,23 @@ src/
   - Verifikasi visual desktop (`search_moved_to_destinations.png`) & mobile (`search_moved_to_destinations_mobile.png`): **100% Sesuai Instruksi**.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
 
+### 9.47. Perluasan Tampilan Search Bar di Destinations & Pembersihan Teks Lead Hero Section
+- **Permintaan Pengguna**:
+  - Membuat tombol search di section destinations lebih panjang dan jelas terlihat sebagai kotak pencarian.
+  - Menghilangkan tulisan di section hero: "Hand-picked private villas. On-the-ground local support".
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/BscHero.jsx`:
+     - Menghapus elemen `<p className="lead">{leadText}</p>`, sehingga headline hero tampil lebih bersih dan fokus langsung ke kotak widget layanan.
+  2. `src/components/frontpage/BscDestinations.jsx`:
+     - Memperbarui markup tombol pencarian menjadi kapsul search bar yang memanjang dengan teks placeholder `"Search destinations or villas..."`, ikon kaca pembesar 18px, dan shortcut badge `⌘K`.
+  3. `src/components/frontpage/bscFrontpage.css`:
+     - Menyesuaikan styling `.dest-search-btn`: `width: 380px`, `border-radius: 40px`, bayangan halus, dan perataan teks fleksibel sehingga tampak jelas dan mengundang interaksi klik dari pengunjung.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (1.84s, 0 Error)**.
+  - Verifikasi visual desktop (`search_prominent_desktop.png`) & mobile (`search_prominent_mobile.png`): **100% Sesuai Instruksi**.
+  - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

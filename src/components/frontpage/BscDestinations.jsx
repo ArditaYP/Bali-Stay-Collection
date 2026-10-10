@@ -135,14 +135,16 @@ export default function BscDestinations({
                 type="button"
                 className="dest-search-btn"
                 onClick={onOpenSearch}
-                title="Search villas & destinations (⌘K)"
-                aria-label="Search villas and destinations"
+                title="Search destinations or villas (⌘K)"
+                aria-label="Search destinations or villas"
               >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-                <span className="dest-search-text">Search...</span>
+                <div className="dest-search-main">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                  <span className="dest-search-placeholder">Search destinations or villas...</span>
+                </div>
                 <kbd className="dest-search-kbd">⌘K</kbd>
               </button>
             </div>

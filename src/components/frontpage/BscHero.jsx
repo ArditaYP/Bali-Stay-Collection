@@ -63,9 +63,6 @@ export default function BscHero({
           <h1 style={{ marginTop: '8px' }}>
             {headline}
           </h1>
-          <p className="lead">
-            {leadText}
-          </p>
         </div>
 
         {/* Kotak Widget Pencarian Terpadu (Dalam 1 Kotak ala Expedia.com) */}
