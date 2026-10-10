@@ -1055,6 +1055,22 @@ export const NEARBY_PLACES_BY_VILLA = {
  * Mapping alias ID villa agar ID dari airbnbVillas.json dan bscVillasData.js selalu cocok
  */
 export const VILLA_COORDINATES_ALIAS = {
+  'alua-industrial-pool-loft': 'five-bedroom-designer-umalas',
+  'alua-studio-loft-umalas': 'five-bedroom-designer-umalas',
+  'umalas-green-oasis-villa': 'five-bedroom-designer-umalas',
+  'casa-noema-umalas': 'five-bedroom-designer-umalas',
+  'lady-swan-canggu': 'tropical-canggu-villa',
+  'pererenan-wellness-spa-villa': 'villa-habitas',
+  'thomas-beach-cinema-villa': 'yellow-moon-uluwatu',
+  'uluwatu-ocean-rooftop-villa': 'yellow-moon-uluwatu',
+  'luxe-umalas-sanctuary': 'five-bedroom-designer-umalas',
+  'designer-peaceful-umalas': 'five-bedroom-designer-umalas',
+  'lagoon-pool-villa-umalas': 'five-bedroom-designer-umalas',
+  'villa-terea-one': 'five-bedroom-designer-umalas',
+  'villa-serenity-canggu': 'villa-habitas',
+  'villa-infinity-three': 'villa-habitas',
+  'amazing-berawa-retreat': 'tropical-canggu-villa',
+  'luxe-pererenan-pool-villa': 'villa-habitas',
   'villa-infinity-umalas': 'five-bedroom-designer-umalas',
   'villa-satiya': 'villa-habitas',
   'alua-loft': 'villa-habitas',

@@ -58,7 +58,23 @@ export const AIRBNB_ONLY_VILLA_IDS = [
   "villa-aless",
   "alua-loft",
   "villa-satiya",
-  "villa-infinity-umalas"
+  "villa-infinity-umalas",
+  "luxe-pererenan-pool-villa",
+  "amazing-berawa-retreat",
+  "villa-infinity-three",
+  "villa-serenity-canggu",
+  "villa-terea-one",
+  "lagoon-pool-villa-umalas",
+  "designer-peaceful-umalas",
+  "luxe-umalas-sanctuary",
+  "uluwatu-ocean-rooftop-villa",
+  "thomas-beach-cinema-villa",
+  "pererenan-wellness-spa-villa",
+  "lady-swan-canggu",
+  "casa-noema-umalas",
+  "umalas-green-oasis-villa",
+  "alua-studio-loft-umalas",
+  "alua-industrial-pool-loft"
 ];
 
 /**
@@ -111,7 +127,7 @@ export const PALETTE = {
 export const DESTINATIONS_SUMMARY = [
   {
     name: 'Pererenan',
-    count: 6,
+    count: 10,
     badge: 'Chill & Surf',
     layout: 'norm',
     description: 'Quieter neighbour to Canggu with artisan cafés, local lanes, and easy beach breaks.',
@@ -121,7 +137,7 @@ export const DESTINATIONS_SUMMARY = [
   },
   {
     name: 'Canggu & Berawa',
-    count: 14,
+    count: 16,
     badge: '★ Most Popular Hub',
     layout: 'wide',
     description: 'Cafés, iconic beach clubs, and legendary surf breaks. The most vibrant epicenter of coastal Bali.',
@@ -132,7 +148,7 @@ export const DESTINATIONS_SUMMARY = [
   },
   {
     name: 'Uluwatu & Bukit',
-    count: 6,
+    count: 8,
     badge: 'Clifftops & Sunsets',
     layout: 'norm',
     description: 'Dramatic ocean limestone cliffs, world-class surf, and sunset beach clubs.',
@@ -143,7 +159,7 @@ export const DESTINATIONS_SUMMARY = [
   },
   {
     name: 'Umalas & Seminyak',
-    count: 5,
+    count: 13,
     badge: 'Dining & Boutiques',
     layout: 'norm',
     description: 'World-class dining and chic designer boutiques tucked between rice paddies.',
@@ -1976,5 +1992,693 @@ export const BSC_VILLAS = [
     "rating": 4.91,
     "reviews": 22,
     "priceIdr": 11040000
+  },
+  {
+    "id": "luxe-pererenan-pool-villa",
+    "name": "Villa Santai Pererenan – Luxe 4BR Architectural Pool Haven in Peaceful Pererenan",
+    "area": "Pererenan",
+    "beds": 4,
+    "baths": 4,
+    "guests": 8,
+    "price": 420,
+    "tier": "Luxury",
+    "trips": [
+      "Friends group",
+      "Family"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/luxe-pererenan-pool-villa/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"We enjoyed our stay and everything was great, the team was extremely helpful with whatever we needed.\" — Verified by Bali Stay Collection for spacious group gatherings and peaceful coastal living.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Step into an airy tropical sanctuary where expansive glass walls, a crystal-clear pool, and swaying palms effortlessly wash away daily fatigue in quiet Pererenan.",
+    "know": [
+      "Rated ★4.8 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.8,
+    "reviews": 69,
+    "priceIdr": 6720000
+  },
+  {
+    "id": "amazing-berawa-retreat",
+    "name": "Berawa Haven – Magnificent 4BR Tropical Villa in Canggu’s Golden Triangle",
+    "area": "Canggu & Berawa",
+    "beds": 4,
+    "baths": 4,
+    "guests": 8,
+    "price": 480,
+    "tier": "Luxury",
+    "trips": [
+      "Friends group",
+      "Family"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/amazing-berawa-retreat/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"Everything was perfect would definitely stay again!\" — Selected by Bali Stay Collection for unbeatable central Berawa location and top-tier hospitality.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Feel the vibrant energy of Canggu dissolve into serene relaxation the moment you enter this sunlit 4-bedroom villa featuring a turquoise pool steps from Berawa’s finest cafés.",
+    "know": [
+      "Rated ★4.85 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.85,
+    "reviews": 124,
+    "priceIdr": 7680000
+  },
+  {
+    "id": "villa-infinity-three",
+    "name": "Villa Infinity 3 – Chic 2BR Sunlit Designer Hideaway in Tumbak Bayuh",
+    "area": "Pererenan",
+    "beds": 2,
+    "baths": 2,
+    "guests": 4,
+    "price": 260,
+    "tier": "Deluxe",
+    "trips": [
+      "Couples",
+      "Solo retreat"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/villa-infinity-three/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"One of the best places to stay in Bali. A lovely option, and the hosts are very helpful. Thank you for your warm hospitality.\" — Recommended by Bali Stay Collection for modern design lovers seeking quiet village calm.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Bask in golden island sunlight beside a sleek private pool framed by lush tropical greenery. An intimate 2-bedroom design hideaway tailored for restful couples and small families.",
+    "know": [
+      "Rated ★4.85 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.85,
+    "reviews": 13,
+    "priceIdr": 4160000
+  },
+  {
+    "id": "villa-serenity-canggu",
+    "name": "Villa Serenity – Spacious 3BR Coastal Retreat Surrounded by Green Rice Breezes",
+    "area": "Pererenan",
+    "beds": 3,
+    "baths": 3,
+    "guests": 6,
+    "price": 340,
+    "tier": "Premium",
+    "trips": [
+      "Friends group",
+      "Family"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/villa-serenity-canggu/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"Wonderful stay in this exceptional villa. Responsive and efficient staff. Villa as described and shown in the photos. \nI would highly recommend it.\" — Curated by Bali Stay Collection for authentic coastal serenity and expansive family comfort.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Inhale the calming ocean breeze as you lounge beside a sparkling swimming pool. Three generous bedroom suites offer unmatched comfort just minutes from Pererenan Beach.",
+    "know": [
+      "Rated ★4.95 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.95,
+    "reviews": 44,
+    "priceIdr": 5440000
+  },
+  {
+    "id": "villa-terea-one",
+    "name": "Villa Terea 1 – Lush 2BR Tropical Pool Villa Tucked in Charming Umalas",
+    "area": "Umalas & Seminyak",
+    "beds": 2,
+    "baths": 3,
+    "guests": 4,
+    "price": 250,
+    "tier": "Deluxe",
+    "trips": [
+      "Couples",
+      "Solo retreat"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/villa-terea-one/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"The villa is really beautiful. We weren't too bothered by the construction. The staff are helpful and the host is always available. Recommended for a stay with friends and family.\" — Verified by Bali Stay Collection for intimate residential tranquility near Seminyak dining.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Awaken each morning to the gentle whisper of tropical gardens and dip into your private azure pool. A luminous two-bedroom sanctuary combining modern elegance with calm residential warmth.",
+    "know": [
+      "Rated ★4.84 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.84,
+    "reviews": 37,
+    "priceIdr": 4000000
+  },
+  {
+    "id": "lagoon-pool-villa-umalas",
+    "name": "Lagoon Pool Villa – Luxury 2BR Oasis with Private Curving Lagoon Pool in Umalas",
+    "area": "Umalas & Seminyak",
+    "beds": 2,
+    "baths": 2,
+    "guests": 4,
+    "price": 290,
+    "tier": "Luxury",
+    "trips": [
+      "Couples",
+      "Solo retreat"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/lagoon-pool-villa-umalas/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"Amazing host, always quick to answer and satisfy our needs! The villa looks really good & just like the pictures. Location is great, many shops & activities around.\" — Hand-picked by Bali Stay Collection for its iconic curvaceous lagoon pool and bespoke finishes.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Immerse your senses in a resort-style private lagoon pool surrounded by tropical flora. Two bespoke master suites deliver refined luxury just moments from Canggu and Seminyak.",
+    "know": [
+      "Rated ★5 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 5,
+    "reviews": 7,
+    "priceIdr": 4640000
+  },
+  {
+    "id": "designer-peaceful-umalas",
+    "name": "Villa Casa Serena – Designer 3BR Pool Villa in the Heart of Peaceful Umalas",
+    "area": "Umalas & Seminyak",
+    "beds": 3,
+    "baths": 3,
+    "guests": 6,
+    "price": 360,
+    "tier": "Premium",
+    "trips": [
+      "Friends group",
+      "Family"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/designer-peaceful-umalas/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"This villa was just as described , everything clean. The hosts and staff were friendly and accommodating\" — Selected by Bali Stay Collection for impeccable architectural lines and serene Umalas ambiance.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Experience harmonious indoor-outdoor living with sunken lounge seating, soaring ceilings, and a shimmering private pool in one of Bali’s most peaceful upscale enclaves.",
+    "know": [
+      "Rated ★5 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 5,
+    "reviews": 11,
+    "priceIdr": 5760000
+  },
+  {
+    "id": "luxe-umalas-sanctuary",
+    "name": "Luxe Umalas Sanctuary – Sophisticated 2BR Villa Walkable to Cafés & Fitness Studios",
+    "area": "Umalas & Seminyak",
+    "beds": 2,
+    "baths": 2,
+    "guests": 4,
+    "price": 270,
+    "tier": "Deluxe",
+    "trips": [
+      "Couples",
+      "Solo retreat"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/luxe-umalas-sanctuary/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"Beautiful villa, spotless, and had everything we needed for a relaxing getaway.\nThe location was perfect for us.\nMio was a wonderful host, always kind, and happy to help whenever we had a question.\nHighly recommend 🙏🏼\" — Recommended by Bali Stay Collection for active lifestyle travelers seeking walkable convenience.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Wake to sunbeams illuminating natural stone finishes and gentle pool waters. A sophisticated two-bedroom hideaway offering effortless walking access to Umalas’ finest bakeries and wellness clubs.",
+    "know": [
+      "Rated ★4.83 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.83,
+    "reviews": 12,
+    "priceIdr": 4320000
+  },
+  {
+    "id": "uluwatu-ocean-rooftop-villa",
+    "name": "Uluwatu Ocean Crest – Spectacular 4BR Villa with Rooftop Ocean & Jungle Panoramas",
+    "area": "Uluwatu & Bukit",
+    "beds": 4,
+    "baths": 4,
+    "guests": 8,
+    "price": 520,
+    "tier": "Luxury",
+    "trips": [
+      "Friends group",
+      "Family"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/uluwatu-ocean-rooftop-villa/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"One of the best villas in Uluwatu with a great team handling everything.\" — Verified by Bali Stay Collection for breathtaking rooftop vistas and iconic Bukit sunsets.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Gaze across dramatic jungle valleys to the azure Indian Ocean from your private panoramic rooftop. An extraordinary 4-bedroom architectural villa designed for sunset cocktail hours and ocean lovers.",
+    "know": [
+      "Rated ★4.76 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.76,
+    "reviews": 17,
+    "priceIdr": 8320000
+  },
+  {
+    "id": "thomas-beach-cinema-villa",
+    "name": "Thomas Beach Cinema Villa – Romantic 1BR Private Pool Villa with Outdoor Projector",
+    "area": "Uluwatu & Bukit",
+    "beds": 1,
+    "baths": 1,
+    "guests": 2,
+    "price": 190,
+    "tier": "Standard",
+    "trips": [
+      "Couples",
+      "Solo retreat"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/thomas-beach-cinema-villa/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"We had a wonderful stay! Thank you very much to Resa, who welcomed us very well. We had everything we needed. I'll definitely recommend.\" — Hand-picked by Bali Stay Collection for romantic couples and private cinema evenings under the stars.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Watch your favorite movies under the starry Bukit sky by your private pool. An intimate one-bedroom haven minutes from the white sands of Thomas Beach, Uluwatu.",
+    "know": [
+      "Rated ★4.69 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.69,
+    "reviews": 35,
+    "priceIdr": 3040000
+  },
+  {
+    "id": "pererenan-wellness-spa-villa",
+    "name": "Villa Vitality – 2BR Wellness Villa with Private Sauna, Ice Bath & Heated Jacuzzi",
+    "area": "Pererenan",
+    "beds": 2,
+    "baths": 2,
+    "guests": 4,
+    "price": 330,
+    "tier": "Luxury",
+    "trips": [
+      "Couples",
+      "Solo retreat"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/pererenan-wellness-spa-villa/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"It's a nice, quiet place, but there are hardly any restaurants within walking distance.\" — The premier wellness & recovery sanctuary in Pererenan curated by Bali Stay Collection.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Elevate your wellbeing with private biohacking luxury: transition between an authentic Finnish sauna, ice bath plunge, and bubbly Jacuzzi beside your tropical pool in tranquil Pererenan.",
+    "know": [
+      "Rated ★4.97 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.97,
+    "reviews": 62,
+    "priceIdr": 5280000
+  },
+  {
+    "id": "lady-swan-canggu",
+    "name": "Lady Swan – Grand 4BR Tropical Estate in Canggu for Families & Celebrations",
+    "area": "Canggu & Berawa",
+    "beds": 4,
+    "baths": 3,
+    "guests": 8,
+    "price": 450,
+    "tier": "Luxury",
+    "trips": [
+      "Friends group",
+      "Family"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/lady-swan-canggu/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"The stay at lady swan was exquisite. The staff were so helpful and we enjoyed every moment. Thank you so much and we highly recommend.\" — Verified by Bali Stay Collection for spacious group celebrations and relaxed family holidays.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Spread out across lush manicured lawns, a lavish swimming pool, and breezy open-plan living pavilions. A grand four-bedroom Canggu retreat crafted for unforgettable shared memories.",
+    "know": [
+      "Rated ★4.71 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.71,
+    "reviews": 63,
+    "priceIdr": 7200000
+  },
+  {
+    "id": "casa-noema-umalas",
+    "name": "Casa Noema – Tropical Boho 2BR Villa with Warm Earthy Aesthetics in Umalas",
+    "area": "Umalas & Seminyak",
+    "beds": 2,
+    "baths": 2,
+    "guests": 4,
+    "price": 240,
+    "tier": "Deluxe",
+    "trips": [
+      "Couples",
+      "Solo retreat"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/casa-noema-umalas/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"very big rooms and living area feel super spacious\" — Curated by Bali Stay Collection for aesthetic bohemian charm and quiet relaxation.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Feel immediately at home in this bohemian tropical retreat featuring warm rattan textures, sun-washed wood, and a crystalline pool tucked away in peaceful Umalas.",
+    "know": [
+      "Rated ★4.8 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.8,
+    "reviews": 59,
+    "priceIdr": 3840000
+  },
+  {
+    "id": "umalas-green-oasis-villa",
+    "name": "Green Oasis Umalas – Private Pool 2BR Tropical Villa Bordering Canggu",
+    "area": "Umalas & Seminyak",
+    "beds": 2,
+    "baths": 2,
+    "guests": 4,
+    "price": 230,
+    "tier": "Deluxe",
+    "trips": [
+      "Couples",
+      "Solo retreat"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/umalas-green-oasis-villa/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"Loved our Villa, it’s close to a main road so thought we’d hear the horns and noise, nothing! Slept like a baby. Super quiet, very relaxing! 5 minutes walk into the heat of Seminyak! 10/10 would recommend!\" — Recommended by Bali Stay Collection for dependable high-rated comfort and central location.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Relax in emerald garden privacy where cool pool waters and sun loungers offer pure stillness, perfectly positioned between the vibrant pulse of Canggu and chic Seminyak.",
+    "know": [
+      "Rated ★4.92 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.92,
+    "reviews": 95,
+    "priceIdr": 3680000
+  },
+  {
+    "id": "alua-studio-loft-umalas",
+    "name": "Alua Studio Loft – Contemporary 1BR Designer Studio Loft in Umalas",
+    "area": "Umalas & Seminyak",
+    "beds": 1,
+    "baths": 1,
+    "guests": 2,
+    "price": 140,
+    "tier": "Standard",
+    "trips": [
+      "Couples",
+      "Solo retreat"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/alua-studio-loft-umalas/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"great stay, would recommend as it close to most cafes and shops.\" — Selected by Bali Stay Collection for remote workers and modern solo travelers in Umalas.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "A bright, double-height studio loft featuring high ceilings, modern minimalist kitchen, and direct pool access. Tailored for digital nomads and solo travelers seeking inspired focus.",
+    "know": [
+      "Rated ★4.21 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.21,
+    "reviews": 14,
+    "priceIdr": 2240000
+  },
+  {
+    "id": "alua-industrial-pool-loft",
+    "name": "Alua Industrial Loft – Sleek 1BR Loft with Kitchen & Swimming Pool in Umalas",
+    "area": "Umalas & Seminyak",
+    "beds": 1,
+    "baths": 1,
+    "guests": 2,
+    "price": 160,
+    "tier": "Standard",
+    "trips": [
+      "Couples",
+      "Solo retreat"
+    ],
+    "setting": [
+      "Walkable to cafés"
+    ],
+    "am": [
+      "Private pool",
+      "Daily housekeeping",
+      "Chef on request",
+      "Air conditioning",
+      "High-speed WiFi"
+    ],
+    "tone": [
+      "#D8C9A8",
+      "#EFE6CF"
+    ],
+    "img": "/airbnb/alua-industrial-pool-loft/photos/photo-01.jpg",
+    "why": "Guest Highlight: \"Very nice staff and a good place to stay for a visit in Canggu. I highly recommend!\" — Curated by Bali Stay Collection for industrial chic design lovers and romantic getaways.",
+    "cancel": "Free reschedule",
+    "verified": true,
+    "updated": "Oct 2026",
+    "pick": true,
+    "desc": "Embrace chic industrial architecture with polished concrete, warm timber accents, and sparkling swimming pool waters in a peaceful Umalas neighborhood.",
+    "know": [
+      "Rated ★4.93 with verified guest stays.",
+      "Private pool and dedicated daily housekeeping.",
+      "Full concierge access for scooters, private chef, and in-villa spa."
+    ],
+    "rating": 4.93,
+    "reviews": 81,
+    "priceIdr": 2560000
   }
 ];

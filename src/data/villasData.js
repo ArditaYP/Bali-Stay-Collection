@@ -29,6 +29,246 @@ const DEFAULT_FEATURES = [
  * Silakan ubah harga, deskripsi, dan fasilitas di sini sesuai kondisi asli villa.
  */
 const VILLA_DETAILS = {
+  'alua-industrial-pool-loft': {
+    category: 'Standard',
+    price: 160,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Umalas & Seminyak, Bali',
+    location: 'Umalas & Seminyak',
+    shortDesc: "Embrace chic industrial architecture with polished concrete, warm timber accents, and sparkling swimming pool waters in a peaceful Umalas neighborhood.",
+    description: "Surrender your senses to total serenity the moment you arrive at Alua Industrial Loft. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 1 thoughtfully appointed bedroom suite with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Umalas & Seminyak, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"Very nice staff and a good place to stay for a visit in Canggu. I highly recommend!\" — Curated by Bali Stay Collection for industrial chic design lovers and romantic getaways.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'alua-studio-loft-umalas': {
+    category: 'Standard',
+    price: 140,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Umalas & Seminyak, Bali',
+    location: 'Umalas & Seminyak',
+    shortDesc: "A bright, double-height studio loft featuring high ceilings, modern minimalist kitchen, and direct pool access. Tailored for digital nomads and solo travelers seeking inspired focus.",
+    description: "Surrender your senses to total serenity the moment you arrive at Alua Studio Loft. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 1 thoughtfully appointed bedroom suite with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Umalas & Seminyak, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"great stay, would recommend as it close to most cafes and shops.\" — Selected by Bali Stay Collection for remote workers and modern solo travelers in Umalas.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'umalas-green-oasis-villa': {
+    category: 'Deluxe',
+    price: 230,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Umalas & Seminyak, Bali',
+    location: 'Umalas & Seminyak',
+    shortDesc: "Relax in emerald garden privacy where cool pool waters and sun loungers offer pure stillness, perfectly positioned between the vibrant pulse of Canggu and chic Seminyak.",
+    description: "Surrender your senses to total serenity the moment you arrive at Green Oasis Umalas. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 2 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Umalas & Seminyak, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"Loved our Villa, it’s close to a main road so thought we’d hear the horns and noise, nothing! Slept like a baby. Super quiet, very relaxing! 5 minutes walk into the heat of Seminyak! 10/10 would recommend!\" — Recommended by Bali Stay Collection for dependable high-rated comfort and central location.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'casa-noema-umalas': {
+    category: 'Deluxe',
+    price: 240,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Umalas & Seminyak, Bali',
+    location: 'Umalas & Seminyak',
+    shortDesc: "Feel immediately at home in this bohemian tropical retreat featuring warm rattan textures, sun-washed wood, and a crystalline pool tucked away in peaceful Umalas.",
+    description: "Surrender your senses to total serenity the moment you arrive at Casa Noema. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 2 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Umalas & Seminyak, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"very big rooms and living area feel super spacious\" — Curated by Bali Stay Collection for aesthetic bohemian charm and quiet relaxation.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'lady-swan-canggu': {
+    category: 'Luxury',
+    price: 450,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Canggu & Berawa, Bali',
+    location: 'Canggu & Berawa',
+    shortDesc: "Spread out across lush manicured lawns, a lavish swimming pool, and breezy open-plan living pavilions. A grand four-bedroom Canggu retreat crafted for unforgettable shared memories.",
+    description: "Surrender your senses to total serenity the moment you arrive at Lady Swan. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 4 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Canggu & Berawa, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"The stay at lady swan was exquisite. The staff were so helpful and we enjoyed every moment. Thank you so much and we highly recommend.\" — Verified by Bali Stay Collection for spacious group celebrations and relaxed family holidays.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'pererenan-wellness-spa-villa': {
+    category: 'Luxury',
+    price: 330,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Pererenan, Bali',
+    location: 'Pererenan',
+    shortDesc: "Elevate your wellbeing with private biohacking luxury: transition between an authentic Finnish sauna, ice bath plunge, and bubbly Jacuzzi beside your tropical pool in tranquil Pererenan.",
+    description: "Surrender your senses to total serenity the moment you arrive at Villa Vitality. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 2 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Pererenan, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"It's a nice, quiet place, but there are hardly any restaurants within walking distance.\" — The premier wellness & recovery sanctuary in Pererenan curated by Bali Stay Collection.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'thomas-beach-cinema-villa': {
+    category: 'Standard',
+    price: 190,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Uluwatu & Bukit, Bali',
+    location: 'Uluwatu & Bukit',
+    shortDesc: "Watch your favorite movies under the starry Bukit sky by your private pool. An intimate one-bedroom haven minutes from the white sands of Thomas Beach, Uluwatu.",
+    description: "Surrender your senses to total serenity the moment you arrive at Thomas Beach Cinema Villa. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 1 thoughtfully appointed bedroom suite with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Uluwatu & Bukit, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"We had a wonderful stay! Thank you very much to Resa, who welcomed us very well. We had everything we needed. I'll definitely recommend.\" — Hand-picked by Bali Stay Collection for romantic couples and private cinema evenings under the stars.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'uluwatu-ocean-rooftop-villa': {
+    category: 'Luxury',
+    price: 520,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Uluwatu & Bukit, Bali',
+    location: 'Uluwatu & Bukit',
+    shortDesc: "Gaze across dramatic jungle valleys to the azure Indian Ocean from your private panoramic rooftop. An extraordinary 4-bedroom architectural villa designed for sunset cocktail hours and ocean lovers.",
+    description: "Surrender your senses to total serenity the moment you arrive at Uluwatu Ocean Crest. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 4 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Uluwatu & Bukit, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"One of the best villas in Uluwatu with a great team handling everything.\" — Verified by Bali Stay Collection for breathtaking rooftop vistas and iconic Bukit sunsets.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'luxe-umalas-sanctuary': {
+    category: 'Deluxe',
+    price: 270,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Umalas & Seminyak, Bali',
+    location: 'Umalas & Seminyak',
+    shortDesc: "Wake to sunbeams illuminating natural stone finishes and gentle pool waters. A sophisticated two-bedroom hideaway offering effortless walking access to Umalas’ finest bakeries and wellness clubs.",
+    description: "Surrender your senses to total serenity the moment you arrive at Luxe Umalas Sanctuary. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 2 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Umalas & Seminyak, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"Beautiful villa, spotless, and had everything we needed for a relaxing getaway.\nThe location was perfect for us.\nMio was a wonderful host, always kind, and happy to help whenever we had a question.\nHighly recommend 🙏🏼\" — Recommended by Bali Stay Collection for active lifestyle travelers seeking walkable convenience.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'designer-peaceful-umalas': {
+    category: 'Premium',
+    price: 360,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Umalas & Seminyak, Bali',
+    location: 'Umalas & Seminyak',
+    shortDesc: "Experience harmonious indoor-outdoor living with sunken lounge seating, soaring ceilings, and a shimmering private pool in one of Bali’s most peaceful upscale enclaves.",
+    description: "Surrender your senses to total serenity the moment you arrive at Villa Casa Serena. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 3 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Umalas & Seminyak, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"This villa was just as described , everything clean. The hosts and staff were friendly and accommodating\" — Selected by Bali Stay Collection for impeccable architectural lines and serene Umalas ambiance.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'lagoon-pool-villa-umalas': {
+    category: 'Luxury',
+    price: 290,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Umalas & Seminyak, Bali',
+    location: 'Umalas & Seminyak',
+    shortDesc: "Immerse your senses in a resort-style private lagoon pool surrounded by tropical flora. Two bespoke master suites deliver refined luxury just moments from Canggu and Seminyak.",
+    description: "Surrender your senses to total serenity the moment you arrive at Lagoon Pool Villa. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 2 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Umalas & Seminyak, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"Amazing host, always quick to answer and satisfy our needs! The villa looks really good & just like the pictures. Location is great, many shops & activities around.\" — Hand-picked by Bali Stay Collection for its iconic curvaceous lagoon pool and bespoke finishes.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'villa-terea-one': {
+    category: 'Deluxe',
+    price: 250,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Umalas & Seminyak, Bali',
+    location: 'Umalas & Seminyak',
+    shortDesc: "Awaken each morning to the gentle whisper of tropical gardens and dip into your private azure pool. A luminous two-bedroom sanctuary combining modern elegance with calm residential warmth.",
+    description: "Surrender your senses to total serenity the moment you arrive at Villa Terea 1. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 2 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Umalas & Seminyak, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"The villa is really beautiful. We weren't too bothered by the construction. The staff are helpful and the host is always available. Recommended for a stay with friends and family.\" — Verified by Bali Stay Collection for intimate residential tranquility near Seminyak dining.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'villa-serenity-canggu': {
+    category: 'Premium',
+    price: 340,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Pererenan, Bali',
+    location: 'Pererenan',
+    shortDesc: "Inhale the calming ocean breeze as you lounge beside a sparkling swimming pool. Three generous bedroom suites offer unmatched comfort just minutes from Pererenan Beach.",
+    description: "Surrender your senses to total serenity the moment you arrive at Villa Serenity. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 3 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Pererenan, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"Wonderful stay in this exceptional villa. Responsive and efficient staff. Villa as described and shown in the photos. \nI would highly recommend it.\" — Curated by Bali Stay Collection for authentic coastal serenity and expansive family comfort.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'villa-infinity-three': {
+    category: 'Deluxe',
+    price: 260,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Pererenan, Bali',
+    location: 'Pererenan',
+    shortDesc: "Bask in golden island sunlight beside a sleek private pool framed by lush tropical greenery. An intimate 2-bedroom design hideaway tailored for restful couples and small families.",
+    description: "Surrender your senses to total serenity the moment you arrive at Villa Infinity 3. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 2 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Pererenan, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"One of the best places to stay in Bali. A lovely option, and the hosts are very helpful. Thank you for your warm hospitality.\" — Recommended by Bali Stay Collection for modern design lovers seeking quiet village calm.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'amazing-berawa-retreat': {
+    category: 'Luxury',
+    price: 480,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Canggu & Berawa, Bali',
+    location: 'Canggu & Berawa',
+    shortDesc: "Feel the vibrant energy of Canggu dissolve into serene relaxation the moment you enter this sunlit 4-bedroom villa featuring a turquoise pool steps from Berawa’s finest cafés.",
+    description: "Surrender your senses to total serenity the moment you arrive at Berawa Haven. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 4 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Canggu & Berawa, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"Everything was perfect would definitely stay again!\" — Selected by Bali Stay Collection for unbeatable central Berawa location and top-tier hospitality.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
+  'luxe-pererenan-pool-villa': {
+    category: 'Luxury',
+    price: 420,
+    cleaningFee: 45,
+    freeCancel: true,
+    cardBg: '#DFD3C3',
+    bookedDays: [],
+    address: 'Pererenan, Bali',
+    location: 'Pererenan',
+    shortDesc: "Step into an airy tropical sanctuary where expansive glass walls, a crystal-clear pool, and swaying palms effortlessly wash away daily fatigue in quiet Pererenan.",
+    description: "Surrender your senses to total serenity the moment you arrive at Villa Santai Pererenan. Natural daylight filters across open living spaces, while the soothing sound of clear pool waters and rustling tropical foliage effortlessly creates an ambiance of deep, restorative peace.\n\nFeaturing 4 thoughtfully appointed bedroom suites with cloud-like king bedding, premium cotton linens, and spa-inspired en-suite bathrooms, every corner of this private retreat is tailored for uncompromised comfort. Slide open full-length glass doors to take refreshing afternoon dips in your private pool, or relax on poolside loungers with a chilled drink in hand.\n\nNestled in a peaceful residential pocket of Pererenan, you remain just moments from beloved artisan cafés, fine dining, and Bali's famed coastal hotspots. Supported by attentive daily housekeeping and Bali Stay Collection's dedicated on-the-ground concierge, your stay is seamless from check-in to farewell.",
+    why: "Guest Highlight: \"We enjoyed our stay and everything was great, the team was extremely helpful with whatever we needed.\" — Verified by Bali Stay Collection for spacious group gatherings and peaceful coastal living.",
+    amenities: ['Private pool', 'Daily housekeeping', 'Chef on request', 'Air conditioning', 'High-speed WiFi']
+  },
+
   'villa-infinity-umalas': {
     category: 'Luxury',
     price: 690,

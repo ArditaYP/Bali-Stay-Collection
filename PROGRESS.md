@@ -2084,6 +2084,65 @@ src/
    - `npm run build`: **Lulus 100% (2.87s, 0 Error)**.
    - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
+### 9.39 Hero Search Bar: Transformasi Segmen Check-in & Check-out Menjadi "Experience"
+1. **Instruksi Pengguna**:
+   - *"bagian cek in dan cek out ganti jadi 'Experience' yang ada di section id hero"*
+2. **Kebutuhan & Implementasi**:
+   - Di [`src/components/frontpage/AirbnbSearchBar.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/AirbnbSearchBar.jsx), segmen terpisah `checkin-segment` dan `checkout-segment` digantikan menjadi satu segmen terpadu bernama **"Experience"** (`exp-segment`).
+   - Tampilan segmen:
+     - Label atas: `EXPERIENCE` (font semi-bold, uppercase).
+     - Teks nilai: `{selectedExperience?.title || 'Add experience'}` yang dinamis menampilkan pengalaman concierge pilihan pengguna (seperti *Private Catamaran & Yacht Charter*, *Private Helicopter Sky Tour*, *Balinese Culinary Masterclass*, dll.).
+     - Interaktivitas popover: Ketika diklik, popover `experience` terbuka menampilkan grid kartu pengalaman mewah terkurasi khas Bali Stay Collection dengan foto, durasi, harga, dan tombol pemilihan instan.
+   - Menggantikan alur perpindahan popover: memilih destinasi di popover `where` kini otomatis membuka popover `experience` untuk pengalaman concierge yang mulus.
+   - Membersihkan state & fungsi yang tidak terpakai (`dateTargetSegment`, `formatDateDisplay`, dan import `AirbnbDatePopover`) untuk menjaga kebersihan kode dan 0 lint error.
+3. **Hasil Verifikasi**:
+   - Hero search bar tampil elegan dengan 3 pilar: `[WHERE] | [EXPERIENCE] | [WHO] | [Search]`.
+   - `npm run lint`: **0 Error**.
+   - `npm run build`: **Lulus 100%**.
+
+### 9.40 Impor Masif 16 Villa Baru Airbnb dengan Hypnotic NLP Copywriting & Integrasi Penuh 51 Villa Autentik
+1. **Instruksi Pengguna**:
+   - *"1. import data villa airbnb ini cek apakah ada yang sama, jika ga ada yang sama import semua, jika ada yang sama gausah di import data nya [17 tautan listing airbnb] dan ingat yang 'buat baru headline dan description untuk menyakinkan tamu gunakan teknik penulisan hipnotic leanguage patern (nlp) dan persuasive mental trigger ambil tulisan Dari best review yang ada' tapi ingat pesan saya yang tadi tadi"*
+2. **Pengecekan Duplikasi**:
+   - Dari 17 listing Airbnb yang diperiksa, listing ID `1569243074057240780` (Villa Imala di Umalas) **SUDAH ADA** di database (`villa-imala`). Sesuai instruksi ketat pengguna, listing ini **DILEWATI** dan tidak diimpor ulang.
+   - Sebanyak **16 listing baru** terverifikasi belum ada di database dan berhasil diimpor secara utuh:
+     1. `740880512555563526` -> `luxe-pererenan-pool-villa` (Pererenan, 4BR, ★4.8)
+     2. `613520141002689477` -> `amazing-berawa-retreat` (Canggu & Berawa, 4BR, ★4.85)
+     3. `1319515018323186223` -> `villa-infinity-three` (Pererenan, 2BR, ★4.85)
+     4. `1318403344055186930` -> `villa-serenity-canggu` (Pererenan, 3BR, ★4.95)
+     5. `1450480387295857510` -> `villa-terea-one` (Umalas & Seminyak, 2BR, ★4.84)
+     6. `1752137935946173386` -> `lagoon-pool-villa-umalas` (Umalas & Seminyak, 2BR, ★5.0)
+     7. `1737045844934350031` -> `designer-peaceful-umalas` (Umalas & Seminyak, 3BR, ★5.0)
+     8. `1705656567269982914` -> `luxe-umalas-sanctuary` (Umalas & Seminyak, 2BR, ★4.83)
+     9. `1670221329637775588` -> `uluwatu-ocean-rooftop-villa` (Uluwatu & Bukit, 4BR, ★4.76)
+     10. `1705487266221487320` -> `thomas-beach-cinema-villa` (Uluwatu & Bukit, 1BR, ★4.69)
+     11. `1399640109013152014` -> `pererenan-wellness-spa-villa` (Pererenan, 2BR w/ sauna, ice bath, jacuzzi, ★4.97)
+     12. `832954551289630944` -> `lady-swan-canggu` (Canggu & Berawa, 4BR, ★4.71)
+     13. `831429082379605794` -> `casa-noema-umalas` (Umalas & Seminyak, 2BR, ★4.8)
+     14. `777749460946645548` -> `umalas-green-oasis-villa` (Umalas & Seminyak, 2BR, ★4.92)
+     15. `777733830104072736` -> `alua-studio-loft-umalas` (Umalas & Seminyak, 1BR, ★4.21)
+     16. `777724606218544779` -> `alua-industrial-pool-loft` (Umalas & Seminyak, 1BR, ★4.93)
+3. **Penyusunan Media Asli & Hypnotic NLP Copywriting**:
+   - Mengunduh 15 foto HD per villa (total 240 foto beresolusi tinggi) ke `public/airbnb/<slug>/photos/`.
+   - Mengambil seluruh ulasan asli tamu via GraphQL Airbnb dan mengunduh puluhan avatar reviewer ke `public/airbnb/<slug>/avatars/`.
+   - Menyusun copywriting NLP dalam Refined Luxury English:
+     - **Headline**: Kombinasi nama elegan, kapasitas kamar, dan daya pikat emosional utama.
+     - **Short Description**: Menggunakan sensory language (VAK) dan pacing & leading.
+     - **Full Description (3 Paragraf)**:
+       - Paragraf 1: Pengalaman ketibaan & atmosfer sensori (cahaya mentari, gemericik air, semilir angin).
+       - Paragraf 2: Arsitektur ruang, ranjang king berlinen mewah, kolam renang privat, dan relaksasi total.
+       - Paragraf 3: Lokasi strategis dekat kafe ternama berpadu privasi tenang & layanan concierge BSC.
+     - **Why We Picked It**: Mengutip verbatim kalimat ulasan bintang lima terbaik dari tamu terverifikasi (`Guest Highlight: "[Kutipan]" — [Alasan kurasi BSC]`).
+4. **Sinkronisasi 4 Berkas Master & Perhitungan Wilayah**:
+   - `src/data/airbnbVillas.json`: Bertambah dari 35 menjadi **51 villa**.
+   - `src/data/bscVillasData.js`: Bertambah menjadi **51 villa** di `BSC_VILLAS` dan `AIRBNB_ONLY_VILLA_IDS`. Jumlah destinasi di `DESTINATIONS_SUMMARY` diperbarui otomatis.
+   - `src/data/villasData.js`: Seluruh 16 entri lengkap ditambahkan ke `VILLA_DETAILS`.
+   - `src/data/neighborhoodData.js`: Seluruh alias koordinat geografis ditambahkan ke `VILLA_COORDINATES_ALIAS`.
+5. **Hasil Verifikasi**:
+   - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+   - `npm run build`: **Lulus 100% (3.02s, 0 Error)**.
+   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

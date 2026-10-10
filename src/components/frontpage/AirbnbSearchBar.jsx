@@ -7,7 +7,6 @@ import {
   PACKAGES_DATA, 
   EXPERIENCES_DATA 
 } from '../../data/bscFleetData';
-import AirbnbDatePopover from './AirbnbDatePopover';
 
 /**
  * Komponen AirbnbSearchBar
@@ -59,8 +58,6 @@ export default function AirbnbSearchBar({
   // State panel drop-up popover aktif ('where', 'dates', 'who', 'pickup', 'carFleet', 'carDriver', 'pkgCat', 'expCat', atau null)
   const [activePopover, setActivePopover] = useState(null);
 
-  // State fokus target segmen tanggal ('checkIn' atau 'checkOut')
-  const [dateTargetSegment, setDateTargetSegment] = useState('checkIn');
 
   // State rincian tamu (Adults, Children, Infants)
   const initialGuests = Number(searchParams.guests) || 2;
@@ -145,20 +142,6 @@ export default function AirbnbSearchBar({
     }
   };
 
-  /**
-   * Format tanggal singkat yang elegan untuk display (contoh: '14 Oct')
-   * @param {string} dateStr - Tanggal format YYYY-MM-DD
-   * @returns {string} String terformat
-   */
-  const formatDateDisplay = (dateStr) => {
-    if (!dateStr) return '';
-    try {
-      const d = new Date(dateStr);
-      return d.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
-    } catch {
-      return dateStr;
-    }
-  };
 
   // Ringkasan label teks tamu
   const totalGuestsCount = adults + children;
@@ -220,14 +203,13 @@ export default function AirbnbSearchBar({
                       onClick={() => {
                         onSearchChange('location', '');
                         onSearchChange('area', '');
-                        setDateTargetSegment('checkIn');
-                        setActivePopover('dates');
+                        setActivePopover('experience');
                       }}
                     >
                       <div className="dest-opt-icon">🌴</div>
                       <div className="dest-opt-info">
                         <b>All Bali</b>
-                        <small>Explore all 35 authentic luxury villas across Bali</small>
+                        <small>Explore all 51 authentic luxury villas across Bali</small>
                       </div>
                     </button>
 
@@ -243,8 +225,7 @@ export default function AirbnbSearchBar({
                             onClick={() => {
                               onSearchChange('location', dest.name);
                               onSearchChange('area', dest.name);
-                              setDateTargetSegment('checkIn');
-                              setActivePopover('dates');
+                              setActivePopover('experience');
                             }}
                           >
                             <div className="dest-opt-icon">📍</div>
@@ -263,71 +244,62 @@ export default function AirbnbSearchBar({
 
             <div className="airbnb-seg-divider" />
 
-            {/* 2. SEGMEN CHECK-IN */}
+            {/* 2. SEGMEN EXPERIENCE (Menggantikan Check-in & Check-out sesuai permintaan pengguna) */}
             <div 
               role="button"
               tabIndex={0}
-              className={`airbnb-search-segment checkin-segment ${(activePopover === 'dates' && dateTargetSegment === 'checkIn') ? 'active' : ''}`}
-              onClick={() => {
-                setDateTargetSegment('checkIn');
-                setActivePopover(prev => (prev === 'dates' && dateTargetSegment === 'checkIn') ? null : 'dates');
-              }}
+              className={`airbnb-search-segment exp-segment ${activePopover === 'expCat' ? 'active' : ''}`}
+              onClick={() => setActivePopover(prev => prev === 'expCat' ? null : 'expCat')}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  setDateTargetSegment('checkIn');
-                  setActivePopover(prev => (prev === 'dates' && dateTargetSegment === 'checkIn') ? null : 'dates');
+                  setActivePopover(prev => prev === 'expCat' ? null : 'expCat');
                 }
               }}
             >
-              <span className="airbnb-seg-label">Check-in</span>
-              <span className={`airbnb-seg-value ${!searchParams.checkIn ? 'placeholder' : ''}`}>
-                {formatDateDisplay(searchParams.checkIn) || 'Add dates'}
+              <span className="airbnb-seg-label">Experience</span>
+              <span className={`airbnb-seg-value ${!selectedExperience ? 'placeholder' : ''}`}>
+                {selectedExperience?.title || 'Add experience'}
               </span>
+
+              {/* POPOVER PILIHAN AKTIVITAS ON-DEMAND (MEMBUKA KE BAWAH) */}
+              {activePopover === 'expCat' && (
+                <div className="airbnb-popover experience-popover" onClick={(e) => e.stopPropagation()}>
+                  <div className="popover-header">
+                    <span>Select On-Demand Experience</span>
+                  </div>
+                  <div className="experience-popover-list">
+                    {EXPERIENCES_DATA.map((exp) => {
+                      const isSelected = selectedExperience?.id === exp.id;
+                      return (
+                        <button
+                          key={exp.id}
+                          type="button"
+                          className={`exp-popover-item ${isSelected ? 'selected' : ''}`}
+                          onClick={() => {
+                            if (typeof onSelectExperience === 'function') {
+                              onSelectExperience(exp);
+                            }
+                            setActivePopover(null);
+                          }}
+                        >
+                          <div className="exp-pop-info">
+                            <div className="exp-pop-title-row">
+                              <b>{exp.title}</b>
+                              <span className="exp-pop-badge">{exp.badge}</span>
+                            </div>
+                            <small>{exp.tag} · {exp.duration}</small>
+                          </div>
+                          <div className="exp-pop-price">
+                            <b>{exp.price}</b>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
-
-            <div className="airbnb-seg-divider" />
-
-            {/* 3. SEGMEN CHECK-OUT */}
-            <div 
-              role="button"
-              tabIndex={0}
-              className={`airbnb-search-segment checkout-segment ${(activePopover === 'dates' && dateTargetSegment === 'checkOut') ? 'active' : ''}`}
-              onClick={() => {
-                setDateTargetSegment('checkOut');
-                setActivePopover(prev => (prev === 'dates' && dateTargetSegment === 'checkOut') ? null : 'dates');
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setDateTargetSegment('checkOut');
-                  setActivePopover(prev => (prev === 'dates' && dateTargetSegment === 'checkOut') ? null : 'dates');
-                }
-              }}
-            >
-              <span className="airbnb-seg-label">Check-out</span>
-              <span className={`airbnb-seg-value ${!searchParams.checkOut ? 'placeholder' : ''}`}>
-                {formatDateDisplay(searchParams.checkOut) || 'Add dates'}
-              </span>
-            </div>
-
-            {/* POPOVER KALENDER TANGGAL (MEMBUKA KE BAWAH DI TENGAH) */}
-            {activePopover === 'dates' && (
-              <AirbnbDatePopover
-                checkIn={searchParams.checkIn || ''}
-                checkOut={searchParams.checkOut || ''}
-                initialTarget={dateTargetSegment}
-                onDatesChange={(newCi, newCo) => {
-                  onSearchChange('checkIn', newCi);
-                  onSearchChange('checkOut', newCo);
-                  if (newCi && !newCo) {
-                    setDateTargetSegment('checkOut');
-                  }
-                }}
-                onClose={() => setActivePopover(null)}
-                onDone={() => setActivePopover('who')}
-              />
-            )}
 
             <div className="airbnb-seg-divider" />
 
