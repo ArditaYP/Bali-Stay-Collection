@@ -13,7 +13,7 @@
 
 export const CONFIG = {
   idrRate: 16000,
-  whatsapp: '628123456789',
+  whatsapp: '6281337743002',
   defaultNights: 6,
   startInDays: 14,
   videoEmbed: 'https://www.youtube.com/embed/dQw4w9WgXcQ'

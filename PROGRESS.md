@@ -2447,6 +2447,30 @@ src/
     - `footer_redesign_desktop.png` & `footer_redesign_mobile.png`: Footer selaras sempurna dengan gambar referensi `footer.jpeg`.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu instruksi eksplisit "push".
 
+### 9.55. Pemulihan Logo Resmi BSC di Footer dan Pembaruan Alamat Kantor Serta Nomor Telepon Resmi
+- **Permintaan Pengguna**:
+  1. Footer tetap menggunakan logo resmi BSC sama seperti di bagian atas (`/logo-white.svg`), tidak diubah menjadi teks biasa.
+  2. Alamat kantor diperbarui: `Jl. Gunung Salak Utara No.189, Padangsambian Klod, Kec. Denpasar Bar., Kota Denpasar, Bali 80117`.
+  3. Nomor telepon/WhatsApp diperbarui: `+62 813-3774-3002`.
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/BscFooter.jsx`:
+     - Mengganti teks brand pada Kolom 1 dengan logo resmi BSC `/logo-white.svg` (ikon terracotta 'B' dan wordmark putih).
+     - Memperbarui alamat kantor menjadi `Jl. Gunung Salak Utara No.189, Padangsambian Klod, Kec. Denpasar Bar., Kota Denpasar, Bali 80117` lengkap dengan tautan interaktif langsung ke Google Maps.
+     - Memperbarui nomor telepon/WhatsApp menjadi `+62 813-3774-3002` (terhubung ke `https://wa.me/6281337743002`).
+     - Tautan Google Maps di baris bawah footer kini otomatis membuka pin lokasi alamat resmi kantor Bali.
+  2. `src/data/bscVillasData.js`:
+     - Memperbarui `CONFIG.whatsapp` menjadi `'6281337743002'`.
+  3. `src/components/frontpage/AirbnbSearchBar.jsx`, `src/components/frontpage/HeroConciergeShowcase.jsx`, `src/components/Footer.jsx`, & `src/components/Navbar.jsx`:
+     - Menyelaraskan seluruh tautan WhatsApp concierge, car rental, motorbike, wellness, dan alert kontak bantuan agar konsisten menggunakan nomor resmi `+62 813-3774-3002`.
+  4. `src/components/frontpage/bscFrontpage.css`:
+     - Menyesuaikan styling `.bsc-frontpage .foot-logo-img` dengan tinggi `38px` dan margin proporsional.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.32s, 0 Error)**.
+  - Verifikasi visual desktop & mobile via Google Chrome headless:
+    - `footer_redesign_desktop.png` & `footer_redesign_mobile.png`: Logo resmi BSC tampil tajam dan elegan di atas deskripsi kurasi, alamat kantor Bali dan nomor telepon `+62 813-3774-3002` tampil sempurna dan dapat diklik.
+  - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu instruksi eksplisit "push".
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

@@ -1763,23 +1763,11 @@
 }
 
 /* Col 1: Brand */
-.bsc-frontpage .foot-brand-title {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 21px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  color: #FFFFFF;
-  text-transform: uppercase;
-  line-height: 1.2;
-}
-
-.bsc-frontpage .foot-brand-sub {
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: #D8B370;
-  text-transform: uppercase;
-  margin-top: 5px;
+.bsc-frontpage .foot-logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
+  margin-bottom: 16px;
 }
 
 .bsc-frontpage .foot-brand-desc {

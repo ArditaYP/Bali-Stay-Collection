@@ -29,7 +29,7 @@ export default function Footer({ onGoHome, onOpenListVilla, onOpenEditor }) {
             </a>
           )}
           <a onClick={() => alert('Cancellation Policy:\nFree full refund up to 7 days before check-in.\n50% refund up to 48 hours before check-in.')}>Cancellation Policy</a>
-          <a onClick={() => alert('Contact Support:\nWhatsApp: +62 812-3456-7890\nOperational 24/7 Bali Time (WITA)')}>Contact Us</a>
+          <a onClick={() => alert('Contact Support:\nWhatsApp: +62 813-3774-3002\nOperational 24/7 Bali Time (WITA)')}>Contact Us</a>
         </div>
 
         {/* Hak Cipta */}

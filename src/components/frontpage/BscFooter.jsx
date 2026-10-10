@@ -71,8 +71,12 @@ export default function BscFooter({ onOpenListVilla, onOpenEditor }) {
           <div className="foot-grid">
             {/* Kolom 1: Brand Info & Kontak Bali */}
             <div className="foot-col foot-brand-col">
-              <div className="foot-brand-title">B A L I &nbsp;S T A Y</div>
-              <div className="foot-brand-sub">COLLECTION &middot; BY ANAKOSA</div>
+              <img 
+                src="/logo-white.svg" 
+                alt="Bali Stay Collection" 
+                className="foot-logo-img"
+                style={{ height: '36px', width: 'auto', display: 'block', marginBottom: '14px' }} 
+              />
               <p className="foot-brand-desc">
                 Not a thousand listings. Just villas we know, and a local team that finds the one that&rsquo;s yours.
               </p>
@@ -80,16 +84,26 @@ export default function BscFooter({ onOpenListVilla, onOpenEditor }) {
                 <div>
                   <strong>Office in Bali</strong>
                 </div>
-                <div>[Full address]</div>
-                <div style={{ marginTop: '8px' }}>
-                  <strong>WhatsApp</strong>{' '}
+                <div style={{ color: '#CBD5E1', fontSize: '13.5px', marginTop: '2px', lineHeight: 1.5 }}>
+                  <a 
+                    href="https://maps.google.com/?q=Jl.+Gunung+Salak+Utara+No.189,+Padangsambian+Klod,+Kec.+Denpasar+Bar.,+Kota+Denpasar,+Bali+80117" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{ color: '#CBD5E1', textDecoration: 'none' }}
+                    title="Open in Google Maps"
+                  >
+                    Jl. Gunung Salak Utara No.189, Padangsambian Klod, Kec. Denpasar Bar., Kota Denpasar, Bali 80117
+                  </a>
+                </div>
+                <div style={{ marginTop: '10px' }}>
+                  <strong>WhatsApp / Telp</strong>{' '}
                   <a href={`https://wa.me/${CONFIG.whatsapp}`} target="_blank" rel="noopener noreferrer">
-                    [Number]
+                    +62 813-3774-3002
                   </a>
                   {' '}&middot;{' '}
                   <strong>Email</strong>{' '}
                   <a href="mailto:hello@balistaycollection.com">
-                    hello@[yourdomain].com
+                    hello@balistaycollection.com
                   </a>
                 </div>
                 <div className="foot-contact-sub" style={{ marginTop: '4px' }}>
@@ -161,7 +175,13 @@ export default function BscFooter({ onOpenListVilla, onOpenEditor }) {
             <div className="foot-bottom-links">
               <a href="#instagram" onClick={(e) => e.preventDefault()}>Instagram</a>
               <a href="#youtube" onClick={(e) => e.preventDefault()}>YouTube</a>
-              <a href="#maps" onClick={(e) => e.preventDefault()}>Google Maps</a>
+              <a 
+                href="https://maps.google.com/?q=Jl.+Gunung+Salak+Utara+No.189,+Padangsambian+Klod,+Kec.+Denpasar+Bar.,+Kota+Denpasar,+Bali+80117" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                Google Maps
+              </a>
               <a href="#terms" onClick={(e) => e.preventDefault()}>Terms</a>
             </div>
           </div>

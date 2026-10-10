@@ -84,7 +84,7 @@ export default function Navbar({
         <button type="button" onClick={() => handleScrollToSection('destinations-section')}>Locations</button>
         <button type="button" onClick={() => handleScrollToSection('experiences')}>Experiences</button>
         <button type="button" onClick={() => handleScrollToSection('why-section')}>Why Book Direct</button>
-        <button type="button" onClick={() => alert('Pusat Bantuan Bali Stay Collection:\nWhatsApp: +62 812-3456-7890\nEmail: hello@balistaycollection.com')}>Contact</button>
+        <button type="button" onClick={() => alert('Pusat Bantuan Bali Stay Collection:\nWhatsApp: +62 813-3774-3002\nEmail: hello@balistaycollection.com')}>Contact</button>
       </nav>
 
       {/* Tombol Aksi di Navbar */}
@@ -196,7 +196,7 @@ export default function Navbar({
         <button type="button" onClick={handleOpenListVillaMobile} style={{ color: 'var(--accent)' }}>
           + List Your Villa (Host Partner)
         </button>
-        <button type="button" onClick={() => alert('Pusat Bantuan Bali Stay Collection:\nWhatsApp: +62 812-3456-7890\nEmail: hello@balistaycollection.com')}>
+        <button type="button" onClick={() => alert('Pusat Bantuan Bali Stay Collection:\nWhatsApp: +62 813-3774-3002\nEmail: hello@balistaycollection.com')}>
           Contact &amp; 24/7 Support
         </button>
       </div>

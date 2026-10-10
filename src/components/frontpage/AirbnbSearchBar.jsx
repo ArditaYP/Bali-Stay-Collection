@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { DESTINATIONS_SUMMARY } from '../../data/bscVillasData';
+import { DESTINATIONS_SUMMARY, CONFIG } from '../../data/bscVillasData';
 import { 
   CAR_FLEET_DATA, 
   MOTORBIKE_FLEET_DATA,
@@ -122,7 +122,7 @@ export default function AirbnbSearchBar({
       const msg = encodeURIComponent(
         `Halo Bali Stay Collection Concierge, saya tertarik dengan layanan mobil "${selectedCar?.name || 'Airport Transfer'}" (${selectedDriverOption?.title || 'Dengan Supir'}) dengan lokasi penjemputan "${selectedPickup?.title || 'Bandara DPS'}" ${datesInfo}. Mohon info ketersediaannya.`
       );
-      window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
+      window.open(`https://wa.me/${CONFIG.whatsapp}?text=${msg}`, '_blank', 'noopener,noreferrer');
       return;
     }
 
@@ -131,7 +131,7 @@ export default function AirbnbSearchBar({
       const msg = encodeURIComponent(
         `Halo Bali Stay Collection Concierge, saya tertarik sewa skuter "${selectedMotorbike?.name || 'Daily Scooter'}" dengan pengantaran ke "${selectedPickup?.title || 'Villa Delivery'}" ${datesInfo}. Mohon info ketersediaannya.`
       );
-      window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
+      window.open(`https://wa.me/${CONFIG.whatsapp}?text=${msg}`, '_blank', 'noopener,noreferrer');
       return;
     }
 
@@ -139,7 +139,7 @@ export default function AirbnbSearchBar({
       const msg = encodeURIComponent(
         `Halo Bali Stay Collection Concierge, saya tertarik dengan layanan Wellness "${selectedPackage?.title || 'Balinese Ritual Massage'}". Mohon info ketersediaan dan detail layanannya.`
       );
-      window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
+      window.open(`https://wa.me/${CONFIG.whatsapp}?text=${msg}`, '_blank', 'noopener,noreferrer');
       return;
     }
 
@@ -147,7 +147,7 @@ export default function AirbnbSearchBar({
       const msg = encodeURIComponent(
         `Halo Bali Stay Collection Concierge, saya tertarik dengan pengalaman Immersion "${selectedExperience?.title || 'Sunrise Yoga & Meditation'}". Mohon info ketersediaan jadwalnya.`
       );
-      window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
+      window.open(`https://wa.me/${CONFIG.whatsapp}?text=${msg}`, '_blank', 'noopener,noreferrer');
       return;
     }
 

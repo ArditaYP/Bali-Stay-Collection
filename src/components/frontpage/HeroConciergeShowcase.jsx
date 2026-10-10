@@ -1,5 +1,6 @@
 import React from 'react';
 import { CAR_FLEET_DATA, PACKAGES_DATA, EXPERIENCES_DATA } from '../../data/bscFleetData';
+import { CONFIG } from '../../data/bscVillasData';
 
 /**
  * Komponen HeroConciergeShowcase
@@ -39,7 +40,7 @@ export default function HeroConciergeShowcase({
     const text = encodeURIComponent(
       `Halo Bali Stay Collection Concierge, saya tertarik untuk memesan layanan ${category}: "${title}". Mohon informasi ketersediaan dan detail layanannya. Terima kasih.`
     );
-    window.open(`https://wa.me/628123456789?text=${text}`, '_blank', 'noopener,noreferrer');
+    window.open(`https://wa.me/${CONFIG.whatsapp}?text=${text}`, '_blank', 'noopener,noreferrer');
   };
 
   return (
