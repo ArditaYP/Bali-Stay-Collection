@@ -8453,13 +8453,39 @@ mark.review-highlight {
 /* TOP PICKS SHOW PRICE & BADGES ROW SEJAJAR                      */
 /* [New on BSC][Inspected]   <space>   [Show price]               */
 /* ============================================================== */
+.bsc-frontpage .pick .why,
+.pick .why {
+  margin: 10px 0 14px !important;
+  font-size: 13px !important;
+  line-height: 1.48 !important;
+  color: var(--ink-soft, #334155) !important;
+  background: var(--accent-soft, #FAF8F5) !important;
+  border: 1px solid rgba(210, 176, 115, 0.22) !important;
+  border-radius: 10px !important;
+  padding: 10px 13px !important;
+  white-space: normal !important;
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: unset !important;
+  overflow: visible !important;
+  min-height: auto !important;
+  max-height: none !important;
+}
+
+.bsc-frontpage .pick .why b,
+.pick .why b {
+  color: var(--accent-dark, #92671e) !important;
+  font-weight: 700 !important;
+}
+
 .picks-badges-row {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
   gap: 12px !important;
   margin-top: auto !important;
-  padding-top: 14px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid rgba(22, 41, 77, 0.08) !important;
   width: 100% !important;
 }
 

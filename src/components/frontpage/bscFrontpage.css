@@ -899,19 +899,17 @@
 }
 
 .bsc-frontpage .why {
-  margin: 12px 0 0;
-  font-size: 13.5px;
-  line-height: 1.45;
+  margin: 10px 0 14px;
+  font-size: 13px;
+  line-height: 1.48;
   color: var(--ink-soft);
   background: var(--accent-soft);
+  border: 1px solid rgba(210, 176, 115, 0.2);
   border-radius: 10px;
-  padding: 10px 12px;
+  padding: 10px 13px;
   white-space: normal;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  min-height: 72px;
+  display: block;
+  overflow: visible;
 }
 
 .bsc-frontpage .why b {

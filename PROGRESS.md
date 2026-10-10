@@ -2002,6 +2002,23 @@ src/
    - `npm run build`: **Lulus 100% (2.96s, 0 Error)**.
    - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
+### 9.34 Perbaikan Tampilan Teks Ulasan "Why We Picked It" (Eliminasi Pemotongan Teks / Line-Clamp)
+1. **Instruksi Pengguna**:
+   - *"kurang pas ini Why we picked it: Guest Highlight: "Absolutely gorgeous for a family getaway! Spacious, spotless, with a large child-friendly pool, great workout gear, and luxurious master suites." — The top family recommendation in Uluwatu by Bali Stay Collection. ga keliatan dia jadi agak kebawah gitu dia"*
+2. **Kebutuhan & Implementasi**:
+   - **Akar Masalah**:
+     - Aturan CSS sebelumnya di [`bscFrontpage.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/bscFrontpage.css) menetapkan `display: -webkit-box; -webkit-line-clamp: 3; overflow: hidden;` pada `.why`.
+     - Akibatnya, kutipan ulasan dan rekomendasi panjang (seperti pada Villa Yellow Moon Uluwatu) terpotong di baris ke-3 sehingga kalimat lanjutan ulasan tidak terlihat ("ga keliatan").
+   - **Solusi yang Diterapkan**:
+     - Mengubah `.why` menjadi `display: block; -webkit-line-clamp: unset; overflow: visible; min-height: auto; max-height: none;` di [`bscFrontpage.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/bscFrontpage.css) dan [`src/index.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/index.css).
+     - Menata ulang tipografi dan padding: `font-size: 13px; line-height: 1.48; padding: 10px 13px; border: 1px solid rgba(210, 176, 115, 0.22); border-radius: 10px; margin: 10px 0 14px;`.
+     - Memberi border-top tipis `border-top: 1px solid rgba(22, 41, 77, 0.08); padding-top: 12px;` pada `.picks-badges-row` di bawahnya agar terpisah secara proporsional tanpa void kosong.
+     - Seluruh kutipan rekomendasi kini terbaca 100% lengkap, rapi, dan tidak ada teks yang terpotong.
+3. **Hasil Verifikasi**:
+   - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+   - `npm run build`: **Lulus 100% (2.81s, 0 Error)**.
+   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)
