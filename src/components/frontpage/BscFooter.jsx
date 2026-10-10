@@ -102,12 +102,9 @@ export default function BscFooter({ onOpenListVilla, onOpenEditor }) {
                   </a>
                   {' '}&middot;{' '}
                   <strong>Email</strong>{' '}
-                  <a href="mailto:hello@balistaycollection.com">
-                    hello@balistaycollection.com
+                  <a href="mailto:talk@balistaycollection.com">
+                    talk@balistaycollection.com
                   </a>
-                </div>
-                <div className="foot-contact-sub" style={{ marginTop: '4px' }}>
-                  Replies: [e.g. within 1 hour, 8am&ndash;10pm WITA]
                 </div>
               </div>
             </div>
@@ -144,15 +141,23 @@ export default function BscFooter({ onOpenListVilla, onOpenEditor }) {
               </ul>
             </div>
 
-            {/* Kolom 4: A BRAND OF BSC */}
-            <div className="foot-col foot-brand-of-col">
+            {/* Kolom 4: A BRAND OF ANAKOSA */}
+            <div className="foot-col foot-anakosa-col">
               <h4 className="foot-col-title">A BRAND OF</h4>
-              <img 
-                src="/logo-white.svg" 
-                alt="Bali Stay Collection" 
-                className="foot-logo-img"
-                style={{ height: '36px', width: 'auto', display: 'block', marginTop: '6px' }} 
-              />
+              <div className="foot-anakosa-logo">A N A K Ō S A</div>
+              <p className="foot-anakosa-sub">
+                Own a villa in Bali?{' '}
+                <a 
+                  href="#list-villa" 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (typeof onOpenListVilla === 'function') onOpenListVilla();
+                  }}
+                  className="foot-anakosa-cta"
+                >
+                  Talk to ANAKOSA
+                </a>
+              </p>
             </div>
           </div>
         </div>
@@ -163,7 +168,7 @@ export default function BscFooter({ onOpenListVilla, onOpenEditor }) {
         {/* Seksi Bawah: Hak Cipta & Socials */}
         <div className="foot-bottom">
           <div className="foot-bottom-in">
-            <div className="foot-copy">&copy; 2026 Bali Stay Collection</div>
+            <div className="foot-copy">&copy; 2026 ANAKOSA</div>
             <div className="foot-bottom-links">
               <a href="#instagram" onClick={(e) => e.preventDefault()}>Instagram</a>
               <a href="#youtube" onClick={(e) => e.preventDefault()}>YouTube</a>

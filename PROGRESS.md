@@ -2482,10 +2482,30 @@ src/
   2. `src/components/frontpage/bscFrontpage.css`:
      - Menambahkan class `.bsc-frontpage .foot-brand-of-col .foot-logo-img` dan menghapus class ANAKOSA yang sudah tidak digunakan.
 - **Hasil Verifikasi**:
-  - `npm run lint`: **0 Error** (30 warnings standar React Compiler).
-  - `npm run build`: **Lulus 100% (3.20s, 0 Error)**.
+### 9.57. Pembaruan Kontak Footer (Hapus Replies Note & Ubah Email) Serta Pemulihan Seksi Brand ANAKOSA
+- **Permintaan Pengguna**:
+  1. Hapus catatan balasan di footer: `Replies: [e.g. within 1 hour, 8am–10pm WITA]`.
+  2. Ganti email kontak di footer menjadi: `talk@balistaycollection.com`.
+  3. Kembalikan logo dan konten kolom kanan (Kolom 4):
+     - Header: `A BRAND OF`
+     - Brand Wordmark: `A N A K Ō S A`
+     - Subteks / CTA: `Own a villa in Bali? Talk to ANAKOSA` (dengan tautan pendaftaran kemitraan villa).
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/BscFooter.jsx`:
+     - Menghapus elemen `.foot-contact-sub` yang memuat teks perkiraan waktu respon `Replies: [e.g. within 1 hour, 8am–10pm WITA]`.
+     - Mengubah alamat email kontak dan tautan `mailto:` dari `hello@balistaycollection.com` menjadi `talk@balistaycollection.com`.
+     - Memulihkan Kolom 4 footer menjadi brand ANAKOSA: header `A BRAND OF`, wordmark teks `A N A K Ō S A`, serta teks `Own a villa in Bali? Talk to ANAKOSA` yang memicu modal registrasi villa saat diklik.
+     - Mengembalikan teks hak cipta di footer bawah menjadi `© 2026 ANAKOSA`.
+  2. `src/components/frontpage/bscFrontpage.css`:
+     - Memulihkan class styling `.foot-anakosa-logo` (`font-size: 20px`, `letter-spacing: 0.28em`, `white-space: nowrap`), `.foot-anakosa-sub`, dan `.foot-anakosa-cta`.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.27s, 0 Error)**.
   - Verifikasi visual desktop & mobile via Google Chrome headless:
-    - `footer_redesign_desktop.png` & `footer_bottom_mobile.png`: Kolom 4 menampilkan header `A BRAND OF` dengan logo BSC putih yang presisi dan bersih.
+    - `footer_redesign_desktop.png`:
+      - Kolom 1 menampilkan logo resmi BSC `/logo-white.svg`, alamat kantor Bali, nomor WhatsApp `+62 813-3774-3002`, dan email `talk@balistaycollection.com` tanpa catatan waktu respon.
+      - Kolom 4 menampilkan `A BRAND OF` dengan `A N A K Ō S A` dalam 1 baris elegan serta tautan `Talk to ANAKOSA`.
+      - Hak cipta menampilkan `© 2026 ANAKOSA`.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu instruksi eksplisit "push".
 
 ---
@@ -2498,3 +2518,4 @@ src/
    - **JANGAN PERNAH `git push`**.
    - Berikan kesempatan kepada pengguna untuk memeriksa, mencoba, dan memverifikasi hasilnya secara langsung di server lokal terlebih dahulu (`http://localhost:5173`).
    - Eksekusi `git push` baru boleh dilakukan jika dan HANYA JIKA pengguna secara eksplisit dan terpisah menuliskan kata *"push ke github"* untuk perubahan tersebut.
+
