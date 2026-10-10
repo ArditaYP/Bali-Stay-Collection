@@ -79,7 +79,8 @@ export default function BscDestinations({
   _currency = 'USD',
   onSelectArea,
   onSelectDestination,
-  destinationsData = null
+  destinationsData = null,
+  onOpenSearch
 }) {
   const activeVillas = (villas && villas.length > 0) ? villas : BSC_VILLAS;
 
@@ -122,9 +123,30 @@ export default function BscDestinations({
     <section className="sec" id="destinations">
       <div className="wrap">
         <div className="sec-head">
-          <div className="eyebrow">Explore</div>
-          <h2>Explore by destination</h2>
-          <p>Choose the feel of your stay, then browse the villas. Tap an area to filter.</p>
+          <div className="sec-head-left">
+            <div className="eyebrow">Explore</div>
+            <h2>Explore by destination</h2>
+            <p>Choose the feel of your stay, then browse the villas. Tap an area to filter.</p>
+          </div>
+
+          {onOpenSearch && (
+            <div className="sec-head-right">
+              <button
+                type="button"
+                className="dest-search-btn"
+                onClick={onOpenSearch}
+                title="Search villas & destinations (⌘K)"
+                aria-label="Search villas and destinations"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+                <span className="dest-search-text">Search...</span>
+                <kbd className="dest-search-kbd">⌘K</kbd>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Grid Destinasi Sesuai Format Kotak Asli bsc-frontpage_1.html */}

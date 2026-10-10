@@ -215,25 +215,8 @@ export default function BscNavbar({
             <a href="#experiences" onClick={(e) => handleScrollToSection(e, 'experiences')}>Experiences</a>
           </nav>
 
-          {/* Sisi Kanan: Quick Search, Wishlist, Currency Toggle, Tombol CTA & Hamburger Mobile */}
+          {/* Sisi Kanan: Wishlist, Currency Toggle, Tombol CTA & Hamburger Mobile */}
           <div className="nav-cta">
-            {/* Tombol Quick Search (Spotlight ⌘K) */}
-            {onOpenSearch && !isScrolledPastHero && (
-              <button
-                type="button"
-                className="nav-search-btn"
-                onClick={onOpenSearch}
-                title="Search villas & destinations (⌘K)"
-                aria-label="Search villas and destinations"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="11" cy="11" r="8" />
-                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                </svg>
-                <span className="nav-search-text">Search...</span>
-                <kbd className="nav-search-kbd">⌘K</kbd>
-              </button>
-            )}
 
             {/* Tombol Wishlist jika ada yang disimpan */}
             {wishlistCount > 0 && onOpenWishlist && (

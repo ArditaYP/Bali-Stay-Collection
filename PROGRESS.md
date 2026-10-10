@@ -2224,6 +2224,38 @@ src/
   - Verifikasi visual desktop (`find_my_villa_desktop.png`) & mobile (`find_my_villa_mobile.png`): **100% Sesuai Instruksi**.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
 
+### 9.45. Pengembalian Ikon Kaca Pembesar pada Tombol Pencarian Hero
+- **Permintaan Pengguna**:
+  - Mengembalikan ikon kaca pembesar di tombol pencarian section `id="hero"`.
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/AirbnbSearchBar.jsx`:
+     - Menambahkan kembali elemen SVG kaca pembesar di dalam tombol `.airbnb-submit-btn` berdampingan dengan teks `Find My Villa`.
+  2. `src/index.css`:
+     - Menyesuaikan `gap: 8px` dan padding `14px 24px` pada `.airbnb-submit-btn` agar seimbang antara ikon dan teks.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.15s, 0 Error)**.
+  - Verifikasi visual desktop (`magnifier_restored_desktop.png`): **100% Sesuai Instruksi**.
+  - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
+
+### 9.46. Pemindahan Tombol Search dari Navbar ke Sisi Kanan Judul 'Explore by destination'
+- **Permintaan Pengguna**:
+  - Memindahkan tombol search yang ada di navbar atas ke posisi kanan tulisan 'Explore by destination'.
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/BscNavbar.jsx`:
+     - Menghapus elemen tombol `nav-search-btn` dari header navigasi kanan (`nav-cta`), sehingga navbar atas lebih bersih dan fokus pada navigasi utama serta currency toggle.
+  2. `src/pages/ExplorePage.jsx`:
+     - Mengoper prop handler `onOpenSearch={onOpenSearch}` ke komponen `BscDestinations`.
+  3. `src/components/frontpage/BscDestinations.jsx`:
+     - Menerima prop `onOpenSearch` dan menampilkan tombol pencarian pill `dest-search-btn` (`Search... ⌘K`) tepat di sisi kanan judul 'Explore by destination'.
+  4. `src/components/frontpage/bscFrontpage.css`:
+     - Menambahkan styling flexbox modern untuk `.sec-head` pada section `#destinations` dengan tombol `.dest-search-btn` (border rounded, shadow halus, kbd badge, dan efek hover emas), serta penyesuaian responsivitas pada layar mobile.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (2.31s, 0 Error)**.
+  - Verifikasi visual desktop (`search_moved_to_destinations.png`) & mobile (`search_moved_to_destinations_mobile.png`): **100% Sesuai Instruksi**.
+  - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

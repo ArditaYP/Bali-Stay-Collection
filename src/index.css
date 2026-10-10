@@ -7652,11 +7652,12 @@ mark.review-highlight {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   background: linear-gradient(135deg, #16294D 0%, #203a6b 100%);
   color: #ffffff;
   border: none;
   border-radius: 36px;
-  padding: 14px 28px;
+  padding: 14px 24px;
   font-size: 14.5px;
   font-weight: 700;
   cursor: pointer;

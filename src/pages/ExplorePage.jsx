@@ -185,6 +185,7 @@ export default function ExplorePage({
           currency={activeCurrency}
           onSelectDestination={handleSelectDestination}
           destinationsData={homepageMedia?.destinations}
+          onOpenSearch={onOpenSearch}
         />
 
         {/* 5. From Simple and Stylish to Full Luxury (Levels)
