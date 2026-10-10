@@ -1,153 +1,139 @@
 /**
  * bscFleetData.js
- * Basis data resmi armada mobil mewah, opsi supir, lokasi transfer,
- * paket liburan VIP (Packages), dan pengalaman kurasi (Things to do)
- * untuk frontpage Bali Stay Collection (Hero & Concierge Services).
+ * Basis data resmi armada mobil, sewa skuter, paket wellness,
+ * dan pengalaman immersion untuk frontpage Bali Stay Collection (Hero & Concierge Services).
  */
 
 export const CAR_FLEET_DATA = [
   {
-    id: 'toyota-alphard',
-    name: 'Toyota Alphard VIP Executive Lounge',
-    shortName: 'Toyota Alphard VIP',
-    category: 'VIP Luxury Lounge',
-    badge: 'Most Popular VIP',
+    id: 'airport-transfer',
+    name: 'Airport Transfer',
+    shortName: 'Airport Transfer',
+    category: 'Airport VIP Service',
+    badge: 'Meet & Greet',
+    seats: 4,
+    luggage: 4,
+    transmission: 'Automatic',
+    fuel: 'Included',
+    driverOption: 'Private Chauffeur Included',
+    amenities: [
+      'Ngurah Rai (DPS) Airport Meet & Greet',
+      'Luggage Escort & Direct Villa Drop',
+      'Air-Conditioned Premium Vehicle',
+      'Complimentary Cold Water & Wet Towels'
+    ],
+    priceIdr: 'Rp 450.000',
+    priceUsd: '~$30 USD',
+    period: 'one way',
+    description: 'Layanan penjemputan dan pengantaran bandara Ngurah Rai (DPS) bebas antre dengan supir pribadi siap menyambut di gerbang kedatangan.'
+  },
+  {
+    id: 'private-driver-full-day',
+    name: 'Private Driver Full Day',
+    shortName: 'Private Driver Full Day',
+    category: '10h Island Charter',
+    badge: 'Most Flexible',
+    seats: 6,
+    luggage: 4,
+    transmission: 'Automatic',
+    fuel: 'Petrol & Parking Included',
+    driverOption: 'Private Chauffeur Included',
+    amenities: [
+      '10 Hours Dedicated Standby & Custom Route',
+      'English-Speaking Licensed Local Driver',
+      'Petrol / BBM & Parking Fees Included',
+      'Flexible Itinerary Across All Bali Regions'
+    ],
+    priceIdr: 'Rp 850.000',
+    priceUsd: '~$55 USD',
+    period: '10 hours',
+    description: 'Supir pribadi berlisensi berbahasa Inggris siap mengantar Anda menjelajahi berbagai destinasi eksotis Bali selama 10 jam penuh.'
+  },
+  {
+    id: 'luxury-mpv-with-driver',
+    name: 'Luxury MPV with Driver',
+    shortName: 'Luxury MPV with Driver',
+    category: 'VIP Executive Lounge',
+    badge: 'VIP Class',
     seats: 5,
     luggage: 4,
     transmission: 'Automatic',
     fuel: 'Petrol / Hybrid',
     driverOption: 'Private Chauffeur Included',
     amenities: [
-      'Ottoman Captain Reclining Seats',
-      'In-Car High-Speed Wi-Fi',
-      'Complimentary Cold Water & Towels',
-      'Dual Panoramic Sunroof & Air Ionizer'
+      'Toyota Alphard / Vellfire VIP Cabin',
+      'Ottoman Captain Reclining Leather Seats',
+      'In-Car High-Speed Wi-Fi & Cold Refreshments',
+      'Professional Uniformed Executive Chauffeur'
     ],
     priceIdr: 'Rp 2.200.000',
     priceUsd: '~$140 USD',
-    period: 'per day (10 hours)',
-    description: 'Standar kemewahan mobilitas para tamu VVIP Bali. Kursi kapten elektrik dengan leg rest ottoman, kabin senyap ber-AC dingin, dan pengemudi pribadi berbusana batik rapi.'
+    period: '10 hours',
+    description: 'Kemewahan kelas satu dengan MPV premium (Toyota Alphard / Vellfire), kursi kapten elektrik ottoman, dan pengemudi VIP profesional.'
   },
   {
-    id: 'toyota-hiace-premio',
-    name: 'Toyota HiAce Premio Luxury VIP (10-Seat)',
-    shortName: 'HiAce Premio VIP (10-Seat)',
-    category: 'VIP Group Van',
-    badge: 'Family & Group Luxury',
-    seats: 10,
-    luggage: 8,
-    transmission: 'Automatic',
-    fuel: 'Diesel',
-    driverOption: 'Private Chauffeur Included',
-    amenities: [
-      'Custom Leather Reclining Seats',
-      'High-Roof Spacious Cabin',
-      'In-Car Wi-Fi & Premium Audio',
-      'Dual Independent Air Conditioning'
-    ],
-    priceIdr: 'Rp 2.500.000',
-    priceUsd: '~$160 USD',
-    period: 'per day (10 hours)',
-    description: 'Pilihan sempurna untuk rombongan keluarga besar atau grup villa. Kabin tinggi lapang, kursi kulit berjarak lega, bagasi ekstra luas untuk koper & perlengkapan golf.'
-  },
-  {
-    id: 'hyundai-ioniq-5',
-    name: 'Hyundai Ioniq 5 EV Luxury Lounge',
-    shortName: 'Hyundai Ioniq 5 EV',
-    category: '100% Eco-Luxury EV',
-    badge: 'Zero Emission',
-    seats: 4,
+    id: 'self-drive-car',
+    name: 'Self-drive Car',
+    shortName: 'Self-drive Car',
+    category: 'Self-Drive Rental',
+    badge: 'Independent Trip',
+    seats: 5,
     luggage: 3,
-    transmission: 'Automatic EV',
-    fuel: '100% Electric',
-    driverOption: 'Private Chauffeur Included',
+    transmission: 'Automatic',
+    fuel: 'Self-Service',
+    driverOption: 'Self Drive (Lepas Kunci)',
     amenities: [
-      'Zero-Emission Whisper Quiet Drive',
-      'Panoramic Vision Glass Roof',
-      'Premium Relaxation Front Seats',
-      'Eco-Conscious Island Mobility'
+      'Clean & Well-Maintained Automatic Car',
+      'Free Villa Delivery & Return in Key Areas',
+      'Comprehensive Insurance Coverage Included',
+      'Requires Valid Driving License / IDP'
     ],
-    priceIdr: 'Rp 2.400.000',
-    priceUsd: '~$155 USD',
-    period: 'per day (10 hours)',
-    description: 'Mobilitas modern ramah lingkungan tanpa emisi & polusi suara. Menikmati keindahan alam pulau Bali dengan kabin hening, atap kaca luas, dan interior futuristik.'
-  },
-  {
-    id: 'toyota-zenix-hybrid',
-    name: 'Toyota Innova Zenix Hybrid Luxury',
-    shortName: 'Innova Zenix Hybrid',
-    category: 'Premium Hybrid Explorer',
-    badge: 'Island Comfort',
-    seats: 6,
-    luggage: 4,
-    transmission: 'Automatic Hybrid',
-    fuel: 'Petrol Hybrid',
-    driverOption: 'Private Chauffeur Included',
-    amenities: [
-      'Captain Seats in 2nd Row',
-      'Smooth Hybrid Fuel Efficiency',
-      'Modern Digital Climate AC',
-      'Agile for Bali Scenic Coastal Roads'
-    ],
-    priceIdr: 'Rp 1.400.000',
-    priceUsd: '~$90 USD',
-    period: 'per day (10 hours)',
-    description: 'Pilihan mobilitas serbaguna yang sangat nyaman untuk pasangan maupun keluarga kecil menelusuri pantai-pantai tersembunyi dan kafe-kafe trendi di Bali.'
+    priceIdr: 'Rp 400.000',
+    priceUsd: '~$25 USD',
+    period: '24 hours',
+    description: 'Sewa mobil lepas kunci (nyetir sendiri) dengan unit mobil bersih, terawat, dan pengantaran langsung ke villa Anda.'
   }
 ];
 
 export const MOTORBIKE_FLEET_DATA = [
   {
-    id: 'yamaha-xmax-250',
-    name: 'Yamaha XMAX 250cc Maxi Scooter',
-    shortName: 'Yamaha XMAX 250cc',
-    category: 'Maxi Touring Scooter',
-    badge: 'Touring & Highway',
-    engine: '250cc Liquid-Cooled',
-    storage: 'Extra-large double helmet trunk',
-    priceIdr: 'Rp 350.000',
-    priceUsd: '~$22 USD',
+    id: 'daily-scooter',
+    name: 'Daily Scooter',
+    shortName: 'Daily Scooter',
+    category: 'Daily Rental',
+    badge: 'Flexible Daily',
+    engine: '110cc–125cc Automatic (Scoopy / Vario)',
+    storage: 'Underseat trunk & phone mount',
+    priceIdr: 'Rp 120.000',
+    priceUsd: '~$8 USD',
     period: 'per day',
-    description: 'Maxi scooter premium paling bertenaga untuk menjelajahi pantai timur, Uluwatu, dan pegunungan Kintamani dengan kestabilan luar biasa.'
+    description: 'Skuter matik harian lincah dan hemat bahan bakar, sangat ideal untuk mobilitas santai ke kafe dan pantai terdekat.'
   },
   {
-    id: 'vespa-sprint-s-150',
-    name: 'Vespa Sprint S 150cc i-Get ABS',
-    shortName: 'Vespa Sprint S 150cc',
-    category: 'Italian Aesthetic Icon',
-    badge: 'Most Stylish',
-    engine: '150cc i-Get ABS',
-    storage: 'Underseat trunk & glove box',
-    priceIdr: 'Rp 300.000',
-    priceUsd: '~$19 USD',
-    period: 'per day',
-    description: 'Ikon gaya hidup pesisir Bali. Desain klasik retro elegan dengan akselerasi halus, sangat cocok untuk bersantai di kafe Canggu & Seminyak.'
+    id: 'weekly-scooter',
+    name: 'Weekly Scooter',
+    shortName: 'Weekly Scooter',
+    category: '7-Day Package',
+    badge: 'Best Value Deal',
+    engine: '110cc–125cc Automatic (Scoopy / Vario)',
+    storage: 'Underseat trunk & phone mount',
+    priceIdr: 'Rp 650.000',
+    priceUsd: '~$42 USD',
+    period: 'per 7 days',
+    description: 'Paket sewa mingguan hemat untuk liburan santai 7 hari di Bali, gratis antar-jemput ke villa Anda.'
   },
   {
-    id: 'honda-pcx-160',
-    name: 'Honda PCX 160cc Luxury Cruiser',
-    shortName: 'Honda PCX 160cc',
-    category: 'Comfort Island Cruiser',
-    badge: 'Smooth Cruiser',
-    engine: '160cc 4-Valve eSP+',
-    storage: '30L massive storage compartment',
-    priceIdr: 'Rp 220.000',
-    priceUsd: '~$14 USD',
+    id: 'premium-scooter',
+    name: 'Premium Scooter',
+    shortName: 'Premium Scooter',
+    category: 'Maxi Touring Class',
+    badge: 'Maxi Comfort',
+    engine: '155cc–250cc (XMAX / NMAX / Vespa)',
+    storage: 'Large double-helmet storage trunk',
+    priceIdr: 'Rp 280.000',
+    priceUsd: '~$18 USD',
     period: 'per day',
-    description: 'Kenyamanan berkendara terbaik untuk harian. Suspensi empuk, posisi duduk santai, dan bagasi besar muat belanjaan atau pakaian renang.'
-  },
-  {
-    id: 'honda-scoopy-prestige',
-    name: 'Honda Scoopy Prestige Smart Key',
-    shortName: 'Honda Scoopy 110cc',
-    category: 'Light Island Hopper',
-    badge: 'Agile & Easy',
-    engine: '110cc eSP Smart Key',
-    storage: 'Compact city trunk & USB charger',
-    priceIdr: 'Rp 140.000',
-    priceUsd: '~$9 USD',
-    period: 'per day',
-    description: 'Skuter ringan, lincah, dan sangat hemat bahan bakar. Sangat mudah bermanuver di gang-gang sempit kafe dan jalanan santai pesisir pantai.'
+    description: 'Skuter premium bertenaga dengan kenyamanan maksimal untuk perjalanan jarak jauh dan rute perbukitan Uluwatu atau Ubud.'
   }
 ];
 
@@ -194,72 +180,69 @@ export const CHAUFFEUR_OPTIONS_DATA = [
 
 export const PACKAGES_DATA = [
   {
-    id: 'yacht-escape',
-    title: 'The Ultimate Yacht & Villa Escape',
-    badge: 'Signature VIP Bundle',
-    tag: '3 Nights Villa + Private Yacht',
-    desc: 'Menginap di private pool villa eksklusif dipadukan dengan charter kapal yacht catamaran pribadi menuju Nusa Penida & Lembongan dengan snorkeling manta ray.',
-    includes: ['3 Nights Private Villa Stay', 'Full-Day Private Yacht Charter', 'VIP Airport DPS Fast-Track', '5-Course Private Chef Dinner'],
-    price: 'From $2,850 USD',
-    period: 'per bundle (up to 4 guests)'
+    id: 'balinese-ritual-massage',
+    name: 'Balinese Ritual Massage',
+    title: 'Balinese Ritual Massage',
+    badge: 'Signature Wellness',
+    tag: 'Traditional Holistic Massage',
+    desc: 'Pijat relaksasi tradisional khas Bali menggunakan minyak herbal alami untuk melemaskan otot tegang dan memulihkan energi tubuh.',
+    includes: ['90-min Full Body Balinese Massage', 'Organic Floral Essential Oils', 'Aromatic Foot Bath Ritual', 'Herbal Ginger Warm Tea'],
+    price: 'From $45 USD',
+    period: 'per person'
   },
   {
-    id: 'honeymoon-sanctuary',
-    title: 'Romantic Bali Honeymoon Sanctuary',
-    badge: 'Romance VIP Bundle',
-    tag: '4 Nights Villa + Bespoke Romance',
-    desc: 'Retret romantis terbaik di villa tebing Uluwatu atau Ubud. Termasuk floating breakfast bunga mawar, candlelit dinner oleh private chef, dan couple holistic spa ritual.',
-    includes: ['Secluded Cliff/Jungle Villa', '5-Course Candlelit Chef Dinner', '2h Couple Spa & Sound Bath', 'Daily Floating Pool Breakfast'],
-    price: 'From $1,950 USD',
-    period: 'per bundle (for couple)'
+    id: 'couples-spa-journey',
+    name: 'Couples Spa Journey',
+    title: 'Couples Spa Journey',
+    badge: 'Romance Ritual',
+    tag: '2.5h In-Villa Couple Spa',
+    desc: 'Pengalaman relaksasi spa berdua di villa dengan lulur rempah Bali, rendaman bathtub kelopak bunga mawar, dan pijat aromaterapi.',
+    includes: ['120-min Dual Holistic Massage', 'Rose Petal Floral Bath', 'Balinese Body Scrub & Wrap', 'Complimentary Chilled Sparkling Wine'],
+    price: 'From $120 USD',
+    period: 'per couple'
   },
   {
-    id: 'family-heritage',
-    title: 'Family Luxury Heritage & Culture',
-    badge: 'Family VIP Bundle',
-    tag: '5 Nights Grand Estate + Chauffeur',
-    desc: 'Liburan keluarga bebas repot. Grand estate 4-5 kamar tidur dengan staf lengkap, mobil HiAce Premio VIP ber-supir 10 jam sehari, dan private cultural day tour.',
-    includes: ['4–5 Bedroom Luxury Estate', 'Chauffeured HiAce Premio (10h/day)', 'Dedicated Butler & Concierge', 'Custom Island Family Excursions'],
-    price: 'From $3,400 USD',
-    period: 'per bundle (up to 10 guests)'
+    id: 'deep-restore-day',
+    name: 'Deep Restore Day',
+    title: 'Deep Restore Day',
+    badge: 'Full-Day Healing',
+    tag: 'Full-Day Wellness Retreat',
+    desc: 'Retret pemulihan seharian penuh di villa Anda: privat yoga pagi, terapi sound healing mangkuk Tibet, pijat restoratif, dan makanan organik sehat.',
+    includes: ['Morning Private Yoga Session', 'Tibetan Singing Bowl Healing', '90-min Deep Restore Bodywork', 'Organic Detox Lunch & Fresh Cold Pressed Juice'],
+    price: 'From $185 USD',
+    period: 'per person'
   }
 ];
 
 export const EXPERIENCES_DATA = [
   {
-    id: 'catamaran-charter',
-    title: 'Private Catamaran & Yacht Charter',
-    badge: 'Ocean Luxury',
-    tag: 'Full Day Cruise',
-    desc: 'Berlayar pribadi melintasi selat Badung menuju teluk biru Nusa Penida & Lembongan dengan hidangan champagne & barbekyu hidangan laut segar.',
-    price: 'From $1,200 USD',
-    duration: '8 Hours'
+    id: 'sunrise-yoga-meditation',
+    name: 'Sunrise Yoga & Meditation',
+    title: 'Sunrise Yoga & Meditation',
+    badge: 'Morning Serenity',
+    tag: 'Private Guided Session',
+    desc: 'Sesi yoga dan meditasi privat saat fajar menyingsing di teras villa atau tepi pantai dipandu guru yoga Bali bersertifikat.',
+    price: 'From $40 USD',
+    duration: '90 Mins'
   },
   {
-    id: 'private-chef',
-    title: 'In-Villa Bespoke Private Chef Dining',
-    badge: 'Gastronomy VIP',
-    tag: '5-Course Fine Dining',
-    desc: 'Koki pribadi bintang 5 memasak langsung hidangan fine dining gourmet 5-course di dapur villa Anda, lengkap dengan dekorasi meja makan tepi kolam renang.',
-    price: 'From $85 USD / person',
-    duration: '3 Hours'
+    id: 'melukat-water-purification',
+    name: 'Melukat Water Purification',
+    title: 'Melukat Water Purification',
+    badge: 'Sacred Blessing',
+    tag: 'Holy Spring Water Ritual',
+    desc: 'Ritual pembersihan spiritual suci Melukat di mata air alami Tirta Empul atau Sebatu didampingi pemangku adat Bali.',
+    price: 'From $65 USD',
+    duration: 'Half Day'
   },
   {
-    id: 'helicopter-tour',
-    title: 'Scenic Island Helicopter Coastline Tour',
-    badge: 'Aerial VIP',
-    tag: 'Aerial Excursion',
-    desc: 'Menyaksikan kemegahan tebing Uluwatu, patung GWK raksasa, dan garis pantai pura Tanah Lot dari ketinggian udara helikopter eksekutif.',
-    price: 'From $650 USD',
-    duration: '30–60 Mins'
-  },
-  {
-    id: 'in-villa-spa',
-    title: 'In-Villa Sound Bath & Balinese Wellness Ritual',
-    badge: 'Holistic Spa',
-    tag: 'Deep Rejuvenation',
-    desc: 'Terapis spa Bali profesional hadir di villa Anda dengan minyak esensial organik, pijat relaksasi tubuh, dan sound healing mangkuk Tibet tepi kolam.',
-    price: 'From $65 USD / person',
-    duration: '2 Hours'
+    id: 'balinese-culture-day',
+    name: 'Balinese Culture Day',
+    title: 'Balinese Culture Day',
+    badge: 'Opsional',
+    tag: 'Temple & Village Heritage (Opsional)',
+    desc: 'Aktivitas eksplorasi budaya Bali yang fleksibel (opsional): membuat canang sari, mengunjungi desa tradisional, dan prosesi pura leluhur.',
+    price: 'From $75 USD',
+    duration: 'Full Day'
   }
 ];

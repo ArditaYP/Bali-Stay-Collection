@@ -2344,6 +2344,43 @@ src/
   - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
   - `npm run build`: **Lulus 100% (3.15s, 0 Error)**.
   - Verifikasi visual desktop (`catalog_no_price_desktop.png`) & mobile (`catalog_no_price_mobile.png`): **100% Sesuai Instruksi**.
+### 9.52. Pembaruan Opsi Pencarian Layanan Concierge Hero (Wellness, Immersion, Car, Motorbike)
+- **Permintaan Pengguna**:
+  - Memasukkan opsi kurasi khusus pada widget pencarian di seksi `id="hero"` untuk masing-masing tab:
+    1. **Wellness**:
+       - *Balinese Ritual Massage*
+       - *Couples Spa Journey*
+       - *Deep Restore Day*
+    2. **Immersion**:
+       - *Sunrise Yoga & Meditation*
+       - *Melukat Water Purification*
+       - *Balinese Culture Day* (Opsional)
+    3. **Car**:
+       - *Airport Transfer*
+       - *Private Driver Full Day*
+       - *Luxury MPV with Driver*
+       - *Self-drive Car*
+    4. **Motorbike**:
+       - *Daily Scooter*
+       - *Weekly Scooter*
+       - *Premium Scooter*
+- **Pembaruan Kode**:
+  1. `src/data/bscFleetData.js`:
+     - Memperbarui dataset `PACKAGES_DATA` dengan 3 layanan Wellness (*Balinese Ritual Massage*, *Couples Spa Journey*, *Deep Restore Day*) lengkap dengan harga, durasi/detail, dan benefit.
+     - Memperbarui dataset `EXPERIENCES_DATA` dengan 3 aktivitas Immersion (*Sunrise Yoga & Meditation*, *Melukat Water Purification*, *Balinese Culture Day* bertag `Opsional`).
+     - Memperbarui dataset `CAR_FLEET_DATA` dengan 4 jenis layanan mobilitas (*Airport Transfer*, *Private Driver Full Day*, *Luxury MPV with Driver*, *Self-drive Car*).
+     - Memperbarui dataset `MOTORBIKE_FLEET_DATA` dengan 3 paket skuter (*Daily Scooter*, *Weekly Scooter*, *Premium Scooter*).
+  2. `src/components/frontpage/AirbnbSearchBar.jsx`:
+     - Menyelaraskan label dan popover title:
+       - Tab Wellness: label `"Wellness Treatment"`, title popover `"Select Wellness Treatment"`.
+       - Tab Immersion: label `"Immersion Experience"`, title popover `"Select Immersion Experience"`.
+       - Tab Car: label `"Car Service"`, title popover `"Select Car Service"`.
+       - Tab Motorbike: label `"Scooter Option"`, title popover `"Select Scooter Option"`, dan penyelarasan tata letak kartu menggunakan class `.fleet-popover-item` yang seragam mewah dan rapi.
+     - Memperbarui template pesan WhatsApp untuk masing-masing kategori layanan agar menyebutkan nama layanan dengan tepat.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.03s, 0 Error)**.
+  - Verifikasi visual desktop (`hero_tab_wellness.png`, `hero_tab_immersion.png`, `hero_tab_car.png`, `hero_tab_motorbike.png`) & mobile (`hero_mobile_wellness.png`, `hero_mobile_car.png`): **100% Sesuai Instruksi**.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
 
 ---

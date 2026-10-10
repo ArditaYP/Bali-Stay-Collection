@@ -120,7 +120,7 @@ export default function AirbnbSearchBar({
     if (activeTab === 'cars') {
       const datesInfo = searchParams.checkIn ? `untuk tanggal ${searchParams.checkIn}` : 'untuk jadwal segera';
       const msg = encodeURIComponent(
-        `Halo Bali Stay Collection Concierge, saya tertarik sewa armada "${selectedCar?.name || 'Toyota Alphard VIP'}" (${selectedDriverOption?.title || 'Dengan Supir'}) dengan lokasi penjemputan "${selectedPickup?.title || 'Bandara DPS'}" ${datesInfo}. Mohon info ketersediaannya.`
+        `Halo Bali Stay Collection Concierge, saya tertarik dengan layanan mobil "${selectedCar?.name || 'Airport Transfer'}" (${selectedDriverOption?.title || 'Dengan Supir'}) dengan lokasi penjemputan "${selectedPickup?.title || 'Bandara DPS'}" ${datesInfo}. Mohon info ketersediaannya.`
       );
       window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
       return;
@@ -129,7 +129,7 @@ export default function AirbnbSearchBar({
     if (activeTab === 'motorbikes') {
       const datesInfo = searchParams.checkIn ? `untuk tanggal ${searchParams.checkIn}` : 'untuk jadwal segera';
       const msg = encodeURIComponent(
-        `Halo Bali Stay Collection Concierge, saya tertarik sewa motor "${selectedMotorbike?.name || 'Yamaha XMAX 250cc'}" dengan pengantaran ke "${selectedPickup?.title || 'Villa Delivery'}" ${datesInfo}. Mohon info ketersediaannya.`
+        `Halo Bali Stay Collection Concierge, saya tertarik sewa skuter "${selectedMotorbike?.name || 'Daily Scooter'}" dengan pengantaran ke "${selectedPickup?.title || 'Villa Delivery'}" ${datesInfo}. Mohon info ketersediaannya.`
       );
       window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
       return;
@@ -137,7 +137,7 @@ export default function AirbnbSearchBar({
 
     if (activeTab === 'packages') {
       const msg = encodeURIComponent(
-        `Halo Bali Stay Collection Concierge, saya tertarik dengan paket liburan "${selectedPackage?.title || 'VIP Package'}". Mohon info ketersediaan dan detail penawaran.`
+        `Halo Bali Stay Collection Concierge, saya tertarik dengan layanan Wellness "${selectedPackage?.title || 'Balinese Ritual Massage'}". Mohon info ketersediaan dan detail layanannya.`
       );
       window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
       return;
@@ -145,7 +145,7 @@ export default function AirbnbSearchBar({
 
     if (activeTab === 'experiences') {
       const msg = encodeURIComponent(
-        `Halo Bali Stay Collection Concierge, saya tertarik dengan concierge experience "${selectedExperience?.title || 'Curated Experience'}". Mohon info ketersediaan jadwalnya.`
+        `Halo Bali Stay Collection Concierge, saya tertarik dengan pengalaman Immersion "${selectedExperience?.title || 'Sunrise Yoga & Meditation'}". Mohon info ketersediaan jadwalnya.`
       );
       window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
       return;
@@ -516,13 +516,13 @@ export default function AirbnbSearchBar({
                 }
               }}
             >
-              <span className="airbnb-seg-label">Vehicle Tier</span>
+              <span className="airbnb-seg-label">Car Service</span>
               <div className="car-fleet-value-wrapper">
                 <span className="airbnb-seg-value">
-                  {selectedCar?.shortName || 'Toyota Alphard VIP'}
+                  {selectedCar?.shortName || 'Airport Transfer'}
                 </span>
                 <span className="car-mini-badge">
-                  {selectedCar?.seats} Seats · {selectedCar?.category}
+                  {selectedCar?.badge || selectedCar?.category}
                 </span>
               </div>
 
@@ -530,8 +530,8 @@ export default function AirbnbSearchBar({
               {activePopover === 'carFleet' && (
                 <div className="airbnb-popover fleet-popover popover-center" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
-                    <span>Select Luxury Fleet</span>
-                    <small style={{ color: '#D2B073', fontWeight: 600 }}>Chauffeur & Fuel Included</small>
+                    <span>Select Car Service</span>
+                    <small style={{ color: '#D2B073', fontWeight: 600 }}>Airport, Driver & Self-Drive</small>
                   </div>
                   <div className="fleet-popover-list">
                     {CAR_FLEET_DATA.map((car) => {
@@ -566,7 +566,7 @@ export default function AirbnbSearchBar({
                           </div>
                           <div className="fleet-popover-pricing">
                             <span className="fleet-popover-price">{car.priceIdr}</span>
-                            <small className="fleet-popover-period">/ day</small>
+                            <small className="fleet-popover-period">/ {car.period || 'day'}</small>
                           </div>
                         </button>
                       );
@@ -711,24 +711,24 @@ export default function AirbnbSearchBar({
                 }
               }}
             >
-              <span className="airbnb-seg-label">Motorbike Model</span>
+              <span className="airbnb-seg-label">Scooter Option</span>
               <span className="airbnb-seg-value">
-                {selectedMotorbike?.shortName || 'Yamaha XMAX 250cc'}
+                {selectedMotorbike?.shortName || 'Daily Scooter'}
               </span>
 
               {activePopover === 'bikeModel' && (
                 <div className="airbnb-popover fleet-popover" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
-                    <span>Select Motorbike / Scooter</span>
+                    <span>Select Scooter Option</span>
                   </div>
-                  <div className="fleet-options-list">
+                  <div className="fleet-popover-list">
                     {MOTORBIKE_FLEET_DATA.map((bike) => {
                       const isSelected = selectedMotorbike?.id === bike.id;
                       return (
                         <button
                           key={bike.id}
                           type="button"
-                          className={`fleet-option-card ${isSelected ? 'selected' : ''}`}
+                          className={`fleet-popover-item ${isSelected ? 'selected' : ''}`}
                           onClick={() => {
                             if (typeof onSelectMotorbike === 'function') {
                               onSelectMotorbike(bike);
@@ -736,20 +736,24 @@ export default function AirbnbSearchBar({
                             setActivePopover(null);
                           }}
                         >
-                          <div className="fleet-card-info">
-                            <div className="fleet-card-title-row">
-                              <b>{bike.name}</b>
-                              <span className="fleet-badge">{bike.badge}</span>
+                          <div className="fleet-popover-item-left">
+                            <div className="fleet-popover-icon">
+                              🛵
                             </div>
-                            <div className="fleet-specs-row">
-                              <span>🛵 {bike.engine}</span>
-                              <span>📦 {bike.storage}</span>
+                            <div className="fleet-popover-details">
+                              <div className="fleet-popover-title-row">
+                                <b>{bike.name}</b>
+                                <span className="fleet-badge-gold">{bike.badge}</span>
+                              </div>
+                              <div className="fleet-popover-specs">
+                                <span>🛵 {bike.engine}</span>
+                                <span>📦 {bike.storage}</span>
+                              </div>
                             </div>
-                            <p className="fleet-card-desc">{bike.description}</p>
                           </div>
-                          <div className="fleet-card-price">
-                            <span className="fleet-idr">{bike.priceIdr}</span>
-                            <span className="fleet-usd">{bike.priceUsd} / day</span>
+                          <div className="fleet-popover-pricing">
+                            <span className="fleet-popover-price">{bike.priceIdr}</span>
+                            <small className="fleet-popover-period">/ {bike.period || 'day'}</small>
                           </div>
                         </button>
                       );
@@ -793,16 +797,16 @@ export default function AirbnbSearchBar({
                 }
               }}
             >
-              <span className="airbnb-seg-label">VIP Package Bundle</span>
+              <span className="airbnb-seg-label">Wellness Treatment</span>
               <span className="airbnb-seg-value">
-                {selectedPackage?.title || 'The Ultimate Yacht & Villa Escape'}
+                {selectedPackage?.title || 'Balinese Ritual Massage'}
               </span>
 
               {/* POPOVER PILIHAN PAKET (MEMBUKA KE BAWAH) */}
               {activePopover === 'pkgCat' && (
                 <div className="airbnb-popover package-popover" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
-                    <span>Select Curated VIP Bundle</span>
+                    <span>Select Wellness Treatment</span>
                   </div>
                   <div className="package-popover-list">
                     {PACKAGES_DATA.map((pkg) => {
@@ -905,16 +909,16 @@ export default function AirbnbSearchBar({
                 }
               }}
             >
-              <span className="airbnb-seg-label">Concierge Activity</span>
+              <span className="airbnb-seg-label">Immersion Experience</span>
               <span className="airbnb-seg-value">
-                {selectedExperience?.title || 'Private Catamaran & Yacht Charter'}
+                {selectedExperience?.title || 'Sunrise Yoga & Meditation'}
               </span>
 
               {/* POPOVER PILIHAN AKTIVITAS (MEMBUKA KE BAWAH) */}
               {activePopover === 'expCat' && (
                 <div className="airbnb-popover experience-popover" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
-                    <span>Select On-Demand Experience</span>
+                    <span>Select Immersion Experience</span>
                   </div>
                   <div className="experience-popover-list">
                     {EXPERIENCES_DATA.map((exp) => {
