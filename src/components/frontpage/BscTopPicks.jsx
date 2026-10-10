@@ -2,6 +2,18 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { formatBscMoney, calculateNights } from '../../utils/bscFormat';
 import AirbnbDatePopover from './AirbnbDatePopover';
 
+const normalizeTierBadge = (t) => {
+  if (!t) return 'Standard';
+  const lower = String(t).trim().toLowerCase();
+  if (lower === 'luxury' || lower === 'luxe') return 'Luxury';
+  if (lower === 'deluxe') return 'Deluxe';
+  if (lower === 'honeymoon') return 'Deluxe';
+  if (lower === 'retreat') return 'Premium';
+  if (lower === 'premium') return 'Premium';
+  if (lower === 'standard') return 'Standard';
+  return 'Standard';
+};
+
 /**
  * Komponen BscTopPicks
  * Menampilkan seksi rekomendasi terkurasi 'Our top picks' (9 villa pilihan terbaik):
@@ -201,7 +213,7 @@ export default function BscTopPicks({
                   tabIndex={0}
                   title={`View details for ${villa.name}`}
                 >
-                  <span className="tag">{villa.tier}</span>
+                  <span className="tag">{normalizeTierBadge(villa.tier)}</span>
                   
                   {/* Tombol Wishlist Love */}
                   <button

@@ -22,6 +22,23 @@ const VILLA_ALIAS_MAP = {
 };
 
 /**
+ * Normalisasi tier villa agar selalu tepat pada 4 level resmi BSC: Standard, Deluxe, Premium, Luxury
+ * @param {string} val - Nilai tier atau category mentah
+ * @returns {string} Tier resmi BSC
+ */
+const normalizeCanonicalTier = (val) => {
+  if (!val) return 'Standard';
+  const lower = String(val).trim().toLowerCase();
+  if (lower === 'luxury' || lower === 'luxe') return 'Luxury';
+  if (lower === 'deluxe') return 'Deluxe';
+  if (lower === 'honeymoon') return 'Deluxe';
+  if (lower === 'retreat') return 'Premium';
+  if (lower === 'premium') return 'Premium';
+  if (lower === 'standard') return 'Standard';
+  return 'Standard';
+};
+
+/**
  * Komponen Utama Aplikasi (App)
  * Mengelola state global aplikasi:
  * - Halaman aktif (Explore katalog, Detail villa, atau Villa Content Editor)
@@ -88,8 +105,8 @@ export default function App() {
         ...base,
         name: live.name || base.name,
         price: live.price !== undefined && live.price !== null ? live.price : base.price,
-        tier: live.tier || live.category || base.tier,
-        category: live.category || live.tier || base.category,
+        tier: normalizeCanonicalTier(live.tier || base.tier || live.category),
+        category: normalizeCanonicalTier(live.category || live.tier || base.tier),
         area: (live.location && live.location !== 'Bali')
           ? live.location
           : (live.area && live.area !== 'Bali')

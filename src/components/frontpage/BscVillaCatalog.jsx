@@ -60,6 +60,23 @@ const CANONICAL_TIERS = [
   'Luxury'
 ];
 
+/**
+ * Normalisasi badge tier villa agar selalu terpetakan ke 4 level resmi
+ * @param {string} t - Nilai tier mentah
+ * @returns {string} Tier resmi BSC
+ */
+const normalizeTierBadge = (t) => {
+  if (!t) return 'Standard';
+  const lower = String(t).trim().toLowerCase();
+  if (lower === 'luxury' || lower === 'luxe') return 'Luxury';
+  if (lower === 'deluxe') return 'Deluxe';
+  if (lower === 'honeymoon') return 'Deluxe';
+  if (lower === 'retreat') return 'Premium';
+  if (lower === 'premium') return 'Premium';
+  if (lower === 'standard') return 'Standard';
+  return 'Standard';
+};
+
 
 /**
  * Komponen BscVillaCatalog
@@ -807,7 +824,7 @@ export default function BscVillaCatalog({
                         tabIndex={0}
                         onKeyDown={(e) => e.key === 'Enter' && onSelectVilla(villa.id)}
                       >
-                        <span className="tag">{villa.tier}</span>
+                        <span className="tag">{normalizeTierBadge(villa.tier)}</span>
                         <button
                           className="heart"
                           type="button"

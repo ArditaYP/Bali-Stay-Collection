@@ -480,7 +480,7 @@ const VILLA_DETAILS = {
     amenities: ['Private pool', 'Dedicated staff', 'Chef on request', 'Villa manager', 'Air conditioning', 'High-speed WiFi']
   },
   'st-lau-ubud': {
-    category: 'Honeymoon',
+    category: 'Deluxe',
     price: 310,
     cleaningFee: 35,
     freeCancel: true,
@@ -682,7 +682,7 @@ const VILLA_DETAILS = {
     amenities: ['Private pool', 'Ocean view', 'Gym & fitness', 'Private spa room', 'Villa manager', 'Chef on request', 'Daily housekeeping', 'High-speed WiFi', 'Free parking']
   },
   'villa-mahina': {
-    category: 'Luxe',
+    category: 'Luxury',
     price: 380,
     cleaningFee: 40,
     freeCancel: true,
@@ -710,7 +710,7 @@ const VILLA_DETAILS = {
     amenities: ['Private pool', 'Desert-inspired architecture', 'Outdoor tropical shower', 'Full kitchen', 'Air conditioning', 'High-speed WiFi', 'Daily housekeeping', 'Dedicated team']
   },
   'beyond-the-palms': {
-    category: 'Luxe',
+    category: 'Luxury',
     price: 720,
     cleaningFee: 50,
     freeCancel: true,
@@ -724,7 +724,7 @@ const VILLA_DETAILS = {
     amenities: ['Private pool (45m²)', 'Rooftop jacuzzi', 'Yoga deck', 'Sonos sound system', '86" 4K Smart TV', 'SMEG kitchen', 'Outdoor cinema projector', 'Private BBQ grill']
   },
   'villa-akar': {
-    category: 'Luxe',
+    category: 'Luxury',
     price: 490,
     cleaningFee: 45,
     freeCancel: true,
@@ -752,7 +752,7 @@ const VILLA_DETAILS = {
     amenities: ['Private pool', 'Opposite FINNS Recreation Club', 'Modern chic interior', 'Both en-suite bedrooms', 'Fully equipped kitchen', 'Air conditioning', 'Daily housekeeping']
   },
   'villa-surga': {
-    category: 'Retreat',
+    category: 'Premium',
     price: 320,
     cleaningFee: 35,
     freeCancel: true,

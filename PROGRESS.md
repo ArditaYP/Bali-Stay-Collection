@@ -2307,6 +2307,32 @@ src/
   - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
   - `npm run build`: **Lulus 100% (3.12s, 0 Error)**.
   - Verifikasi visual desktop (`catalog_show_price_full.png`) & mobile (`catalog_show_price_mobile.png`): **100% Sesuai Instruksi**.
+### 9.50. Penyesuaian Tag Level Kartu Villa (Luxe -> Luxury, Honeymoon -> Deluxe, Retreat -> Premium)
+- **Permintaan Pengguna**:
+  1. Pada kartu villa (`article.row` & `span.tag`), tag `honeymoon` disesuaikan, `luxe` diganti ke `luxury`, dan `retreat` disesuaikan juga.
+  2. Memberitahukan rincian perubahan masing-masing tag tersebut kepada pengguna.
+- **Rincian Perubahan Tag**:
+  - **Luxe** diubah menjadi **Luxury**:
+    - `villa-mahina` (Villa Mahina, Canggu): Luxe → **Luxury**
+    - `beyond-the-palms` (Beyond the Palms, Canggu): Luxe → **Luxury**
+    - `villa-akar` (Villa Akar, Berawa): Luxe → **Luxury**
+  - **Honeymoon** disesuaikan menjadi **Deluxe**:
+    - `st-lau-ubud` (St. Lau Ubud, 3BR $310/malam): Honeymoon → **Deluxe**
+  - **Retreat** disesuaikan menjadi **Premium**:
+    - `villa-surga` (Villa Surga Ubud, 4BR $320/malam): Retreat → **Premium**
+- **Pembaruan Kode**:
+  1. `src/data/villasData.js`:
+     - Memperbarui properti `category` pada `st-lau-ubud` (Deluxe), `villa-mahina` (Luxury), `beyond-the-palms` (Luxury), `villa-akar` (Luxury), dan `villa-surga` (Premium).
+  2. `src/App.jsx`:
+     - Menambahkan fungsi helper `normalizeCanonicalTier` pada mapping `activeCatalogVillas` untuk menjamin seluruh data yang digabungkan dari cache/localStorage otomatis dinormalisasi ke 4 level resmi BSC.
+  3. `src/components/frontpage/BscVillaCatalog.jsx` & `src/components/frontpage/BscTopPicks.jsx`:
+     - Memastikan rendering badge `<span className="tag">` menggunakan helper `normalizeTierBadge` sehingga tidak ada lagi nilai tag selain Standard, Deluxe, Premium, dan Luxury.
+  4. `api/sync_mysql_6.php`:
+     - Menyelaraskan field `category` pada `villa-surga` menjadi `Premium`.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.09s, 0 Error)**.
+  - Verifikasi visual desktop (`catalog_fixed_deluxe.png`): **100% Sesuai Instruksi**.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
 
 ---
