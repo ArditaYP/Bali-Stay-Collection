@@ -916,20 +916,8 @@ export default function BscVillaCatalog({
                           </details>
                         )}
 
-                        {/* Harga & Tombol Aksi */}
-                        <div className="bottom">
-                          <div>
-                            <div className="pr">
-                              <span>{formatBscMoney(villa.price || 280, currency)}</span>{' '}
-                              <small>/ night</small>
-                            </div>
-                            {nights > 0 && (
-                              <div className="total">
-                                {formatBscMoney((villa.price || 280) * nights, currency)} total for {nights} night{nights > 1 ? 's' : ''}
-                              </div>
-                            )}
-                          </div>
-
+                        {/* Tombol Aksi */}
+                        <div className="bottom" style={{ justifyContent: 'flex-end' }}>
                           <button
                             type="button"
                             className="btn btn-primary"

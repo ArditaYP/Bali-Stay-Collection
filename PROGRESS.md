@@ -2333,6 +2333,17 @@ src/
   - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
   - `npm run build`: **Lulus 100% (3.09s, 0 Error)**.
   - Verifikasi visual desktop (`catalog_fixed_deluxe.png`): **100% Sesuai Instruksi**.
+### 9.51. Penghapusan Tampilan Harga pada Kartu Baris Katalog Villa (`article.row`)
+- **Permintaan Pengguna**:
+  - Pada kartu villa di seksi id `villas` (`article.row`), teks/informasi harga per malam dan total harga dihilangkan saja.
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/BscVillaCatalog.jsx`:
+     - Menghapus blok harga (`.pr` dan `.total`) di dalam kontainer `.bottom` pada setiap `article.row`.
+     - Menata kontainer `.bottom` dengan `justifyContent: 'flex-end'` agar tombol `"Show Price"` tetap rapi di sudut kanan bawah kartu villa.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.15s, 0 Error)**.
+  - Verifikasi visual desktop (`catalog_no_price_desktop.png`) & mobile (`catalog_no_price_mobile.png`): **100% Sesuai Instruksi**.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
 
 ---
