@@ -3,6 +3,7 @@ import ExpediaServiceTabs from './ExpediaServiceTabs';
 import AirbnbSearchBar from './AirbnbSearchBar';
 import { 
   CAR_FLEET_DATA, 
+  MOTORBIKE_FLEET_DATA,
   PICKUP_LOCATIONS_DATA, 
   CHAUFFEUR_OPTIONS_DATA, 
   PACKAGES_DATA, 
@@ -12,13 +13,10 @@ import {
 /**
  * Komponen BscHero
  * Menampilkan seksi hero utama Bali Stay Collection:
- * - Formulir pencarian floating capsule ala Airbnb (Where, When, Who / Cars / Packages / Things to do) dengan id="searchForm"
- * - Tab kategori layanan horizontal ala Expedia.com (Stays, Cars, Packages, Things to do) ditaruh di BAWAH bar pencarian
+ * - Kotak pencarian terpadu ala Expedia.com (Tabs di atas, Search Bar di bawah dalam 1 kotak)
+ * - Tab kategori: Stay, Car, Motorbike, Packages, Thing Todo dengan garis bawah aktif (tanpa blok putih)
+ * - Formulir pencarian floating capsule ala Airbnb (Where, Experience / When, Who)
  * - 4 Pilar jaminan kepercayaan (Private pool, Verified in person, Clear cancellation, Dedicated local team)
- * 
- * Sesuai instruksi pemilik:
- * - Tab Stays, Cars, Packages, dan Things to do berada di BAWAH Search Bar
- * - Bagian concierge-showcase-wrapper diarsipkan (tidak dirender di hero)
  * 
  * @param {Object} props
  * @param {string[]} props.areas - Daftar nama area/kawasan Bali
@@ -37,8 +35,9 @@ export default function BscHero({
 }) {
   const [activeTab, setActiveTab] = useState('stays');
 
-  // State armada mobil mewah terpilih
+  // State armada mobil mewah & motor terpilih
   const [selectedCar, setSelectedCar] = useState(CAR_FLEET_DATA[0]);
+  const [selectedMotorbike, setSelectedMotorbike] = useState(MOTORBIKE_FLEET_DATA[0]);
   const [selectedPickup, setSelectedPickup] = useState(PICKUP_LOCATIONS_DATA[0]);
   const [selectedDriverOption, setSelectedDriverOption] = useState(CHAUFFEUR_OPTIONS_DATA[0]);
 
@@ -69,30 +68,35 @@ export default function BscHero({
           </p>
         </div>
 
-        {/* 1. Formulir Pencarian Floating Capsule ala Airbnb (id="searchForm") */}
-        <AirbnbSearchBar 
-          activeTab={activeTab}
-          _areas={areas}
-          searchParams={searchParams}
-          onSearchChange={onSearchChange}
-          onSubmitSearch={onSubmitSearch}
-          selectedCar={selectedCar}
-          onSelectCar={setSelectedCar}
-          selectedPickup={selectedPickup}
-          onSelectPickup={setSelectedPickup}
-          selectedDriverOption={selectedDriverOption}
-          onSelectDriverOption={setSelectedDriverOption}
-          selectedPackage={selectedPackage}
-          onSelectPackage={setSelectedPackage}
-          selectedExperience={selectedExperience}
-          onSelectExperience={setSelectedExperience}
-        />
+        {/* Kotak Widget Pencarian Terpadu (Dalam 1 Kotak ala Expedia.com) */}
+        <div className="hero-search-unified-box">
+          {/* 1. Tab Kategori Layanan di Atas: Stay - Car - Motorbike - Packages - Thing Todo */}
+          <ExpediaServiceTabs 
+            activeTab={activeTab} 
+            onTabChange={setActiveTab} 
+          />
 
-        {/* 2. Tab Kategori Layanan ala Expedia.com (Ditaruh di BAWAH Search Bar sesuai instruksi pemilik) */}
-        <ExpediaServiceTabs 
-          activeTab={activeTab} 
-          onTabChange={setActiveTab} 
-        />
+          {/* 2. Formulir Pencarian Floating Capsule ala Airbnb: Where - Experience - Who */}
+          <AirbnbSearchBar 
+            activeTab={activeTab}
+            _areas={areas}
+            searchParams={searchParams}
+            onSearchChange={onSearchChange}
+            onSubmitSearch={onSubmitSearch}
+            selectedCar={selectedCar}
+            onSelectCar={setSelectedCar}
+            selectedPickup={selectedPickup}
+            onSelectPickup={setSelectedPickup}
+            selectedDriverOption={selectedDriverOption}
+            onSelectDriverOption={setSelectedDriverOption}
+            selectedPackage={selectedPackage}
+            onSelectPackage={setSelectedPackage}
+            selectedExperience={selectedExperience}
+            onSelectExperience={setSelectedExperience}
+            selectedMotorbike={selectedMotorbike}
+            onSelectMotorbike={setSelectedMotorbike}
+          />
+        </div>
 
         {/* 3. 4 Pilar Kepercayaan (Trust Strip) */}
         <div className="trust-strip">

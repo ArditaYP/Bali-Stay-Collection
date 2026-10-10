@@ -2146,6 +2146,41 @@ src/
    - `npm run build`: **Lulus 100% (3.02s, 0 Error)**.
    - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
+### 9.41. Penyatuan Kotak Hero Widget: 5 Tab Kategori Layanan ala Expedia.com di Atas Search Bar Where-Experience-Who dalam 1 Kotak Terpadu
+- **Permintaan Pengguna**:
+  - Menyusun 5 tab layanan: `Stay` - `Car` - `Motorbike` - `Packages` - `Thing Todo`.
+  - Meletakkan ke-5 tab di atas formulir pencarian `Where - Experience - Who`.
+  - Desain tab: "tanpa blok putih, tapi pakai garis bawah saja seperti di expedia.com" (sesuai referensi `tambahan di hero.png`).
+  - Menyatukan tab di atas dan bar pencarian di bawah ke dalam 1 kotak terpadu:
+    ```
+    ( (Stay - Car - Motorbike - Packages - Thing Todo) )
+      -----------------------------------------------
+    ( (          Where - Experience - Who              )
+    ```
+- **Pembaruan Kode & Desain**:
+  1. `src/data/bscFleetData.js`:
+     - Menambahkan armada sewa motor premium `MOTORBIKE_FLEET_DATA` (Yamaha XMAX 250cc, Vespa Sprint S 150cc, Honda PCX 160cc, Honda Scoopy 110cc) lengkap dengan spesifikasi bagasi/mesin, harga harian IDR/USD, dan fasilitas 2 helm + jas hujan.
+  2. `src/components/frontpage/ExpediaServiceTabs.jsx`:
+     - Menyusun 5 tab layanan resmi: `Stay` (`stays`), `Car` (`cars`), `Motorbike` (`motorbikes`), `Packages` (`packages`), `Thing Todo` (`experiences`).
+     - Menggunakan ikon SVG 24x24 px vertikal (ikon di atas, label di bawah) persis seperti referensi Expedia.com.
+     - Menggunakan styling transparan tanpa background card putih terpisah di tiap tombol, dengan indikator aktif berupa garis bawah tegas (underline `#16294D`) tepat di atas garis pembatas.
+  3. `src/components/frontpage/BscHero.jsx`:
+     - Memindahkan `ExpediaServiceTabs` tepat di atas `AirbnbSearchBar`.
+     - Membungkus keduanya di dalam `<div className="hero-search-unified-box">`.
+     - Mengelola state `selectedMotorbike` dan mengoperkannya ke `AirbnbSearchBar`.
+  4. `src/components/frontpage/AirbnbSearchBar.jsx`:
+     - Menerima state dan handler `selectedMotorbike`.
+     - Mengimplementasikan segmen pencarian tab `motorbikes`: *Delivery Location*, *Motorbike Model*, dan *Inclusions* (2 Helmets, Raincoats & Mount), serta direct concierge booking ke WhatsApp resmi.
+  5. `src/index.css`:
+     - Menambahkan styling `.hero-search-unified-box`: Kotak putih terpadu dengan border-radius 24px, bayangan mewah bertingkat, dan `overflow: visible; z-index: 30;` sehingga kalender dan dropdown popover melayang dengan mulus ke bawah tanpa terpotong.
+     - Mendesain `.expedia-tabs-container` dan `.expedia-tab-btn` dengan garis pembatas horizontal tipis (`border-bottom: 1px solid #e2e8f0;`) dan underline tab aktif (`.expedia-tab-active-indicator`).
+     - Responsivitas mobile (`@media (max-width: 860px)`): Tab dapat digeser horizontal dengan halus dari ujung kiri tanpa terpotong, search bar beradaptasi dalam 1 kotak kompak.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.08s, 0 Error)**.
+  - Verifikasi visual desktop & mobile via headless browser: **100% Sesuai Sketsa & Referensi Expedia.com**.
+  - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

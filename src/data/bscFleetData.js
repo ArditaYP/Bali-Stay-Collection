@@ -96,6 +96,61 @@ export const CAR_FLEET_DATA = [
   }
 ];
 
+export const MOTORBIKE_FLEET_DATA = [
+  {
+    id: 'yamaha-xmax-250',
+    name: 'Yamaha XMAX 250cc Maxi Scooter',
+    shortName: 'Yamaha XMAX 250cc',
+    category: 'Maxi Touring Scooter',
+    badge: 'Touring & Highway',
+    engine: '250cc Liquid-Cooled',
+    storage: 'Extra-large double helmet trunk',
+    priceIdr: 'Rp 350.000',
+    priceUsd: '~$22 USD',
+    period: 'per day',
+    description: 'Maxi scooter premium paling bertenaga untuk menjelajahi pantai timur, Uluwatu, dan pegunungan Kintamani dengan kestabilan luar biasa.'
+  },
+  {
+    id: 'vespa-sprint-s-150',
+    name: 'Vespa Sprint S 150cc i-Get ABS',
+    shortName: 'Vespa Sprint S 150cc',
+    category: 'Italian Aesthetic Icon',
+    badge: 'Most Stylish',
+    engine: '150cc i-Get ABS',
+    storage: 'Underseat trunk & glove box',
+    priceIdr: 'Rp 300.000',
+    priceUsd: '~$19 USD',
+    period: 'per day',
+    description: 'Ikon gaya hidup pesisir Bali. Desain klasik retro elegan dengan akselerasi halus, sangat cocok untuk bersantai di kafe Canggu & Seminyak.'
+  },
+  {
+    id: 'honda-pcx-160',
+    name: 'Honda PCX 160cc Luxury Cruiser',
+    shortName: 'Honda PCX 160cc',
+    category: 'Comfort Island Cruiser',
+    badge: 'Smooth Cruiser',
+    engine: '160cc 4-Valve eSP+',
+    storage: '30L massive storage compartment',
+    priceIdr: 'Rp 220.000',
+    priceUsd: '~$14 USD',
+    period: 'per day',
+    description: 'Kenyamanan berkendara terbaik untuk harian. Suspensi empuk, posisi duduk santai, dan bagasi besar muat belanjaan atau pakaian renang.'
+  },
+  {
+    id: 'honda-scoopy-prestige',
+    name: 'Honda Scoopy Prestige Smart Key',
+    shortName: 'Honda Scoopy 110cc',
+    category: 'Light Island Hopper',
+    badge: 'Agile & Easy',
+    engine: '110cc eSP Smart Key',
+    storage: 'Compact city trunk & USB charger',
+    priceIdr: 'Rp 140.000',
+    priceUsd: '~$9 USD',
+    period: 'per day',
+    description: 'Skuter ringan, lincah, dan sangat hemat bahan bakar. Sangat mudah bermanuver di gang-gang sempit kafe dan jalanan santai pesisir pantai.'
+  }
+];
+
 export const PICKUP_LOCATIONS_DATA = [
   {
     id: 'dps-airport',

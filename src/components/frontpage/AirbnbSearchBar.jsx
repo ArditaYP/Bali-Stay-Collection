@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { DESTINATIONS_SUMMARY } from '../../data/bscVillasData';
 import { 
   CAR_FLEET_DATA, 
+  MOTORBIKE_FLEET_DATA,
   PICKUP_LOCATIONS_DATA, 
   CHAUFFEUR_OPTIONS_DATA, 
   PACKAGES_DATA, 
@@ -11,16 +12,15 @@ import AirbnbDatePopover from './AirbnbDatePopover';
 
 /**
  * Komponen AirbnbSearchBar
- * Mengimplementasikan formulir pencarian id="searchForm" bergaya floating capsule ala Airbnb
- * dengan arsitektur Drop-Up Popover:
- * - Seluruh popup list (armada mobil, destinasi, tanggal, tamu, supir, penjemputan)
- *   melayang KE ATAS (Drop-Up) menuju ruang kosong hero di atas bar pencarian.
- * - Tab layanan (Stays, Cars, Packages, Things to do) di BAWAH bar pencarian SAMA SEKALI
- *   TIDAK TERSENTUH, TIDAK TERTUTUPI, DAN TIDAK BERTABRAKAN.
- * - Layout hero tetap kokoh stabil tanpa pergeseran atau loncatan tinggi.
+ * Mengimplementasikan formulir pencarian id="searchForm" bergaya floating capsule ala Airbnb:
+ * - Tab Stays: Where | Experience (When) | Who | Search
+ * - Tab Cars: Pickup | Car Fleet | Chauffeur | Inquire
+ * - Tab Motorbikes: Delivery Location | Motorbike Model | Inclusions | Inquire
+ * - Tab Packages: Package Category | Destination | Dates | Inquire
+ * - Tab Things to do: Activity Category | Location | Inquire
  * 
  * @param {Object} props
- * @param {string} [props.activeTab='stays'] - Tab layanan aktif ('stays', 'cars', 'packages', 'experiences')
+ * @param {string} [props.activeTab='stays'] - Tab layanan aktif ('stays', 'cars', 'motorbikes', 'packages', 'experiences')
  * @param {string[]} [props._areas=[]] - Daftar nama kawasan
  * @param {Object} props.searchParams - Parameter pencarian aktif
  * @param {Function} props.onSearchChange - Callback saat nilai pencarian berubah
@@ -28,6 +28,8 @@ import AirbnbDatePopover from './AirbnbDatePopover';
  * @param {boolean} [props.isCompact=false] - Tampilan kompak (misal saat melayang di navbar)
  * @param {Object} [props.selectedCar] - Mobil yang terpilih saat ini
  * @param {Function} [props.onSelectCar] - Callback pemilih mobil
+ * @param {Object} [props.selectedMotorbike] - Motor yang terpilih saat ini
+ * @param {Function} [props.onSelectMotorbike] - Callback pemilih motor
  * @param {Object} [props.selectedPickup] - Lokasi penjemputan terpilih
  * @param {Function} [props.onSelectPickup] - Callback pemilih lokasi penjemputan
  * @param {Object} [props.selectedDriverOption] - Opsi supir terpilih
@@ -36,7 +38,7 @@ import AirbnbDatePopover from './AirbnbDatePopover';
  * @param {Function} [props.onSelectPackage] - Callback pemilih paket
  * @param {Object} [props.selectedExperience] - Aktivitas terpilih
  * @param {Function} [props.onSelectExperience] - Callback pemilih aktivitas
- * @returns {React.JSX.Element} Elemen JSX Airbnb Search Bar dengan Drop-Up Popover
+ * @returns {React.JSX.Element} Elemen JSX Airbnb Search Bar
  */
 export default function AirbnbSearchBar({
   activeTab = 'stays',
@@ -47,6 +49,8 @@ export default function AirbnbSearchBar({
   isCompact = false,
   selectedCar = CAR_FLEET_DATA[0],
   onSelectCar,
+  selectedMotorbike = MOTORBIKE_FLEET_DATA[0],
+  onSelectMotorbike,
   selectedPickup = PICKUP_LOCATIONS_DATA[0],
   onSelectPickup,
   selectedDriverOption = CHAUFFEUR_OPTIONS_DATA[0],
@@ -117,6 +121,15 @@ export default function AirbnbSearchBar({
       const datesInfo = searchParams.checkIn ? `untuk tanggal ${searchParams.checkIn}` : 'untuk jadwal segera';
       const msg = encodeURIComponent(
         `Halo Bali Stay Collection Concierge, saya tertarik sewa armada "${selectedCar?.name || 'Toyota Alphard VIP'}" (${selectedDriverOption?.title || 'Dengan Supir'}) dengan lokasi penjemputan "${selectedPickup?.title || 'Bandara DPS'}" ${datesInfo}. Mohon info ketersediaannya.`
+      );
+      window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    if (activeTab === 'motorbikes') {
+      const datesInfo = searchParams.checkIn ? `untuk tanggal ${searchParams.checkIn}` : 'untuk jadwal segera';
+      const msg = encodeURIComponent(
+        `Halo Bali Stay Collection Concierge, saya tertarik sewa motor "${selectedMotorbike?.name || 'Yamaha XMAX 250cc'}" dengan pengantaran ke "${selectedPickup?.title || 'Villa Delivery'}" ${datesInfo}. Mohon info ketersediaannya.`
       );
       window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
       return;
@@ -620,6 +633,145 @@ export default function AirbnbSearchBar({
                   </div>
                 </div>
               )}
+            </div>
+          </>
+        )}
+
+        {/* ============================================================== */}
+        {/* KONTEN TAB: MOTORBIKES (PREMIUM BALI SCOOTER CONCIERGE) */}
+        {/* ============================================================== */}
+        {activeTab === 'motorbikes' && (
+          <>
+            {/* SEGMEN 1: LOKASI PENGANTARAN / PENJEMPUTAN */}
+            <div 
+              role="button"
+              tabIndex={0}
+              className={`airbnb-search-segment car-segment ${activePopover === 'pickup' ? 'active' : ''}`}
+              onClick={() => setActivePopover(prev => prev === 'pickup' ? null : 'pickup')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActivePopover(prev => prev === 'pickup' ? null : 'pickup');
+                }
+              }}
+            >
+              <span className="airbnb-seg-label">Delivery Location</span>
+              <span className="airbnb-seg-value">
+                {selectedPickup?.title || 'Villa Delivery / Airport'}
+              </span>
+
+              {activePopover === 'pickup' && (
+                <div className="airbnb-popover pickup-popover" onClick={(e) => e.stopPropagation()}>
+                  <div className="popover-header">
+                    <span>Select Delivery Location</span>
+                  </div>
+                  <div className="pickup-options-list">
+                    {PICKUP_LOCATIONS_DATA.map((loc) => {
+                      const isSelected = selectedPickup?.id === loc.id;
+                      return (
+                        <button
+                          key={loc.id}
+                          type="button"
+                          className={`pickup-option-card ${isSelected ? 'selected' : ''}`}
+                          onClick={() => {
+                            if (typeof onSelectPickup === 'function') {
+                              onSelectPickup(loc);
+                            }
+                            setActivePopover('bikeModel');
+                          }}
+                        >
+                          <div className="pickup-card-icon">{loc.icon}</div>
+                          <div className="pickup-card-text">
+                            <div className="pickup-card-title-row">
+                              <b>{loc.title}</b>
+                              <span className="pickup-badge">{loc.badge}</span>
+                            </div>
+                            <small>{loc.subtitle}</small>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="airbnb-seg-divider" />
+
+            {/* SEGMEN 2: PILIHAN MODEL MOTOR / SKUTER */}
+            <div 
+              role="button"
+              tabIndex={0}
+              className={`airbnb-search-segment car-fleet-segment ${activePopover === 'bikeModel' ? 'active' : ''}`}
+              onClick={() => setActivePopover(prev => prev === 'bikeModel' ? null : 'bikeModel')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActivePopover(prev => prev === 'bikeModel' ? null : 'bikeModel');
+                }
+              }}
+            >
+              <span className="airbnb-seg-label">Motorbike Model</span>
+              <span className="airbnb-seg-value">
+                {selectedMotorbike?.shortName || 'Yamaha XMAX 250cc'}
+              </span>
+
+              {activePopover === 'bikeModel' && (
+                <div className="airbnb-popover fleet-popover" onClick={(e) => e.stopPropagation()}>
+                  <div className="popover-header">
+                    <span>Select Motorbike / Scooter</span>
+                  </div>
+                  <div className="fleet-options-list">
+                    {MOTORBIKE_FLEET_DATA.map((bike) => {
+                      const isSelected = selectedMotorbike?.id === bike.id;
+                      return (
+                        <button
+                          key={bike.id}
+                          type="button"
+                          className={`fleet-option-card ${isSelected ? 'selected' : ''}`}
+                          onClick={() => {
+                            if (typeof onSelectMotorbike === 'function') {
+                              onSelectMotorbike(bike);
+                            }
+                            setActivePopover(null);
+                          }}
+                        >
+                          <div className="fleet-card-info">
+                            <div className="fleet-card-title-row">
+                              <b>{bike.name}</b>
+                              <span className="fleet-badge">{bike.badge}</span>
+                            </div>
+                            <div className="fleet-specs-row">
+                              <span>🛵 {bike.engine}</span>
+                              <span>📦 {bike.storage}</span>
+                            </div>
+                            <p className="fleet-card-desc">{bike.description}</p>
+                          </div>
+                          <div className="fleet-card-price">
+                            <span className="fleet-idr">{bike.priceIdr}</span>
+                            <span className="fleet-usd">{bike.priceUsd} / day</span>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="airbnb-seg-divider" />
+
+            {/* SEGMEN 3: INCLUSIONS */}
+            <div 
+              role="button"
+              tabIndex={0}
+              className="airbnb-search-segment"
+              onClick={() => setActivePopover(null)}
+            >
+              <span className="airbnb-seg-label">Inclusions</span>
+              <span className="airbnb-seg-value">
+                2 Helmets, Raincoats & Mount
+              </span>
             </div>
           </>
         )}
