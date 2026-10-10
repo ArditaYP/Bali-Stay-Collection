@@ -2051,6 +2051,21 @@ src/
    - Pengujian live DOM headless Chrome: `newWidth: 140px`, `okWidth: 140px`, `newHeight: 28px`, `okHeight: 28px`.
    - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
    - `npm run build`: **Lulus 100% (2.78s, 0 Error)**.
+### 9.37 Peningkatan Dimensi & Bobot Visual Tombol Show Price sebagai Titik Fokus Utama
+1. **Instruksi Pengguna**:
+   - *"mungkin ukuran show price nya di gede in dikit aja biar point mata tu tertuju kesana semua saat kita melihat"*
+2. **Kebutuhan & Implementasi**:
+   - **Optimasi Tombol Show Price (`.btn-show-price`)**:
+     - Memperbesar tinggi tombol dari 32px menjadi **38px** (`height: 38px !important;`).
+     - Memperlebar padding horizontal dari 13px menjadi **18px** (`padding: 0 18px !important;`).
+     - Meningkatkan ukuran tipografi dari 12.5px semi-bold ke **13.5px bold (weight 700)** (`font-size: 13.5px !important; font-weight: 700 !important;`).
+     - Memperbesar icon kalender SVG dari 13px ke **14.5px** dengan stroke proporsional (`width: 14.5px; height: 14.5px; stroke-width: 2.2;`).
+     - Memperkuat bayangan elevasi floating (`box-shadow: 0 3px 10px rgba(22, 41, 77, 0.16);`) dan interaksi hover yang lebih dinamis (`transform: translateY(-1.5px); box-shadow: 0 6px 14px rgba(22, 41, 77, 0.24);`).
+     - Hasilnya, tombol kini menjadi *call-to-action focal point* yang langsung menarik mata pengunjung, seimbang secara vertikal dengan 2 baris lencana di sisi kiri kartu.
+3. **Hasil Verifikasi**:
+   - Pengukuran live DOM headless Chrome: `btnWidth: 135px`, `btnHeight: 38px`, `newWidth: 140px`, `newHeight: 28px`.
+   - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+   - `npm run build`: **Lulus 100% (2.72s, 0 Error)**.
    - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
 ---

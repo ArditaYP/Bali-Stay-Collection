@@ -8553,33 +8553,40 @@ mark.review-highlight {
   color: #ffffff !important;
   border: 1.5px solid var(--ink, #16294D) !important;
   border-radius: 100px !important;
-  height: 32px !important;
-  padding: 0 13px !important;
-  font-size: 12.5px !important;
-  font-weight: 600 !important;
+  height: 38px !important;
+  padding: 0 18px !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
   letter-spacing: 0.01em !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 6px !important;
+  gap: 7px !important;
   cursor: pointer !important;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
   white-space: nowrap !important;
-  box-shadow: 0 2px 6px rgba(22, 41, 77, 0.12) !important;
+  box-shadow: 0 3px 10px rgba(22, 41, 77, 0.16) !important;
   box-sizing: border-box !important;
   margin-left: auto !important;
+  flex-shrink: 0 !important;
+}
+
+.picks-badges-row .btn-show-price svg {
+  width: 14.5px !important;
+  height: 14.5px !important;
   flex-shrink: 0 !important;
 }
 
 .picks-badges-row .btn-show-price:hover {
   background: #0C1B38 !important;
   border-color: #0C1B38 !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 10px rgba(22, 41, 77, 0.22) !important;
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 6px 14px rgba(22, 41, 77, 0.24) !important;
 }
 
 .picks-badges-row .btn-show-price:active {
   transform: translateY(0) !important;
+  box-shadow: 0 2px 6px rgba(22, 41, 77, 0.16) !important;
 }
 
 .btn-view-villa-alt {
