@@ -23,8 +23,8 @@ export default function ExpediaServiceTabs({ activeTab = 'stays', onTabChange })
     { id: 'stays', label: 'Stay' },
     { id: 'cars', label: 'Car' },
     { id: 'motorbikes', label: 'Motorbike' },
-    { id: 'packages', label: 'Packages' },
-    { id: 'experiences', label: 'Thing Todo' }
+    { id: 'packages', label: 'Wellness' },
+    { id: 'experiences', label: 'Immersion' }
   ];
 
   return (

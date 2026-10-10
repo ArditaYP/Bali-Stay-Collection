@@ -1000,29 +1000,14 @@ export default function AirbnbSearchBar({
           </>
         )}
 
-        {/* TOMBOL SEARCH IKONIK */}
+        {/* TOMBOL SEARCH */}
         <div className="airbnb-search-btn-container">
           <button 
             type="submit" 
             className="airbnb-submit-btn" 
-            aria-label="Search or Inquire"
+            aria-label="Find My Villa"
           >
-            <svg 
-              width="16" 
-              height="16" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth="2.8" 
-              strokeLinecap="round" 
-              strokeLinejoin="round"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-            <span className="search-btn-text">
-              {activeTab === 'cars' ? 'Inquire Fleet' : activeTab === 'stays' ? 'Search' : activeTab === 'packages' ? 'Explore Packages' : 'Explore Concierge'}
-            </span>
+            <span className="search-btn-text">Find My Villa</span>
           </button>
         </div>
       </form>

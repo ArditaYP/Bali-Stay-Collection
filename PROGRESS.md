@@ -2207,6 +2207,23 @@ src/
   - Verifikasi visual (`hero_without_trust_strip.png`): **100% Bersih dan Hilang**.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
 
+### 9.44. Pembaruan Tombol Pencarian Hero ("Find My Villa") dan Kategori Tab ("Wellness" & "Immersion")
+- **Permintaan Pengguna**:
+  - Mengganti teks tombol pencarian di section hero dari "Search" menjadi "Find My Villa".
+  - Mengganti teks tab "Packages" menjadi "Wellness".
+  - Mengganti teks tab "Thing Todo" menjadi "Immersion".
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/AirbnbSearchBar.jsx`:
+     - Mengubah teks tombol submit menjadi `Find My Villa` dan `aria-label="Find My Villa"`.
+  2. `src/components/frontpage/ExpediaServiceTabs.jsx`:
+     - Mengubah label tab ID `packages` menjadi `Wellness`.
+     - Mengubah label tab ID `experiences` menjadi `Immersion`.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (1.57s, 0 Error)**.
+  - Verifikasi visual desktop (`find_my_villa_desktop.png`) & mobile (`find_my_villa_mobile.png`): **100% Sesuai Instruksi**.
+  - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

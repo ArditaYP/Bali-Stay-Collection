@@ -7651,17 +7651,18 @@ mark.review-highlight {
 .airbnb-submit-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
   background: linear-gradient(135deg, #16294D 0%, #203a6b 100%);
   color: #ffffff;
   border: none;
   border-radius: 36px;
-  padding: 14px 22px;
+  padding: 14px 28px;
   font-size: 14.5px;
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(22, 41, 77, 0.3);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: 0.01em;
 }
 
 .airbnb-submit-btn:hover {
