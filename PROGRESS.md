@@ -2195,6 +2195,18 @@ src/
   - Verifikasi visual desktop (`text_only_tabs_desktop.png`) & mobile (`text_only_tabs_mobile.png`): **100% Sesuai Instruksi**.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
+### 9.43. Penghapusan 4 Pilar Kepercayaan (Trust Strip) pada Section Hero
+- **Permintaan Pengguna**:
+  - Menghilangkan bagian trust-strip di section `id="hero"` secepatnya (Every villa has a private pool, Verified in person, Clear cancellation, Dedicated local team).
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/BscHero.jsx`:
+     - Menghapus blok `<div className="trust-strip">` beserta 4 pilar item di dalamnya.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (2.07s, 0 Error)**.
+  - Verifikasi visual (`hero_without_trust_strip.png`): **100% Bersih dan Hilang**.
+  - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)
