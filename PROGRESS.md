@@ -2293,6 +2293,20 @@ src/
   - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
   - `npm run build`: **Lulus 100% (3.21s, 0 Error)**.
   - Verifikasi visual desktop (`tall_frontpage_desktop.png`) & mobile (`updated_hero_and_picks_mobile.png`): **100% Sesuai Instruksi**.
+### 9.49. Standardisasi Filter 'Villa level' (Standard, Deluxe, Premium, Luxury) & Pembaruan Tombol 'Show Price'
+- **Permintaan Pengguna**:
+  1. Pada seksi id `villas`, di bagian `<aside id="filters">`, bagian filter **Villa level** hanya menggunakan opsi: **Standard, Deluxe, Premium, Luxury** (sisanya ditiadakan/disaring keluar), sementara kelompok filter lainnya (Price, Trip type, Bedrooms, dll.) tetap dipertahankan.
+  2. Pada kartu villa sisi kanan di katalog, tombol *"View details"* diubah labelnya menjadi **"Show Price"**.
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/BscVillaCatalog.jsx`:
+     - Menetapkan array konstan `CANONICAL_TIERS = ['Standard', 'Deluxe', 'Premium', 'Luxury']` dan mengunci `allTiers` agar hanya menampilkan 4 tier resmi tersebut secara konsisten dan terurut.
+     - Mengubah teks tombol aksi di bagian bawah setiap kartu villa katalog dari `View details` menjadi `Show Price`.
+  2. `src/data/bscVillasData.js`:
+     - Menambahkan kepemilikan properti `tier` kanonikal pada 3 villa yang sebelumnya belum memiliki tier (`angkasa-ubud` -> Premium, `iconic-cliff-top-villa` -> Luxury, `st-lau-ubud` -> Deluxe) agar seluruh 51 villa terpetakan 100% ke 4 tier BSC.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.12s, 0 Error)**.
+  - Verifikasi visual desktop (`catalog_show_price_full.png`) & mobile (`catalog_show_price_mobile.png`): **100% Sesuai Instruksi**.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
 
 ---

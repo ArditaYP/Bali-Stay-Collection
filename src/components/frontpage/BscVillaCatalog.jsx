@@ -53,6 +53,13 @@ const CANONICAL_MUST_HAVE = [
   'Wellness facilities'
 ];
 
+const CANONICAL_TIERS = [
+  'Standard',
+  'Deluxe',
+  'Premium',
+  'Luxury'
+];
+
 
 /**
  * Komponen BscVillaCatalog
@@ -83,10 +90,10 @@ export default function BscVillaCatalog({
   onSelectVilla,
   activeTier = null
 }) {
-  // Ekstraksi opsi filter unik dari data villa
+  // Opsi filter tingkat kemewahan resmi BSC (Standard, Deluxe, Premium, Luxury)
   const allTiers = useMemo(() => {
-    return Array.from(new Set(villas.map(v => v.tier).filter(Boolean)));
-  }, [villas]);
+    return CANONICAL_TIERS;
+  }, []);
 
   const allTrips = useMemo(() => {
     const set = new Set();
@@ -911,7 +918,7 @@ export default function BscVillaCatalog({
                             className="btn btn-primary"
                             onClick={() => onSelectVilla(villa.id)}
                           >
-                            View details
+                            Show Price
                           </button>
                         </div>
                       </div>
