@@ -100,7 +100,7 @@ $defaultExperiences = [
 ];
 
 $defaultHero = [
-    'headline' => 'Find a Bali villa you can book with confidence',
+    'headline' => 'The villa you’ve been looking for is already here.',
     'lead' => 'Hand-picked private villas. On-the-ground local support',
     'bgImage' => ''
 ];

@@ -5,9 +5,8 @@ import AirbnbDatePopover from './AirbnbDatePopover';
 /**
  * Komponen BscTopPicks
  * Menampilkan seksi rekomendasi terkurasi 'Our top picks' (9 villa pilihan terbaik):
- * - Kicker: Hand-picked by our team
- * - Judul: Villas we would book for our own family
- * - Deskripsi: Every pick comes with the reason we chose it, based on our own notes.
+ * - Judul: Your Bali Villa
+ * - Deskripsi: Tell us how you want Bali to feel...
  * - Harga default disembunyikan sesuai arahan pengguna.
  * - Tombol 'Show price' membuka kalender pemilih tanggal (Check-in & Check-out).
  * - Setelah tanggal dipilih, harga terhitung ditampilkan dan sistem langsung mengarahkan
@@ -175,10 +174,11 @@ export default function BscTopPicks({
     <section className="sec" id="picks">
       <div className="wrap">
         <div className="sec-head">
-          <div className="eyebrow">Hand-picked by our team</div>
-          <h2>Villas we would book for our own family</h2>
+          <h2>Your Bali Villa</h2>
           <p>
-            Every pick comes with the reason we chose it, based on our own notes. No borrowed ratings, just a straight answer on what to expect.
+            Tell us how you want Bali to feel: romantic, family-friendly, celebratory, lively, beachside, or green and slow.
+            <br />
+            Pick the mood closest to your trip. We’ll show the villas that fit, and our team can help fine-tune the rest.
           </p>
         </div>
 

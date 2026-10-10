@@ -2273,6 +2273,28 @@ src/
   - Verifikasi visual desktop (`search_prominent_desktop.png`) & mobile (`search_prominent_mobile.png`): **100% Sesuai Instruksi**.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
 
+### 9.48. Penataan Urutan Tab Layanan, Pembaruan Headline Hero & Penyesuaian Seksi 'Your Bali Villa'
+- **Permintaan Pengguna**:
+  1. Mengubah urutan tab pencarian di header menjadi: **Stay - Wellness - Immersion - Car - Motorbike**.
+  2. Mengganti judul utama hero *"Find a Bali villa you can book with confidence"* menjadi *"The villa you’ve been looking for is already here."*.
+  3. Mengganti judul dan deskripsi seksi id `picks` ("Hand-picked by our team") menjadi:
+     - Judul: **Your Bali Villa**
+     - Deskripsi:
+       *Tell us how you want Bali to feel: romantic, family-friendly, celebratory, lively, beachside, or green and slow.*
+       *Pick the mood closest to your trip. We’ll show the villas that fit, and our team can help fine-tune the rest.*
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/ExpediaServiceTabs.jsx`:
+     - Memperbarui array tab menjadi `stays` (Stay), `packages` (Wellness), `experiences` (Immersion), `cars` (Car), dan `motorbikes` (Motorbike).
+  2. `src/components/frontpage/BscHero.jsx`, `api/homepage.php`, & `src/components/editor/HomepageMediaEditor.jsx`:
+     - Menetapkan headline default baru *"The villa you’ve been looking for is already here."* beserta fallback aman untuk data cache browser/localStorage.
+  3. `src/components/frontpage/BscTopPicks.jsx`:
+     - Memperbarui header `.sec-head` pada seksi `#picks` dengan judul `<h2>Your Bali Villa</h2>` dan paragraf deskripsi sesuai instruksi pengguna.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (29 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.21s, 0 Error)**.
+  - Verifikasi visual desktop (`tall_frontpage_desktop.png`) & mobile (`updated_hero_and_picks_mobile.png`): **100% Sesuai Instruksi**.
+  - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu perintah eksplisit pengguna.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

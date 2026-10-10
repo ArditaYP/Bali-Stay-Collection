@@ -21,10 +21,10 @@ import React from 'react';
 export default function ExpediaServiceTabs({ activeTab = 'stays', onTabChange }) {
   const tabs = [
     { id: 'stays', label: 'Stay' },
-    { id: 'cars', label: 'Car' },
-    { id: 'motorbikes', label: 'Motorbike' },
     { id: 'packages', label: 'Wellness' },
-    { id: 'experiences', label: 'Immersion' }
+    { id: 'experiences', label: 'Immersion' },
+    { id: 'cars', label: 'Car' },
+    { id: 'motorbikes', label: 'Motorbike' }
   ];
 
   return (

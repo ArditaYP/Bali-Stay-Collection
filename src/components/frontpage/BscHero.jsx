@@ -45,7 +45,9 @@ export default function BscHero({
   const [selectedPackage, setSelectedPackage] = useState(PACKAGES_DATA[0]);
   const [selectedExperience, setSelectedExperience] = useState(EXPERIENCES_DATA[0]);
 
-  const headline = heroData?.headline || 'Find a Bali villa you can book with confidence';
+  const headline = (heroData?.headline && heroData.headline !== 'Find a Bali villa you can book with confidence')
+    ? heroData.headline
+    : 'The villa you’ve been looking for is already here.';
   const leadText = heroData?.lead || 'Hand-picked private villas. On-the-ground local support';
   const bgImage = heroData?.bgImage || '';
 
