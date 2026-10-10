@@ -78,7 +78,8 @@ export default function BscFooter({ onOpenListVilla, onOpenEditor }) {
           <div>
             <div style={{ display: 'flex', gap: '22px', flexWrap: 'wrap' }}>
               <a href="#villas">Villas</a>
-              <a href="#verify">How we verify</a>
+              <a href="#destinations">Destinations</a>
+              <a href="#experiences">Experiences</a>
               <a href="#tour">Video tour</a>
               {onOpenEditor && (
                 <a href="#editor" onClick={(e) => { e.preventDefault(); onOpenEditor(); }}>

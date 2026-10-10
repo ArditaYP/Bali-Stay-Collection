@@ -165,7 +165,7 @@ export default function AirbnbSearchBar({
   const guestLabel = `${totalGuestsCount} guest${totalGuestsCount > 1 ? 's' : ''}${infants > 0 ? `, ${infants} infant${infants > 1 ? 's' : ''}` : ''}`;
 
   return (
-    <div className={`airbnb-search-wrapper ${isCompact ? 'compact' : ''}`} ref={containerRef}>
+    <div className={`airbnb-search-wrapper ${isCompact ? 'compact' : ''} ${activePopover ? 'has-active-popover' : ''}`} ref={containerRef}>
       <form 
         id="searchForm" 
         className={`airbnb-search-bar ${activePopover ? 'has-active-popover' : ''}`}
@@ -194,9 +194,9 @@ export default function AirbnbSearchBar({
                 {searchParams.location || 'Search destinations'}
               </span>
 
-              {/* DROP-UP POPOVER DAFTAR DESTINASI (MELAYANG KE ATAS) */}
+              {/* POPOVER DAFTAR DESTINASI (MEMBUKA KE BAWAH) */}
               {activePopover === 'where' && (
-                <div className="airbnb-popover destinations-popover dropup-popover" onClick={(e) => e.stopPropagation()}>
+                <div className="airbnb-popover destinations-popover" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
                     <span>Search by region in Bali</span>
                     {searchParams.location && (
@@ -311,24 +311,22 @@ export default function AirbnbSearchBar({
               </span>
             </div>
 
-            {/* DROP-UP POPOVER KALENDER TANGGAL (MELAYANG KE ATAS DI TENGAH) */}
+            {/* POPOVER KALENDER TANGGAL (MEMBUKA KE BAWAH DI TENGAH) */}
             {activePopover === 'dates' && (
-              <div className="dropup-calendar-wrapper" onClick={(e) => e.stopPropagation()}>
-                <AirbnbDatePopover
-                  checkIn={searchParams.checkIn || ''}
-                  checkOut={searchParams.checkOut || ''}
-                  initialTarget={dateTargetSegment}
-                  onDatesChange={(newCi, newCo) => {
-                    onSearchChange('checkIn', newCi);
-                    onSearchChange('checkOut', newCo);
-                    if (newCi && !newCo) {
-                      setDateTargetSegment('checkOut');
-                    }
-                  }}
-                  onClose={() => setActivePopover(null)}
-                  onDone={() => setActivePopover('who')}
-                />
-              </div>
+              <AirbnbDatePopover
+                checkIn={searchParams.checkIn || ''}
+                checkOut={searchParams.checkOut || ''}
+                initialTarget={dateTargetSegment}
+                onDatesChange={(newCi, newCo) => {
+                  onSearchChange('checkIn', newCi);
+                  onSearchChange('checkOut', newCo);
+                  if (newCi && !newCo) {
+                    setDateTargetSegment('checkOut');
+                  }
+                }}
+                onClose={() => setActivePopover(null)}
+                onDone={() => setActivePopover('who')}
+              />
             )}
 
             <div className="airbnb-seg-divider" />
@@ -351,9 +349,9 @@ export default function AirbnbSearchBar({
                 {guestLabel}
               </span>
 
-              {/* DROP-UP POPOVER STEPPER TAMU (MELAYANG KE ATAS) */}
+              {/* POPOVER STEPPER TAMU (MEMBUKA KE BAWAH DI KANAN) */}
               {activePopover === 'who' && (
-                <div className="airbnb-popover guests-popover dropup-popover" onClick={(e) => e.stopPropagation()}>
+                <div className="airbnb-popover guests-popover popover-right" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
                     <span>Number of Guests</span>
                   </div>
@@ -477,9 +475,9 @@ export default function AirbnbSearchBar({
                 {selectedPickup?.title || 'Airport DPS / Villa'}
               </span>
 
-              {/* DROP-UP POPOVER LOKASI PENJEMPUTAN (MELAYANG KE ATAS) */}
+              {/* POPOVER LOKASI PENJEMPUTAN (MEMBUKA KE BAWAH) */}
               {activePopover === 'pickup' && (
-                <div className="airbnb-popover pickup-popover dropup-popover" onClick={(e) => e.stopPropagation()}>
+                <div className="airbnb-popover pickup-popover" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
                     <span>Select Transfer Location</span>
                   </div>
@@ -539,9 +537,9 @@ export default function AirbnbSearchBar({
                 </span>
               </div>
 
-              {/* DROP-UP POPOVER PILIHAN ARMADA MOBIL (MELAYANG KE ATAS) */}
+              {/* POPOVER PILIHAN ARMADA MOBIL (MEMBUKA KE BAWAH DI TENGAH) */}
               {activePopover === 'carFleet' && (
-                <div className="airbnb-popover fleet-popover dropup-popover dropup-popover-center" onClick={(e) => e.stopPropagation()}>
+                <div className="airbnb-popover fleet-popover popover-center" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
                     <span>Select Luxury Fleet</span>
                     <small style={{ color: '#D2B073', fontWeight: 600 }}>Chauffeur & Fuel Included</small>
@@ -609,9 +607,9 @@ export default function AirbnbSearchBar({
                 {selectedDriverOption?.title || 'With Private English Driver'}
               </span>
 
-              {/* DROP-UP POPOVER PILIHAN SUPIR (MELAYANG KE ATAS) */}
+              {/* POPOVER PILIHAN SUPIR (MEMBUKA KE BAWAH DI KANAN) */}
               {activePopover === 'carDriver' && (
-                <div className="airbnb-popover driver-popover dropup-popover dropup-popover-right" onClick={(e) => e.stopPropagation()}>
+                <div className="airbnb-popover driver-popover popover-right" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
                     <span>Driver & Service Option</span>
                   </div>
@@ -672,9 +670,9 @@ export default function AirbnbSearchBar({
                 {selectedPackage?.title || 'The Ultimate Yacht & Villa Escape'}
               </span>
 
-              {/* DROP-UP POPOVER PILIHAN PAKET (MELAYANG KE ATAS) */}
+              {/* POPOVER PILIHAN PAKET (MEMBUKA KE BAWAH) */}
               {activePopover === 'pkgCat' && (
-                <div className="airbnb-popover package-popover dropup-popover" onClick={(e) => e.stopPropagation()}>
+                <div className="airbnb-popover package-popover" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
                     <span>Select Curated VIP Bundle</span>
                   </div>
@@ -730,9 +728,9 @@ export default function AirbnbSearchBar({
                 {searchParams.location || 'All Across Bali'}
               </span>
 
-              {/* DROP-UP POPOVER DESTINASI (MELAYANG KE ATAS) */}
+              {/* POPOVER DESTINASI (MEMBUKA KE BAWAH DI KANAN) */}
               {activePopover === 'where' && (
-                <div className="airbnb-popover destinations-popover dropup-popover dropup-popover-right" onClick={(e) => e.stopPropagation()}>
+                <div className="airbnb-popover destinations-popover popover-right" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
                     <span>Preferred Region</span>
                   </div>
@@ -784,9 +782,9 @@ export default function AirbnbSearchBar({
                 {selectedExperience?.title || 'Private Catamaran & Yacht Charter'}
               </span>
 
-              {/* DROP-UP POPOVER PILIHAN AKTIVITAS (MELAYANG KE ATAS) */}
+              {/* POPOVER PILIHAN AKTIVITAS (MEMBUKA KE BAWAH) */}
               {activePopover === 'expCat' && (
-                <div className="airbnb-popover experience-popover dropup-popover" onClick={(e) => e.stopPropagation()}>
+                <div className="airbnb-popover experience-popover" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
                     <span>Select On-Demand Experience</span>
                   </div>
@@ -842,9 +840,9 @@ export default function AirbnbSearchBar({
                 {searchParams.location || 'Anywhere in Bali'}
               </span>
 
-              {/* DROP-UP POPOVER DESTINASI (MELAYANG KE ATAS) */}
+              {/* POPOVER DESTINASI (MEMBUKA KE BAWAH DI KANAN) */}
               {activePopover === 'where' && (
-                <div className="airbnb-popover destinations-popover dropup-popover dropup-popover-right" onClick={(e) => e.stopPropagation()}>
+                <div className="airbnb-popover destinations-popover popover-right" onClick={(e) => e.stopPropagation()}>
                   <div className="popover-header">
                     <span>Preferred Region</span>
                   </div>

@@ -211,9 +211,8 @@ export default function BscNavbar({
           <nav className="nav-links" aria-label="Main Navigation">
             <a href="#villas" onClick={(e) => handleScrollToSection(e, 'villas')}>Villas</a>
             <a href="#destinations" onClick={(e) => handleScrollToSection(e, 'destinations')}>Destinations</a>
+            <a href="#tour" onClick={(e) => handleScrollToSection(e, 'tour')}>Video tour</a>
             <a href="#experiences" onClick={(e) => handleScrollToSection(e, 'experiences')}>Experiences</a>
-            <a href="#verify" onClick={(e) => handleScrollToSection(e, 'verify')}>How we verify</a>
-            <a href="#team" onClick={(e) => handleScrollToSection(e, 'team')}>Our team</a>
           </nav>
 
           {/* Sisi Kanan: Quick Search, Wishlist, Currency Toggle, Tombol CTA & Hamburger Mobile */}
@@ -350,9 +349,8 @@ export default function BscNavbar({
           <div className="nav-mobile-links">
             <a href="#villas" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'villas'); }}>Villas</a>
             <a href="#destinations" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'destinations'); }}>Destinations</a>
+            <a href="#tour" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'tour'); }}>Video tour</a>
             <a href="#experiences" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'experiences'); }}>Experiences</a>
-            <a href="#verify" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'verify'); }}>How we verify</a>
-            <a href="#team" onClick={(e) => { setIsMobileMenuOpen(false); handleScrollToSection(e, 'team'); }}>Our team</a>
           </div>
 
           <div className="nav-mobile-footer">

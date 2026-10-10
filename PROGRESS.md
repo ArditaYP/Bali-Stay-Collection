@@ -1957,6 +1957,31 @@ src/
    - `npm run build`: **Lulus 100% (0 Error)**.
    - **PROTOKOL STRICT PRE-PUSH**: Sesuai instruksi mutlak pengguna, perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
+### 9.32 Kembalikan Popover Membuka ke Bawah & Eliminasi 4 Section Frontpage (Our Standard, Why Book Direct, Safe & Accountable, Reviews)
+1. **Instruksi Pengguna**:
+   - *"1. jelek gasuka saya juga udah kebawah aja gapapa"*
+   - *"2. Section ini dihilangkan aja: 1. Our standard, 2. Why book direct, 3. Safe & accountable, 4. Reviews yang ada di halama depan"*
+2. **Kebutuhan & Implementasi**:
+   - **Kembalikan Popover Dropdown Membuka ke Bawah Secara Elegan**:
+     - Membuka popover dropdown ke bawah secara alami (`top: calc(100% + 12px); bottom: auto;`) di [`AirbnbSearchBar.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/AirbnbSearchBar.jsx) dan [`src/index.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/index.css).
+     - Menetapkan arsitektur *stacking context* yang presisi:
+       - `.airbnb-search-wrapper`: `z-index: 40;` (dan `z-index: 60` saat popover aktif).
+       - `.expedia-tabs-container`: `z-index: 10;`.
+       - Efek: Saat popover terbuka ke bawah, ia melayang bebas di atas tab tanpa konflik clipping atau tabrakan pointer events. Saat popover ditutup / pengguna memilih item, tab di bawahnya 100% responsif tanpa dead click points.
+     - Dilengkapi caret segitiga yang mengarah ke atas menuju kapsul formulir, serta animasi halus `popoverFadeIn`.
+   - **Penghilangan 4 Section di Halaman Depan ([`src/pages/ExplorePage.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/pages/ExplorePage.jsx))**:
+     1. **Our standard**: Menghilangkan pemanggilan `<BscVerification />` (How we verify every villa - 12 poin inspeksi).
+     2. **Why book direct**: Menghilangkan pemanggilan `<BscComparisonTable />` (Book direct, know exactly who you are dealing with).
+     3. **Safe & accountable**: Menghilangkan bagian `#safe` dari `<BscTrustInfo />` (Licensed, insured and ready for emergencies).
+     4. **Reviews halaman depan**: Menghilangkan bagian `#early-guests` dari `<BscTrustInfo />` (Be one of our first verified guests / Reviews eyebrow).
+     - Seluruh import komponen yang tidak digunakan dibersihkan dari `ExplorePage.jsx`.
+   - **Penyesuaian Tautan Navigasi & Footer ([`BscNavbar.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscNavbar.jsx) & [`BscFooter.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscFooter.jsx))**:
+     - Menghapus tautan `How we verify` dan `Our team` dari navbar desktop, mobile drawer, dan footer, digantikan dengan tautan section aktif `Video tour` (`#tour`) dan `Experiences` (`#experiences`).
+3. **Hasil Verifikasi**:
+   - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+   - `npm run build`: **Lulus 100% (2.92s, 0 Error)**.
+   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

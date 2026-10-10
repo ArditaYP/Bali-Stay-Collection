@@ -6,16 +6,10 @@ import { calculateNights } from '../utils/bscFormat';
 import BscNavbar from '../components/frontpage/BscNavbar';
 import BscHero from '../components/frontpage/BscHero';
 import BscDestinations from '../components/frontpage/BscDestinations';
-import BscLevels from '../components/frontpage/BscLevels';
 import BscTopPicks from '../components/frontpage/BscTopPicks';
 import BscVillaCatalog from '../components/frontpage/BscVillaCatalog';
-import BscVerification from '../components/frontpage/BscVerification';
 import BscLiveTour from '../components/frontpage/BscLiveTour';
-import BscComparisonTable from '../components/frontpage/BscComparisonTable';
 import BscExperiences from '../components/frontpage/BscExperiences';
-import BscTeamSection from '../components/frontpage/BscTeamSection';
-import BscStayPromise from '../components/frontpage/BscStayPromise';
-import BscTrustInfo from '../components/frontpage/BscTrustInfo';
 import BscFooter from '../components/frontpage/BscFooter';
 
 /**
@@ -224,33 +218,15 @@ export default function ExplorePage({
           activeTier={activeTier}
         />
 
-        {/* 8. How We Verify Every Villa (12 Poin Standar Inspeksi) */}
-        <BscVerification 
-          onBrowseClick={handleSubmitSearch}
-        />
-
-        {/* 9. Book a 10-Minute Live Video Tour */}
+        {/* 8. Book a 10-Minute Live Video Tour */}
         <BscLiveTour 
           villas={villas}
         />
-        {/* 10. Beyond the Stay - Experiences (Layanan Opsional Kedatangan) */}
+
+        {/* 9. Beyond the Stay - Experiences (Layanan Opsional Kedatangan) */}
         <BscExperiences experiencesData={homepageMedia?.experiences} />
-        
-        {/* 11f. Book Direct, Know Exactly Who You Are Dealing With (Tabel Perbandingan) */}
-        <BscComparisonTable />
 
-        {/* 12. The People Behind Your Stay (Tim BSC Bali) */}
-        {/* <BscTeamSection /> */}
-
-        {/* 12. The BSC Stay Promise */}
-        {/* <BscStayPromise /> */}
-
-        {/* 14. Safe & Accountable, Booking & Payment, Panduan Kedatangan & Extras, First Verified Guests */}
-        <BscTrustInfo 
-          onSeeVillasClick={handleSubmitSearch}
-        />
-
-        {/* 15. Legalitas Perusahaan, Footer Resmi & Tombol Mengambang WhatsApp */}
+        {/* 10. Legalitas Perusahaan, Footer Resmi & Tombol Mengambang WhatsApp */}
         <BscFooter 
           onOpenListVilla={onOpenListVilla}
           onOpenEditor={onOpenEditor}

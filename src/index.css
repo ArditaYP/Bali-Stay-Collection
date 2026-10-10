@@ -6442,7 +6442,7 @@ mark.review-highlight {
   margin: 16px auto 36px;
   max-width: 860px;
   position: relative;
-  z-index: 25;
+  z-index: 10;
   width: 100%;
 }
 
@@ -6532,8 +6532,12 @@ mark.review-highlight {
   max-width: 890px;
   margin: 0 auto 16px;
   position: relative;
-  z-index: 20;
+  z-index: 40;
   width: 100%;
+}
+
+.airbnb-search-wrapper.has-active-popover {
+  z-index: 60;
 }
 
 .airbnb-search-bar {
@@ -6641,86 +6645,53 @@ mark.review-highlight {
 }
 
 /* ============================================================== */
-/* DROP-UP POPOVERS (MELAYANG KE ATAS MENUJU RUANG KOSONG HERO)   */
-/* Tab Cars, Packages, Stays di bawah sama sekali tidak tertutup  */
+/* AIRBNB POPOVER FLOATING DROPDOWN (MEMBUKA KE BAWAH)            */
+/* Z-index tinggi, melayang halus di atas tab tanpa konflik klik  */
 /* ============================================================== */
 
-.dropup-popover {
-  top: auto !important;
-  bottom: calc(100% + 14px) !important;
-  animation: dropUpFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+.airbnb-popover {
+  position: absolute;
+  top: calc(100% + 12px);
+  bottom: auto;
+  left: 0;
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18), 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  animation: popoverFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes dropUpFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px) scale(0.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Caret pointer segitiga mengarah ke kapsul search bar di bawahnya */
-.dropup-popover::after {
+/* Caret pointer segitiga mengarah ke atas (ke kapsul search bar) */
+.airbnb-popover::after {
   content: '';
   position: absolute;
-  top: 100%;
+  bottom: 100%;
   left: 36px;
-  border-width: 9px 9px 0 9px;
+  border-width: 0 9px 9px 9px;
   border-style: solid;
-  border-color: #ffffff transparent transparent transparent;
-  filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.06));
+  border-color: transparent transparent #ffffff transparent;
+  filter: drop-shadow(0 -3px 2px rgba(0, 0, 0, 0.04));
 }
 
-.dropup-popover.dropup-popover-center {
+.airbnb-popover.popover-center {
   left: 50% !important;
   transform: translateX(-50%) !important;
 }
 
-.dropup-popover.dropup-popover-center::after {
+.airbnb-popover.popover-center::after {
   left: 50%;
   transform: translateX(-50%);
 }
 
-.dropup-popover.dropup-popover-right {
+.airbnb-popover.popover-right {
   left: auto !important;
   right: 0 !important;
 }
 
-.dropup-popover.dropup-popover-right::after {
+.airbnb-popover.popover-right::after {
   left: auto;
   right: 36px;
-}
-
-/* Drop-up Calendar Wrapper */
-.dropup-calendar-wrapper {
-  position: absolute;
-  bottom: calc(100% + 14px);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  animation: dropUpFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.dropup-calendar-wrapper .dates-popover {
-  position: static;
-  top: auto;
-  left: auto;
-  transform: none;
-}
-
-.dropup-calendar-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 9px 9px 0 9px;
-  border-style: solid;
-  border-color: #ffffff transparent transparent transparent;
-  filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.06));
 }
 
 /* Pickup & Driver Popover Sizes */
@@ -7797,6 +7768,18 @@ mark.review-highlight {
   border: 1px solid rgba(0, 0, 0, 0.08);
   z-index: 1000;
   animation: popoverFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dates-popover::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 9px 9px 9px;
+  border-style: solid;
+  border-color: transparent transparent #ffffff transparent;
+  filter: drop-shadow(0 -3px 2px rgba(0, 0, 0, 0.04));
 }
 
 .dates-popover-tabs {
