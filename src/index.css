@@ -8501,12 +8501,16 @@ mark.review-highlight {
   align-items: center !important;
   justify-content: center !important;
   height: 28px !important;
+  width: 140px !important;
+  min-width: 140px !important;
+  max-width: 140px !important;
   padding: 0 11px !important;
   font-size: 12px !important;
   font-weight: 600 !important;
   line-height: 1 !important;
   border-radius: 100px !important;
   box-sizing: border-box !important;
+  text-align: center !important;
   white-space: nowrap !important;
 }
 
@@ -8515,11 +8519,16 @@ mark.review-highlight {
   color: #ffffff !important;
   border: 1px solid transparent !important;
   height: 28px !important;
+  width: 140px !important;
+  min-width: 140px !important;
+  max-width: 140px !important;
   padding: 0 11px !important;
   font-size: 12px !important;
   font-weight: 600 !important;
   line-height: 1 !important;
   box-sizing: border-box !important;
+  justify-content: center !important;
+  text-align: center !important;
 }
 
 .picks-badges-row .badges-group .bdg.ok {
@@ -8527,11 +8536,16 @@ mark.review-highlight {
   color: var(--ok, #2F6B3A) !important;
   border: 1px solid transparent !important;
   height: 28px !important;
+  width: 140px !important;
+  min-width: 140px !important;
+  max-width: 140px !important;
   padding: 0 11px !important;
   font-size: 12px !important;
   font-weight: 600 !important;
   line-height: 1 !important;
   box-sizing: border-box !important;
+  justify-content: center !important;
+  text-align: center !important;
 }
 
 .picks-badges-row .btn-show-price {

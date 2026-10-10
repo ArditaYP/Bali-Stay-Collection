@@ -2035,6 +2035,22 @@ src/
 3. **Hasil Verifikasi**:
    - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
    - `npm run build`: **Lulus 100% (2.84s, 0 Error)**.
+### 9.36 Penyelarasan Presisi Lebar Kapsul (Wadah) Lencana New on BSC dan Inspected Oct 2026
+1. **Instruksi Pengguna**:
+   - *"di section picks kan yang anda ubah? jadi tempat nya sama `(    new on bsc    )` `(Inspected Oct 2026)` biar jadi nya seperti"*
+2. **Kebutuhan & Implementasi**:
+   - **Penyelarasan Lebar Kapsul (Container / Wadah Identik)**:
+     - Sebelumnya, lencana `New on BSC` berlebar 95px (karena teksnya pendek 10 karakter), sedangkan lencana `Inspected Oct 2026` berlebar 139px-140px (18 karakter), sehingga kapsul hitam di baris atas tampak jauh lebih pendek daripada kapsul hijau di baris bawah.
+     - Ditetapkan lebar tetap yang simetris dan identik pada `.picks-badges-row .badges-group .bdg`:
+       - `width: 140px !important; min-width: 140px !important; max-width: 140px !important;`
+       - `height: 28px !important; line-height: 1 !important;`
+       - `justify-content: center !important; text-align: center !important;`
+     - Teks `"New on BSC"` kini berada tepat di tengah kapsul dengan padding seimbang di sisi kiri dan kanan (`(    new on bsc    )`), memiliki dimensi lebar (140px) dan tinggi (28px) yang **100% sama persis** dengan `(Inspected Oct 2026)`.
+     - Tepi kiri dan tepi kanan kedua kapsul lencana kini rata tegak lurus sempurna, berdampingan rapi dengan tombol `Show price` di sisi kanan kartu.
+3. **Hasil Verifikasi**:
+   - Pengujian live DOM headless Chrome: `newWidth: 140px`, `okWidth: 140px`, `newHeight: 28px`, `okHeight: 28px`.
+   - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+   - `npm run build`: **Lulus 100% (2.78s, 0 Error)**.
    - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
 ---
