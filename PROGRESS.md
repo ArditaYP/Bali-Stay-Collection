@@ -2084,21 +2084,24 @@ src/
    - `npm run build`: **Lulus 100% (2.87s, 0 Error)**.
    - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
-### 9.39 Hero Search Bar: Transformasi Segmen Check-in & Check-out Menjadi "Experience"
+### 9.39 Hero Search Bar: Transformasi Segmen Check-in & Check-out Menjadi "Experience" (Date Picker / When)
 1. **Instruksi Pengguna**:
    - *"bagian cek in dan cek out ganti jadi 'Experience' yang ada di section id hero"*
+   - *"experience itu when anjir jadi kalo experience itu di pencet muncul tanggal astaga kamu salah mengartikan"*
 2. **Kebutuhan & Implementasi**:
-   - Di [`src/components/frontpage/AirbnbSearchBar.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/AirbnbSearchBar.jsx), segmen terpisah `checkin-segment` dan `checkout-segment` digantikan menjadi satu segmen terpadu bernama **"Experience"** (`exp-segment`).
-   - Tampilan segmen:
-     - Label atas: `EXPERIENCE` (font semi-bold, uppercase).
-     - Teks nilai: `{selectedExperience?.title || 'Add experience'}` yang dinamis menampilkan pengalaman concierge pilihan pengguna (seperti *Private Catamaran & Yacht Charter*, *Private Helicopter Sky Tour*, *Balinese Culinary Masterclass*, dll.).
-     - Interaktivitas popover: Ketika diklik, popover `experience` terbuka menampilkan grid kartu pengalaman mewah terkurasi khas Bali Stay Collection dengan foto, durasi, harga, dan tombol pemilihan instan.
-   - Menggantikan alur perpindahan popover: memilih destinasi di popover `where` kini otomatis membuka popover `experience` untuk pengalaman concierge yang mulus.
-   - Membersihkan state & fungsi yang tidak terpakai (`dateTargetSegment`, `formatDateDisplay`, dan import `AirbnbDatePopover`) untuk menjaga kebersihan kode dan 0 lint error.
+   - Di [`src/components/frontpage/AirbnbSearchBar.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/AirbnbSearchBar.jsx), segmen Check-in & Check-out digabungkan menjadi satu segmen bernama **"Experience"** yang bertindak sebagai pemilih tanggal menginap (*When* / *Stay Dates*):
+     - **Label**: `EXPERIENCE` (font semi-bold, uppercase).
+     - **Teks Nilai**: Menampilkan rentang tanggal yang dipilih secara dinamis (contoh: `Oct 17 – Oct 23`), atau `Add dates` jika tanggal belum ditentukan.
+     - **Interaktivitas Popover**: Ketika segmen "Experience" diklik, popover kalender Airbnb lengkap (`AirbnbDatePopover`) langsung terbuka ke bawah, menampilkan:
+       - Tab navigasi Check-in & Check-out.
+       - Pintasan durasi cepat (+2, +3, +5, +7 malam).
+       - Kalender 2 bulan berdampingan (Oktober & November 2026) dengan penandaan rentang tanggal menginap (*in-range highlights*).
+       - Tombol aksi *"Clear dates"* dan *"Next: Guests →"*.
+   - Mengintegrasikan transisi otomatis: setelah memilih kawasan di popover *Where*, formulir langsung berpindah otomatis membuka popover *Experience* (kalender tanggal).
 3. **Hasil Verifikasi**:
-   - Hero search bar tampil elegan dengan 3 pilar: `[WHERE] | [EXPERIENCE] | [WHO] | [Search]`.
+   - Pengujian live DOM & visual snapshot via CDP: klik pada `.exp-segment` memunculkan kalender 2 bulan dengan presisi tanpa layout shift.
    - `npm run lint`: **0 Error**.
-   - `npm run build`: **Lulus 100%**.
+   - `npm run build`: **Lulus 100% (2.05s, 0 Error)**.
 
 ### 9.40 Impor Masif 16 Villa Baru Airbnb dengan Hypnotic NLP Copywriting & Integrasi Penuh 51 Villa Autentik
 1. **Instruksi Pengguna**:

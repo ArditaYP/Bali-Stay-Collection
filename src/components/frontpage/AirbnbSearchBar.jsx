@@ -7,6 +7,7 @@ import {
   PACKAGES_DATA, 
   EXPERIENCES_DATA 
 } from '../../data/bscFleetData';
+import AirbnbDatePopover from './AirbnbDatePopover';
 
 /**
  * Komponen AirbnbSearchBar
@@ -142,6 +143,32 @@ export default function AirbnbSearchBar({
     }
   };
 
+  /**
+   * Format tanggal singkat yang elegan untuk label tampilan (contoh: '14 Oct')
+   * @param {string} dateStr - Tanggal format YYYY-MM-DD
+   * @returns {string} String tanggal ringkas terformat
+   */
+  const formatDateDisplay = (dateStr) => {
+    if (!dateStr) return '';
+    try {
+      const parts = dateStr.split('-');
+      if (parts.length === 3) {
+        const d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+        return d.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
+      }
+      return dateStr;
+    } catch {
+      return dateStr;
+    }
+  };
+
+  // Label ringkasan rentang tanggal menginap pada segmen Experience (When)
+  let datesDisplayLabel = 'Add dates';
+  if (searchParams.checkIn && searchParams.checkOut) {
+    datesDisplayLabel = `${formatDateDisplay(searchParams.checkIn)} – ${formatDateDisplay(searchParams.checkOut)}`;
+  } else if (searchParams.checkIn) {
+    datesDisplayLabel = `${formatDateDisplay(searchParams.checkIn)} – Add check-out`;
+  }
 
   // Ringkasan label teks tamu
   const totalGuestsCount = adults + children;
@@ -203,7 +230,7 @@ export default function AirbnbSearchBar({
                       onClick={() => {
                         onSearchChange('location', '');
                         onSearchChange('area', '');
-                        setActivePopover('experience');
+                        setActivePopover('dates');
                       }}
                     >
                       <div className="dest-opt-icon">🌴</div>
@@ -225,7 +252,7 @@ export default function AirbnbSearchBar({
                             onClick={() => {
                               onSearchChange('location', dest.name);
                               onSearchChange('area', dest.name);
-                              setActivePopover('experience');
+                              setActivePopover('dates');
                             }}
                           >
                             <div className="dest-opt-icon">📍</div>
@@ -244,60 +271,37 @@ export default function AirbnbSearchBar({
 
             <div className="airbnb-seg-divider" />
 
-            {/* 2. SEGMEN EXPERIENCE (Menggantikan Check-in & Check-out sesuai permintaan pengguna) */}
+            {/* 2. SEGMEN EXPERIENCE (Pengganti Check-in & Check-out: Berfungsi sebagai pemilih tanggal / When) */}
             <div 
               role="button"
               tabIndex={0}
-              className={`airbnb-search-segment exp-segment ${activePopover === 'expCat' ? 'active' : ''}`}
-              onClick={() => setActivePopover(prev => prev === 'expCat' ? null : 'expCat')}
+              className={`airbnb-search-segment exp-segment ${activePopover === 'dates' ? 'active' : ''}`}
+              onClick={() => setActivePopover(prev => prev === 'dates' ? null : 'dates')}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  setActivePopover(prev => prev === 'expCat' ? null : 'expCat');
+                  setActivePopover(prev => prev === 'dates' ? null : 'dates');
                 }
               }}
             >
               <span className="airbnb-seg-label">Experience</span>
-              <span className={`airbnb-seg-value ${!selectedExperience ? 'placeholder' : ''}`}>
-                {selectedExperience?.title || 'Add experience'}
+              <span className={`airbnb-seg-value ${!searchParams.checkIn ? 'placeholder' : ''}`}>
+                {datesDisplayLabel}
               </span>
 
-              {/* POPOVER PILIHAN AKTIVITAS ON-DEMAND (MEMBUKA KE BAWAH) */}
-              {activePopover === 'expCat' && (
-                <div className="airbnb-popover experience-popover" onClick={(e) => e.stopPropagation()}>
-                  <div className="popover-header">
-                    <span>Select On-Demand Experience</span>
-                  </div>
-                  <div className="experience-popover-list">
-                    {EXPERIENCES_DATA.map((exp) => {
-                      const isSelected = selectedExperience?.id === exp.id;
-                      return (
-                        <button
-                          key={exp.id}
-                          type="button"
-                          className={`exp-popover-item ${isSelected ? 'selected' : ''}`}
-                          onClick={() => {
-                            if (typeof onSelectExperience === 'function') {
-                              onSelectExperience(exp);
-                            }
-                            setActivePopover(null);
-                          }}
-                        >
-                          <div className="exp-pop-info">
-                            <div className="exp-pop-title-row">
-                              <b>{exp.title}</b>
-                              <span className="exp-pop-badge">{exp.badge}</span>
-                            </div>
-                            <small>{exp.tag} · {exp.duration}</small>
-                          </div>
-                          <div className="exp-pop-price">
-                            <b>{exp.price}</b>
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
+              {/* POPOVER KALENDER TANGGAL (MEMBUKA SAAT SEGMEN EXPERIENCE DIKLIK) */}
+              {activePopover === 'dates' && (
+                <AirbnbDatePopover
+                  checkIn={searchParams.checkIn || ''}
+                  checkOut={searchParams.checkOut || ''}
+                  initialTarget="checkIn"
+                  onDatesChange={(newCi, newCo) => {
+                    onSearchChange('checkIn', newCi);
+                    onSearchChange('checkOut', newCo);
+                  }}
+                  onClose={() => setActivePopover(null)}
+                  onDone={() => setActivePopover('who')}
+                />
               )}
             </div>
 
