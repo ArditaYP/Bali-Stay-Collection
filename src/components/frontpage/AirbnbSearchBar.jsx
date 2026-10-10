@@ -1,23 +1,42 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { DESTINATIONS_SUMMARY } from '../../data/bscVillasData';
+import { 
+  CAR_FLEET_DATA, 
+  PICKUP_LOCATIONS_DATA, 
+  CHAUFFEUR_OPTIONS_DATA, 
+  PACKAGES_DATA, 
+  EXPERIENCES_DATA 
+} from '../../data/bscFleetData';
 import AirbnbDatePopover from './AirbnbDatePopover';
 
 /**
  * Komponen AirbnbSearchBar
  * Mengimplementasikan formulir pencarian id="searchForm" bergaya floating capsule ala Airbnb:
- * - Where: Pilihan kawasan destinasi interaktif dengan visual jumlah villa
- * - When (Check-in / Check-out): Pemilihan tanggal menginap terintegrasi
- * - Who: Stepper counter jumlah tamu dewasa (Adults), anak-anak (Children), dan bayi (Infants)
- * - Tombol Search ikonik dengan micro-animation
- * - Adaptif untuk tab Expedia (Stays, Cars, Packages, Things to do)
+ * - Stays: Where, When (Check-in/Check-out), Who (Dewasa, Anak, Bayi)
+ * - Cars: Pickup & Drop-off, Luxury Vehicle Fleet, Chauffeur Service
+ * - Packages: Curated Bundle Category, Destination Region
+ * - Things to do: Curated Experiences Category, Preferred Region
+ * 
+ * Dilengkapi dengan custom interactive popover mewah (meniadakan select native kuno)
+ * dan area klik solid 100% tanpa dead click points.
  * 
  * @param {Object} props
  * @param {string} [props.activeTab='stays'] - Tab layanan aktif ('stays', 'cars', 'packages', 'experiences')
- * @param {string[]} [props.areas=[]] - Daftar nama kawasan
+ * @param {string[]} [props._areas=[]] - Daftar nama kawasan
  * @param {Object} props.searchParams - Parameter pencarian aktif
  * @param {Function} props.onSearchChange - Callback saat nilai pencarian berubah
  * @param {Function} props.onSubmitSearch - Callback saat form disubmit
  * @param {boolean} [props.isCompact=false] - Tampilan kompak (misal saat melayang di navbar)
+ * @param {Object} [props.selectedCar] - Mobil yang terpilih saat ini
+ * @param {Function} [props.onSelectCar] - Callback pemilih mobil
+ * @param {Object} [props.selectedPickup] - Lokasi penjemputan terpilih
+ * @param {Function} [props.onSelectPickup] - Callback pemilih lokasi penjemputan
+ * @param {Object} [props.selectedDriverOption] - Opsi supir terpilih
+ * @param {Function} [props.onSelectDriverOption] - Callback pemilih opsi supir
+ * @param {Object} [props.selectedPackage] - Paket terpilih
+ * @param {Function} [props.onSelectPackage] - Callback pemilih paket
+ * @param {Object} [props.selectedExperience] - Aktivitas terpilih
+ * @param {Function} [props.onSelectExperience] - Callback pemilih aktivitas
  * @returns {React.JSX.Element} Elemen JSX Airbnb Search Bar
  */
 export default function AirbnbSearchBar({
@@ -26,9 +45,19 @@ export default function AirbnbSearchBar({
   searchParams = {},
   onSearchChange,
   onSubmitSearch,
-  isCompact = false
+  isCompact = false,
+  selectedCar = CAR_FLEET_DATA[0],
+  onSelectCar,
+  selectedPickup = PICKUP_LOCATIONS_DATA[0],
+  onSelectPickup,
+  selectedDriverOption = CHAUFFEUR_OPTIONS_DATA[0],
+  onSelectDriverOption,
+  selectedPackage = PACKAGES_DATA[0],
+  onSelectPackage,
+  selectedExperience = EXPERIENCES_DATA[0],
+  onSelectExperience
 }) {
-  // State panel popover aktif ('where', 'dates', 'who', atau null)
+  // State panel popover aktif ('where', 'dates', 'who', 'pickup', 'carFleet', 'carDriver', 'packageCategory', 'experienceCategory', atau null)
   const [activePopover, setActivePopover] = useState(null);
 
   // State fokus target segmen tanggal ('checkIn' atau 'checkOut')
@@ -39,13 +68,6 @@ export default function AirbnbSearchBar({
   const [adults, setAdults] = useState(Math.max(1, initialGuests));
   const [children, setChildren] = useState(0);
   const [infants, setInfants] = useState(0);
-
-  // State input untuk tab Cars
-  const [carType, setCarType] = useState('Toyota Alphard Luxury');
-  const [carDriver, setCarDriver] = useState(true);
-
-  // State input untuk tab Packages & Experiences
-  const [expType, setExpType] = useState('All Experiences');
 
   // Ref container untuk mendeteksi klik di luar popover (click outside)
   const containerRef = useRef(null);
@@ -71,8 +93,19 @@ export default function AirbnbSearchBar({
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
   }, []);
+
+  // Tutup popover otomatis saat beralih tab layanan
+  const [prevTab, setPrevTab] = useState(activeTab);
+  if (prevTab !== activeTab) {
+    setPrevTab(activeTab);
+    setActivePopover(null);
+  }
 
   /**
    * Menangani pengiriman form pencarian
@@ -84,14 +117,27 @@ export default function AirbnbSearchBar({
     setActivePopover(null);
 
     if (activeTab === 'cars') {
-      const msg = encodeURIComponent(`Halo Bali Stay Collection Concierge, saya tertarik sewa mobil ${carType} (${carDriver ? 'Dengan Supir' : 'Lepas Kunci'}) di Bali untuk tanggal ${searchParams.checkIn || 'segera'}.`);
-      window.open(`https://wa.me/628123456789?text=${msg}`, '_blank');
+      const datesInfo = searchParams.checkIn ? `untuk tanggal ${searchParams.checkIn}` : 'untuk jadwal segera';
+      const msg = encodeURIComponent(
+        `Halo Bali Stay Collection Concierge, saya tertarik sewa armada "${selectedCar?.name || 'Toyota Alphard VIP'}" (${selectedDriverOption?.title || 'Dengan Supir'}) dengan lokasi penjemputan "${selectedPickup?.title || 'Bandara DPS'}" ${datesInfo}. Mohon info ketersediaannya.`
+      );
+      window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
       return;
     }
 
-    if (activeTab === 'packages' || activeTab === 'experiences') {
-      const expEl = document.getElementById('experiences') || document.getElementById('villas');
-      if (expEl) expEl.scrollIntoView({ behavior: 'smooth' });
+    if (activeTab === 'packages') {
+      const msg = encodeURIComponent(
+        `Halo Bali Stay Collection Concierge, saya tertarik dengan paket liburan "${selectedPackage?.title || 'VIP Package'}". Mohon info ketersediaan dan detail penawaran.`
+      );
+      window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    if (activeTab === 'experiences') {
+      const msg = encodeURIComponent(
+        `Halo Bali Stay Collection Concierge, saya tertarik dengan concierge experience "${selectedExperience?.title || 'Curated Experience'}". Mohon info ketersediaan jadwalnya.`
+      );
+      window.open(`https://wa.me/628123456789?text=${msg}`, '_blank', 'noopener,noreferrer');
       return;
     }
 
@@ -127,14 +173,22 @@ export default function AirbnbSearchBar({
         onSubmit={handleFormSubmit}
       >
         {/* ============================================================== */}
-        {/* KONTEN TAB: STAYS (VILLA & ESTATES) */}
+        {/* KONTEN TAB: STAYS (VILLA & PRIVATE ESTATES) */}
         {/* ============================================================== */}
         {activeTab === 'stays' && (
           <>
             {/* 1. SEGMEN WHERE */}
             <div 
+              role="button"
+              tabIndex={0}
               className={`airbnb-search-segment where-segment ${activePopover === 'where' ? 'active' : ''}`}
               onClick={() => setActivePopover(prev => prev === 'where' ? null : 'where')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActivePopover(prev => prev === 'where' ? null : 'where');
+                }
+              }}
             >
               <span className="airbnb-seg-label">Where</span>
               <span className={`airbnb-seg-value ${!searchParams.location ? 'placeholder' : ''}`}>
@@ -212,10 +266,19 @@ export default function AirbnbSearchBar({
 
             {/* 2. SEGMEN CHECK-IN */}
             <div 
+              role="button"
+              tabIndex={0}
               className={`airbnb-search-segment checkin-segment ${(activePopover === 'dates' && dateTargetSegment === 'checkIn') ? 'active' : ''}`}
               onClick={() => {
                 setDateTargetSegment('checkIn');
                 setActivePopover(prev => (prev === 'dates' && dateTargetSegment === 'checkIn') ? null : 'dates');
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setDateTargetSegment('checkIn');
+                  setActivePopover(prev => (prev === 'dates' && dateTargetSegment === 'checkIn') ? null : 'dates');
+                }
               }}
             >
               <span className="airbnb-seg-label">Check-in</span>
@@ -228,10 +291,19 @@ export default function AirbnbSearchBar({
 
             {/* 3. SEGMEN CHECK-OUT */}
             <div 
+              role="button"
+              tabIndex={0}
               className={`airbnb-search-segment checkout-segment ${(activePopover === 'dates' && dateTargetSegment === 'checkOut') ? 'active' : ''}`}
               onClick={() => {
                 setDateTargetSegment('checkOut');
                 setActivePopover(prev => (prev === 'dates' && dateTargetSegment === 'checkOut') ? null : 'dates');
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setDateTargetSegment('checkOut');
+                  setActivePopover(prev => (prev === 'dates' && dateTargetSegment === 'checkOut') ? null : 'dates');
+                }
               }}
             >
               <span className="airbnb-seg-label">Check-out</span>
@@ -262,8 +334,16 @@ export default function AirbnbSearchBar({
 
             {/* 4. SEGMEN WHO (GUEST COUNTER STEPPER) */}
             <div 
+              role="button"
+              tabIndex={0}
               className={`airbnb-search-segment who-segment ${activePopover === 'who' ? 'active' : ''}`}
               onClick={() => setActivePopover(prev => prev === 'who' ? null : 'who')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActivePopover(prev => prev === 'who' ? null : 'who');
+                }
+              }}
             >
               <span className="airbnb-seg-label">Who</span>
               <span className={`airbnb-seg-value ${totalGuestsCount === 0 ? 'placeholder' : ''}`}>
@@ -371,73 +451,425 @@ export default function AirbnbSearchBar({
         )}
 
         {/* ============================================================== */}
-        {/* KONTEN TAB: CARS (LUXURY CAR RENTAL) */}
+        {/* KONTEN TAB: CARS (LUXURY FLEET & CHAUFFEURED CONCIERGE) */}
         {/* ============================================================== */}
         {activeTab === 'cars' && (
           <>
-            <div className="airbnb-search-segment car-segment">
+            {/* SEGMEN 1: PICKUP & DROPOFF */}
+            <div 
+              role="button"
+              tabIndex={0}
+              className={`airbnb-search-segment car-segment ${activePopover === 'pickup' ? 'active' : ''}`}
+              onClick={() => setActivePopover(prev => prev === 'pickup' ? null : 'pickup')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActivePopover(prev => prev === 'pickup' ? null : 'pickup');
+                }
+              }}
+            >
               <span className="airbnb-seg-label">Pickup & Drop-off</span>
-              <input
-                type="text"
-                className="inline-text-input"
-                placeholder="Airport DPS / Villa in Bali"
-                defaultValue="Ngurah Rai Airport (DPS) / Villa"
-              />
+              <span className="airbnb-seg-value">
+                {selectedPickup?.title || 'Airport DPS / Villa'}
+              </span>
+
+              {/* POPOVER LOKASI PENJEMPUTAN */}
+              {activePopover === 'pickup' && (
+                <div className="airbnb-popover pickup-popover" onClick={(e) => e.stopPropagation()}>
+                  <div className="popover-header">
+                    <span>Select Transfer Location</span>
+                  </div>
+                  <div className="pickup-options-list">
+                    {PICKUP_LOCATIONS_DATA.map((loc) => {
+                      const isSelected = selectedPickup?.id === loc.id;
+                      return (
+                        <button
+                          key={loc.id}
+                          type="button"
+                          className={`pickup-option-card ${isSelected ? 'selected' : ''}`}
+                          onClick={() => {
+                            if (typeof onSelectPickup === 'function') {
+                              onSelectPickup(loc);
+                            }
+                            setActivePopover('carFleet');
+                          }}
+                        >
+                          <div className="pickup-card-icon">{loc.icon}</div>
+                          <div className="pickup-card-text">
+                            <div className="pickup-card-title-row">
+                              <b>{loc.title}</b>
+                              <span className="pickup-badge">{loc.badge}</span>
+                            </div>
+                            <small>{loc.subtitle}</small>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
+
             <div className="airbnb-seg-divider" />
-            <div className="airbnb-search-segment car-select-segment">
+
+            {/* SEGMEN 2: VEHICLE TIER (FLEET SELECTOR) */}
+            <div 
+              role="button"
+              tabIndex={0}
+              className={`airbnb-search-segment car-fleet-segment ${activePopover === 'carFleet' ? 'active' : ''}`}
+              onClick={() => setActivePopover(prev => prev === 'carFleet' ? null : 'carFleet')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActivePopover(prev => prev === 'carFleet' ? null : 'carFleet');
+                }
+              }}
+            >
               <span className="airbnb-seg-label">Vehicle Tier</span>
-              <select 
-                className="inline-select"
-                value={carType} 
-                onChange={(e) => setCarType(e.target.value)}
-              >
-                <option value="Toyota Alphard Luxury">Toyota Alphard VIP</option>
-                <option value="Hyundai Ioniq 5 EV">Hyundai Ioniq 5 (EV)</option>
-                <option value="Toyota HiAce Premio Luxury">HiAce Premio (10-seat VIP)</option>
-                <option value="Toyota Innova Zenix Hybrid">Innova Zenix Hybrid</option>
-              </select>
+              <div className="car-fleet-value-wrapper">
+                <span className="airbnb-seg-value">
+                  {selectedCar?.shortName || 'Toyota Alphard VIP'}
+                </span>
+                <span className="car-mini-badge">
+                  {selectedCar?.seats} Seats · {selectedCar?.category}
+                </span>
+              </div>
+
+              {/* POPOVER PILIHAN ARMADA MOBIL MEWAH (FLEET LIST) */}
+              {activePopover === 'carFleet' && (
+                <div className="airbnb-popover fleet-popover" onClick={(e) => e.stopPropagation()}>
+                  <div className="popover-header">
+                    <span>Select Luxury Fleet</span>
+                    <small style={{ color: '#D2B073', fontWeight: 600 }}>Chauffeur & Fuel Included</small>
+                  </div>
+                  <div className="fleet-popover-list">
+                    {CAR_FLEET_DATA.map((car) => {
+                      const isSelected = selectedCar?.id === car.id;
+                      return (
+                        <button
+                          key={car.id}
+                          type="button"
+                          className={`fleet-popover-item ${isSelected ? 'selected' : ''}`}
+                          onClick={() => {
+                            if (typeof onSelectCar === 'function') {
+                              onSelectCar(car);
+                            }
+                            setActivePopover('carDriver');
+                          }}
+                        >
+                          <div className="fleet-popover-item-left">
+                            <div className="fleet-popover-icon">
+                              🚗
+                            </div>
+                            <div className="fleet-popover-details">
+                              <div className="fleet-popover-title-row">
+                                <b>{car.name}</b>
+                                <span className="fleet-badge-gold">{car.badge}</span>
+                              </div>
+                              <div className="fleet-popover-specs">
+                                <span>💺 {car.seats} Seats</span>
+                                <span>🧳 {car.luggage} Bags</span>
+                                <span>⚙️ {car.transmission}</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="fleet-popover-pricing">
+                            <span className="fleet-popover-price">{car.priceIdr}</span>
+                            <small className="fleet-popover-period">/ day</small>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
+
             <div className="airbnb-seg-divider" />
-            <div className="airbnb-search-segment car-driver-segment">
+
+            {/* SEGMEN 3: CHAUFFEUR OPTION */}
+            <div 
+              role="button"
+              tabIndex={0}
+              className={`airbnb-search-segment car-driver-segment ${activePopover === 'carDriver' ? 'active' : ''}`}
+              onClick={() => setActivePopover(prev => prev === 'carDriver' ? null : 'carDriver')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActivePopover(prev => prev === 'carDriver' ? null : 'carDriver');
+                }
+              }}
+            >
               <span className="airbnb-seg-label">Chauffeur</span>
-              <select 
-                className="inline-select"
-                value={carDriver ? 'yes' : 'no'} 
-                onChange={(e) => setCarDriver(e.target.value === 'yes')}
-              >
-                <option value="yes">With Private English Driver</option>
-                <option value="no">Self Drive (International License)</option>
-              </select>
+              <span className="airbnb-seg-value">
+                {selectedDriverOption?.title || 'With Private English Driver'}
+              </span>
+
+              {/* POPOVER PILIHAN SUPIR / SELF-DRIVE */}
+              {activePopover === 'carDriver' && (
+                <div className="airbnb-popover driver-popover" onClick={(e) => e.stopPropagation()}>
+                  <div className="popover-header">
+                    <span>Driver & Service Option</span>
+                  </div>
+                  <div className="driver-options-list">
+                    {CHAUFFEUR_OPTIONS_DATA.map((opt) => {
+                      const isSelected = selectedDriverOption?.id === opt.id;
+                      return (
+                        <button
+                          key={opt.id}
+                          type="button"
+                          className={`driver-option-card ${isSelected ? 'selected' : ''}`}
+                          onClick={() => {
+                            if (typeof onSelectDriverOption === 'function') {
+                              onSelectDriverOption(opt);
+                            }
+                            setActivePopover(null);
+                          }}
+                        >
+                          <div className="driver-card-icon">
+                            {opt.id === 'with-chauffeur' ? '👨‍✈️' : '🔑'}
+                          </div>
+                          <div className="driver-card-text">
+                            <div className="driver-card-title-row">
+                              <b>{opt.title}</b>
+                              <span className="driver-badge">{opt.badge}</span>
+                            </div>
+                            <small>{opt.subtitle}</small>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
           </>
         )}
 
         {/* ============================================================== */}
-        {/* KONTEN TAB: PACKAGES & THINGS TO DO */}
+        {/* KONTEN TAB: PACKAGES (VIP ALL-INCLUSIVE BUNDLES) */}
         {/* ============================================================== */}
-        {(activeTab === 'packages' || activeTab === 'experiences') && (
+        {activeTab === 'packages' && (
           <>
-            <div className="airbnb-search-segment exp-segment">
-              <span className="airbnb-seg-label">Category</span>
-              <select 
-                className="inline-select"
-                value={expType} 
-                onChange={(e) => setExpType(e.target.value)}
-              >
-                <option value="All Experiences">All VIP Concierge Curations</option>
-                <option value="Yacht Charter">Luxury Yacht & Catamaran Charter</option>
-                <option value="Private Chef">Villa Private Dining & Chef</option>
-                <option value="Wellness & Spa">In-Villa Wellness, Yoga & Spa</option>
-                <option value="VIP Airport">Airport VIP Fast-Track & Transfer</option>
-              </select>
+            {/* SEGMEN 1: PACKAGE CATEGORY */}
+            <div 
+              role="button"
+              tabIndex={0}
+              className={`airbnb-search-segment pkg-segment ${activePopover === 'pkgCat' ? 'active' : ''}`}
+              onClick={() => setActivePopover(prev => prev === 'pkgCat' ? null : 'pkgCat')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActivePopover(prev => prev === 'pkgCat' ? null : 'pkgCat');
+                }
+              }}
+            >
+              <span className="airbnb-seg-label">VIP Package Bundle</span>
+              <span className="airbnb-seg-value">
+                {selectedPackage?.title || 'The Ultimate Yacht & Villa Escape'}
+              </span>
+
+              {/* POPOVER PILIHAN PAKET */}
+              {activePopover === 'pkgCat' && (
+                <div className="airbnb-popover package-popover" onClick={(e) => e.stopPropagation()}>
+                  <div className="popover-header">
+                    <span>Select Curated VIP Bundle</span>
+                  </div>
+                  <div className="package-popover-list">
+                    {PACKAGES_DATA.map((pkg) => {
+                      const isSelected = selectedPackage?.id === pkg.id;
+                      return (
+                        <button
+                          key={pkg.id}
+                          type="button"
+                          className={`package-popover-item ${isSelected ? 'selected' : ''}`}
+                          onClick={() => {
+                            if (typeof onSelectPackage === 'function') {
+                              onSelectPackage(pkg);
+                            }
+                            setActivePopover(null);
+                          }}
+                        >
+                          <div className="pkg-pop-info">
+                            <div className="pkg-pop-title-row">
+                              <b>{pkg.title}</b>
+                              <span className="pkg-pop-badge">{pkg.badge}</span>
+                            </div>
+                            <small>{pkg.tag}</small>
+                          </div>
+                          <div className="pkg-pop-price">
+                            <b>{pkg.price}</b>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
+
             <div className="airbnb-seg-divider" />
-            <div className="airbnb-search-segment exp-area-segment">
+
+            {/* SEGMEN 2: PREFERRED LOCATION */}
+            <div 
+              role="button"
+              tabIndex={0}
+              className={`airbnb-search-segment pkg-area-segment ${activePopover === 'where' ? 'active' : ''}`}
+              onClick={() => setActivePopover(prev => prev === 'where' ? null : 'where')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActivePopover(prev => prev === 'where' ? null : 'where');
+                }
+              }}
+            >
+              <span className="airbnb-seg-label">Preferred Location</span>
+              <span className="airbnb-seg-value">
+                {searchParams.location || 'All Across Bali'}
+              </span>
+
+              {/* POPOVER DESTINASI REGIONAL */}
+              {activePopover === 'where' && (
+                <div className="airbnb-popover destinations-popover" onClick={(e) => e.stopPropagation()}>
+                  <div className="popover-header">
+                    <span>Preferred Region</span>
+                  </div>
+                  <div className="dest-regions-grid">
+                    {DESTINATIONS_SUMMARY.map((dest) => (
+                      <button
+                        key={dest.name}
+                        type="button"
+                        className={`dest-option-btn ${searchParams.location === dest.name ? 'selected' : ''}`}
+                        onClick={() => {
+                          onSearchChange('location', dest.name);
+                          onSearchChange('area', dest.name);
+                          setActivePopover(null);
+                        }}
+                      >
+                        <div className="dest-opt-icon">📍</div>
+                        <div className="dest-opt-info">
+                          <b>{dest.name}</b>
+                          <small>{dest.count} villas</small>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </>
+        )}
+
+        {/* ============================================================== */}
+        {/* KONTEN TAB: THINGS TO DO (CURATED CONCIERGE EXPERIENCES) */}
+        {/* ============================================================== */}
+        {activeTab === 'experiences' && (
+          <>
+            {/* SEGMEN 1: EXPERIENCE CATEGORY */}
+            <div 
+              role="button"
+              tabIndex={0}
+              className={`airbnb-search-segment exp-segment ${activePopover === 'expCat' ? 'active' : ''}`}
+              onClick={() => setActivePopover(prev => prev === 'expCat' ? null : 'expCat')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActivePopover(prev => prev === 'expCat' ? null : 'expCat');
+                }
+              }}
+            >
+              <span className="airbnb-seg-label">Concierge Activity</span>
+              <span className="airbnb-seg-value">
+                {selectedExperience?.title || 'Private Catamaran & Yacht Charter'}
+              </span>
+
+              {/* POPOVER PILIHAN AKTIVITAS */}
+              {activePopover === 'expCat' && (
+                <div className="airbnb-popover experience-popover" onClick={(e) => e.stopPropagation()}>
+                  <div className="popover-header">
+                    <span>Select On-Demand Experience</span>
+                  </div>
+                  <div className="experience-popover-list">
+                    {EXPERIENCES_DATA.map((exp) => {
+                      const isSelected = selectedExperience?.id === exp.id;
+                      return (
+                        <button
+                          key={exp.id}
+                          type="button"
+                          className={`exp-popover-item ${isSelected ? 'selected' : ''}`}
+                          onClick={() => {
+                            if (typeof onSelectExperience === 'function') {
+                              onSelectExperience(exp);
+                            }
+                            setActivePopover(null);
+                          }}
+                        >
+                          <div className="exp-pop-info">
+                            <div className="exp-pop-title-row">
+                              <b>{exp.title}</b>
+                              <span className="exp-pop-badge">{exp.badge}</span>
+                            </div>
+                            <small>{exp.tag} · {exp.duration}</small>
+                          </div>
+                          <div className="exp-pop-price">
+                            <b>{exp.price}</b>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="airbnb-seg-divider" />
+
+            {/* SEGMEN 2: PREFERRED LOCATION */}
+            <div 
+              role="button"
+              tabIndex={0}
+              className={`airbnb-search-segment exp-area-segment ${activePopover === 'where' ? 'active' : ''}`}
+              onClick={() => setActivePopover(prev => prev === 'where' ? null : 'where')}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActivePopover(prev => prev === 'where' ? null : 'where');
+                }
+              }}
+            >
               <span className="airbnb-seg-label">Preferred Location</span>
               <span className="airbnb-seg-value">
                 {searchParams.location || 'Anywhere in Bali'}
               </span>
+
+              {/* POPOVER DESTINASI REGIONAL */}
+              {activePopover === 'where' && (
+                <div className="airbnb-popover destinations-popover" onClick={(e) => e.stopPropagation()}>
+                  <div className="popover-header">
+                    <span>Preferred Region</span>
+                  </div>
+                  <div className="dest-regions-grid">
+                    {DESTINATIONS_SUMMARY.map((dest) => (
+                      <button
+                        key={dest.name}
+                        type="button"
+                        className={`dest-option-btn ${searchParams.location === dest.name ? 'selected' : ''}`}
+                        onClick={() => {
+                          onSearchChange('location', dest.name);
+                          onSearchChange('area', dest.name);
+                          setActivePopover(null);
+                        }}
+                      >
+                        <div className="dest-opt-icon">📍</div>
+                        <div className="dest-opt-info">
+                          <b>{dest.name}</b>
+                          <small>{dest.count} villas</small>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </>
         )}
@@ -447,7 +879,7 @@ export default function AirbnbSearchBar({
           <button 
             type="submit" 
             className="airbnb-submit-btn" 
-            aria-label="Search"
+            aria-label="Search or Inquire"
           >
             <svg 
               width="16" 
@@ -463,7 +895,7 @@ export default function AirbnbSearchBar({
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
             <span className="search-btn-text">
-              {activeTab === 'cars' ? 'Find car' : activeTab === 'stays' ? 'Search' : 'Explore'}
+              {activeTab === 'cars' ? 'Inquire Fleet' : activeTab === 'stays' ? 'Search' : activeTab === 'packages' ? 'Explore Packages' : 'Explore Concierge'}
             </span>
           </button>
         </div>

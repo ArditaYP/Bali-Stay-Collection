@@ -6439,29 +6439,39 @@ mark.review-highlight {
 .expedia-tabs-container {
   display: flex;
   justify-content: center;
-  margin: 0 auto 36px;
+  margin: 0 auto 22px;
   max-width: 860px;
   position: relative;
-  z-index: 10;
+  z-index: 30;
+  width: 100%;
 }
 
 .expedia-tabs-scroll {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 4px;
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(12px);
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
   border-radius: 40px;
-  border: 1px solid rgba(22, 41, 77, 0.08);
+  border: 1px solid rgba(22, 41, 77, 0.09);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+}
+
+.expedia-tabs-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .expedia-tab-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border: none;
   background: transparent;
   color: #4a5568;
@@ -6472,6 +6482,10 @@ mark.review-highlight {
   position: relative;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
+  pointer-events: auto;
+  user-select: none;
+  touch-action: manipulation;
+  min-height: 44px;
 }
 
 .expedia-tab-icon {
@@ -6479,11 +6493,16 @@ mark.review-highlight {
   align-items: center;
   color: inherit;
   transition: transform 0.2s ease;
+  pointer-events: none;
+}
+
+.expedia-tab-label {
+  pointer-events: none;
 }
 
 .expedia-tab-btn:hover {
   color: #16294D;
-  background: rgba(22, 41, 77, 0.04);
+  background: rgba(22, 41, 77, 0.05);
 }
 
 .expedia-tab-btn.active {
@@ -6505,6 +6524,7 @@ mark.review-highlight {
   height: 2.5px;
   background: #D2B073;
   border-radius: 3px;
+  pointer-events: none;
 }
 
 /* 2. Floating Pill Search Bar ala Airbnb */
@@ -6602,21 +6622,916 @@ mark.review-highlight {
   cursor: pointer;
 }
 
-/* Inline Inputs for Cars & Experiences */
-.inline-text-input,
-.inline-select {
-  border: none;
-  background: transparent;
-  font-size: 14px;
-  font-weight: 600;
-  color: #222222;
-  outline: none;
-  width: 100%;
-  padding: 0;
+/* Car Fleet Value in Search Segment */
+.car-fleet-value-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
-.inline-select {
+.car-mini-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #D2B073;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+/* ============================================================== */
+/* LUXURY CONCIERGE POPOVERS (PICKUP, FLEET, DRIVER, PACKAGES)   */
+/* ============================================================== */
+
+/* Pickup Location Popover */
+.pickup-popover,
+.driver-popover {
+  width: 440px;
+  max-width: 94vw;
+  padding: 20px 22px;
+}
+
+.pickup-options-list,
+.driver-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pickup-option-card,
+.driver-option-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(22, 41, 77, 0.08);
+  background: #ffffff;
+  text-align: left;
   cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+}
+
+.pickup-option-card:hover,
+.driver-option-card:hover {
+  background: #FAF8F5;
+  border-color: #D2B073;
+  transform: translateY(-1px);
+}
+
+.pickup-option-card.selected,
+.driver-option-card.selected {
+  background: #f0f4f9;
+  border-color: #16294D;
+  box-shadow: 0 4px 12px rgba(22, 41, 77, 0.08);
+}
+
+.pickup-card-icon,
+.driver-card-icon {
+  font-size: 24px;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #FAF8F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.pickup-card-text,
+.driver-card-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.pickup-card-title-row,
+.driver-card-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.pickup-card-title-row b,
+.driver-card-title-row b {
+  font-size: 14px;
+  color: #16294D;
+}
+
+.pickup-badge,
+.driver-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: rgba(210, 176, 115, 0.16);
+  color: #9b7228;
+  letter-spacing: 0.03em;
+}
+
+.pickup-card-text small,
+.driver-card-text small {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.35;
+}
+
+/* Fleet Selector Popover */
+.fleet-popover {
+  width: 560px;
+  max-width: 95vw;
+  padding: 20px 22px;
+  max-height: min(480px, calc(100vh - 200px));
+  overflow-y: auto;
+}
+
+.fleet-popover-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fleet-popover-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(22, 41, 77, 0.08);
+  background: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+}
+
+.fleet-popover-item:hover {
+  background: #FAF8F5;
+  border-color: #D2B073;
+  transform: translateY(-1px);
+}
+
+.fleet-popover-item.selected {
+  background: #f0f4f9;
+  border-color: #16294D;
+  box-shadow: 0 4px 14px rgba(22, 41, 77, 0.1);
+}
+
+.fleet-popover-item-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.fleet-popover-icon {
+  font-size: 26px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #FAF8F5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.fleet-popover-details {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.fleet-popover-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 3px;
+  flex-wrap: wrap;
+}
+
+.fleet-popover-title-row b {
+  font-size: 14.5px;
+  color: #16294D;
+}
+
+.fleet-badge-gold {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: rgba(210, 176, 115, 0.18);
+  color: #92671e;
+}
+
+.fleet-popover-specs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.fleet-popover-pricing {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.fleet-popover-price {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #16294D;
+  display: block;
+}
+
+.fleet-popover-period {
+  font-size: 11px;
+  color: #717171;
+}
+
+/* Package & Experience Popovers */
+.package-popover,
+.experience-popover {
+  width: 520px;
+  max-width: 94vw;
+  padding: 20px 22px;
+}
+
+.package-popover-list,
+.experience-popover-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.package-popover-item,
+.exp-popover-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(22, 41, 77, 0.08);
+  background: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+}
+
+.package-popover-item:hover,
+.exp-popover-item:hover {
+  background: #FAF8F5;
+  border-color: #D2B073;
+}
+
+.pkg-pop-info,
+.exp-pop-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.pkg-pop-title-row,
+.exp-pop-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.pkg-pop-title-row b,
+.exp-pop-title-row b {
+  font-size: 14px;
+  color: #16294D;
+}
+
+.pkg-pop-badge,
+.exp-pop-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: rgba(22, 41, 77, 0.08);
+  color: #16294D;
+}
+
+.pkg-pop-info small,
+.exp-pop-info small {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.pkg-pop-price b,
+.exp-pop-price b {
+  font-size: 14px;
+  color: #16294D;
+  white-space: nowrap;
+}
+
+/* ============================================================== */
+/* HERO CONCIERGE SHOWCASE (MOCKUP LIST INTERAKTIF CARS & PACKAGES)*/
+/* ============================================================== */
+.hero-concierge-showcase {
+  margin: 32px auto 24px;
+  max-width: 1180px;
+  width: 100%;
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.concierge-showcase-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.showcase-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.showcase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(210, 176, 115, 0.15);
+  color: #92671e;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.showcase-badge .badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #D2B073;
+}
+
+.showcase-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #16294D;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.showcase-sub {
+  font-size: 14px;
+  color: #4a5568;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* 1. Fleet Showcase Grid */
+.fleet-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1120px) {
+  .fleet-showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .fleet-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fleet-card {
+  background: #ffffff;
+  border-radius: 22px;
+  border: 1px solid rgba(22, 41, 77, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.fleet-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+  border-color: rgba(210, 176, 115, 0.5);
+}
+
+.fleet-card-active {
+  border-color: #D2B073;
+  box-shadow: 0 12px 32px rgba(210, 176, 115, 0.2);
+  background: #ffffff;
+}
+
+.fleet-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.fleet-tier-tag {
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #16294D;
+  background: #f1f5f9;
+  padding: 3px 8px;
+  border-radius: 8px;
+  letter-spacing: 0.03em;
+}
+
+.fleet-promo-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #92671e;
+  background: rgba(210, 176, 115, 0.16);
+  padding: 3px 9px;
+  border-radius: 12px;
+}
+
+.fleet-visual-container {
+  background: linear-gradient(180deg, #FAF8F5 0%, #f4eee3 100%);
+  border-radius: 16px;
+  padding: 22px 14px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 16px;
+  min-height: 120px;
+}
+
+.fleet-car-art {
+  width: 100%;
+  max-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fleet-car-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
+  transition: transform 0.25s ease;
+}
+
+.fleet-card:hover .fleet-car-svg {
+  transform: scale(1.05);
+}
+
+.fleet-selected-badge {
+  position: absolute;
+  bottom: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #16294D;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(22, 41, 77, 0.25);
+}
+
+.fleet-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.fleet-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #16294D;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.fleet-desc {
+  font-size: 12.5px;
+  color: #64748b;
+  line-height: 1.45;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.fleet-specs-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.spec-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 12px;
+}
+
+.spec-pill.highlight {
+  background: rgba(210, 176, 115, 0.12);
+  border-color: rgba(210, 176, 115, 0.35);
+  color: #92671e;
+}
+
+.fleet-amenities-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fleet-amenities-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 7px;
+  font-size: 11.5px;
+  color: #475569;
+  line-height: 1.35;
+}
+
+.amenity-check {
+  color: #D2B073;
+  font-weight: 800;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.fleet-card-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fleet-price-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  color: #94a3b8;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.price-values {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.price-idr {
+  font-size: 17px;
+  font-weight: 800;
+  color: #16294D;
+}
+
+.price-usd {
+  font-size: 12.5px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.price-period {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.fleet-cta-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-select-fleet {
+  flex: 1;
+  background: #16294D;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.btn-select-fleet:hover {
+  background: #25437a;
+}
+
+.btn-select-fleet.is-selected {
+  background: #D2B073;
+  color: #ffffff;
+  cursor: default;
+}
+
+.btn-wa-fleet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #25D366;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-wa-fleet:hover {
+  background: #1eb857;
+  transform: scale(1.02);
+}
+
+/* 2. Packages Showcase Grid */
+.packages-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+@media (max-width: 960px) {
+  .packages-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.package-card {
+  background: #ffffff;
+  border-radius: 22px;
+  border: 1px solid rgba(22, 41, 77, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+
+.package-card:hover {
+  transform: translateY(-4px);
+  border-color: #D2B073;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+
+.package-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.package-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #92671e;
+  background: rgba(210, 176, 115, 0.16);
+  padding: 3px 9px;
+  border-radius: 10px;
+}
+
+.package-badge {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #16294D;
+  background: #f1f5f9;
+  padding: 3px 8px;
+  border-radius: 8px;
+}
+
+.package-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #16294D;
+  margin-bottom: 8px;
+}
+
+.package-desc {
+  font-size: 13px;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.package-includes-block {
+  margin-bottom: 18px;
+}
+
+.includes-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.includes-pills {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.inc-pill {
+  font-size: 12px;
+  color: #334155;
+  background: #FAF8F5;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.package-card-footer {
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.package-price b {
+  font-size: 17px;
+  font-weight: 800;
+  color: #16294D;
+  display: block;
+}
+
+.package-price small {
+  font-size: 11.5px;
+  color: #64748b;
+}
+
+.package-cta-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-select-package {
+  background: #16294D;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 9px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-select-package:hover {
+  background: #25437a;
+}
+
+/* 3. Experiences Showcase Grid */
+.experiences-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1040px) {
+  .experiences-showcase-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .experiences-showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.experience-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid rgba(22, 41, 77, 0.08);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-3px);
+  border-color: #D2B073;
+}
+
+.experience-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.exp-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #92671e;
+  background: rgba(210, 176, 115, 0.16);
+  padding: 3px 9px;
+  border-radius: 10px;
+}
+
+.exp-duration {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.exp-title {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #16294D;
+  margin-bottom: 6px;
+  line-height: 1.35;
+}
+
+.exp-desc {
+  font-size: 12.5px;
+  color: #64748b;
+  line-height: 1.45;
+  margin-bottom: 14px;
+}
+
+.experience-card-footer {
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.exp-price b {
+  font-size: 15px;
+  font-weight: 800;
+  color: #16294D;
+}
+
+.exp-cta-group {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-select-exp {
+  background: #16294D;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-select-exp:hover {
+  background: #25437a;
 }
 
 /* 3. Tombol Submit Search Bulat/Kapsul Mewah */
@@ -7433,7 +8348,12 @@ mark.review-highlight {
   }
 
   .destinations-popover,
-  .guests-popover {
+  .guests-popover,
+  .pickup-popover,
+  .fleet-popover,
+  .driver-popover,
+  .package-popover,
+  .experience-popover {
     width: 100%;
     position: static;
     border-radius: 18px;

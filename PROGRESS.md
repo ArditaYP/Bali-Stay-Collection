@@ -1859,6 +1859,44 @@ src/
    - `npm run build`: **Lulus 100% (3.00s, 0 Error)**.
    - **PROTOKOL PRE-PUSH DIPATUHI KETAT**: Seluruh perubahan hanya disimpan dalam commit lokal dan **TIDAK ADA `git push`**.
 
+### 9.28 Perbaikan Unclickable Spots di Seksi Hero & Redesain Visual Mockup List Layanan Concierge (Cars, Packages, Things to do)
+1. **Instruksi Pengguna**:
+   - *"tolong perbaiki di section hero jika cars atau yang lain di beberapa titik itu ada yang tidak bisa terpencet dan juga untuk desain mockup atau desain muncul list nya tu mungkin bisa di improve lagi karena itu dia jelek banget keliatan nya"*
+2. **Kebutuhan & Analisis Masalah**:
+   - **Akar Masalah "Titik Tidak Bisa Terpencet" di Hero**:
+     - *Penempatan Tab di Bawah Search Bar*: Popover floating dari search bar (`.airbnb-popover`, `.dates-popover`, `.destinations-popover`) melayang ke bawah dan menutupi sebagian tab layanan Expedia di bawahnya.
+     - *Hitbox Native Input yang Sangat Sempit*: Pada tab Cars, formulir hanya berupa input sempit dan tag native `<select>` standar di dalam div tanpa listener klik pada kontainer luar. Jika pengguna mengklik label *"Vehicle Tier"*, *"Pickup Location"*, *"Chauffeur"*, atau padding di samping teks, klik tidak direspons sama sekali (terasa mati/macet).
+     - *Event Bubbling & Child Target*: Elemen child di dalam tombol tab (`.expedia-tab-icon`, `.expedia-tab-label`) tidak memiliki `pointer-events: none` sehingga klik di tepi atau di atas ikon terkadang terdistorsi.
+   - **Kritik Desain Mockup / List Layanan**:
+     - Tampilan sebelumnya hanya berupa form HTML native bawaan OS abu-abu/hitam tanpa gambar, badge, atau estetika kemewahan Bali Stay Collection.
+     - Pengguna menginginkan antarmuka yang jauh lebih elegan, memukau, berkelas bintang lima, dan interaktif.
+3. **Implementasi & Solusi**:
+   - **Reposisi & Hitbox Solid Tab Kategori Layanan ([`src/components/frontpage/ExpediaServiceTabs.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/ExpediaServiceTabs.jsx) & [`src/components/frontpage/BscHero.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscHero.jsx))**:
+     - Tab Kategori Layanan dikembalikan ke posisi **di ATAS Search Bar** sesuai referensi screenshot asli `tambahan di hero.png` dan UX standar Expedia.com dunia.
+     - Tab berada di atas sehingga tidak akan pernah tertimpa oleh popover kalender atau popover destinasi yang membuka ke bawah.
+     - Diberikan `pointer-events: auto; cursor: pointer; min-height: 44px; z-index: 30;` pada tombol tab, serta `pointer-events: none;` pada icon dan label agar 100% koordinat tombol selalu memicu event klik secara instan.
+     - Ditambahkan `-webkit-overflow-scrolling: touch; touch-action: pan-x;` untuk menjamin sentuhan dan swipe lancar di smartphone.
+   - **Basis Data Concierge Resmi ([`src/data/bscFleetData.js`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/data/bscFleetData.js))**:
+     - Dibuat dataset resmi untuk 4 armada mobil mewah VIP (`CAR_FLEET_DATA`): *Toyota Alphard VIP Executive Lounge*, *Toyota HiAce Premio Luxury VIP (10-Seat)*, *Hyundai Ioniq 5 EV Lounge*, dan *Toyota Innova Zenix Hybrid*.
+     - Dibuat opsi lokasi penjemputan (`PICKUP_LOCATIONS_DATA`), opsi pengemudi berlisensi (`CHAUFFEUR_OPTIONS_DATA`), paket liburan all-inclusive (`PACKAGES_DATA`), dan aktivitas concierge (`EXPERIENCES_DATA`).
+   - **Redesain Total Floating Popover di Search Bar ([`src/components/frontpage/AirbnbSearchBar.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/AirbnbSearchBar.jsx))**:
+     - Dihilangkan seluruh elemen `<select>` native yang kaku.
+     - Seluruh kotak segmen (`.airbnb-search-segment`) diubah menjadi area klik penuh (100% lebar & tinggi) dengan `role="button"`, keyboard navigation (`Enter`/`Space`), dan popover dropdown eksklusif:
+       - **Pickup Popover**: Kartu pilihan penjemputan VIP (*Ngurah Rai Airport DPS VIP Meet & Greet*, *Direct Villa Delivery*, *10h Custom Island Day Tour*).
+       - **Fleet Selector Popover**: Kartu armada mobil mewah dengan visual ikon, spesifikasi kursi/koper/transmisi, badge emas, dan harga harian all-inclusive.
+       - **Chauffeur Popover**: Pilihan layanan supir pribadi berbahasa Inggris (*Recommended VIP*) atau sewa lepas kunci.
+       - **Package & Experience Popover**: Kurasi paket all-inclusive dan aktivitas concierge pulau Bali.
+   - **Galeri Mockup List Visual Mewah di Bawah Form ([`src/components/frontpage/HeroConciergeShowcase.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/HeroConciergeShowcase.jsx))**:
+     - Saat tab **Cars** aktif, ditampilkan **Luxury Fleet Showcase Cards**:
+       - 4 kartu armada mobil mewah dengan ilustrasi siluet mobil SVG beraksen emas BSC `#D2B073` & navy `#16294D`, bayangan realistis lantai, badge VVIP (*Captain Ottoman Seats*, *Wi-Fi Included*, *In-Car Refreshments*), rincian harga IDR & USD, tombol interaktif *"Select Car"* (tersinkronisasi dua arah dengan search bar), dan tombol direct *"WhatsApp Concierge"*.
+     - Saat tab **Packages** aktif, ditampilkan showcase 3 paket all-inclusive villa VIP (*The Ultimate Yacht & Villa Escape*, *Romantic Honeymoon Sanctuary*, *Family Luxury Heritage*).
+     - Saat tab **Things to do** aktif, ditampilkan showcase 4 aktivitas concierge kurasi (*Private Catamaran Charter*, *In-Villa Private Chef Dining*, *Helicopter Coastline Flight*, *In-Villa Sound Bath Spa*).
+4. **Hasil Verifikasi**:
+   - `npm run lint`: **0 Error** (Bebas dari kesalahan sintaks & hook).
+   - `npm run build`: **Lulus 100% (863ms, 0 Error)**.
+   - Semua titik klik di seksi Hero (tab tombol, segmen search bar, dan kartu showcase) responsif 100% tanpa dead click points.
+   - **PROTOKOL STRICT PRE-PUSH**: Sesuai instruksi mutlak pengguna, perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)
