@@ -1916,6 +1916,29 @@ src/
    - `npm run build`: **Lulus 100% (850ms, 0 Error)**.
    - **DILARANG KERAS `git push`**: Perubahan hanya disimpan di commit lokal untuk peninjauan lokal pengguna.
 
+### 9.30 Implementasi Arsitektur Push-Down Accordion (Eliminasi Total Tabrakan Popover terhadap Tab)
+1. **Instruksi Pengguna**:
+   - *"tolong itu di perbaiki, jika di pencet mockup nya nabrak sama cars dan lain lain tolong di perbaiki baik nya gimana?"*
+   - Keputusan pengguna via interactive prompt: *"Push-Down Accordion: Saat mockup list dibuka, tab di bawahnya otomatis terdorong ke bawah secara halus sehingga tidak pernah tertimpa atau saling menutupi."*
+2. **Kebutuhan & Analisis Masalah**:
+   - **Akar Masalah Tabrakan (*Collision*)**:
+     - Sebelumnya, setiap popover dropdown menggunakan `position: absolute; top: calc(100% + 12px);`.
+     - Karena tab layanan berada tepat di bawah bar pencarian, saat popover terbuka ke bawah, ia melayang di atas tab dan menutupi sebagian tombol tab Cars, Packages, dan Things to do.
+   - **Solusi Arsitektur Push-Down Accordion ([`src/components/frontpage/AirbnbSearchBar.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/AirbnbSearchBar.jsx) & [`src/index.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/index.css))**:
+     - Seluruh panel popup kini dikeluarkan dari kontainer sempit segmen dan disatukan ke dalam **`.airbnb-push-panel-container`** yang berada di dalam aliran layout dokumen (*relative in-document flow*) tepat di bawah kapsul bar pencarian.
+     - Ketika pengguna mengklik segmen mana pun (*Where*, *Dates*, *Who*, *Pickup Location*, *Vehicle Tier*, *Chauffeur*, *Package Category*, *Experience*):
+       - Panel accordion membuka dengan animasi lembut `pushAccordionOpen`.
+       - Karena posisinya `relative`, ia secara otomatis **mendorong tab `ExpediaServiceTabs` (Cars, Packages, Stays, dll.) dan `trust-strip` turun ke bawah secara fisik**.
+       - **Tab di bawahnya TIDAK PERNAH tertimpa atau tertutup sama sekali (0 collision)**.
+       - Panel dilengkapi header elegan dengan judul kontekstual, tag kategori, dan tombol tutup cepat `✕ Close`.
+       - Kartu armada mobil mewah ditampilkan dalam grid 2 kolom yang lapang (`push-fleet-grid`) dengan spesifikasi lengkap dan harga harian.
+       - Ketika pengguna memilih item atau mengklik tutup, panel accordion menutup dan tab di bawahnya kembali naik secara halus.
+3. **Hasil Verifikasi**:
+   - `npm run lint`: **0 Error**.
+   - `npm run build`: **Lulus 100% (934ms, 0 Error)**.
+   - Tab Cars, Packages, Stays 100% terlihat jelas, tidak bertabrakan dengan mockup, dan bebas dari dead click points.
+   - **PROTOKOL STRICT PRE-PUSH**: Sesuai instruksi mutlak pengguna, perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)
