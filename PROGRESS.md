@@ -1807,3 +1807,30 @@ src/
    - Status remote GitHub (`https://github.com/ArditaYP/Bali-Stay-Collection.git`):
      `a90838e..f6c75bf  main -> main`
    - Cabang lokal sinkron 100% dengan `origin/main` (`working tree clean`).
+
+### 9.26 Animasi Smooth Gentle Scroll ke Atas Katalog Saat Filter Sisi Kiri Diklik
+1. **Instruksi Pengguna**:
+   - *"di section id="villas" nah saat yang kiri itu di pencet antara +5 atau +6 atau must have nya ya atau apapun itu catalog nya langsung ke scroll pelan pelan keatas, buat animasi nya lebih smoot"*
+2. **Kebutuhan & Desain Solusi**:
+   - **Latar Belakang**:
+     - Saat pengguna menjelajahi katalog villa pada layar desktop maupun mobile, sidebar filter (`aside.filters`) berada di sisi kiri (`position: sticky`). Ketika pengguna menggulir ke bawah untuk mengecek kamar tidur (*Bedrooms: 5+, 6+*), fasilitas unggulan (*Must have*), tingkat kemewahan (*Villa level*), jenis liburan (*Trip type*), pemandangan (*Setting & view*), atau slider harga, posisi tampilan layar telah bergeser ke bawah.
+     - Begitu filter diklik dan hasil villa tersaring baru ditampilkan (dengan jumlah villa yang lebih sedikit/berbeda), pengguna menginginkan viewport bergeser secara perlahan dan mewah kembali ke bagian atas katalog (`#villas`) agar kartu villa teratas langsung terlihat tanpa tersesat di bagian bawah halaman.
+   - **Implementasi Animasi Scroll Khusus (*Custom requestAnimationFrame with Easing*)**:
+     - Tidak menggunakan `scroll-behavior: smooth` bawaan browser yang kaku, cepat, dan sering tersendat (*jerky*).
+     - Dibuat fungsi [`scrollToCatalogTop`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscVillaCatalog.jsx#L135-L210) menggunakan `requestAnimationFrame`:
+       - **Kurva Kurvatur Mewah**: Menggunakan fungsi kurva `easeInOutCubic` (`t < 0.5 ? 4*t^3 : 1 - (-2t+2)^3 / 2`), memberikan akselerasi awal yang halus dan deselerasi akhir yang sangat lembut seperti meluncur di atas sutra.
+       - **Durasi Dinamis Menenangkan ("Pelan-Pelan")**: Durasi dihitung berdasarkan jarak antara 700ms hingga 950ms (`Math.min(950, Math.max(700, Math.sqrt(distance) * 26))`) untuk menghasilkan impresi elegan (*luxurious calm glide*).
+       - **Offset Presisi di Bawah Sticky Navbar**: Target scroll dihitung dinamis dengan `rect.top + window.scrollY - 88` (navbar 72px + margin 16px) sehingga judul *"All villas / Find your villa"* dan baris hasil pencarian langsung tertata sempurna di bawah navbar.
+       - **User Interruption Handling**: Menambahkan listener interupsi `wheel` dan `touchstart` agar jika pengguna menggeser mouse atau menyentuh layar saat animasi berjalan, animasi langsung berhenti tanpa mengunci layar pengguna.
+       - **Nonaktifkan Sementara CSS scroll-behavior**: Mengubah sementara `document.documentElement.style.scrollBehavior = 'auto'` selama animasi berjalan untuk menjamin rendering konsisten di 60/120 FPS tanpa efek samping interpolasi ganda browser.
+   - **Pengikatan Menyeluruh ke Komponen Sidebar Kiri**:
+     - Opsi Radio Kamar Tidur (*Bedrooms: Any, 2+, 3+, 5+, 6+*) baik saat nilai berubah maupun saat label diklik ulang.
+     - Checkbox *Must have* (*Private pool, Ocean view, Beachfront, Walk to beach*).
+     - Checkbox *Villa level* (*Luxury, Premium, Deluxe, Standard*).
+     - Checkbox *Trip type* & *Setting & view*.
+     - Slider *Price per night* (saat interaksi mouse/touch selesai).
+     - Dropdown *Sort* & Tombol *Reset filters*.
+3. **Hasil Verifikasi**:
+   - `npm run lint`: **0 Error**.
+   - `npm run build`: **Lulus 100% (3.01s, 0 Error)**.
+   - Seluruh interaksi filter di sisi kiri teruji menggulirkan viewport ke atas katalog dengan transisi yang lembut, tenang, dan ultra-smooth.

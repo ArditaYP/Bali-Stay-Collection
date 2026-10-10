@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import { formatBscMoney } from '../../utils/bscFormat';
 
 const CRITERIA = ['Design', 'Pool & outdoor', 'View & setting', 'Service', 'Amenities'];
@@ -126,6 +126,99 @@ export default function BscVillaCatalog({
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
   const PAGE_SIZE = 24;
 
+  // Referensi DOM section katalog dan ID frame animasi scroll
+  const catalogSectionRef = useRef(null);
+  const scrollAnimRef = useRef(null);
+
+  /**
+   * Menggulir halaman secara perlahan dan ultra-smooth ke bagian atas katalog (#villas)
+   * Berjalan saat pengguna memilih filter di sisi kiri (Bedrooms 5+, 6+, Must have, Tier, dsb.)
+   * @returns {void}
+   */
+  const scrollToCatalogTop = useCallback(() => {
+    if (typeof window === 'undefined') return;
+
+    // Batalkan animasi gulir yang sedang berjalan jika pengguna mengeklik beruntun
+    if (scrollAnimRef.current) {
+      cancelAnimationFrame(scrollAnimRef.current);
+      scrollAnimRef.current = null;
+    }
+
+    const sectionEl = catalogSectionRef.current || document.getElementById('villas');
+    if (!sectionEl) return;
+
+    // Target posisi di atas katalog dengan buffer offset navbar 88px (navbar 72px + margin 16px)
+    const rect = sectionEl.getBoundingClientRect();
+    const targetY = Math.max(0, rect.top + window.scrollY - 88);
+    const startY = window.scrollY;
+    const distance = startY - targetY;
+
+    // Hanya lakukan scroll jika posisi saat ini berada lebih ke bawah dari target (ke atas)
+    if (distance <= 20) return;
+
+    // Durasi dinamis 700ms - 950ms agar animasi mengalir pelan dan santai
+    const duration = Math.min(950, Math.max(700, Math.sqrt(Math.abs(distance)) * 26));
+    const startTime = performance.now();
+
+    // Matikan sementara scroll-behavior CSS agar requestAnimationFrame berjalan presisi 60 FPS
+    const docEl = document.documentElement;
+    const prevScrollBehavior = docEl.style.scrollBehavior;
+    docEl.style.scrollBehavior = 'auto';
+
+    // Kurva kurvatur easeInOutCubic yang halus dan mewah
+    const easeInOutCubic = (t) => {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
+
+    /**
+     * Hentikan animasi jika pengguna menyentuh layar atau menggeser mouse secara manual
+     */
+    const cleanupAndRestore = () => {
+      docEl.style.scrollBehavior = prevScrollBehavior;
+      window.removeEventListener('wheel', handleInterrupt, { passive: true });
+      window.removeEventListener('touchstart', handleInterrupt, { passive: true });
+    };
+
+    const handleInterrupt = () => {
+      if (scrollAnimRef.current) {
+        cancelAnimationFrame(scrollAnimRef.current);
+        scrollAnimRef.current = null;
+      }
+      cleanupAndRestore();
+    };
+
+    window.addEventListener('wheel', handleInterrupt, { passive: true });
+    window.addEventListener('touchstart', handleInterrupt, { passive: true });
+
+    const step = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(1, elapsed / duration);
+      const easedProgress = easeInOutCubic(progress);
+
+      const currentY = startY - distance * easedProgress;
+      window.scrollTo(0, currentY);
+
+      if (progress < 1) {
+        scrollAnimRef.current = requestAnimationFrame(step);
+      } else {
+        scrollAnimRef.current = null;
+        cleanupAndRestore();
+      }
+    };
+
+    scrollAnimRef.current = requestAnimationFrame(step);
+  }, []);
+
+  // Bersihkan referensi animasi saat komponen dilepas (unmount)
+  useEffect(() => {
+    return () => {
+      if (scrollAnimRef.current) {
+        cancelAnimationFrame(scrollAnimRef.current);
+        scrollAnimRef.current = null;
+      }
+    };
+  }, []);
+
   // Sinkronisasi tingkat kemewahan jika diklik dari kartu Levels
   useEffect(() => {
     if (activeTier) {
@@ -151,6 +244,7 @@ export default function BscVillaCatalog({
     if (onSearchParamsChange) {
       onSearchParamsChange({ ...searchParams, location: '' });
     }
+    scrollToCatalogTop();
   };
 
   /**
@@ -163,6 +257,7 @@ export default function BscVillaCatalog({
       prev.includes(tier) ? prev.filter(t => t !== tier) : [...prev, tier]
     );
     setShownCount(PAGE_SIZE);
+    scrollToCatalogTop();
   };
 
   /**
@@ -175,6 +270,7 @@ export default function BscVillaCatalog({
       prev.includes(trip) ? prev.filter(t => t !== trip) : [...prev, trip]
     );
     setShownCount(PAGE_SIZE);
+    scrollToCatalogTop();
   };
 
   /**
@@ -187,10 +283,11 @@ export default function BscVillaCatalog({
       prev.includes(setting) ? prev.filter(s => s !== setting) : [...prev, setting]
     );
     setShownCount(PAGE_SIZE);
+    scrollToCatalogTop();
   };
 
   /**
-   * Menangani toggle filter amenity
+   * Menangani toggle filter amenity (Must have)
    * @param {string} amenity - Fasilitas yang diinginkan
    * @returns {void}
    */
@@ -199,6 +296,7 @@ export default function BscVillaCatalog({
       prev.includes(amenity) ? prev.filter(a => a !== amenity) : [...prev, amenity]
     );
     setShownCount(PAGE_SIZE);
+    scrollToCatalogTop();
   };
 
   /**
@@ -320,7 +418,7 @@ export default function BscVillaCatalog({
   const remainingCount = Math.max(0, filteredVillas.length - shownCount);
 
   return (
-    <section className="sec" id="villas">
+    <section className="sec" id="villas" ref={catalogSectionRef}>
       <div className="wrap">
         <div className="sec-head">
           <div className="eyebrow">All villas</div>
@@ -344,6 +442,8 @@ export default function BscVillaCatalog({
                   setMaxPrice(parseInt(e.target.value, 10));
                   setShownCount(PAGE_SIZE);
                 }}
+                onMouseUp={scrollToCatalogTop}
+                onTouchEnd={scrollToCatalogTop}
                 aria-label="Maximum price per night"
               />
               <div className="rng">
@@ -422,7 +522,15 @@ export default function BscVillaCatalog({
                 { label: '5+', value: 5 },
                 { label: '6+', value: 6 },
               ].map(opt => (
-                <label key={opt.value} className="ck">
+                <label 
+                  key={opt.value} 
+                  className="ck"
+                  onClick={() => {
+                    if (minBeds === opt.value) {
+                      scrollToCatalogTop();
+                    }
+                  }}
+                >
                   <input
                     type="radio"
                     name="beds"
@@ -431,6 +539,7 @@ export default function BscVillaCatalog({
                     onChange={() => {
                       setMinBeds(opt.value);
                       setShownCount(PAGE_SIZE);
+                      scrollToCatalogTop();
                     }}
                   />
                   {' '}{opt.label}
@@ -498,7 +607,10 @@ export default function BscVillaCatalog({
                   <select
                     id="sort"
                     value={sortBy}
-                    onChange={(e) => setSortBy(e.target.value)}
+                    onChange={(e) => {
+                      setSortBy(e.target.value);
+                      scrollToCatalogTop();
+                    }}
                     style={{ padding: '6px 10px', borderRadius: '8px', border: '1px solid var(--line)', background: '#fff' }}
                   >
                     <option value="rec">Recommended</option>
