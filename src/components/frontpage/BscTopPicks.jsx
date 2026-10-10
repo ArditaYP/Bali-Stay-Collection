@@ -240,70 +240,65 @@ export default function BscTopPicks({
                     </p>
                   )}
 
-                  {/* Lencana Verifikasi Inspeksi */}
-                  <div className="badges">
-                    <span className="bdg new">New on BSC</span>
-                    {villa.verified ? (
-                      <span className="bdg ok">Inspected {villa.updated || 'Oct 2026'}</span>
-                    ) : (
-                      <span className="bdg">Inspection pending</span>
-                    )}
-                    {villa.cancel && (
-                      <span className="bdg">{villa.cancel}</span>
+                  {/* Baris Lencana Inspeksi & Tombol Show Price Sejajar ke Kanan */}
+                  <div className="picks-badges-row">
+                    <div className="badges-group">
+                      <span className="bdg new">New on BSC</span>
+                      {villa.verified ? (
+                        <span className="bdg ok">Inspected {villa.updated || 'Oct 2026'}</span>
+                      ) : (
+                        <span className="bdg">Inspection pending</span>
+                      )}
+                    </div>
+
+                    {!unlockedInfo && (
+                      <button
+                        type="button"
+                        className="btn-show-price"
+                        onClick={() => handleOpenDatePicker(villa)}
+                        title={`Select dates to show price for ${villa.name}`}
+                      >
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                          <line x1="16" y1="2" x2="16" y2="6" />
+                          <line x1="8" y1="2" x2="8" y2="6" />
+                          <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                        <span>Show price</span>
+                      </button>
                     )}
                   </div>
 
-                  {/* Baris Harga & Aksi Buka Villa */}
-                  <div className={`price-row ${unlockedInfo ? 'is-unlocked' : 'is-locked'}`}>
-                    {unlockedInfo ? (
-                      /* Kondisi 1: Harga sudah dibuka setelah memilih tanggal */
-                      <>
-                        <div className="picks-unlocked-info">
-                          <div className="pr">
-                            <span>{formatBscMoney(unlockedInfo.rate, currency)}</span>{' '}
-                            <small>/ night</small>
-                          </div>
-                          <div className="total">
-                            {formatBscMoney(unlockedInfo.total, currency)} total ({unlockedInfo.nights} night{unlockedInfo.nights > 1 ? 's' : ''})
-                          </div>
-                          <div className="picks-unlocked-badge">
-                            ✓ {unlockedInfo.checkIn.slice(5)} – {unlockedInfo.checkOut.slice(5)}
-                          </div>
+                  {/* Baris Rincian Harga Terbuka (Hanya tampil saat tanggal sudah dipilih) */}
+                  {unlockedInfo && (
+                    <div className="price-row is-unlocked">
+                      <div className="picks-unlocked-info">
+                        <div className="pr">
+                          <span>{formatBscMoney(unlockedInfo.rate, currency)}</span>{' '}
+                          <small>/ night</small>
                         </div>
-
-                        <button
-                          type="button"
-                          className="btn-view-villa-unlocked"
-                          onClick={() => onSelectVilla(villa.id)}
-                          title={`View details for ${villa.name}`}
-                        >
-                          <span>View villa</span>
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                            <polyline points="12 5 19 12 12 19" />
-                          </svg>
-                        </button>
-                      </>
-                    ) : (
-                      /* Kondisi 2: Default - Harga dihilangkan, tombol Show price ditaruh di sebelah kanan */
-                      <div className="picks-price-action">
-                        <button
-                          type="button"
-                          className="btn-show-price"
-                          onClick={() => handleOpenDatePicker(villa)}
-                          title={`Select dates to show price for ${villa.name}`}
-                        >
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                            <line x1="16" y1="2" x2="16" y2="6" />
-                            <line x1="8" y1="2" x2="8" y2="6" />
-                            <line x1="3" y1="10" x2="21" y2="10" />
-                          </svg>
-                          <span>Show price</span>
-                        </button>
+                        <div className="total">
+                          {formatBscMoney(unlockedInfo.total, currency)} total ({unlockedInfo.nights} night{unlockedInfo.nights > 1 ? 's' : ''})
+                        </div>
+                        <div className="picks-unlocked-badge">
+                          ✓ {unlockedInfo.checkIn.slice(5)} – {unlockedInfo.checkOut.slice(5)}
+                        </div>
                       </div>
-                    )}
-                  </div>
+
+                      <button
+                        type="button"
+                        className="btn-view-villa-unlocked"
+                        onClick={() => onSelectVilla(villa.id)}
+                        title={`View details for ${villa.name}`}
+                      >
+                        <span>View villa</span>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                          <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
                 </div>
               </article>
             );

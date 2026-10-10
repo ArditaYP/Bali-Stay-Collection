@@ -8450,45 +8450,61 @@ mark.review-highlight {
 }
 
 /* ============================================================== */
-/* TOP PICKS SHOW PRICE & DATE PICKER MODAL                       */
+/* TOP PICKS SHOW PRICE & BADGES ROW SEJAJAR                      */
+/* [New on BSC][Inspected]   <space>   [Show price]               */
 /* ============================================================== */
-.picks-price-action {
+.picks-badges-row {
   display: flex !important;
-  justify-content: flex-end !important;
   align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  margin-top: auto !important;
+  padding-top: 14px !important;
   width: 100% !important;
 }
 
-.btn-show-price {
+.picks-badges-row .badges-group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  flex-wrap: wrap !important;
+}
+
+.picks-badges-row .badges-group .bdg {
+  white-space: nowrap !important;
+}
+
+.picks-badges-row .btn-show-price {
   background: var(--ink, #16294D) !important;
   color: #ffffff !important;
   border: 1.5px solid var(--ink, #16294D) !important;
-  border-radius: 12px !important;
-  height: 42px !important;
-  padding: 0 18px !important;
-  font-size: 13.5px !important;
+  border-radius: 100px !important;
+  height: 32px !important;
+  padding: 0 13px !important;
+  font-size: 12.5px !important;
   font-weight: 600 !important;
   letter-spacing: 0.01em !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 7px !important;
+  gap: 6px !important;
   cursor: pointer !important;
   transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
   white-space: nowrap !important;
-  box-shadow: 0 2px 6px rgba(22, 41, 77, 0.14) !important;
+  box-shadow: 0 2px 6px rgba(22, 41, 77, 0.12) !important;
   box-sizing: border-box !important;
-  width: auto !important;
+  margin-left: auto !important;
+  flex-shrink: 0 !important;
 }
 
-.btn-show-price:hover {
+.picks-badges-row .btn-show-price:hover {
   background: #0C1B38 !important;
   border-color: #0C1B38 !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 5px 14px rgba(22, 41, 77, 0.26) !important;
+  box-shadow: 0 4px 10px rgba(22, 41, 77, 0.22) !important;
 }
 
-.btn-show-price:active {
+.picks-badges-row .btn-show-price:active {
   transform: translateY(0) !important;
 }
 

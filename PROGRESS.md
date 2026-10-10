@@ -1982,6 +1982,26 @@ src/
    - `npm run build`: **Lulus 100% (2.92s, 0 Error)**.
    - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
+### 9.33 Penataan Sejajar Baris Badges & Tombol Show Price pada Section Our Top Picks (#picks)
+1. **Instruksi Pengguna**:
+   - *"pada bagian : section id : picks bisa ga di buah kayak gini [ ][ ] [show price ] | jadi ini ada space kosong agar tidak menyatu dengan yang sebelah kiri"*
+   - *"Tombol Free Schedule hapus, kemudian tombol Show Price bawa buat sejajar 3 baris di sebelah kanan inspection"*
+2. **Kebutuhan & Implementasi**:
+   - **Penghapusan Badge Free Reschedule**:
+     - Menghapus badge `{villa.cancel && <span className="bdg">{villa.cancel}</span>}` ("Free reschedule") dari kartu Top Picks di [`src/components/frontpage/BscTopPicks.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscTopPicks.jsx).
+   - **Penyelarasan Sejajar Badges dan Tombol Show Price**:
+     - Menggabungkan elemen ke dalam container fleksibel `.picks-badges-row`:
+       - Sisi kiri: `.badges-group` yang menampung lencana `[New on BSC]` dan `[Inspected Oct 2026]`.
+       - Bagian tengah: Jeda ruang kosong (`justify-content: space-between;` & `margin-left: auto;`) agar tombol tidak menyatu atau menempel dengan lencana di kirinya.
+       - Sisi kanan: Tombol `.btn-show-price` (`[Show price]`) yang sejajar secara horizontal di sisi kanan inspection badge.
+   - **Penyempurnaan Estetika Visual ([`src/index.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/index.css))**:
+     - `.btn-show-price` disesuaikan dengan tinggi proporsional `32px`, bentuk pil elegan (`border-radius: 100px; padding: 0 13px; font-size: 12.5px; font-weight: 600;`), background navy `#16294D`, dan transisi hover yang halus.
+     - `.picks-badges-row` diberi `margin-top: auto;` sehingga seluruh kartu villa dalam grid 3 kolom memiliki posisi baris badge dan tombol yang konsisten sejajar sempurna di bagian bawah kartu.
+3. **Hasil Verifikasi**:
+   - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+   - `npm run build`: **Lulus 100% (2.96s, 0 Error)**.
+   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)
