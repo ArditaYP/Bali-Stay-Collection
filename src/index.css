@@ -6439,10 +6439,10 @@ mark.review-highlight {
 .expedia-tabs-container {
   display: flex;
   justify-content: center;
-  margin: 0 auto 22px;
+  margin: 16px auto 36px;
   max-width: 860px;
   position: relative;
-  z-index: 30;
+  z-index: 25;
   width: 100%;
 }
 

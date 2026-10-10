@@ -1897,6 +1897,25 @@ src/
    - Semua titik klik di seksi Hero (tab tombol, segmen search bar, dan kartu showcase) responsif 100% tanpa dead click points.
    - **PROTOKOL STRICT PRE-PUSH**: Sesuai instruksi mutlak pengguna, perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
+### 9.29 Penempatan Tab Stays, Cars, Packages di Bawah Search Bar & Pengarsipan Showcase Concierge
+1. **Instruksi Pengguna**:
+   - *"bagian class="concierge-showcase-wrapper" itu di arsip aja dulu dah"*
+   - *"dan kenapa dia diatas lagi untuk stay cars sama package bukan nya udah saya perintahkan untuk di bawah aja????"*
+2. **Kebutuhan & Implementasi**:
+   - **Reposisi Tab Layanan Kembali ke Bawah Search Bar ([`src/components/frontpage/BscHero.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscHero.jsx))**:
+     - Sesuai instruksi tegas pemilik proyek, komponen [`ExpediaServiceTabs.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/ExpediaServiceTabs.jsx) telah dikembalikan posisinya tepat **di BAWAH** bar pencarian ([`AirbnbSearchBar.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/AirbnbSearchBar.jsx)).
+     - Penyesuaian margin CSS di [`src/index.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/index.css): `.expedia-tabs-container` diatur `margin: 16px auto 36px; z-index: 25;` agar memiliki jarak proporsional terhadap formulir di atasnya dan 4 pilar kepercayaan di bawahnya.
+   - **Pengarsipan Showcase Concierge (`.concierge-showcase-wrapper`) ([`src/components/frontpage/BscHero.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/BscHero.jsx))**:
+     - Pemanggilan komponen [`HeroConciergeShowcase.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/HeroConciergeShowcase.jsx) ditiadakan/diarsipkan dari seksi hero frontpage.
+     - Berkas komponen tetap tersimpan utuh di direktori proyek sebagai arsip jika kelak diperlukan kembali.
+   - **Kepastian Titik Klik 100% Responsif Tanpa Hambatan**:
+     - Tombol tab di bawah formulir memiliki `pointer-events: auto; min-height: 44px; z-index: 25;`, elemen child berstatus `pointer-events: none;`, serta event bubbling diamankan (`e.stopPropagation()`).
+     - Seluruh interaksi form kustom Cars (Pickup Popover, Fleet Selector Popover, Driver Popover) tetap bekerja mulus di dalam bar pencarian tanpa dead clicks.
+3. **Hasil Verifikasi**:
+   - `npm run lint`: **0 Error**.
+   - `npm run build`: **Lulus 100% (850ms, 0 Error)**.
+   - **DILARANG KERAS `git push`**: Perubahan hanya disimpan di commit lokal untuk peninjauan lokal pengguna.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)
