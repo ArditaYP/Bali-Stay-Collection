@@ -1939,6 +1939,24 @@ src/
    - Tab Cars, Packages, Stays 100% terlihat jelas, tidak bertabrakan dengan mockup, dan bebas dari dead click points.
    - **PROTOKOL STRICT PRE-PUSH**: Sesuai instruksi mutlak pengguna, perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
+### 9.31 Transisi ke Arsitektur Drop-Up Popover (Layout Hero Stabil & Tab Bawah 100% Terlihat Utuh)
+1. **Instruksi Pengguna**:
+   - *"hmmm kurang suka saya cara yang seperti itu coba yang lain"*
+   - Pengguna menolak metode Push-Down Accordion karena layout hero bergeser/melar ke bawah saat popover dibuka.
+2. **Kebutuhan & Solusi Arsitektur Drop-Up Popover**:
+   - **Pencegahan Tabrakan Melayang ke Atas (*Upward Floating Popover*)**:
+     - Mengubah orientasi popup pencarian di [`src/components/frontpage/AirbnbSearchBar.jsx`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/AirbnbSearchBar.jsx) dan [`src/index.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/index.css) menjadi melayang ke **ATAS** (`bottom: calc(100% + 14px); top: auto;`) dengan kelas `.dropup-popover` dan `.dropup-calendar-wrapper`.
+     - Memanfaatkan area ruang kosong (*white space*) yang lapang di atas kapsul search bar (antara headline teks hero dan search bar).
+   - **Keunggulan Solusi**:
+     - **Layout Hero Stabil & Kokoh**: Tinggi hero section tidak melar/mendorong elemen ke bawah, tata letak tetap kokoh di tempatnya tanpa pergeseran layout mendadak (*zero layout shift*).
+     - **Tab Layanan di Bawah 100% Bebas Tabrakan**: Tab *Stays, Cars, Packages, Things to do* di bawah search bar tetap terlihat utuh, tidak pernah tertutup oleh popover, dan tidak terdorong ke bawah.
+     - **Indikator Caret yang Presisi**: Dilengkapi panah segitiga penunjuk (*caret indicator*) di bagian bawah popover yang mengarah ke kapsul search bar.
+     - **Desain Popover Premium**: Daftar armada mobil mewah, lokasi penjemputan, kalender tanggal, destinasi, dan concierge experiences memiliki animasi halus `@keyframes dropUpFadeIn`, border shadow mewah, dan interaksi responsif tanpa dead clicks.
+3. **Hasil Verifikasi**:
+   - `npm run lint`: **0 Error** (31 warnings standar React Compiler).
+   - `npm run build`: **Lulus 100% (0 Error)**.
+   - **PROTOKOL STRICT PRE-PUSH**: Sesuai instruksi mutlak pengguna, perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

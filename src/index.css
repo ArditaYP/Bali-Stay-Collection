@@ -6641,265 +6641,101 @@ mark.review-highlight {
 }
 
 /* ============================================================== */
-/* AIRBNB PUSH-DOWN ACCORDION PANEL                               */
-/* Mendorong tab Cars & elemen di bawahnya secara fisik            */
+/* DROP-UP POPOVERS (MELAYANG KE ATAS MENUJU RUANG KOSONG HERO)   */
+/* Tab Cars, Packages, Stays di bawah sama sekali tidak tertutup  */
 /* ============================================================== */
-.airbnb-push-panel-container {
-  position: relative;
-  width: 100%;
-  max-width: 890px;
-  margin: 16px auto 0;
-  background: #ffffff;
-  border-radius: 28px;
-  border: 1px solid rgba(22, 41, 77, 0.09);
-  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
-  padding: 24px 28px;
-  animation: pushAccordionOpen 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 20;
+
+.dropup-popover {
+  top: auto !important;
+  bottom: calc(100% + 14px) !important;
+  animation: dropUpFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-@keyframes pushAccordionOpen {
+@keyframes dropUpFadeIn {
   from {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(10px) scale(0.98);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
-.push-panel-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 20px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid #f1f5f9;
+/* Caret pointer segitiga mengarah ke kapsul search bar di bawahnya */
+.dropup-popover::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 36px;
+  border-width: 9px 9px 0 9px;
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+  filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.06));
 }
 
-.push-panel-title-wrap {
-  display: flex;
-  flex-direction: column;
+.dropup-popover.dropup-popover-center {
+  left: 50% !important;
+  transform: translateX(-50%) !important;
 }
 
-.push-panel-tag {
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: #92671e;
-  letter-spacing: 0.06em;
-  margin-bottom: 4px;
+.dropup-popover.dropup-popover-center::after {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.push-panel-title {
-  font-size: 18px;
-  font-weight: 800;
-  color: #16294D;
-  margin: 0;
-  letter-spacing: -0.01em;
+.dropup-popover.dropup-popover-right {
+  left: auto !important;
+  right: 0 !important;
 }
 
-.push-panel-close-btn {
-  background: #f1f5f9;
-  border: none;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: #475569;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
+.dropup-popover.dropup-popover-right::after {
+  left: auto;
+  right: 36px;
 }
 
-.push-panel-close-btn:hover {
-  background: #e2e8f0;
-  color: #0f172a;
-  transform: scale(1.06);
+/* Drop-up Calendar Wrapper */
+.dropup-calendar-wrapper {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  animation: dropUpFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.push-panel-body {
-  width: 100%;
+.dropup-calendar-wrapper .dates-popover {
+  position: static;
+  top: auto;
+  left: auto;
+  transform: none;
 }
 
-/* 1. Fleet Push Grid */
-.push-fleet-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+.dropup-calendar-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 9px 9px 0 9px;
+  border-style: solid;
+  border-color: #ffffff transparent transparent transparent;
+  filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.06));
 }
 
-@media (max-width: 768px) {
-  .push-fleet-grid {
-    grid-template-columns: 1fr;
-  }
+/* Pickup & Driver Popover Sizes */
+.pickup-popover,
+.driver-popover {
+  width: 440px;
+  max-width: 94vw;
+  padding: 20px 22px;
 }
 
-.fleet-push-card {
-  display: flex;
-  flex-direction: column;
-  padding: 18px;
-  border-radius: 20px;
-  border: 1.5px solid rgba(22, 41, 77, 0.08);
-  background: #ffffff;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-  width: 100%;
-}
-
-.fleet-push-card:hover {
-  background: #FAF8F5;
-  border-color: #D2B073;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(210, 176, 115, 0.15);
-}
-
-.fleet-push-card.selected {
-  background: #f0f4f9;
-  border-color: #16294D;
-  box-shadow: 0 6px 20px rgba(22, 41, 77, 0.12);
-}
-
-.fleet-push-card-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.fleet-push-badge {
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 10px;
-  background: rgba(210, 176, 115, 0.18);
-  color: #92671e;
-}
-
-.fleet-push-price {
-  font-size: 15px;
-  font-weight: 800;
-  color: #16294D;
-}
-
-.fleet-push-price small {
-  font-size: 11px;
-  color: #717171;
-  font-weight: 500;
-}
-
-.fleet-push-main {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-}
-
-.fleet-push-icon {
-  font-size: 30px;
-  width: 50px;
-  height: 50px;
-  border-radius: 14px;
-  background: #FAF8F5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.fleet-push-info {
+.pickup-options-list,
+.driver-options-list {
   display: flex;
   flex-direction: column;
-  min-width: 0;
-}
-
-.fleet-push-info b {
-  font-size: 15px;
-  color: #16294D;
-  margin-bottom: 4px;
-}
-
-.fleet-push-desc {
-  font-size: 12.5px;
-  color: #64748b;
-  line-height: 1.45;
-  margin: 0 0 10px;
-}
-
-.fleet-push-specs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  font-size: 11.5px;
-  color: #475569;
-  font-weight: 600;
-}
-
-.fleet-spec-gold {
-  color: #92671e;
-  font-weight: 700;
-}
-
-/* 2. Pickup & Driver Grids in Push Panel */
-.pickup-options-grid,
-.driver-options-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-
-.driver-options-grid {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-@media (max-width: 860px) {
-  .pickup-options-grid,
-  .driver-options-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* 3. Package & Experience Grids in Push Panel */
-.package-push-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-
-@media (max-width: 860px) {
-  .package-push-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.package-push-card {
-  display: flex;
-  flex-direction: column;
-  padding: 18px;
-  border-radius: 18px;
-  border: 1px solid rgba(22, 41, 77, 0.08);
-  background: #ffffff;
-  text-align: left;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  width: 100%;
-}
-
-.package-push-card:hover {
-  background: #FAF8F5;
-  border-color: #D2B073;
-  transform: translateY(-2px);
-}
-
-.package-push-card.selected {
-  background: #f0f4f9;
-  border-color: #16294D;
-  box-shadow: 0 4px 14px rgba(22, 41, 77, 0.08);
+  gap: 10px;
 }
 
 /* Pickup Option Card Base */
