@@ -5,11 +5,11 @@ import { CONFIG } from '../../data/bscVillasData';
  * Komponen BscFooter
  * Menampilkan footer resmi Bali Stay Collection sesuai referensi footer.jpeg:
  * - Pre-footer callout: "Not sure which villa fits? Tell us how you want Bali to feel."
- * - Kolom 1: Brand BALI STAY COLLECTION · BY ANAKOSA, deskripsi & kontak Bali
+ * - Kolom 1: Brand Bali Stay Collection, deskripsi & kontak Bali
  * - Kolom 2: STAY (All villas, Destinations, Experiences, Find by mood, Villa levels, Video tour)
  * - Kolom 3: BOOK WITH CONFIDENCE (How we verify, FAQ, Our local team, Cancellation terms, Terms & Privacy)
- * - Kolom 4: A BRAND OF ANAKOSA (Own a villa in Bali? Talk to ANAKOSA)
- * - Bottom bar: Hak cipta 2026 ANAKOSA, tautan media sosial & Maps
+ * - Kolom 4: A BRAND OF (Logo Bali Stay Collection)
+ * - Bottom bar: Hak cipta 2026 Bali Stay Collection, tautan media sosial & Maps
  * - Floating WhatsApp badge di kanan bawah (Chat with us)
  * 
  * @param {Object} props
@@ -144,23 +144,15 @@ export default function BscFooter({ onOpenListVilla, onOpenEditor }) {
               </ul>
             </div>
 
-            {/* Kolom 4: A BRAND OF ANAKOSA */}
-            <div className="foot-col foot-anakosa-col">
+            {/* Kolom 4: A BRAND OF BSC */}
+            <div className="foot-col foot-brand-of-col">
               <h4 className="foot-col-title">A BRAND OF</h4>
-              <div className="foot-anakosa-logo">A N A K Ō S A</div>
-              <p className="foot-anakosa-sub">
-                Own a villa in Bali?{' '}
-                <a 
-                  href="#list-villa" 
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (typeof onOpenListVilla === 'function') onOpenListVilla();
-                  }}
-                  className="foot-anakosa-cta"
-                >
-                  Talk to ANAKOSA
-                </a>
-              </p>
+              <img 
+                src="/logo-white.svg" 
+                alt="Bali Stay Collection" 
+                className="foot-logo-img"
+                style={{ height: '36px', width: 'auto', display: 'block', marginTop: '6px' }} 
+              />
             </div>
           </div>
         </div>
@@ -171,7 +163,7 @@ export default function BscFooter({ onOpenListVilla, onOpenEditor }) {
         {/* Seksi Bawah: Hak Cipta & Socials */}
         <div className="foot-bottom">
           <div className="foot-bottom-in">
-            <div className="foot-copy">&copy; 2026 ANAKOSA</div>
+            <div className="foot-copy">&copy; 2026 Bali Stay Collection</div>
             <div className="foot-bottom-links">
               <a href="#instagram" onClick={(e) => e.preventDefault()}>Instagram</a>
               <a href="#youtube" onClick={(e) => e.preventDefault()}>YouTube</a>

@@ -2471,6 +2471,23 @@ src/
     - `footer_redesign_desktop.png` & `footer_redesign_mobile.png`: Logo resmi BSC tampil tajam dan elegan di atas deskripsi kurasi, alamat kantor Bali dan nomor telepon `+62 813-3774-3002` tampil sempurna dan dapat diklik.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu instruksi eksplisit "push".
 
+### 9.56. Pembaruan Kolom "A BRAND OF" Menggunakan Logo BSC
+- **Permintaan Pengguna**:
+  - Pada footer Kolom 4: teks `A BRAND OF A N A K Ō S A` serta `Own a villa in Bali? Talk to ANAKOSA` diganti menjadi `A BRAND OF` diikuti dengan **logo resmi BSC**.
+- **Pembaruan Kode**:
+  1. `src/components/frontpage/BscFooter.jsx`:
+     - Menghapus teks `A N A K Ō S A` dan ajakan *"Talk to ANAKOSA"*.
+     - Di bawah heading `A BRAND OF`, kini ditampilkan logo resmi Bali Stay Collection (`/logo-white.svg`).
+     - Hak cipta di baris bawah diselaraskan menjadi `© 2026 Bali Stay Collection`.
+  2. `src/components/frontpage/bscFrontpage.css`:
+     - Menambahkan class `.bsc-frontpage .foot-brand-of-col .foot-logo-img` dan menghapus class ANAKOSA yang sudah tidak digunakan.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (30 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.20s, 0 Error)**.
+  - Verifikasi visual desktop & mobile via Google Chrome headless:
+    - `footer_redesign_desktop.png` & `footer_bottom_mobile.png`: Kolom 4 menampilkan header `A BRAND OF` dengan logo BSC putih yang presisi dan bersih.
+  - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** (`git commit`). **TIDAK DI-PUSH KE GITHUB** menunggu instruksi eksplisit "push".
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)
