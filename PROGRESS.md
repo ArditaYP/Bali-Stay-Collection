@@ -2066,6 +2066,22 @@ src/
    - Pengukuran live DOM headless Chrome: `btnWidth: 135px`, `btnHeight: 38px`, `newWidth: 140px`, `newHeight: 28px`.
    - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
    - `npm run build`: **Lulus 100% (2.72s, 0 Error)**.
+### 9.38 Perbaikan Responsivitas Mobile Hero Trust Strip (4 Pilar Jaminan Kepercayaan)
+1. **Instruksi Pengguna**:
+   - *"ada yang belum responsive di hp di bagian hero yang ini: Every villa has a private pool / Cleaned and inspected before you arrive / Verified in person / Every bedroom, bathroom & amenity checked / Clear cancellation / Fair terms so you can plan with ease / Dedicated local team / On call 7 days a week in Bali"*
+2. **Kebutuhan & Implementasi**:
+   - **Root Cause**:
+     - Selektor desktop di baris 618 menggunakan `.bsc-frontpage .hero .trust-strip` (spesifisitas 3 class), sedangkan media query di baris 1625 (`max-width: 980px`) dan 1696 (`max-width: 560px`) hanya menggunakan `.bsc-frontpage .trust-strip` (spesifisitas 2 class).
+     - Perbedaan spesifisitas ini menyebabkan aturan media query diabaikan oleh browser, sehingga di layar HP kontainer tetap memaksakan 4 kolom horizontal (`repeat(4, 1fr)`) dan meluap (overflow) keluar layar hingga lebar 460px+.
+   - **Solusi & Penataan Responsif**:
+     - Memperbaiki spesifisitas pada kedua media query di [`src/components/frontpage/bscFrontpage.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/components/frontpage/bscFrontpage.css) dan menyertakan override defensif di [`src/index.css`](file:///Applications/XAMPP/xamppfiles/htdocs/BaliStayCollection/src/index.css).
+     - **Di Layar HP (`<= 640px`)**: Berubah menjadi 1 kolom vertikal (`grid-template-columns: 1fr; gap: 14px;`), dengan wadah berbingkai elegan transparan (`background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 16px;`). Setiap pilar tersusun rapi membentang penuh dengan teks terbaca 100% tanpa terpotong.
+     - **Di Layar Tablet (`641px - 980px`)**: Berubah menjadi 2 kolom simetris (`grid-template-columns: repeat(2, 1fr); gap: 16px 24px; padding: 18px 20px;`).
+     - **Di Layar Desktop (`> 980px`)**: Tetap 4 kolom horizontal berjajar elegan seperti sebelumnya.
+3. **Hasil Verifikasi**:
+   - Pengujian live emulasi iPhone 14 (390px): kontainer pas 350px, 4 item vertikal (lebar 316px, tinggi 42px), 0 overflow.
+   - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+   - `npm run build`: **Lulus 100% (2.87s, 0 Error)**.
    - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
 ---
