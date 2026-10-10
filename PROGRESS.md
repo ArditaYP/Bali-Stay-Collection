@@ -2181,6 +2181,20 @@ src/
   - Verifikasi visual desktop & mobile via headless browser: **100% Sesuai Sketsa & Referensi Expedia.com**.
   - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
 
+### 9.42. Penghapusan Ikon Tab Kategori Layanan Menjadi Teks Murni (Text-Only Tabs)
+- **Permintaan Pengguna**:
+  - Menghilangkan seluruh ikon pada `class="expedia-tabs-container"` sehingga hanya menampilkan tulisan teks kategori layanan saja (`Stay`, `Car`, `Motorbike`, `Packages`, `Thing Todo`).
+- **Pembaruan Kode & Desain**:
+  1. `src/components/frontpage/ExpediaServiceTabs.jsx`:
+     - Menghapus elemen `<span className="expedia-tab-icon">` dan menyederhanakan array `tabs` menjadi objek `{ id, label }`.
+  2. `src/index.css`:
+     - Menyesuaikan tata letak `.expedia-tab-btn` dari susunan kolom menjadi baris teks terpusat (`align-items: center; justify-content: center;`), tinggi tombol ramping elegan (`min-height: 48px`), font size `14.5px`, dan garis bawah tebal `#16294D` yang menempel di pembatas kartu.
+- **Hasil Verifikasi**:
+  - `npm run lint`: **0 Error** (28 warnings standar React Compiler).
+  - `npm run build`: **Lulus 100% (3.13s, 0 Error)**.
+  - Verifikasi visual desktop (`text_only_tabs_desktop.png`) & mobile (`text_only_tabs_mobile.png`): **100% Sesuai Instruksi**.
+  - **PROTOKOL STRICT PRE-PUSH**: Perubahan **HANYA DISIMPAN DI COMMIT LOKAL** agar pengguna dapat menguji langsung di server lokal (`localhost:5173`). DILARANG `git push`.
+
 ---
 
 ## ⚠️ ATURAN MUTLAK & PROTOKOL GIT (TIDAK BOLEH DILANGGAR)

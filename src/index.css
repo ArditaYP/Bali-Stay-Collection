@@ -6496,15 +6496,13 @@ mark.review-highlight {
 
 .expedia-tab-btn {
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 14px 18px 12px 18px;
+  padding: 16px 22px 14px 22px;
   border: none !important;
   background: transparent !important;
   color: #475569;
-  font-size: 13.5px;
+  font-size: 14.5px;
   font-weight: 600;
   border-radius: 0 !important;
   box-shadow: none !important;
@@ -6515,17 +6513,8 @@ mark.review-highlight {
   pointer-events: auto;
   user-select: none;
   touch-action: manipulation;
-  min-height: 58px;
+  min-height: 48px;
   margin-bottom: -1px;
-}
-
-.expedia-tab-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #64748b;
-  transition: transform 0.2s ease, color 0.2s ease;
-  pointer-events: none;
 }
 
 .expedia-tab-label {
@@ -6538,10 +6527,6 @@ mark.review-highlight {
   background: transparent !important;
 }
 
-.expedia-tab-btn:hover .expedia-tab-icon {
-  color: #16294D;
-}
-
 .expedia-tab-btn.active {
   color: #16294D;
   font-weight: 700;
@@ -6549,17 +6534,12 @@ mark.review-highlight {
   box-shadow: none !important;
 }
 
-.expedia-tab-btn.active .expedia-tab-icon {
-  color: #16294D;
-  transform: scale(1.05);
-}
-
 /* Garis Bawah (Underline) Tebal ala Expedia.com */
 .expedia-tab-active-indicator {
   position: absolute;
   bottom: 0;
-  left: 10px;
-  right: 10px;
+  left: 16px;
+  right: 16px;
   height: 3px;
   background: #16294D;
   border-radius: 3px 3px 0 0;
